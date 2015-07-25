@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="Content/bootstrap-multiselect.min.css" />
-    <link rel="stylesheet" href="Content/app.min.css" />
+	<link rel="stylesheet" href="Content/app.css" />
+	<link rel="stylesheet" href="Content/app.min.css" />
     <title>Bootstrap 101 Template</title>
 
     <!--[if lt IE 9]>
@@ -173,23 +174,34 @@
 
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <!-- ko if:(pageNo()==0) -->
-                                    <tr>
-                                        <td colspan="9" style="background: url('/Content/images/progresbar.gif') center center no-repeat;"></td>
-                                    </tr>
-                                    <!-- /ko -->
-                                    <!-- ko foreach: taskqueuelist -->
-                                    <tr data-bind="click: function (data, evt) { $parent.select(data, evt); }">
-                                        <td>
-                                         <!-- <button type="button" class="modal_popup" data-toggle="modal" data-target="#myModal" data-bind="click: function (data, evt) { $parent.getCustomerCard($index()); }">Düzenle</button></td> -->
-                                       </td>
-                                        <td></td>
-                                        <td></td>
+								<tbody>
+									<!-- ko if:(pageNo()==0) -->
+									<tr>
+										<td colspan="9" style="background: url('/Content/images/progresbar.gif') center center no-repeat;"></td>
+									</tr>
+									<!-- /ko -->
+									<!-- ko foreach: taskqueuelist -->
+									
+										<tr data-bind="click: function (data, evt) { $parent.select(data, evt); }" class="cls_line" onclick="">
+											<td>
+												<a href="TaskQueueEditForm.html" target="_blank"><button type="button" class="modal_popup" data-toggle="modal">Düzenle</button></a>
+											</td>
+											<td>1</td>
+											<td>2</td>
+											<td>3</td>
+											<td>4</td>
+											<td>5</td>
+											<td>6</td>
+											<td>7</td>
+											<td>8</td>
+											<td>9</td>
+											<td>10</td>
+											<td>11</td>
+											<td>12</td>
+										</tr>
 
-                                    </tr>
-                                    <!-- /ko -->
-                                </tbody>
+										<!-- /ko -->
+								</tbody>
                             </table>
                         </div>
                     </div>
