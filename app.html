@@ -131,7 +131,13 @@
             </div>
         </div>
         <br />
+		<div class="col-md-6 col-md-offset-3" style="position: absolute; top: 150px;" id="id_alert" onclick="setTimeout(function () { $('#id_alert').css({ display: 'none' }); }, 1000)">
+			<div class="alert alert-danger alert-dismissible cls_alert" role="alert" style="height: 100px;">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<strong>Warning!</strong> Better check yourself, you're not looking too good.
+			</div>
+		</div>
     </script>
-    <script src="Scripts/app.min.js"></script>>
+	<script src="Scripts/app.min.js"></script>>
 </body>
 </html>
