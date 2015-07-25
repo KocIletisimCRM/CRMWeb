@@ -15,7 +15,7 @@ Object.prototype.toObservable = function () {
 
 var crmAPI = (function () {
     var getData = function (callType, path, sendData, onsuccess, onerror, before) {
-        var baseURL = "http://localhost:50752/api/";
+        var baseURL = "http://crmapitest.kociletisim.com.tr:8083/api/";
         $.ajax({
             method: callType,
             url: baseURL + path,
@@ -30,6 +30,7 @@ var crmAPI = (function () {
             if (onerror) onerror(error);
         });
     }
+
     return {
         getTaskFilter: function (onsuccess, onerror, before) {
             getData("GET", "/Filter/getTasks", {}, onsuccess, onerror, before);

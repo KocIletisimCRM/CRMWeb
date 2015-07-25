@@ -19,5 +19,4 @@ var taskFilterModel = (function () {
         }
     }
 })();
-
 ko.applyBindings();
