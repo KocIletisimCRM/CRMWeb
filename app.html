@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="Content/bootstrap-multiselect.min.css" />
+    <link rel="stylesheet" href="Content/app.min.css" />
+    <title>Bootstrap 101 Template</title>
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="noscroll-wraper">
+        <div class="page-wraper">
+            <input type="checkbox" id="leftPanelControl" class="left-panel-control" />
+            <div class="left-panel">
+                <div class="left-panel-content">
+                    <h3></h3>
+                    <h4>SAM<small> CRM v2.0</small></h4>
+                    <hr />
+                </div>
+            </div>
+            <div class="content-wraper">
+                <div class="top-bar">
+                    <label id="lbl_leftPanelControl" for="leftPanelControl">
+                        <span class="glyphicon glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    </label>
+                </div>
+                <div class="content" data-bind="template: { name: 'taskqueue', data: taskFilterModel, afterRender: taskFilterModel.afterTemplateRender}"></div>
+            </div>
+            <br class="clear-fix" />
+        </div>
+    </div>
+
+    <script src="Scripts/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
+    <script src="Scripts/crmwebapi.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="Scripts/bootstrap-multiselect.min.js"></script>
+
+    <script type="text/html" id="taskqueue">
+        <br />
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div class="form-group-sm has-success">
+                        <label class="control-label" for="inputSuccess2">Task Adı</label>
+                        <select id="taskNameFilter" class="form-control" multiple="multiple" 
+                                data-bind="options: taskFilterModel.data, 
+                                           optionsText: 'taskname', 
+                                           optionsValue: 'taskid', 
+                                           value: taskFilterModel.value"></select>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div class="form-group-sm has-success">
+                        <label class="control-label" for="inputSuccess2">Input with success</label>
+                        <input type="text" class="form-control" id="inputSuccess2" aria-describedby="inputSuccess2Status">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div class="form-group-sm has-success">
+                        <label class="control-label" for="inputSuccess2">Input with success</label>
+                        <input type="text" class="form-control" id="inputSuccess2" aria-describedby="inputSuccess2Status">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div class="form-group-sm has-success">
+                        <label class="control-label" for="inputSuccess2">Input with success</label>
+                        <input type="text" class="form-control" id="inputSuccess2" aria-describedby="inputSuccess2Status">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div class="form-group-sm has-success">
+                        <label class="control-label" for="inputSuccess2">Input with success</label>
+                        <input type="text" class="form-control" id="inputSuccess2" aria-describedby="inputSuccess2Status">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div class="form-group-sm has-success">
+                        <label class="control-label" for="inputSuccess2">Input with success</label>
+                        <input type="text" class="form-control" id="inputSuccess2" aria-describedby="inputSuccess2Status">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div class="form-group-sm has-success">
+                        <label class="control-label" for="inputSuccess2">Input with success</label>
+                        <input type="text" class="form-control" id="inputSuccess2" aria-describedby="inputSuccess2Status">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div class="form-group-sm has-success">
+                        <label class="control-label" for="inputSuccess2">Input with success</label>
+                        <input type="text" class="form-control" id="inputSuccess2" aria-describedby="inputSuccess2Status">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div class="form-group-sm has-success">
+                        <label class="control-label" for="inputSuccess2">Input with success</label>
+                        <input type="text" class="form-control" id="inputSuccess2" aria-describedby="inputSuccess2Status">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div class="form-group-sm has-success">
+                        <label class="control-label" for="inputSuccess2">Input with success</label>
+                        <input type="text" class="form-control" id="inputSuccess2" aria-describedby="inputSuccess2Status">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div class="form-group-sm has-success">
+                        <label class="control-label" for="inputSuccess2">Input with success</label>
+                        <input type="text" class="form-control" id="inputSuccess2" aria-describedby="inputSuccess2Status">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <br />
+                    <div class="btn-group pull-right" role="group">
+                        <button type="button" class="btn btn-success">Sorgula</button>
+                        <button type="button" class="btn btn-info">Temizle</button>
+                    </div>
+                    <br style="clear:both" />
+                </div>
+            </div>
+        </div>
+        <br />
+    </script>
+    <script src="Scripts/app.min.js"></script>>
+</body>
+</html>

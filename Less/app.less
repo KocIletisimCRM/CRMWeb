@@ -1,0 +1,149 @@
+﻿html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+@praise: #F4FCE8;
+@certain-frogs: #C3FF68;
+@summer-dream: #87D69B;
+@stormyspring: #4E9689;
+@dream-blue: #7ED0D6;
+@left-panel-width: 20em;
+@top-bar-height: 4em;
+@smartphone: ~"only screen and (max-width: 767px)";
+
+.noscroll-wraper {
+    width: 100%;
+    height: inherit;
+    min-height: 100%;
+    overflow-x: hidden;
+
+    .page-wraper {
+        width: 100%;
+        height: inherit;
+
+        @media @smartphone {
+            width: 200%;
+        }
+
+        .left-panel-control {
+            display: none;
+        }
+
+        .left-panel {
+            position: relative;
+            float: left;
+            width: @left-panel-width;
+            height: 500%;
+            -moz-transition: all .5s ease-in;
+            -o-transition: all .5s ease-in;
+            -webkit-transition: all .5s ease-in;
+            transition: all .5s ease-in;
+            margin-left: -20em;
+            overflow: hidden;
+
+            @media @smartphone {
+                width: 50%;
+                max-width: 50%;
+                margin-left: -50%;
+            }
+
+            .left-panel-content {
+                position: fixed;
+                width: inherit;
+                height: inherit;
+                background-color: @summer-dream;
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+                padding: 1em 1em 1em 1em;
+
+                @media @smartphone {
+                    width: 100%;
+                    min-width: 100%;
+                }
+
+                h3 {
+                    display: block;
+                    width: 75%;
+                    background: url(/img/koc_logo.png) top center no-repeat;
+                    height: 3em;
+                    margin: 0 auto;
+                }
+
+                h4 {
+                    text-align: center;
+                    padding-left: 3em;
+                }
+            }
+        }
+
+        .content-wraper {
+            position: relative;
+            float: left;
+            -moz-box-sizing: content-box;
+            -webkit-box-sizing: content-box;
+            box-sizing: content-box;
+            height: 100%;
+            width: 100%;
+            -moz-transition: all .5s ease-in;
+            -o-transition: all .5s ease-in;
+            -webkit-transition: all .5s ease-in;
+            transition: all .5s ease-in;
+
+            @media @smartphone {
+                width: 50%;
+                min-width: 50%;
+            }
+
+            .top-bar {
+                position: fixed;
+                width: 100%;
+                height: @top-bar-height;
+                background-color: @stormyspring;
+                padding: 1em;
+                z-index: 100;
+
+                #lbl_leftPanelControl > .glyphicon {
+                    -moz-transition: all .5s ease-in-out;
+                    -o-transition: all .5s ease-in-out;
+                    -webkit-transition: all .5s ease-in-out;
+                    transition: all .5s ease-in-out;
+                    cursor: pointer;
+                }
+            }
+
+            .content {
+                margin-top: @top-bar-height;
+                background-color: @praise;
+            }
+        }
+
+        .left-panel-control:checked {
+            + .left-panel {
+                margin-left: 0;
+                -moz-transition: all .5s ease-out;
+                -o-transition: all .5s ease-out;
+                -webkit-transition: all .5s ease-out;
+                transition: all .5s ease-out;
+            }
+
+            ~ .content-wraper {
+                width: calc(~"100%" - @left-panel-width);
+                -moz-transition: all .5s ease-out;
+                -o-transition: all .5s ease-out;
+                -webkit-transition: all .5s ease-out;
+                transition: all .5s ease-out;
+
+                > .top-bar .glyphicon {
+                    -moz-transform: rotate(180deg);
+                    -ms-transform: rotate(180deg);
+                    -o-transform: rotate(180deg);
+                    -webkit-transform: rotate(180deg);
+                    transform: rotate(180deg);
+                }
+            }
+        }
+    }
+}
