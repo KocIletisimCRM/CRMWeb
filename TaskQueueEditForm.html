@@ -9,8 +9,11 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 	<link rel="stylesheet" href="Content/bootstrap-multiselect.min.css" />
+	<link rel="stylesheet" href="Content/taskqueueeditform.css" />
 	<link rel="stylesheet" href="Content/app.min.css" />
 	<title>Bootstrap 101 Template</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 	<!--[if lt IE 9]>
 	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -46,6 +49,102 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script src="Scripts/bootstrap-multiselect.min.js"></script>
 
+	<script type="text/html" id="taskqueue">
+		<div class="container-fluid" style="background-color: #D1E9F6 !important;">
+			<div class="col-md-12 container" style="padding: 0 !important; margin: 20px 0 0 0 !important; border-radius: 0 0 8px 8px !important;">
+				<div class="panel-group">
+					<div class="panel panel-info" style="border: 1px solid #fff !important;">
+						<div class="panel-heading">Task Bilgileri</div>
+						<div class="panel-body">
+							<div class="col-md-12" style="padding: 1px 0 1px 0 !important; margin: 0 !important;">
+								<div class=" col-md-3 height-40">
+									<div class="col-md-6" style="padding: 10px 0 0 0;">Task No<span style="float:right;">:</span></div>
+									<div class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;360194</div>
+								</div>
+								<div class=" col-md-3 height-40">
+									<div class="col-md-6" style="padding: 10px 0 0 0;">Task<span style="float:right;">:</span></div>
+									<div class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;İleri Tarih Randevu</div>
+								</div>
+								<div class=" col-md-3 height-40">
+									<div class="col-md-6" style="padding: 10px 0 0 0;">Önceki Task<span style="float:right;">:</span></div>
+									<div class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;önceki task link</div>
+								</div>
+								<div class=" col-md-3 height-40">
+									<div class="col-md-6" style="padding: 10px 0 0 0;">Önceki Task<span style="float:right;">:</span></div>
+									<div class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;önceki task link</div>
+								</div>
+							</div>
+							<div class="col-md-12" style="padding: 1px 0 1px 0 !important; margin: 0 !important;">
+								<div class="col-md-3 height-40">
+									<div class="col-md-6" style="padding: 10px 0 0 0;">Oluşturulma Tarihi<span style="float:right;">:</span></div>
+									<div class="col-md-6" style="padding: 5px 0 0 0;">
+										<input type="date" class="form-control" id="exampleInputEmail1" style="padding: 0 !important; margin: 0 !important;">
+									</div>
+								</div>
+								<div class="col-md-3 height-40">
+									<div class="col-md-6" style="padding: 10px 0 0 0;">Kapatılma Tarihi<span style="float:right;">:</span></div>
+									<div class="col-md-6" style="padding: 5px 0 0 0;">
+										<input type="date" class="form-control" id="exampleInputEmail1" style="padding: 0 !important; margin: 0 !important;">
+									</div>
+								</div>
+								<div class=" col-md-3 height-40">
+									<div class="col-md-6" style="padding: 10px 0 0 0;">Site<span style="float:right;">:</span></div>
+									<div class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;Güvenenler Sitesi</div>
+								</div>
+								<div class=" col-md-3 height-40">
+									<div class="col-md-6" style="padding: 10px 0 0 0;">Site<span style="float:right;">:</span></div>
+									<div class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;Güvenenler Sitesi</div>
+								</div>
+							</div>
+							<div class="col-md-12" style="padding: 1px 0 1px 0 !important; margin: 0 !important;">
+								<div class="col-md-3 height-40">
+									<div class="col-md-6" style="padding: 10px 0 0 0;">Atanma Tarihi<span style="float:right;">:</span></div>
+									<div class="col-md-6" style="padding: 5px 0 0 0;">
+										<input type="date" class="form-control" id="exampleInputEmail1" style="padding: 0 !important; margin: 0 !important;">
+									</div>
+								</div>
+								<div class=" col-md-3 height-40">
+									<div class="col-md-6" style="padding: 10px 0 0 0;">Personel<span style="float:right;">:</span></div>
+									<div class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;Murat Karabina</div>
+								</div>
+								<div class=" col-md-3 height-40">
+									<div class="col-md-6" style="padding: 10px 0 0 0;">Öbek<span style="float:right;">:</span></div>
+									<div class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;Erdoğdu</div>
+								</div>
+								<div class=" col-md-3 height-40">
+									<div class="col-md-6" style="padding: 10px 0 0 0;">Öbek<span style="float:right;">:</span></div>
+									<div class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;Erdoğdu</div>
+								</div>
+							</div>
+							<div class="col-md-12" style="padding: 1px 0 1px 0 !important; margin: 0 !important;">
+								<div class="col-md-3 height-40">
+									<div class="col-md-6" style="padding: 10px 0 0 0;">Açıklama<span style="float:right;">:</span></div>
+									<div class="col-md-6" style="padding: 5px 0 0 0;">
+										<textarea class="form-control" rows="1"></textarea>
+									</div>
+								</div>
+								<div class="col-md-3 height-40"></div>
+								<div class="col-md-3 height-40">
+									<div class="col-md-6" style="padding: 10px 0 0 0;">Yardımcı Personel<span style="float:right;">:</span></div>
+									<div class="col-md-6" style="padding: 5px 0 0 0;">
+										<input type="text" class="form-control" id="exampleInputEmail1" style="padding: 0 !important; margin: 0 !important;">
+									</div>
+								</div>
+								<div class="col-md-3 height-40">
+									<div class="col-md-6" style="padding: 10px 0 0 0;">Yardımcı Personel<span style="float:right;">:</span></div>
+									<div class="col-md-6" style="padding: 5px 0 0 0;">
+										<input type="text" class="form-control" id="exampleInputEmail1" style="padding: 0 !important; margin: 0 !important;">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br />
+	</script>
+	
 
 	<script src="Scripts/app.min.js"></script>>
 </body>
