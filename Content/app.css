@@ -133,6 +133,3 @@ body {
 .cls_line:hover{
     background-color: tomato !important;
 }
-.cls_line:active,.cls_line:visited{
-    background-color: dodgerblue !important;
-}

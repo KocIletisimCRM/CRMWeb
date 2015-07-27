@@ -27,14 +27,78 @@
                     <h3></h3>
                     <h4>SAM<small> CRM v2.0</small></h4>
                     <hr />
-                </div>
+<div class="btn-group-vertical col-md-12" role="group" aria-label="...">
+  <a href="app.html" class="btn btn-success" role="button">Task İşlemleri</a>
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Site / Blok
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <li><a href="Sites.html">Siteleri Listele</a></li>
+      <li><a href="Bloks.html">Blokları Listele</a></li>
+    </ul>
+  </div>
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Stok
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <li><a href="#">Stok Hareketleri</a></li>
+      <li><a href="#">Stok Durumu</a></li>
+    </ul>
+  </div>
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Tanımlamalar
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <li><a href="Tasks.html">Task Tanımları</a></li>
+      <li><a href="#">Task Durum Havuzu</a></li>
+      <li><a href="#">Task Durum Eşleştirme</a></li>
+      <li><a href="#">Evrak Tanımları</a></li>
+      <li><a href="#">Kampanyalar</a></li>
+      <li><a href="#">Ürün Hizmetleri</a></li>
+      <li><a href="#">Depo Kart Tanımları</a></li>
+      <li><a href="#">Personel Tanımları</a></li>
+    </ul>
+  </div>
+  <button type="button" class="btn btn-success">Müşteriler</button>
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      İşlemler
+      <span class="caret"></span>
+    </button>
+   <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+              <li class="dropdown-submenu">
+                <a tabindex="-1" href="#">Yeni Task</a>
+                <ul class="dropdown-menu">
+                  <li><a tabindex="-1" href="#">Second level</a></li>
+                  <li class="dropdown-submenu">
+                    <a href="#">Even More..</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">3rd level</a></li>
+                    	<li><a href="#">3rd level</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Second level</a></li>
+                  <li><a href="#">Second level</a></li>
+                </ul>
+              </li>
+            </ul>
+   </div>
+</div>
+                </div>             
             </div>
             <div class="content-wraper">
                 <div class="top-bar">
                     <label id="lbl_leftPanelControl" for="leftPanelControl">
                         <span class="glyphicon glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                     </label>
-                </div>
+         
+     </div>
                 <div class="content" data-bind="template: { name: 'taskqueue', data: taskFilterModel, afterRender: taskFilterModel.afterTemplateRender }"></div>
             </div>
             <br class="clear-fix" />
@@ -49,7 +113,7 @@
 
     <script type="text/html" id="taskqueue">
         <br />
-        <div class="container-fluid">
+        <div class="container-fluid" style=">
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="form-group-sm has-success">
@@ -184,7 +248,7 @@
 									
 										<tr data-bind="click: function (data, evt) { $parent.select(data, evt); }" class="cls_line" onclick="">
 											<td>
-												<a href="TaskQueueEditForm.html" target="_blank"><button type="button" class="modal_popup" data-toggle="modal">Düzenle</button></a>
+												<a href="TaskQueueEditForm.html" target="_blank"><button type="button" class="btn btn-success">Düzenle</button></a>
 											</td>
 											<td>1</td>
 											<td>2</td>
