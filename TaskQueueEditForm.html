@@ -22,13 +22,13 @@
 </head>
 <body>
 	<div class="noscroll-wraper">
-        <div class="page-wraper">
-            <input type="checkbox" id="leftPanelControl" class="left-panel-control" />
-            <div class="left-panel">
-                <div class="left-panel-content">
-                    <h3></h3>
-                    <h4>SAM<small> CRM v2.0</small></h4>
-                    <hr />
+		<div class="page-wraper">
+			<input type="checkbox" id="leftPanelControl" class="left-panel-control" />
+			<div class="left-panel">
+				<div class="left-panel-content">
+					<h3></h3>
+					<h4>SAM<small> CRM v2.0</small></h4>
+					<hr />
 <div class="btn-group-vertical col-md-12" role="group" aria-label="...">
   <a href="app.html" class="btn btn-success" role="button">Task İşlemleri</a>
   <div class="btn-group" role="group">
@@ -66,7 +66,7 @@
       <li><a href="#">Depo Kart Tanımları</a></li>
       <li><a href="#">Personel Tanımları</a></li>
     </ul>
-  </div>
+				</div>
   <button type="button" class="btn btn-success">Müşteriler</button>
   <div class="btn-group" role="group">
     <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -92,20 +92,20 @@
             </ul>
    </div>
 </div>
-                </div>             
+			</div>
             </div>
-            <div class="content-wraper">
-                <div class="top-bar">
-                    <label id="lbl_leftPanelControl" for="leftPanelControl">
-                        <span class="glyphicon glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    </label>
+			<div class="content-wraper">
+				<div class="top-bar">
+					<label id="lbl_leftPanelControl" for="leftPanelControl">
+						<span class="glyphicon glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+					</label>
          
-     </div>
-                <div class="content" data-bind="template: { name: 'taskqueue', data: taskFilterModel, afterRender: taskFilterModel.afterTemplateRender }"></div>
-            </div>
-            <br class="clear-fix" />
-        </div>
-    </div>
+				</div>
+				<div class="content" data-bind="template: { name: 'taskqueue', data: taskFilterModel, afterRender: taskFilterModel.afterTemplateRender }"></div>
+			</div>
+			<br class="clear-fix" />
+		</div>
+	</div>
 
 	<script src="Scripts/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
@@ -221,8 +221,6 @@
                                  <div class="col-md-3 height-30" >
                                     <button type="button" class="btn btn-success">Kaydet</button>
                                 </div>
-                                
-								
 						</div>
 					</div>
 				</div>
@@ -341,7 +339,7 @@
 																	<li><a href="#">Yeni..</a></li>
 																	<li class="divider"></li>
 																	<li class="dropdown-submenu">
-																		<a tabindex="-1" href="#">Hover me for more options</a>
+																		<a tabindex="-1" href="#">Seçim</a>
 																		<ul class="dropdown-menu">
 																			<li><a tabindex="-1" href="#">Tümünü Seç</a></li>
 																			<li><a href="#">Seçimi Çevir</a></li>
@@ -351,22 +349,6 @@
 																	<li class="divider"></li>
 																	<li><a href="#">Filtreyi Temizle</a></li>
 																	<li><a href="#">Excel'e Kaydet</a></li>
-																	<li class="divider"></li>
-																	<li class="dropdown-submenu">
-																		<a tabindex="-1" href="#">Hover me for more options</a>
-																		<ul class="dropdown-menu">
-																			<li><a tabindex="-1" href="#">Second level</a></li>
-																			<li class="dropdown-submenu">
-																				<a href="#">Even More..</a>
-																				<ul class="dropdown-menu">
-																					<li><a href="#">3rd level</a></li>
-																					<li><a href="#">3rd level</a></li>
-																				</ul>
-																			</li>
-																			<li><a href="#">Second level</a></li>
-																			<li><a href="#">Second level</a></li>
-																		</ul>
-																	</li>
 																</ul>
 															</div>
 														</th>
@@ -494,41 +476,6 @@
 				</div>
 			</div>
 		</div>
-			
-			<!--<div class="cls-container cls-fixed-filter">
-                <div class="cls-container">
-                    <div class="row cls-padding-0px">
-                        <div class="col-md-12 cls-padding-0px cls-border-radius-0px">
-                            <div class="panel panel-info cls-border-radius-0px">
-                                <div class="panel-heading cls-border-radius-0px cls-margin-top-3px">
-                                    <h3 class="panel-title">Kampanya ve Ürün Bilgileri</h3>
-                                    <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up cls-z-index"></i></span>
-                                </div>
-                                <div class="panel-body cls-padding-0px">
-                                    <form action="Taskqueues.html" method="post">
-                                        <div class="col-md-3 cls-panel-body">
-                                            <div class="form-group-sm has-info">
-                                                <select id="Select1" class="form-control"></select>
-                                            </div>
-                                            <div class="form-group-sm has-info">
-                                                <select id="Select2" class="form-control"></select>
-                                            </div>
-                                            <div class="form-group-sm has-info">
-                                                <select id="Select3" class="form-control"></select>
-                                            </div>
-                                            <div class="col-md-4 cls-panel-body">
-                                            <button data-bind="click: getTaskName" type="button" class="btn btn-primary cls-right cls-button-control">Kaydet</button>
-                                        </div>
-                                        </div>
-                                       
-                                        
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>-->
 	</script>
 
 	<!--<script type="text/javascript">
@@ -549,7 +496,9 @@
 	        });
 	    });
     </script>-->
-
+     <script src="JavaScripts/jquery-2.1.3.js"></script>
+    <script src="JavaScripts/jquery-2.1.3.min.js"></script>
+    <script src="packages/bootstrap.2.3.2/Content/Scripts/bootstrap.js"></script>
 	<script src="Scripts/app.min.js"></script>>
 </body>
 </html>
