@@ -118,24 +118,21 @@
 						<div class="panel-body">
 							<div class="col-xs-12 col-sm-5 col-md-5">
 								<div class="form-group-sm has-info cls-margin-bottom">
-									<label class="control-label" for="durumtanimi">Durum Tanımı</label>
+									<label class="control-label" for="durumtanimi">Evrak Adı</label>
 									<select id="durumtanimi" class="form-control">
-										<option>Tanım1</option>
-										<option>Tanım2</option>
-										<option>Tanım3</option>
-										<option>Tanım4</option>
-										<option>Tanım5</option>
-										<option>Tanım6</option>
+										<option>Default</option>
+										<option>Default</option>
+										<option>Default</option>
 									</select>
 								</div>
 							</div>
 							<div class="col-xs-12 col-sm-6 col-md-6">
 								<div class="form-group-sm has-info cls-margin-bottom">
-									<label class="control-label" for="durumturu">Durum Tanımı</label>
+									<label class="control-label" for="durumturu">Evrak Tanımı</label>
 									<select id="durumturu" class="form-control">
-										<option>Tamamlandı</option>
-										<option>Devam Ediyor</option>
-										<option>İptal</option>
+										<option>Default</option>
+										<option>Default</option>
+										<option>Default</option>
 									</select>
 								</div>
 							</div>
@@ -152,7 +149,7 @@
 						<div class="panel-heading">
 							<div class="row cls-padding-0px">
 								<div class="col-md-6">
-									Task Durum Havuzu
+									Evrak Listesi
 								</div>
 								<div class="col-md-6">
 									<!--pagination Starts-->
@@ -198,8 +195,9 @@
 																</ul>
 															</div>
 														</th>
-														<th class="warning col-md-5">Task</th>
-														<th class="info col-md-6">Task Durumu</th>
+														<th class="warning col-md-5">Evrak Adı</th>
+														<th class="info col-md-6">Evrak Tanımı</th>
+
 													</tr>
 												</thead>
 												<tbody>
@@ -210,10 +208,10 @@
 													<!-- /ko -->
 													<!-- ko foreach: taskqueuelist -->
 													<!--<tr data-bind="click: function (data, evt) { $parent.select(data, evt); }" class="cls_line" onclick="">
-														<td></td>
-														<td><input type="text" class="form-control" id="exampleInputName2"></td>
-														<td><select class="form-control"><option></option><option>Tamamlandı</option><option>Devam Ediyor</option><option>İptal</option></select></td>
-													</tr>-->
+									<td></td>
+									<td><input type="text" class="form-control" id="exampleInputName2"></td>
+									<td><select class="form-control"><option></option><option>Tamamlandı</option><option>Devam Ediyor</option><option>İptal</option></select></td>
+								</tr>-->
 													<tr data-bind="click: function (data, evt) { $parent.select(data, evt); }" class="cls_line" onclick="">
 														<td>
 															<!-- Button trigger modal -->
@@ -223,35 +221,34 @@
 															<input type="checkbox" />
 															<!-- Modal -->
 															<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-																<div class="modal-sm col-sm-offset-5" role="document" style="margin-top: 50px;">
+																<div class="modal-dialog" role="document" style="margin-top: 50px;">
 																	<div class="modal-content">
 																		<div class="modal-header">
 																			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 																			<h4 class="modal-title" id="myModalLabel">Edit Form</h4>
 																		</div>
 																		<div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
-																			<div class="col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-																				<p>Task Durum ID</p>
+																			<div class="col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+																				<p>Evrak ID</p>
 																			</div>
-																			<div class="col-md-6 cls-padding-0px" style="margin-top: 3px;">
-																				<input type="text" class="form-control" id="exampleInputName2" value="1" disabled>
+																			<div class="col-md-8 cls-padding-0px" style="margin-top: 3px;">
+																				<input type="text" class="form-control" id="exampleInputName2" value="1" disabled />
 																			</div>
-																			<div class="col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-																				<p>Durum Tanımı</p>
+																			<div class="col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+																				<p>Evrak Adı</p>
 																			</div>
-																			<div class="col-md-6 cls-padding-0px" style="margin-top: 3px;">
-																				<input type="text" class="form-control" id="exampleInputName2" value="Ulaşılamadı">
-																			</div>
-																			<div class="col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-																				<p>Durum Türü</p>
-																			</div>
-																			<div class="col-md-6 cls-padding-0px" style="margin-top: 3px;">
+																			<div class="col-md-8 cls-padding-0px" style="margin-top: 3px;">
 																				<select class="form-control">
-																					<option>Tamamlandı</option>
-																					<option>Devam Ediyor</option>
-																					<option>İptal</option>
-																					<option>SOL Tamamlandı</option>
+																					<option>Default</option>
+																					<option>Default</option>
+																					<option>Default</option>
 																				</select>
+																			</div>
+																			<div class="col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+																				<p>Evrak Tanımı</p>
+																			</div>
+																			<div class="col-md-8 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+																				<textarea class="form-control" rows="4"></textarea>
 																			</div>
 																		</div>
 																		<div class="modal-footer">
