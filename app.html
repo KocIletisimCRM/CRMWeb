@@ -117,8 +117,8 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="form-group-sm has-success">
-                        <label class="control-label" for="inputSuccess2">Task Adı</label>
-                        <select id="taskNameFilter" class="form-control" multiple="multiple" 
+                        <label class="control-label" for="taskNameFilter">Task Adı</label>
+                        <select id="taskNameFilter" class="form-control " multiple="multiple" 
                                 data-bind="options: taskFilterModel.data,
     optionsText: 'taskname',
     optionsValue: 'taskid',
@@ -145,14 +145,22 @@
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="form-group-sm has-success">
-                        <label class="control-label" for="inputSuccess2">Abone Durumu</label>
-                        <select id="Select1" class="form-control"></select>
+                        <label class="control-label" for="select1">Abone Durumu</label>
+                         <select id="select1" class="form-control" multiple="multiple" 
+                                data-bind="options: taskFilterModel.data,
+    optionsText: 'taskname',
+    optionsValue: 'taskid',
+    value: taskFilterModel.value"></select>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="form-group-sm has-success">
                         <label class="control-label" for="inputSuccess2">İnternet Servis Sağlayıcı</label>
-                        <select id="Select2" class="form-control"></select>
+                          <select id="select2" class="form-control" multiple="multiple" 
+                                data-bind="options: taskFilterModel.data,
+    optionsText: 'taskname',
+    optionsValue: 'taskid',
+    value: taskFilterModel.value"></select>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4">
@@ -170,13 +178,21 @@
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="form-group-sm has-success">
                         <label class="control-label" for="inputSuccess2">Personel</label>
-                        <select id="Select3" class="form-control"></select>
+                         <select id="select3" class="form-control" multiple="multiple" 
+                                data-bind="options: taskFilterModel.data,
+    optionsText: 'taskname',
+    optionsValue: 'taskid',
+    value: taskFilterModel.value"></select>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="form-group-sm has-success">
                         <label class="control-label" for="inputSuccess2">Task Durumu</label>
-                        <select id="Select4" class="form-control"></select>
+                         <select id="select4" class="form-control" multiple="multiple" 
+                                data-bind="options: taskFilterModel.data,
+    optionsText: 'taskname',
+    optionsValue: 'taskid',
+    value: taskFilterModel.value"></select>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4">
@@ -282,8 +298,51 @@
                 </ul>
             </nav>
             <!--pagination finish-->
+         <!-- /#wrapper -->
+     <script type="text/javascript">
+         $(document).ready(function () {
+             $('#taskNameFilter').multiselect({
+                 includeSelectAllOption: true,
+                 enableFiltering: true
+             });
+         });
+                                        </script>
+             <script type="text/javascript">
+                 $(document).ready(function () {
+                     $('#select1').multiselect({
+                         includeSelectAllOption: true,
+                         enableFiltering: true
+                     });
+                 });
+                                        </script>
+          <script type="text/javascript">
+              $(document).ready(function () {
+                  $('#select2').multiselect({
+                      includeSelectAllOption: true,
+                      enableFiltering: true
+                  });
+              });
+                                        </script>
+          <script type="text/javascript">
+              $(document).ready(function () {
+                  $('#select3').multiselect({
+                      includeSelectAllOption: true,
+                      enableFiltering: true
+                  });
+              });
+                                        </script>
+          <script type="text/javascript">
+              $(document).ready(function () {
+                  $('#select4').multiselect({
+                      includeSelectAllOption: true,
+                      enableFiltering: true
+                  });
+              });
+                                        </script>
 
     </script>
+
+
 	<script src="Scripts/app.min.js"></script>>
 </body>
 </html>
