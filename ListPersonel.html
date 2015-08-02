@@ -116,7 +116,7 @@
 					<div class="panel panel-info" style="border: 1px solid #fff !important;">
 						<div class="panel-heading">Filtreleme</div>
 						<div class="panel-body">
-							<div class="col-xs-12 col-sm-3 col-md-3">
+							<div class="col-xs-12 col-sm-4 col-md-3">
 								<div class="form-group-sm has-info cls-margin-bottom">
 									<label class="control-label" for="u-1">Personel Adı</label>
 									<select id="u-1" class="form-control">
@@ -126,7 +126,7 @@
 									</select>
 								</div>
 							</div>
-							<div class="col-xs-12 col-sm-3 col-md-3">
+							<div class="col-xs-12 col-sm-4 col-md-3">
 								<div class="form-group-sm has-info cls-margin-bottom">
 									<label class="control-label" for="u-2">Görev</label>
 									<select id="u-2" class="form-control">
@@ -136,47 +136,35 @@
 									</select>
 								</div>
 							</div>
-							<div class="col-xs-12 col-sm-3 col-md-3">
+							<div class="col-xs-12 col-sm-4 col-md-3">
 								<div class="form-group-sm has-info cls-margin-bottom">
 									<label class="control-label" for="u-3">Şifre</label>
-									<select id="u-3" class="form-control">
-										<option>Checked</option>
-										<option>UnChecked</option>
-									</select>
+									<input type="text" class="form-control" id="exampleInputName2" value="" />
 								</div>
 							</div>
-							<div class="col-xs-12 col-sm-3 col-md-3">
+							<div class="col-xs-12 col-sm-4 col-md-3">
 								<div class="form-group-sm has-info cls-margin-bottom">
 									<label class="control-label" for="u-4">Telefon</label>
-									<select id="u-4" class="form-control">
-										<option>Default</option>
-										<option>Default</option>
-										<option>Default</option>
-									</select>
+									<input type="text" class="form-control" id="exampleInputName2" value="" />
 								</div>
 							</div>
-							<div class="col-xs-12 col-sm-3 col-md-3">
+							<div class="col-xs-12 col-sm-4 col-md-3">
 								<div class="form-group-sm has-info cls-margin-bottom">
 									<label class="control-label" for="u-5">E-Posta</label>
-									<select id="u-5" class="form-control">
-										<option>Default</option>
-										<option>Default</option>
-										<option>Default</option>
-									</select>
+									<input type="text" class="form-control" id="exampleInputName2" value="" />
 								</div>
 							</div>
-							<div class="col-xs-12 col-sm-3 col-md-3">
+							<div class="col-xs-12 col-sm-4 col-md-3">
 								<div class="form-group-sm has-info cls-margin-bottom">
 									<label class="control-label" for="u-5">Notlar</label>
-									<select id="u-5" class="form-control">
-										<option>Default</option>
-										<option>Default</option>
-										<option>Default</option>
-									</select>
+									<input type="text" class="form-control" id="exampleInputName2" value="" />
 								</div>
 							</div>
-							<div class="col-xs-4 col-sm-1 col-md-1" style="margin-top: 21px;">
-								<button type="button" class="btn btn-primary">Sorgula</button>
+							<div class="col-xs-12 col-sm-4 col-md-2" style="margin-top: 21px;">
+								<div class="btn-group pull-right" role="group">
+									<button type="button" class="btn btn-success">Sorgula</button>
+									<button type="button" class="btn btn-info">Temizle</button>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -184,13 +172,13 @@
 			</div>
 			<div class="col-md-12 container" style="padding: 0 !important; margin: 20px 0 0 0 !important; border-radius: 0 0 8px 8px !important;">
 				<div class="panel-group">
-					<div class="panel panel-success" style="border: 1px solid #fff !important;">
+					<div class="panel panel-info" style="border: 1px solid #fff !important;">
 						<div class="panel-heading">
 							<div class="row cls-padding-0px">
-								<div class="col-md-6">
-									Kampanyalar
+								<div class="col-xs-6 col-sm-6 col-md-6">
+									Personel Listesi
 								</div>
-								<div class="col-md-6">
+								<div class="col-xs-6 col-sm-6 col-md-6">
 									<!--pagination Starts-->
 									<nav class="text-center" style="margin: 0px !important;padding: 0px !important;">
 										<ul class="pagination" style="margin: 0 !important;padding: 0px !important; float:right;">
@@ -212,9 +200,9 @@
 											<table class="table" id="taskquetable" data-pagination="true" data-search="true">
 												<thead>
 													<tr>
-														<th class="success col-md-1">
+														<th class="col-md-1" style="border-right: 1px solid #ddd;">
 															<div class="dropdown">
-																<a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary">
+																<a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary" style="padding: 2px 15px;">
 																	İşlemler <span class="caret"></span>
 																</a>
 																<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
@@ -234,12 +222,12 @@
 																</ul>
 															</div>
 														</th>
-														<th class="warning col-md-2">Personel Adı</th>
-														<th class="info col-md-2">Görev</th>
-														<th class="info col-md-2">Şifre</th>
-														<th class="warning col-md-2">Telefon</th>
-														<th class="info col-md-2">E-Posta</th>
-														<th class="info col-md-1">Notlar</th>
+														<th class="col-md-2" style="border-right: 1px solid #ddd;">Personel Adı</th>
+														<th class="col-md-2" style="border-right: 1px solid #ddd;">Görev</th>
+														<th class="col-md-2" style="border-right: 1px solid #ddd;">Şifre</th>
+														<th class="col-md-2" style="border-right: 1px solid #ddd;">Telefon</th>
+														<th class="col-md-2" style="border-right: 1px solid #ddd;">E-Posta</th>
+														<th class="col-md-1">Notlar</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -270,22 +258,22 @@
 																			<h4 class="modal-title" id="myModalLabel">Edit Form</h4>
 																		</div>
 																		<div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
-																			<div class="col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+																			<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
 																				<p>Personel ID</p>
 																			</div>
-																			<div class="col-md-8 cls-padding-0px" style="margin-top: 3px;">
-																				<div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="margin-top: 5px;">1</p></div>
+																			<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
+																				<div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">1</p></div>
 																			</div>
-																			<div class="col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+																			<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
 																				<p>Personel Adı</p>
 																			</div>
-																			<div class="col-md-8 cls-padding-0px" style="margin-top: 3px;">
+																			<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
 																				<input type="text" class="form-control" id="exampleInputName2" value="Yedek Ekip" />
 																			</div>
-																			<div class="col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+																			<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
 																				<p>Görev</p>
 																			</div>
-																			<div class="col-md-8 cls-padding-0px" style="margin-top: 3px;">
+																			<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
 																				<select class="form-control">
 																					<option>Default1</option>
 																					<option>Default2</option>
@@ -293,28 +281,28 @@
 																					<option>Default4</option>
 																				</select>
 																			</div>
-																			<div class="col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+																			<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
 																				<p>Şifre</p>
 																			</div>
-																			<div class="col-md-8 cls-padding-0px" style="margin-top: 3px;">
+																			<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
 																				<input type="text" class="form-control" id="exampleInputName2" value="123456" />
 																			</div>
-																			<div class="col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+																			<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
 																				<p>Telefon</p>
 																			</div>
-																			<div class="col-md-8 cls-padding-0px" style="margin-top: 3px;">
+																			<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
 																				<input type="text" class="form-control" id="exampleInputName2" value="-" />
 																			</div>
-																			<div class="col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+																			<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
 																				<p>E-Posta</p>
 																			</div>
-																			<div class="col-md-8 cls-padding-0px" style="margin-top: 3px;">
+																			<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
 																				<input type="text" class="form-control" id="exampleInputName2" value="aliosmancavdar@kociletisim.com.tr" />
 																			</div>
-																			<div class="col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+																			<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
 																				<p>Notlar</p>
 																			</div>
-																			<div class="col-md-8 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+																			<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
 																				<textarea class="form-control" rows="4"></textarea>
 																			</div>
 																		</div>
@@ -326,12 +314,12 @@
 																</div>
 															</div>
 														</td>
-														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="margin-top: 5px;">Default</p></div></td>
-														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="margin-top: 5px;">Default</p></div></td>
-														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="margin-top: 5px;">Default</p></div></td>
-														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="margin-top: 5px;">Default</p></div></td>
-														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="margin-top: 5px;">Default</p></div></td>
-														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="margin-top: 5px;">Default</p></div></td>
+														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
+														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
+														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
+														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
+														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
+														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
 													</tr>
 												</tbody>
 											</table>
