@@ -116,20 +116,30 @@
 					<div class="panel panel-info" style="border: 1px solid #fff !important;">
 						<div class="panel-heading">Filtreleme</div>
 						<div class="panel-body">
-							<div class="col-xs-12 col-sm-5 col-md-5">
+							<div class="col-xs-12 col-sm-4 col-md-4">
 								<div class="form-group-sm has-info cls-margin-bottom">
-									<label class="control-label" for="durumtanimi">Evrak Adı</label>
-									<select id="durumtanimi" class="form-control">
+									<label class="control-label" for="u-1">Ürün Adı</label>
+									<select id="u-1" class="form-control">
 										<option>Default</option>
 										<option>Default</option>
 										<option>Default</option>
 									</select>
 								</div>
 							</div>
-							<div class="col-xs-12 col-sm-6 col-md-6">
+							<div class="col-xs-12 col-sm-4 col-md-4">
 								<div class="form-group-sm has-info cls-margin-bottom">
-									<label class="control-label" for="durumturu">Evrak Tanımı</label>
-									<select id="durumturu" class="form-control">
+									<label class="control-label" for="u-2">Ürün Kategorisi</label>
+									<select id="u-2" class="form-control">
+										<option>Default</option>
+										<option>Default</option>
+										<option>Default</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-3 col-md-3">
+								<div class="form-group-sm has-info cls-margin-bottom">
+									<label class="control-label" for="u-3">Süre</label>
+									<select id="u-3" class="form-control">
 										<option>Default</option>
 										<option>Default</option>
 										<option>Default</option>
@@ -149,7 +159,7 @@
 						<div class="panel-heading">
 							<div class="row cls-padding-0px">
 								<div class="col-md-6">
-									Evrak Listesi
+									Kampanyalar
 								</div>
 								<div class="col-md-6">
 									<!--pagination Starts-->
@@ -195,9 +205,9 @@
 																</ul>
 															</div>
 														</th>
-														<th class="warning col-md-5">Evrak Adı</th>
-														<th class="info col-md-6">Evrak Tanımı</th>
-
+														<th class="warning col-md-4">Ürün Adı</th>
+														<th class="info col-md-4">Ürün Kategorisi</th>
+														<th class="info col-md-3">Süre</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -208,10 +218,10 @@
 													<!-- /ko -->
 													<!-- ko foreach: taskqueuelist -->
 													<!--<tr data-bind="click: function (data, evt) { $parent.select(data, evt); }" class="cls_line" onclick="">
-									<td></td>
-									<td><input type="text" class="form-control" id="exampleInputName2"></td>
-									<td><select class="form-control"><option></option><option>Tamamlandı</option><option>Devam Ediyor</option><option>İptal</option></select></td>
-								</tr>-->
+														<td></td>
+														<td><input type="text" class="form-control" id="exampleInputName2"></td>
+														<td><select class="form-control"><option></option><option>Tamamlandı</option><option>Devam Ediyor</option><option>İptal</option></select></td>
+													</tr>-->
 													<tr data-bind="click: function (data, evt) { $parent.select(data, evt); }" class="cls_line" onclick="">
 														<td>
 															<!-- Button trigger modal -->
@@ -229,26 +239,46 @@
 																		</div>
 																		<div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
 																			<div class="col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-																				<p>Evrak ID</p>
+																				<p>Ürün&Hizmet ID</p>
 																			</div>
 																			<div class="col-md-8 cls-padding-0px" style="margin-top: 3px;">
-																				<input type="text" class="form-control" id="exampleInputName2" value="1" disabled />
+																				<div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="margin-top: 5px;">1</p></div>
 																			</div>
 																			<div class="col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-																				<p>Evrak Adı</p>
+																				<p>Ürün Adı</p>
+																			</div>
+																			<div class="col-md-8 cls-padding-0px" style="margin-top: 3px;">
+																				<input type="text" class="form-control" id="exampleInputName2" value="Limitsiz 25 Mbps -  100 GB AKK" />
+																			</div>
+																			<div class="col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+																				<p>Ürün Kategorisi</p>
 																			</div>
 																			<div class="col-md-8 cls-padding-0px" style="margin-top: 3px;">
 																				<select class="form-control">
-																					<option>Default</option>
-																					<option>Default</option>
-																					<option>Default</option>
+																					<option>Default1</option>
+																					<option>Default2</option>
+																					<option>Default3</option>
+																					<option>Default4</option>
 																				</select>
 																			</div>
 																			<div class="col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-																				<p>Evrak Tanımı</p>
+																				<p>Süre</p>
+																			</div>
+																			<div class="col-md-8 cls-padding-0px" style="margin-top: 3px;">
+																				<input type="text" class="form-control" id="exampleInputName2" value="" />
+																			</div>
+																			<div class="col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+																				<p>Otomatik Zorunlu Tasklar</p>
 																			</div>
 																			<div class="col-md-8 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-																				<textarea class="form-control" rows="4"></textarea>
+																				<select id="zorunlu-task" multiple="multiple">
+																					<option value="1">Default1</option>
+																					<option value="2">Default2</option>
+																					<option value="3">Default3</option>
+																					<option value="4">Default4</option>
+																					<option value="5">Default5</option>
+																					<option value="6">Default6</option>
+																				</select>
 																			</div>
 																		</div>
 																		<div class="modal-footer">
@@ -259,8 +289,9 @@
 																</div>
 															</div>
 														</td>
-														<td><input type="text" class="form-control" id="exampleInputName2" style="height:30px;" value="" placeholder="Default" disabled /></td>
-														<td><input type="text" class="form-control" id="exampleInputName2" style="height:30px;" value="" placeholder="Default" disabled /></td>
+														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="margin-top: 5px;">Default</p></div></td>
+														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="margin-top: 5px;">Default</p></div></td>
+														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="margin-top: 5px;">Default</p></div></td>
 													</tr>
 												</tbody>
 											</table>
@@ -286,6 +317,19 @@
 			</div>
 		</div>
 	</script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('#zorunlu-task').multiselect({
+				includeSelectAllOption: true,
+				selectAllValue: 'select-all-value'
+			});
+		});
+	</script>
+
+
+
+
+
 	<script src="Scripts/app.min.js"></script>>
 </body>
 </html>
