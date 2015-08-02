@@ -55,7 +55,7 @@
 								<span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
-								<li><a href="Tasks.html">Task Tanımları</a></li>
+								<li><a href="ListTasks.html">Task Tanımları</a></li>
 								<li><a href="ListTaskStatePool.html">Task Durum Havuzu</a></li>
 								<li><a href="ListTaskStateMatches.html">Task Durum Eşleştirme</a></li>
 								<li><a href="ListDocument.html">Evrak Tanımları</a></li>
@@ -116,28 +116,23 @@
 					<div class="panel panel-info" style="border: 1px solid #fff !important;">
 						<div class="panel-heading">Filtreleme</div>
 						<div class="panel-body">
-							<div class="col-xs-12 col-sm-5 col-md-5">
+							<div class="col-xs-12 col-sm-4 col-md-5">
 								<div class="form-group-sm has-info cls-margin-bottom">
 									<label class="control-label" for="durumtanimi">Evrak Adı</label>
-									<select id="durumtanimi" class="form-control">
-										<option>Default</option>
-										<option>Default</option>
-										<option>Default</option>
-									</select>
+									<input type="text" class="form-control" id="exampleInputName2" value=""/>
 								</div>
 							</div>
-							<div class="col-xs-12 col-sm-6 col-md-6">
+							<div class="col-xs-12 col-sm-4 col-md-5">
 								<div class="form-group-sm has-info cls-margin-bottom">
 									<label class="control-label" for="durumturu">Evrak Tanımı</label>
-									<select id="durumturu" class="form-control">
-										<option>Default</option>
-										<option>Default</option>
-										<option>Default</option>
-									</select>
+									<input type="text" class="form-control" id="exampleInputName2" value=""/>
 								</div>
 							</div>
-							<div class="col-xs-4 col-sm-1 col-md-1" style="margin-top: 21px;">
-								<button type="button" class="btn btn-primary">Sorgula</button>
+							<div class="col-xs-12 col-sm-4 col-md-2" style="margin-top: 21px;">
+								<div class="btn-group pull-right" role="group">
+									<button type="button" class="btn btn-success">Sorgula</button>
+									<button type="button" class="btn btn-info">Temizle</button>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -145,7 +140,7 @@
 			</div>
 			<div class="col-md-12 container" style="padding: 0 !important; margin: 20px 0 0 0 !important; border-radius: 0 0 8px 8px !important;">
 				<div class="panel-group">
-					<div class="panel panel-success" style="border: 1px solid #fff !important;">
+					<div class="panel panel-info" style="border: 1px solid #fff !important;">
 						<div class="panel-heading">
 							<div class="row cls-padding-0px">
 								<div class="col-md-6">
@@ -173,9 +168,9 @@
 											<table class="table" id="taskquetable" data-pagination="true" data-search="true">
 												<thead>
 													<tr>
-														<th class="success col-md-1">
+														<th class="col-md-1" style="border-right: 1px solid #ddd;">
 															<div class="dropdown">
-																<a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary">
+																<a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary" style="padding: 2px 15px;">
 																	İşlemler <span class="caret"></span>
 																</a>
 																<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
@@ -195,8 +190,8 @@
 																</ul>
 															</div>
 														</th>
-														<th class="warning col-md-5">Evrak Adı</th>
-														<th class="info col-md-6">Evrak Tanımı</th>
+														<th class="col-md-5" style="border-right: 1px solid #ddd;">Evrak Adı</th>
+														<th class="col-md-6">Evrak Tanımı</th>
 
 													</tr>
 												</thead>
@@ -228,26 +223,22 @@
 																			<h4 class="modal-title" id="myModalLabel">Edit Form</h4>
 																		</div>
 																		<div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
-																			<div class="col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+																			<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
 																				<p>Evrak ID</p>
 																			</div>
-																			<div class="col-md-8 cls-padding-0px" style="margin-top: 3px;">
-																				<input type="text" class="form-control" id="exampleInputName2" value="1" disabled />
+																			<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
+																				<div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">1</p></div>
 																			</div>
-																			<div class="col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+																			<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
 																				<p>Evrak Adı</p>
 																			</div>
-																			<div class="col-md-8 cls-padding-0px" style="margin-top: 3px;">
-																				<select class="form-control">
-																					<option>Default</option>
-																					<option>Default</option>
-																					<option>Default</option>
-																				</select>
+																			<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
+																				<input type="text" class="form-control" id="exampleInputName2" value="default">
 																			</div>
-																			<div class="col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+																			<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
 																				<p>Evrak Tanımı</p>
 																			</div>
-																			<div class="col-md-8 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+																			<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
 																				<textarea class="form-control" rows="4"></textarea>
 																			</div>
 																		</div>
@@ -259,8 +250,8 @@
 																</div>
 															</div>
 														</td>
-														<td><input type="text" class="form-control" id="exampleInputName2" style="height:30px;" value="" placeholder="Default" disabled /></td>
-														<td><input type="text" class="form-control" id="exampleInputName2" style="height:30px;" value="" placeholder="Default" disabled /></td>
+														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
+														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
 													</tr>
 												</tbody>
 											</table>

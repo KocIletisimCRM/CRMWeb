@@ -116,37 +116,70 @@
 					<div class="panel panel-info" style="border: 1px solid #fff !important;">
 						<div class="panel-heading">Filtreleme</div>
 						<div class="panel-body">
-							<div class="col-xs-12 col-sm-6 col-md-4">
+							<div class="col-xs-12 col-sm-4 col-md-4">
 								<div class="form-group-sm has-info cls-margin-bottom">
-									<label class="control-label" for="durumtanimi">Kampanya Adı</label>
-									<select id="durumtanimi" class="form-control">
-										<option>Default</option>
-										<option>Default</option>
-										<option>Default</option>
+									<label class="control-label" for="taskadi">Task Adı</label>
+									<select id="taskadi" multiple="multiple">
+										<option value="1">Task Adı 1</option>
+										<option value="2">Task Adı 2</option>
+										<option value="3">Task Adı 3</option>
+										<option value="4">Task Adı 4</option>
+										<option value="5">Task Adı 5</option>
+										<option value="6">Task Adı 6</option>
 									</select>
 								</div>
 							</div>
-							<div class="col-xs-12 col-sm-6 col-md-3">
+							<div class="col-xs-12 col-sm-4 col-md-4">
 								<div class="form-group-sm has-info cls-margin-bottom">
-									<label class="control-label" for="durumturu">Kampanya Kategorisi</label>
-									<select id="durumturu" class="form-control">
-										<option>Default</option>
-										<option>Default</option>
-										<option>Default</option>
+									<label class="control-label" for="gorevli">Görevli</label>
+									<select id="gorevli" class="form-control">
+										<option>Görevli 1</option>
+										<option>Görevli 2</option>
+										<option>Görevli 3</option>
 									</select>
 								</div>
 							</div>
-							<div class="col-xs-12 col-sm-6 col-md-3">
+							<div class="col-xs-12 col-sm-4 col-md-4">
 								<div class="form-group-sm has-info cls-margin-bottom">
-									<label class="control-label" for="durumturu">Kampanya Alt Kategorisi</label>
-									<select id="durumturu" class="form-control">
-										<option>Default</option>
-										<option>Default</option>
-										<option>Default</option>
+									<label class="control-label" for="taskturu">Task Türü</label>
+									<select id="taskturu" class="form-control">
+										<option>Diğer</option>
+										<option>Satış Taskı</option>
+										<option>Randevu Taskı</option>
+										<option>Kurulum Taskı</option>
+										<option>Randevusuz Kurulum Taskı</option>
+										<option>SOL Kapama Taskı</option>
 									</select>
 								</div>
 							</div>
-							<div class="col-xs-12 col-sm-6 col-md-2" style="margin-top: 21px;">
+							<div class="col-xs-12 col-sm-4 col-md-4">
+								<div class="form-group-sm has-info cls-margin-bottom">
+									<label class="control-label" for="ilgi">İlgi</label>
+									<select id="ilgi" class="form-control">
+										<option>Site</option>
+										<option>Blok</option>
+										<option>HP</option>
+										<option>Satın Alma</option>
+										<option>Depo</option>
+										<option>Satış Personeli</option>
+										<option>İmalat Personeli</option>
+										<option>Backoffice Personeli</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-4 col-md-2">
+								<div class="form-group-sm has-info cls-margin-bottom">
+									<label class="control-label" for="puan">Puan</label>
+									<select id="puan" class="form-control">
+										<option>0</option>
+										<option>0.5</option>
+										<option>1</option>
+										<option>1.5</option>
+										<option>2</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-4 col-md-2" style="margin-top: 21px;">
 								<div class="btn-group pull-right" role="group">
 									<button type="button" class="btn btn-success">Sorgula</button>
 									<button type="button" class="btn btn-info">Temizle</button>
@@ -158,13 +191,13 @@
 			</div>
 			<div class="col-md-12 container" style="padding: 0 !important; margin: 20px 0 0 0 !important; border-radius: 0 0 8px 8px !important;">
 				<div class="panel-group">
-					<div class="panel panel-info" style="border: 1px solid #fff !important;">
+					<div class="panel panel-success" style="border: 1px solid #fff !important;">
 						<div class="panel-heading">
 							<div class="row cls-padding-0px">
-								<div class="col-xs-6 col-sm-6 col-md-6">
-									Kampanyalar
+								<div class="col-md-6">
+									Task Tanımları
 								</div>
-								<div class="col-xs-6 col-sm-6 col-md-6">
+								<div class="col-md-6">
 									<!--pagination Starts-->
 									<nav class="text-center" style="margin: 0px !important;padding: 0px !important;">
 										<ul class="pagination" style="margin: 0 !important;padding: 0px !important; float:right;">
@@ -186,9 +219,9 @@
 											<table class="table" id="taskquetable" data-pagination="true" data-search="true">
 												<thead>
 													<tr>
-														<th class="col-md-1" style="border-right: 1px solid #ddd;">
+														<th class="success col-md-1">
 															<div class="dropdown">
-																<a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary" style="padding: 2px 15px;">
+																<a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary">
 																	İşlemler <span class="caret"></span>
 																</a>
 																<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
@@ -208,9 +241,11 @@
 																</ul>
 															</div>
 														</th>
-														<th class="col-md-4" style="border-right: 1px solid #ddd;">Kampanya Adı</th>
-														<th class="col-md-4" style="border-right: 1px solid #ddd;">Kampanya Kategorisi</th>
-														<th class="col-md-3">Kampanya Alt Kategorisi</th>
+														<th class="warning col-md-2">Task Adı</th>
+														<th class="info col-md-2">Görevli</th>
+														<th class="info col-md-2">Task Türü</th>
+														<th class="info col-md-2">İlgi</th>
+														<th class="info col-md-2">Puan</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -241,68 +276,53 @@
 																			<h4 class="modal-title" id="myModalLabel">Edit Form</h4>
 																		</div>
 																		<div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
-																			<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-																				<p>Kampanya ID</p>
+																			<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+																				<p>Task ID</p>
 																			</div>
-																			<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
+																			<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
 																				<div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">1</p></div>
 																			</div>
-																			<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-																				<p>Kampanya Adı</p>
+																			<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+																				<p>Task Adı</p>
 																			</div>
-																			<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
-																				<div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Fiber Hızını Seç Kampanyası</p></div>
+																			<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+																				<input type="text" class="form-control" id="exampleInputName2" value="Cayma Bedeli Taskı">
 																			</div>
-																			<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-																				<p>Kampanya Kategorisi</p>
+																			<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+																				<p>Görevli</p>
 																			</div>
-																			<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
+																			<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
 																				<select class="form-control">
-																					<option>Fiber</option>
-																					<option>Adsl</option>
-																					<option>Yanında</option>
-																					<option>Retention</option>
+																					<option>1</option>
+																					<option>2</option>
+																					<option>3</option>
 																				</select>
 																			</div>
-																			<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-																				<p>Kampanya Alt Kategorisi</p>
+																			<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+																				<p>Task Türü</p>
 																			</div>
-																			<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
+																			<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
 																				<select class="form-control">
-																					<option>Alt Kategori</option>
-																					<option>Tablet</option>
-																					<option>Dakika</option>
-																					<option>Turkcell TV</option>
-																					<option>Dect</option>
-																					<option>ADAPTOR</option>
-																					<option>PC</option>
+																					<option>1</option>
+																					<option>2</option>
+																					<option>3</option>
 																				</select>
 																			</div>
-																			<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-																				<p>Kampanya Ürünleri</p>
+																			<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+																				<p>İlgi</p>
 																			</div>
-																			<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-																				<select id="Kampanya-Urunleri" multiple="multiple">
-																					<option value="1">Default1</option>
-																					<option value="2">Default2</option>
-																					<option value="3">Default3</option>
-																					<option value="4">Default4</option>
-																					<option value="5">Default5</option>
-																					<option value="6">Default6</option>
+																			<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+																				<select class="form-control">
+																					<option>1</option>
+																					<option>2</option>
+																					<option>3</option>
 																				</select>
 																			</div>
-																			<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-																				<p>Kampanya Belgeleri</p>
+																			<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+																				<p>Puan</p>
 																			</div>
-																			<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-																				<select id="Kampanya-Belgeleri" multiple="multiple">
-																					<option value="1">Default1</option>
-																					<option value="2">Default2</option>
-																					<option value="3">Default3</option>
-																					<option value="4">Default4</option>
-																					<option value="5">Default5</option>
-																					<option value="6">Default6</option>
-																				</select>
+																			<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+																				<input type="text" class="form-control" id="exampleInputName2" value="0">
 																			</div>
 																		</div>
 																		<div class="modal-footer">
@@ -313,6 +333,8 @@
 																</div>
 															</div>
 														</td>
+														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
+														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
 														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
 														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
 														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
@@ -343,24 +365,14 @@
 	</script>
 	<script type="text/javascript">
 		$(document).ready(function () {
-			$('#Kampanya-Urunleri').multiselect({
+			$('#taskadi').multiselect({
 				includeSelectAllOption: true,
 				selectAllValue: 'select-all-value'
 			});
 		});
 	</script>
-	<script type="text/javascript">
-	$(document).ready(function () {
-		$('#Kampanya-Belgeleri').multiselect({
-			includeSelectAllOption: true,
-			enableFiltering: true
-		});
-	});
-	</script>
 
 
-
-	
 
 	<script src="Scripts/app.min.js"></script>>
 </body>

@@ -55,14 +55,14 @@
 								<span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
-								<li><a href="Tasks.html">Task Tanımları</a></li>
-								<li><a href="#">Task Durum Havuzu</a></li>
-								<li><a href="#">Task Durum Eşleştirme</a></li>
-								<li><a href="#">Evrak Tanımları</a></li>
-								<li><a href="#">Kampanyalar</a></li>
-								<li><a href="#">Ürün Hizmetleri</a></li>
-								<li><a href="#">Depo Kart Tanımları</a></li>
-								<li><a href="#">Personel Tanımları</a></li>
+								<li><a href="ListTasks.html">Task Tanımları</a></li>
+								<li><a href="ListTaskStatePool.html">Task Durum Havuzu</a></li>
+								<li><a href="ListTaskStateMatches.html">Task Durum Eşleştirme</a></li>
+								<li><a href="ListDocument.html">Evrak Tanımları</a></li>
+								<li><a href="ListCampaigns.html">Kampanyalar</a></li>
+								<li><a href="ListProducts.html">Ürün Hizmetleri</a></li>
+								<li><a href="ListStockCards.html">Depo Kart Tanımları</a></li>
+								<li><a href="ListPersonel.html">Personel Tanımları</a></li>
 							</ul>
 						</div>
 						<button type="button" class="btn btn-success">Müşteriler</button>
@@ -116,7 +116,7 @@
 					<div class="panel panel-info" style="border: 1px solid #fff !important;">
 						<div class="panel-heading">Filtreleme</div>
 						<div class="panel-body">
-							<div class="col-xs-12 col-sm-5 col-md-5">
+							<div class="col-xs-12 col-sm-4 col-md-5">
 								<div class="form-group-sm has-info cls-margin-bottom">
 									<label class="control-label" for="durumtanimi">Task</label>
 									<select id="durumtanimi" class="form-control">
@@ -129,7 +129,7 @@
 									</select>
 								</div>
 							</div>
-							<div class="col-xs-12 col-sm-6 col-md-6">
+							<div class="col-xs-12 col-sm-4 col-md-5">
 								<div class="form-group-sm has-info cls-margin-bottom">
 									<label class="control-label" for="durumturu">Task Durumu</label>
 									<select id="durumturu" class="form-control">
@@ -139,8 +139,11 @@
 									</select>
 								</div>
 							</div>
-							<div class="col-xs-4 col-sm-1 col-md-1" style="margin-top: 21px;">
-								<button type="button" class="btn btn-primary">Sorgula</button>
+							<div class="col-xs-12 col-sm-4 col-md-2" style="margin-top: 21px;">
+								<div class="btn-group pull-right" role="group">
+									<button type="button" class="btn btn-success">Sorgula</button>
+									<button type="button" class="btn btn-info">Temizle</button>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -230,66 +233,66 @@
 																			<h4 class="modal-title" id="myModalLabel">Edit Form</h4>
 																		</div>
 																		<div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
-																			<div class="col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+																			<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
 																				<p>ID</p>
 																			</div>
-																			<div class="col-md-8 cls-padding-0px" style="margin-top: 3px;">
-																				<input type="text" class="form-control" id="exampleInputName2" value="1" disabled />
+																			<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
+																				<div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">1</p></div>
 																			</div>
-																			<div class="col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+																			<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
 																				<p>Task</p>
 																			</div>
-																			<div class="col-md-8 cls-padding-0px" style="margin-top: 3px;">
+																			<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
 																				<select class="form-control">
 																					<option>Default</option>
 																					<option>Default</option>
 																					<option>Default</option>
 																				</select>
 																			</div>
-																			<div class="col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+																			<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
 																				<p>Task Durumu</p>
 																			</div>
-																			<div class="col-md-8 cls-padding-0px" style="margin-top: 3px;">
+																			<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
 																				<select class="form-control">
 																					<option>Default</option>
 																					<option>Default</option>
 																					<option>Default</option>
 																				</select>
 																			</div>
-																			<div class="col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+																			<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
 																				<p>Otomatik Zorunlu Tasklar</p>
 																			</div>
-																			<div class="col-md-8 cls-padding-0px" style="margin-top: 3px;">
+																			<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
 																				<select class="form-control">
 																					<option>Default</option>
 																					<option>Default</option>
 																					<option>Default</option>
 																				</select>
 																			</div>
-																			<div class="col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+																			<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
 																				<p>Otomatik Opsiyonel Tasklar</p>
 																			</div>
-																			<div class="col-md-8 cls-padding-0px" style="margin-top: 3px;">
+																			<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
 																				<select class="form-control">
 																					<option>Default</option>
 																					<option>Default</option>
 																					<option>Default</option>
 																				</select>
 																			</div>
-																			<div class="col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+																			<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
 																				<p>Servis Fişi Kalemleri</p>
 																			</div>
-																			<div class="col-md-8 cls-padding-0px" style="margin-top: 3px;">
+																			<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
 																				<select class="form-control">
 																					<option>Default</option>
 																					<option>Default</option>
 																					<option>Default</option>
 																				</select>
 																			</div>
-																			<div class="col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+																			<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
 																				<p>Gerekli Belgeler</p>
 																			</div>
-																			<div class="col-md-9 cls-padding-0px" style="margin-top: 3px;">
+																			<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
 																				<select class="form-control">
 																					<option>Default</option>
 																					<option>Default</option>
