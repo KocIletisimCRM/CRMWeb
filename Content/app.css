@@ -6,7 +6,6 @@ body {
 }
 .noscroll-wraper {
   width: 100%;
-  height: inherit;
   min-height: 100%;
   overflow-x: hidden;
 }
