@@ -71,23 +71,25 @@
 								İşlemler
 								<span class="caret"></span>
 							</button>
-							<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-								<li class="dropdown-submenu">
-									<a tabindex="-1" href="#">Yeni Task</a>
-									<ul class="dropdown-menu">
-										<li><a tabindex="-1" href="#">Second level</a></li>
-										<li class="dropdown-submenu">
-											<a href="#">Even More..</a>
-											<ul class="dropdown-menu">
-												<li><a href="#">3rd level</a></li>
-												<li><a href="#">3rd level</a></li>
-											</ul>
-										</li>
-										<li><a href="#">Second level</a></li>
-										<li><a href="#">Second level</a></li>
-									</ul>
-								</li>
-							</ul>
+							
+								<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+									<li>
+										<a href="#myModal1" role="button" class="btn" data-toggle="modal" style="padding-right: 110px; float: left;">Yeni</a>
+									</li>
+									<br />
+									<li class="divider"></li>
+									<li class="dropdown-submenu">
+										<a tabindex="-1" href="#">Seçim</a>
+										<ul class="dropdown-menu">
+											<li><a tabindex="-1" href="#">Tümünü Seç</a></li>
+											<li><a href="#">Seçimi Çevir</a></li>
+											<li><a href="#">Seçimi Temizle</a></li>
+										</ul>
+									</li>
+									<li class="divider"></li>
+									<li><a href="#">Filtreyi Temizle</a></li>
+									<li><a href="#">Excel'e Kaydet</a></li>
+								</ul>
 						</div>
 					</div>
 				</div>
@@ -225,7 +227,10 @@
 																	İşlemler <span class="caret"></span>
 																</a>
 																<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-																	<li><a href="#">Yeni..</a></li>
+																	<li>
+																		<a href="#myModal1" role="button" class="btn" data-toggle="modal" style="padding-right: 110px; float: left;">Yeni</a>
+																	</li>
+																	<br />
 																	<li class="divider"></li>
 																	<li class="dropdown-submenu">
 																		<a tabindex="-1" href="#">Seçim</a>
@@ -267,71 +272,7 @@
 																Düzenle
 															</button>
 															<input type="checkbox" />
-															<!-- Modal -->
-															<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-																<div class="modal-dialog" role="document" style="margin-top: 50px;">
-																	<div class="modal-content">
-																		<div class="modal-header">
-																			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-																			<h4 class="modal-title" id="myModalLabel">Edit Form</h4>
-																		</div>
-																		<div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
-																			<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-																				<p>Task ID</p>
-																			</div>
-																			<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-																				<div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">1</p></div>
-																			</div>
-																			<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-																				<p>Task Adı</p>
-																			</div>
-																			<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-																				<input type="text" class="form-control" id="exampleInputName2" value="Cayma Bedeli Taskı">
-																			</div>
-																			<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-																				<p>Görevli</p>
-																			</div>
-																			<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-																				<select class="form-control">
-																					<option>1</option>
-																					<option>2</option>
-																					<option>3</option>
-																				</select>
-																			</div>
-																			<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-																				<p>Task Türü</p>
-																			</div>
-																			<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-																				<select class="form-control">
-																					<option>1</option>
-																					<option>2</option>
-																					<option>3</option>
-																				</select>
-																			</div>
-																			<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-																				<p>İlgi</p>
-																			</div>
-																			<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-																				<select class="form-control">
-																					<option>1</option>
-																					<option>2</option>
-																					<option>3</option>
-																				</select>
-																			</div>
-																			<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-																				<p>Puan</p>
-																			</div>
-																			<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-																				<input type="text" class="form-control" id="exampleInputName2" value="0">
-																			</div>
-																		</div>
-																		<div class="modal-footer">
-																			<button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
-																			<button type="button" class="btn btn-primary">Kaydet</button>
-																		</div>
-																	</div>
-																</div>
-															</div>
+															
 														</td>
 														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
 														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
@@ -363,6 +304,147 @@
 			</div>
 		</div>
 	</script>
+
+	<!-- İşlemler Yeni For Modal Start -->
+	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document" style="margin-top: 50px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Edit Form</h4>
+				</div>
+				<div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Task ID</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;"></p></div>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Task Adı</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<input type="text" class="form-control" id="exampleInputName2" value="">
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Görevli</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<select class="form-control">
+							<option></option>
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+						</select>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Task Türü</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<select class="form-control">
+							<option></option>
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+						</select>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>İlgi</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<select class="form-control">
+							<option></option>
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+						</select>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Puan</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<input type="text" class="form-control" id="exampleInputName2" value="">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+					<button type="button" class="btn btn-primary">Kaydet</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- İşlemler Yeni For Modal Finish-->
+
+
+	<!-- Duzenle For Modal Start-->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document" style="margin-top: 50px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Edit Form</h4>
+				</div>
+				<div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Task ID</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">1</p></div>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Task Adı</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<input type="text" class="form-control" id="exampleInputName2" value="Cayma Bedeli Taskı">
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Görevli</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<select class="form-control">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+						</select>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Task Türü</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<select class="form-control">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+						</select>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>İlgi</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<select class="form-control">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+						</select>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Puan</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<input type="text" class="form-control" id="exampleInputName2" value="0">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+					<button type="button" class="btn btn-primary">Kaydet</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Duzenle For Modal Finish-->
+	
+	
 	<script type="text/javascript">
 		$(document).ready(function () {
 			$('#taskadi').multiselect({
@@ -371,7 +453,6 @@
 			});
 		});
 	</script>
-
 
 
 	<script src="Scripts/app.min.js"></script>>

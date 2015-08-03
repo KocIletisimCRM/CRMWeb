@@ -192,7 +192,10 @@
 																	İşlemler <span class="caret"></span>
 																</a>
 																<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-																	<li><a href="#">Yeni..</a></li>
+																	<li>
+																		<a href="#myModal1" role="button" class="btn" data-toggle="modal" style="padding-right: 110px; float: left;">Yeni</a>
+																	</li>
+																	<br />
 																	<li class="divider"></li>
 																	<li class="dropdown-submenu">
 																		<a tabindex="-1" href="#">Seçim</a>
@@ -232,86 +235,6 @@
 																Düzenle
 															</button>
 															<input type="checkbox" />
-															<!-- Modal -->
-															<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-																<div class="modal-dialog" role="document" style="margin-top: 50px;">
-																	<div class="modal-content">
-																		<div class="modal-header">
-																			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-																			<h4 class="modal-title" id="myModalLabel">Edit Form</h4>
-																		</div>
-																		<div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
-																			<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-																				<p>Kampanya ID</p>
-																			</div>
-																			<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
-																				<div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">1</p></div>
-																			</div>
-																			<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-																				<p>Kampanya Adı</p>
-																			</div>
-																			<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
-																				<div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Fiber Hızını Seç Kampanyası</p></div>
-																			</div>
-																			<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-																				<p>Kampanya Kategorisi</p>
-																			</div>
-																			<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
-																				<select class="form-control">
-																					<option>Fiber</option>
-																					<option>Adsl</option>
-																					<option>Yanında</option>
-																					<option>Retention</option>
-																				</select>
-																			</div>
-																			<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-																				<p>Kampanya Alt Kategorisi</p>
-																			</div>
-																			<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
-																				<select class="form-control">
-																					<option>Alt Kategori</option>
-																					<option>Tablet</option>
-																					<option>Dakika</option>
-																					<option>Turkcell TV</option>
-																					<option>Dect</option>
-																					<option>ADAPTOR</option>
-																					<option>PC</option>
-																				</select>
-																			</div>
-																			<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-																				<p>Kampanya Ürünleri</p>
-																			</div>
-																			<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-																				<select id="Kampanya-Urunleri" multiple="multiple">
-																					<option value="1">Default1</option>
-																					<option value="2">Default2</option>
-																					<option value="3">Default3</option>
-																					<option value="4">Default4</option>
-																					<option value="5">Default5</option>
-																					<option value="6">Default6</option>
-																				</select>
-																			</div>
-																			<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-																				<p>Kampanya Belgeleri</p>
-																			</div>
-																			<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-																				<select id="Kampanya-Belgeleri" multiple="multiple">
-																					<option value="1">Default1</option>
-																					<option value="2">Default2</option>
-																					<option value="3">Default3</option>
-																					<option value="4">Default4</option>
-																					<option value="5">Default5</option>
-																					<option value="6">Default6</option>
-																				</select>
-																			</div>
-																		</div>
-																		<div class="modal-footer">
-																			<button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
-																			<button type="button" class="btn btn-primary">Kaydet</button>
-																		</div>
-																	</div>
-																</div>
-															</div>
 														</td>
 														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
 														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
@@ -341,21 +264,220 @@
 			</div>
 		</div>
 	</script>
+
+
+	<!-- İşlemler Yeni For Modal Start -->
+	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document" style="margin-top: 50px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Edit Form</h4>
+				</div>
+				<div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
+					<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Kampanya ID</p>
+					</div>
+					<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
+						<div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;"></p></div>
+					</div>
+					<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Kampanya Adı</p>
+					</div>
+					<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
+						<div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;"></p></div>
+					</div>
+					<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Kampanya Kategorisi</p>
+					</div>
+					<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
+						<select class="form-control">
+							<option></option>
+							<option>Fiber</option>
+							<option>Adsl</option>
+							<option>Yanında</option>
+							<option>Retention</option>
+						</select>
+					</div>
+					<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Kampanya Alt Kategorisi</p>
+					</div>
+					<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
+						<select class="form-control">
+							<option></option>
+							<option>Alt Kategori</option>
+							<option>Tablet</option>
+							<option>Dakika</option>
+							<option>Turkcell TV</option>
+							<option>Dect</option>
+							<option>ADAPTOR</option>
+							<option>PC</option>
+						</select>
+					</div>
+					<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Kampanya Ürünleri</p>
+					</div>
+					<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<select id="Kampanya-Urunleri1" multiple="multiple">
+							<option value="1">Default1</option>
+							<option value="2">Default2</option>
+							<option value="3">Default3</option>
+							<option value="4">Default4</option>
+							<option value="5">Default5</option>
+							<option value="6">Default6</option>
+						</select>
+					</div>
+					<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Kampanya Belgeleri</p>
+					</div>
+					<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<select id="Kampanya-Belgeleri1" multiple="multiple">
+							<option value="1">Default1</option>
+							<option value="2">Default2</option>
+							<option value="3">Default3</option>
+							<option value="4">Default4</option>
+							<option value="5">Default5</option>
+							<option value="6">Default6</option>
+						</select>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+					<button type="button" class="btn btn-primary">Kaydet</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- İşlemler Yeni For Modal Finish -->
+
+
+
+	<!-- Duzenle For Modal Start-->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document" style="margin-top: 50px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Edit Form</h4>
+				</div>
+				<div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
+					<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Kampanya ID</p>
+					</div>
+					<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
+						<div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">1</p></div>
+					</div>
+					<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Kampanya Adı</p>
+					</div>
+					<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
+						<div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Fiber Hızını Seç Kampanyası</p></div>
+					</div>
+					<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Kampanya Kategorisi</p>
+					</div>
+					<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
+						<select class="form-control">
+							<option>Fiber</option>
+							<option>Adsl</option>
+							<option>Yanında</option>
+							<option>Retention</option>
+						</select>
+					</div>
+					<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Kampanya Alt Kategorisi</p>
+					</div>
+					<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
+						<select class="form-control">
+							<option>Alt Kategori</option>
+							<option>Tablet</option>
+							<option>Dakika</option>
+							<option>Turkcell TV</option>
+							<option>Dect</option>
+							<option>ADAPTOR</option>
+							<option>PC</option>
+						</select>
+					</div>
+					<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Kampanya Ürünleri</p>
+					</div>
+					<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<select id="Kampanya-Urunleri2" multiple="multiple">
+							<option value="1">Default1</option>
+							<option value="2">Default2</option>
+							<option value="3">Default3</option>
+							<option value="4">Default4</option>
+							<option value="5">Default5</option>
+							<option value="6">Default6</option>
+						</select>
+					</div>
+					<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Kampanya Belgeleri</p>
+					</div>
+					<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<select id="Kampanya-Belgeleri2" multiple="multiple">
+							<option value="1">Default1</option>
+							<option value="2">Default2</option>
+							<option value="3">Default3</option>
+							<option value="4">Default4</option>
+							<option value="5">Default5</option>
+							<option value="6">Default6</option>
+						</select>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+					<button type="button" class="btn btn-primary">Kaydet</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Duzenle For Modal Finish-->
+
+
+
+
+
+
+
+
+
+
+
+
+
 	<script type="text/javascript">
 		$(document).ready(function () {
-			$('#Kampanya-Urunleri').multiselect({
+			$('#Kampanya-Urunleri1').multiselect({
 				includeSelectAllOption: true,
 				selectAllValue: 'select-all-value'
 			});
 		});
 	</script>
 	<script type="text/javascript">
-	$(document).ready(function () {
-		$('#Kampanya-Belgeleri').multiselect({
-			includeSelectAllOption: true,
-			enableFiltering: true
+		$(document).ready(function () {
+			$('#Kampanya-Urunleri2').multiselect({
+				includeSelectAllOption: true,
+				selectAllValue: 'select-all-value'
+			});
 		});
-	});
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('#Kampanya-Belgeleri1').multiselect({
+				includeSelectAllOption: true,
+				enableFiltering: true
+			});
+		});
+	</script>
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('#Kampanya-Belgeleri2').multiselect({
+				includeSelectAllOption: true,
+				enableFiltering: true
+			});
+		});
 	</script>
 
 
