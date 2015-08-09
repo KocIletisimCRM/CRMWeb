@@ -23,80 +23,151 @@
 		<div class="page-wraper">
 			<input type="checkbox" id="leftPanelControl" class="left-panel-control" />
 			<div class="left-panel">
-				<div class="left-panel-content">
-					<h3></h3>
-					<h4>SAM<small> CRM v2.0</small></h4>
+				<div class="left-panel-content" style="background-color: deepskyblue; padding: 0px;">
+					<div class="col-md-12 gradient-border" style="background-color: aliceblue; padding: 0;">
+						<h3></h3>
+						<h4 style="color: royalblue;">SAM<small style="color: royalblue;"> CRM v2.0</small></h4>
+					</div>
 					<hr />
-					<div class="btn-group-vertical col-md-12" role="group" aria-label="...">
-						<a href="app.html" class="btn btn-success" role="button">Task İşlemleri</a>
-						<div class="btn-group" role="group">
-							<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Site / Blok
-								<span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu">
-								<li><a href="Sites.html">Siteleri Listele</a></li>
-								<li><a href="Bloks.html">Blokları Listele</a></li>
-							</ul>
-						</div>
-						<div class="btn-group" role="group">
-							<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Stok
-								<span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu">
-								<li><a href="#">Stok Hareketleri</a></li>
-								<li><a href="#">Stok Durumu</a></li>
-							</ul>
-						</div>
-						<div class="btn-group" role="group">
-							<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Tanımlamalar
-								<span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu">
-								<li><a href="ListTasks.html">Task Tanımları</a></li>
-								<li><a href="ListTaskStatePool.html">Task Durum Havuzu</a></li>
-								<li><a href="ListTaskStateMatches.html">Task Durum Eşleştirme</a></li>
-								<li><a href="ListDocument.html">Evrak Tanımları</a></li>
-								<li><a href="ListCampaigns.html">Kampanyalar</a></li>
-								<li><a href="ListProducts.html">Ürün Hizmetleri</a></li>
-								<li><a href="ListStockCards.html">Depo Kart Tanımları</a></li>
-								<li><a href="ListPersonel.html">Personel Tanımları</a></li>
-							</ul>
-						</div>
-						<button type="button" class="btn btn-success">Müşteriler</button>
-						<div class="btn-group" role="group">
-							<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								İşlemler
-								<span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-								<li class="dropdown-submenu">
-									<a tabindex="-1" href="#">Yeni Task</a>
-									<ul class="dropdown-menu">
-										<li><a tabindex="-1" href="#">Second level</a></li>
-										<li class="dropdown-submenu">
-											<a href="#">Even More..</a>
-											<ul class="dropdown-menu">
-												<li><a href="#">3rd level</a></li>
-												<li><a href="#">3rd level</a></li>
-											</ul>
-										</li>
-										<li><a href="#">Second level</a></li>
-										<li><a href="#">Second level</a></li>
-									</ul>
-								</li>
-							</ul>
+					<div class="btn-group-vertical col-xs-12 col-sm-12 col-md-12" role="group" aria-label="..." style="padding: 15px;">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 cls-padding-0px">
+									<div class=" btn-group col-xs-12 col-sm-12 col-md-12 cls-padding-0px" role="group">
+										<button type="button" class="col-xs-12 col-sm-12 col-md-12 btn dropdown-toggle cls-left-menu-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius: 0;">
+											<p class="cls-qw" style="height: 10px; float: left;">
+												İşlemler
+												<span class="caret"></span>
+											</p>
+										</button>
+										<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+											<li><a href="#yeni" role="button" data-toggle="modal">Yeni</a></li>
+											<li class="dropdown-submenu">
+												<a tabindex="-1" href="#">Seçim</a>
+												<ul class="dropdown-menu">
+													<li><a tabindex="-1" href="#">Tümünü Seç</a></li>
+													<li><a href="#">Seçimi Çevir</a></li>
+													<li><a href="#">Seçimi Temizle</a></li>
+												</ul>
+											</li>
+											<li><a href="#">Filtreyi Temizle</a></li>
+											<li><a href="#">Excel'e Kaydet</a></li>
+											<li class="dropdown-submenu">
+												<a tabindex="-1" href="#">Satış Taskları</a>
+												<ul class="dropdown-menu">
+													<li><a href="#satistaski1" role="button" class="btn" data-toggle="modal" style="float: left;">Satış Taskı</a></li>
+													<li><a href="#satistaski2" role="button" class="btn" data-toggle="modal" style="float: left;">Yanında (Ek Ürün) Satış Taskı</a></li>
+													<li><a href="#satistaski3" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Adsl Satış Taskı</a></li>
+													<li><a href="#satistaski4" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Retention Satış Taskı</a></li>
+													<li><a href="#satistaski5" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Cayma Bedeli Taskı</a></li>
+													<li><a href="#satistaski6" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Yönetim Odası Satışı</a></li>
+												</ul>
+											</li>
+											<li class="dropdown-submenu">
+												<a tabindex="-1" href="#">Arıza Taskları</a>
+												<ul class="dropdown-menu">
+													<li><a href="#arizataski1" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Arıza Taskı</a></li>
+													<li><a href="#arizataski2" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni CC Arıza Taskı</a></li>
+													<li><a href="#arizataski3" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Turkcell TV Arıza Taskı</a></li>
+													<li><a href="#arizataski4" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Turkcell TV CC Arıza Taskı</a></li>
+													<li><a href="#arizataski5" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni NON Teknik Taskı Taskı</a></li>
+													<li><a href="#arizataski6" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Kanal Şikayet Taskı</a></li>
+													<li><a href="#arizataski7" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Turkcell TV Şikayet Taskı</a></li>
+												</ul>
+											</li>
+											<li class="dropdown-submenu">
+												<a tabindex="-1" href="#">Kat Ziyaret İşlemleri</a>
+												<ul class="dropdown-menu">
+													<li><a href="#katziyareti1" role="button" class="btn" data-toggle="modal" style="float: left;">Kat Ziyaret Sonuçlarını Toplu Gir</a></li>
+													<li><a href="#katziyareti2" role="button" class="btn" data-toggle="modal" style="float: left;">Müşteri Statülerini Toplu Değiştir</a></li>
+													<li><a href="#katziyareti3" role="button" class="btn" data-toggle="modal" style="float: left;">Müşteri Kat Ziyareti Toplu Task Kapama</a></li>
+												</ul>
+											</li>
+											<li class="dropdown-submenu">
+												<a tabindex="-1" href="#">Yeni Tasklar</a>
+												<ul class="dropdown-menu">
+													<li><a href="#yenisaha" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Saha Çalışması</a></li>
+													<li><a href="#penetrasyon" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Penetrasyon Başlangıç</a></li>
+													<li><a href="#musterinakil" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Müşteri Nakil Taskı</a></li>
+													<li><a href="#protokol" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Protokol Takip Taskı</a></li>
+													<li><a href="#periyodikbakim" role="button" class="btn" data-toggle="modal" style="float: left;">Periyodik Bakım Taskı</a></li>
+													<li><a href="#yeninakil" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Nakil Taskı</a></li>
+													<li><a href="#uruniade" role="button" class="btn" data-toggle="modal" style="float: left;">Ürün İade İşlemi</a></li>
+													<li><a href="#kanalsikayeti" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Kanal Şikayeti Taskı</a></li>
+												</ul>
+											</li>
+											<li><a href="#randevu" role="button" data-toggle="modal">Randevu Tarihi</a></li>
+											<li><a href="#personelata" role="button" data-toggle="modal">Personel Ata</a></li>
+											<li><a href="#sonlandir" role="button" data-toggle="modal">Taskları Sonlandır</a></li>
+										</ul>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-12 cls-padding-0px cls-left-menu-button">
+									<a href="app.html" class="col-xs-12 col-sm-12 col-md-12 btn cls-qw" role="button" style="border-radius: 0px;"><p style="height: 10px; float: left;">Task İşlemleri</p></a>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-12 cls-padding-0px">
+									<div class=" btn-group col-xs-12 col-sm-12 col-md-12 cls-padding-0px" role="group">
+										<button type="button" class="col-xs-12 col-sm-12 col-md-12 btn dropdown-toggle cls-left-menu-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius: 0px;">
+											<p class="cls-qw" style="height: 10px; float: left;">
+												Site / Blok
+												<span class="caret"></span>
+											</p>
+										</button>
+										<ul class="dropdown-menu">
+											<li><a href="Sites.html">Siteleri Listele</a></li>
+											<li><a href="Blocks.html">Blokları Listele</a></li>
+										</ul>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-12 cls-padding-0px">
+									<div class=" btn-group col-xs-12 col-sm-12 col-md-12 cls-padding-0px" role="group">
+										<button type="button" class="col-xs-12 col-sm-12 col-md-12 btn dropdown-toggle cls-left-menu-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius: 0px;">
+											<p class="cls-qw" style="height: 10px; float: left;">
+												Stok
+												<span class="caret"></span>
+											</p>
+										</button>
+										<ul class="dropdown-menu">
+											<li><a href="#">Stok Hareketleri</a></li>
+											<li><a href="#">Stok Durumu</a></li>
+										</ul>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-12 cls-padding-0px">
+									<div class=" btn-group col-xs-12 col-sm-12 col-md-12 cls-padding-0px" role="group">
+										<button type="button" class="col-xs-12 col-sm-12 col-md-12 btn dropdown-toggle cls-left-menu-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius: 0px; border: 0px;">
+											<p class="cls-qw" style="height: 10px; float: left;">
+												Tanımlamalar
+												<span class="caret"></span>
+											</p>
+										</button>
+										<ul class="dropdown-menu">
+											<li><a href="ListTasks.html">Task Tanımları</a></li>
+											<li><a href="ListTaskStatePool.html">Task Durum Havuzu</a></li>
+											<li><a href="ListTaskStateMatches.html">Task Durum Eşleştirme</a></li>
+											<li><a href="ListDocument.html">Evrak Tanımları</a></li>
+											<li><a href="ListCampaigns.html">Kampanyalar</a></li>
+											<li><a href="ListProducts.html">Ürün Hizmetleri</a></li>
+											<li><a href="ListStockCards.html">Depo Kart Tanımları</a></li>
+											<li><a href="ListPersonel.html">Personel Tanımları</a></li>
+										</ul>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-12 cls-padding-0px  cls-left-menu-button">
+									<a href="app.html" class="col-xs-12 col-sm-12 col-md-12 btn cls-left-menu-button cls-qw" role="button" style="border-radius: 0;"><p style="height: 10px; float: left;">Müşteriler</p></a>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="content-wraper">
-				<div class="top-bar">
-					<label id="lbl_leftPanelControl" for="leftPanelControl">
-						<span class="glyphicon glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-					</label>
+				<div class=" top-bar" style="background-color: royalblue">
+					<div class="col-xs-1 col-sm-1 col-md-1">
+						<label id="lbl_leftPanelControl" for="leftPanelControl">
+							<span class="glyphicon glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+						</label>
+					</div>
 
 				</div>
 				<div class="content" data-bind="template: { name: 'taskqueue', data: taskFilterModel, afterRender: taskFilterModel.afterTemplateRender }"></div>
