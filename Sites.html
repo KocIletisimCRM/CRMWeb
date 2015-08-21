@@ -304,12 +304,10 @@
 													<tr data-bind="click: function (data, evt) { $parent.select(data, evt); }" class="cls_line" onclick="">
 														<td>
 															<!-- Button trigger modal -->
-															<a href="TaskQueueEditForm.html" target="_blank">
-																<button type="button" class="btn btn-primary btn-lg" style="padding: 3px; border-radius: 0px; font-size:14px;">
-																	Düzenle
-																</button>
-																<input type="checkbox" />
-															</a>
+															<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="padding: 3px; border-radius: 0px; font-size:14px;">
+																Düzenle
+															</button>
+															<input type="checkbox" />
 
 														</td>
 														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
@@ -349,19 +347,25 @@
 				</div>
 				<div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Task ID</p>
+						<p>Site ID</p>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
 						<div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;"></p></div>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Task Adı</p>
+						<p>Site Adı</p>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
 						<input type="text" class="form-control" id="exampleInputName2" value="">
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Görevli</p>
+						<p>Adres</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<textarea class="form-control" rows="2"></textarea>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Öbek</p>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
 						<select class="form-control">
@@ -372,7 +376,7 @@
 						</select>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Task Türü</p>
+						<p>Mahalle/Semt</p>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
 						<select class="form-control">
@@ -383,21 +387,16 @@
 						</select>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>İlgi</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<select class="form-control">
-							<option></option>
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-						</select>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Puan</p>
+						<p>Bölge Kodu</p>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
 						<input type="text" class="form-control" id="exampleInputName2" value="">
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Adres Tarifi</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<textarea class="form-control" rows="2"></textarea>
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -418,52 +417,56 @@
 				</div>
 				<div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Task ID</p>
+						<p>Site ID</p>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
 						<div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">1</p></div>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Task Adı</p>
+						<p>Site Adı</p>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<input type="text" class="form-control" id="exampleInputName2" value="Cayma Bedeli Taskı">
+						<input type="text" class="form-control" id="exampleInputName2" value="Kültür Sitesi">
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Görevli</p>
+						<p>Adres</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<textarea class="form-control" rows="2"></textarea>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Öbek</p>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
 						<select class="form-control">
+							<option>Beşirli</option>
 							<option>1</option>
 							<option>2</option>
 							<option>3</option>
 						</select>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Task Türü</p>
+						<p>Mahalle/Semt</p>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
 						<select class="form-control">
+							<option>BEŞİRLİ</option>
 							<option>1</option>
 							<option>2</option>
 							<option>3</option>
 						</select>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>İlgi</p>
+						<p>Bölge Kodu</p>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<select class="form-control">
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-						</select>
+						<input type="text" class="form-control" id="exampleInputName2" value="">
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Puan</p>
+						<p>Adres Tarifi</p>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<input type="text" class="form-control" id="exampleInputName2" value="0">
+						<textarea class="form-control" rows="2">Senyuvama giderken yokus baslangicinda sol tarafta</textarea>
 					</div>
 				</div>
 				<div class="modal-footer">

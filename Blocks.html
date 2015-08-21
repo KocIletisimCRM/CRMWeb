@@ -353,12 +353,10 @@
 													<tr data-bind="click: function (data, evt) { $parent.select(data, evt); }" class="cls_line" onclick="">
 														<td>
 															<!-- Button trigger modal -->
-															<a href="TaskQueueEditForm.html" target="_blank">
-																<button type="button" class="btn btn-primary btn-lg" style="padding: 3px; border-radius: 0px; font-size:14px;">
-																	Düzenle
-																</button>
-																<input type="checkbox" />
-															</a>
+															<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="padding: 3px; border-radius: 0px; font-size:14px;">
+																Düzenle
+															</button>
+															<input type="checkbox" />
 
 														</td>
 														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
@@ -397,7 +395,7 @@
 	</script>
 	<!-- İşlemler Yeni For Modal Start -->
 	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document" style="margin-top: 50px;">
+		<div class="modal-dialog" role="document" style="margin-top: 10px;">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -405,52 +403,131 @@
 				</div>
 				<div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Task ID</p>
+						<p>Blok ID</p>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
 						<div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;"></p></div>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Task Adı</p>
+						<p>Öbek</p>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
 						<input type="text" class="form-control" id="exampleInputName2" value="">
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Görevli</p>
+						<p>Site</p>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
 						<select class="form-control">
 							<option></option>
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
+							<option>Site1</option>
+							<option>Site2</option>
+							<option>Site3</option>
 						</select>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Task Türü</p>
+						<p>Blok</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<input type="text" class="form-control" id="exampleInputName2" value="">
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Bölge Kodu</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;"></p></div>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Telocordia ID</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<input type="text" class="form-control" id="exampleInputName2" value="">
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Location ID</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<input type="text" class="form-control" id="exampleInputName2" value="">
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Proje No</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<input type="text" class="form-control" id="exampleInputName2" value="">
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>HP</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<input type="text" class="form-control" id="exampleInputName2" value="">
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>SO Satışa Hazır</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<input type="date" class="form-control" id="exampleInputName2" value="" placeholder="">
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>SO Fiber Başlangıç</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<input type="date" class="form-control" id="exampleInputName2" value="" placeholder="">
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Koç Satışa Açık</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<input type="date" class="form-control" id="exampleInputName2" value="" placeholder="">
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Satış Sorumlusu</p>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
 						<select class="form-control">
 							<option></option>
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
+							<option>Satış Sorumlusu1</option>
+							<option>Satış Sorumlusu2</option>
+							<option>Satış Sorumlusu3</option>
 						</select>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>İlgi</p>
+						<p>Yönetici Adı</p>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<select class="form-control">
-							<option></option>
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-						</select>
+						<input type="text" class="form-control" id="exampleInputName2" value="">
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Puan</p>
+						<p>Yönetici GSM</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<input type="text" class="form-control" id="exampleInputName2" value="">
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Kapıcı Adı</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<input type="text" class="form-control" id="exampleInputName2" value="">
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Kapıcı GSM</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<input type="text" class="form-control" id="exampleInputName2" value="">
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Dikey İmalat Hattı</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<input type="text" class="form-control" id="exampleInputName2" value="">
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Bina Kodu</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<input type="text" class="form-control" id="exampleInputName2" value="">
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Object ID</p>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
 						<input type="text" class="form-control" id="exampleInputName2" value="">
@@ -466,7 +543,7 @@
 	<!-- İşlemler Yeni For Modal Finish-->
 	<!-- Duzenle For Modal Start-->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document" style="margin-top: 50px;">
+		<div class="modal-dialog" role="document" style="margin-top: 10px;">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -474,52 +551,134 @@
 				</div>
 				<div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Task ID</p>
+						<p>Blok ID</p>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">1</p></div>
+						<div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">35874</p></div>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Task Adı</p>
+						<p>Öbek</p>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<input type="text" class="form-control" id="exampleInputName2" value="Cayma Bedeli Taskı">
+						<input type="text" class="form-control" id="exampleInputName2" value="Fatih">
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Görevli</p>
+						<p>Site</p>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
 						<select class="form-control">
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
+							<option>Zengin APT.</option>
+							<option>Site1</option>
+							<option>Site2</option>
+							<option>Site3</option>
 						</select>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Task Türü</p>
+						<p>Blok</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<input type="text" class="form-control" id="exampleInputName2" value="APT...">
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Bölge Kodu</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;"></p></div>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Telocordia ID</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<input type="text" class="form-control" id="exampleInputName2" value="61001013293">
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Location ID</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<input type="text" class="form-control" id="exampleInputName2" value="">
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Proje No</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<input type="text" class="form-control" id="exampleInputName2" value="">
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>HP</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<input type="text" class="form-control" id="exampleInputName2" value="8">
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>SO Satışa Hazır</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<input type="date" class="form-control" id="exampleInputName2" value="" placeholder="">
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>SO Fiber Başlangıç</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<input type="date" class="form-control" id="exampleInputName2" value="" placeholder="">
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Koç Satışa Açık</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<input type="date" class="form-control" id="exampleInputName2" value="" placeholder="">
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Satış Sorumlusu</p>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
 						<select class="form-control">
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
+							<option></option>
+							<option>Satış Sorumlusu1</option>
+							<option>Satış Sorumlusu2</option>
+							<option>Satış Sorumlusu3</option>
 						</select>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>İlgi</p>
+						<p>Yönetici Adı</p>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<select class="form-control">
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-						</select>
+						<input type="text" class="form-control" id="exampleInputName2" value="">
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Puan</p>
+						<p>Yönetici GSM</p>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<input type="text" class="form-control" id="exampleInputName2" value="0">
+						<input type="text" class="form-control" id="exampleInputName2" value="">
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Kapıcı Adı</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<input type="text" class="form-control" id="exampleInputName2" value="">
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Kapıcı GSM</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<input type="text" class="form-control" id="exampleInputName2" value="">
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Dikey İmalat Hattı</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<input type="text" class="form-control" id="exampleInputName2" value="MERDİVEN SAHANLIĞI">
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Bina Kodu</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<input type="text" class="form-control" id="exampleInputName2" value="">
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Object ID</p>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<input type="text" class="form-control" id="exampleInputName2" value="">
 					</div>
 				</div>
 				<div class="modal-footer">
