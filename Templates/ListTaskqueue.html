@@ -7,7 +7,9 @@
 							<div class="col-xs-12 col-sm-4 col-md-4">
 								<div class="form-group-sm has-info cls-margin-bottom">
 									<label class="control-label" for="durumtanimi">Site</label>
-									<input type="text" class="form-control" id="exampleInputName2" value="" />
+									 <span class="kth col-md-12 form-control"></span>
+                                       
+
 								</div>
 							</div>
 							<div class="col-xs-12 col-sm-4 col-md-4">
@@ -293,4 +295,25 @@ $(document).ready(function () {
 			    });
 
 		});
+    </script>
+
+ <script type="text/javascript">
+     $(window).load(function () {
+         $(".kth").kocTypeHead({
+             dataLoaderParams: {
+                 url: "http://localhost:50752/api/Filter/getSite",
+                 method: "POST",
+                 contentType: "application/json",
+                 data: JSON.stringify({ siteName: { fieldName: "sitename", op: 6, value: "@Key" } }),
+                 crossDomain: true
+             },
+             prepareData: function (rawData) {
+                 data = []
+                 $.each(rawData, function (d) {
+                     data.push(rawData[d].sitename)
+                 });
+                 return data;
+             }
+         });
+     })
     </script>
