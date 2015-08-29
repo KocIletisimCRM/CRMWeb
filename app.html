@@ -153,14 +153,14 @@
                                             </p>
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a href="ListTasks.html">Task Tanımları</a></li>
-                                            <li><a href="ListTaskStatePool.html">Task Durum Havuzu</a></li>
-                                            <li><a href="ListTaskStateMatches.html">Task Durum Eşleştirme</a></li>
-                                            <li><a href="ListDocument.html">Evrak Tanımları</a></li>
-                                            <li><a href="ListCampaigns.html">Kampanyalar</a></li>
-                                            <li><a href="ListProducts.html">Ürün Hizmetleri</a></li>
-                                            <li><a href="ListStockCards.html">Depo Kart Tanımları</a></li>
-                                            <li><a href="ListPersonel.html">Personel Tanımları</a></li>
+                                            <li><a id="listTaskDefinetion">Task Tanımları</a></li>
+                                            <li><a id="taskstatepool">Task Durum Havuzu</a></li>
+                                            <li><a id="taskstatematches">Task Durum Eşleştirme</a></li>
+                                            <li><a id="documentdefination">Evrak Tanımları</a></li>
+                                            <li><a id="listcampaigns">Kampanyalar</a></li>
+                                            <li><a id="listproducts">Ürün Hizmetleri</a></li>
+                                            <li><a id="liststockcards">Depo Kart Tanımları</a></li>
+                                            <li><a id="listpersonel">Personel Tanımları</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -208,6 +208,32 @@
             $("#stockcard").click(function () {
                 $("#templateContainer").load("Templates/ListStockCards.html");
             });
+            $("#listTaskDefinetion").click(function () {
+                $("#templateContainer").load("Templates/ListTasks.html");
+            });
+            $("#taskstatepool").click(function () {
+                $("#templateContainer").load("Templates/ListTaskStatePool.html");
+            });
+            $("#taskstatematches").click(function () {
+                $("#templateContainer").load("Templates/ListTaskStateMatches.html");
+            });
+            $("#documentdefination").click(function () {
+                $("#templateContainer").load("Templates/ListDocument.html");
+            });
+            $("#listcampaigns").click(function () {
+                $("#templateContainer").load("Templates/ListCampaigns.html");
+            });
+            $("#listproducts").click(function () {
+                $("#templateContainer").load("Templates/ListProducts.html");
+            });
+            $("#liststockcards").click(function () {
+                $("#templateContainer").load("Templates/ListStockCards.html");
+            });
+            $("#listpersonel").click(function () {
+                $("#templateContainer").load("Templates/ListPersonel.html");
+            });
+
+            
             
         });
     </script>
