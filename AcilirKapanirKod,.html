@@ -1,4 +1,64 @@
-﻿   <div class="cls-container cls-fixed-filter">
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>KOC WEB</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+   
+    <!-- Custom CSS -->
+    <link href="Content/Taskqueues.css" rel="stylesheet" />
+    <link href="Content/style.css" rel="stylesheet" />
+    <!-- bootstrap multi select  -->
+    
+        <link rel="stylesheet" href="Content/docs/css/bootstrap-3.3.2.min.css" type="text/css">
+        <link rel="stylesheet" href="Content/docs/css/bootstrap-example.css" type="text/css">
+        <link rel="stylesheet" href="Content/docs/css/prettify.css" type="text/css">
+        <link rel="stylesheet" href="Content/dist/css/bootstrap-multiselect.css" type="text/css">
+    
+
+
+</head>
+
+<body >
+
+  
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="cls-head">KOÇ İLETİŞİM</li>
+                <li class="sidebar-brand">
+                    <a href="#">KOÇ İLETİŞİM
+                    </a>
+                </li>
+                <li>
+                    <a href="Taskqueues.html">Tasqueues</a>
+                </li>
+                <li>
+                    <a href="Taskdefinations.html">Task Tanımları</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+
+        <div class="cls-header-nav cls-fixed">
+            <a href="#menu-toggle" class="btn btn-default cls-hamburger-menu" id="menu-toggle"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></a>
+        </div>
+        <div id="page-content-wrapper cls-padding-0px">
+            <!--filtrele TASKQUEUE start-->
+   <div class="cls-container cls-fixed-filter">
                 <div class="cls-container">
                     <div class="row cls-padding-0px">
                         <div class="col-md-12 cls-padding-0px cls-border-radius-0px">
@@ -34,7 +94,7 @@
                                             <input type="text" placeholder="Açıklama" class="form-control cls-form-control" />
                                             <button data-bind="click: getTaskName" type="button" class="btn btn-primary cls-right cls-button-control">Filtrele</button>
                                             <button type="button" class="btn btn-danger cls-right cls-button-control">Temizle</button>
-                                        </div> 
+                                        </div>
                                     </form>
                                 </div>
                             </div>
@@ -42,3 +102,151 @@
                     </div>
                 </div>
             </div>
+            <!--filtrele TASKQUEUE finish-->
+
+            <!--pagination Starts-->
+            <nav class="text-center">
+                <ul class="pagination">
+                    <li class="previous"><a href="javascript:void(0)" data-bind="click: function (e) { e.go().first(); }">&lt;&lt;</a></li>
+                    <li><a href="javascript:void(0)" data-bind="click: function (e) { e.go().previous(); }">&lt;</a></li>
+                    <li><a href="javascript:void(0)" data-bind="click: function (e) { e.go().next(); }">&gt;</a></li>
+                    <li class="next"><a href="javascript:void(0)" data-bind="click: function (e) { e.go().last(); }">&gt;&gt;</a></li>
+                </ul>
+            </nav>
+            <!--pagination finish-->
+
+            <div class="container-fluid cls-padding-0px cls-deneme-height ">
+                <div class="row cls-margin-task">
+                    <div class="col-lg-12 cls-padding-0px">
+                        <div class="col-lg-12 cls-task cls-padding-0px">
+                            <table class="table" id="customer" data-pagination="true" data-search="true">
+                                <thead>
+                                    <tr>
+                                        <th class="success"></th>
+                                        <th class="warning">taskorderno</th>
+                                        <th class="info">taskadı</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- ko if:(pageNo()==0) -->
+                                    <tr>
+                                        <td colspan="9" style="background: url('/Content/images/progresbar.gif') center center no-repeat;"></td>
+                                    </tr>
+                                    <!-- /ko -->
+                                    <!-- ko foreach: taskqueuelist -->
+                                    <tr data-bind="click: function (data, evt) { $parent.select(data, evt); }">
+                                        <td>
+                                         <!-- <button type="button" class="modal_popup" data-toggle="modal" data-target="#myModal" data-bind="click: function (data, evt) { $parent.getCustomerCard($index()); }">Düzenle</button></td> -->
+                                       </td>
+                                         <td data-bind="text: data.rows.taskorderno"></td>
+                                        <td data-bind="text: data.rows.deleted"></td>
+
+                                    </tr>
+                                    <!-- /ko -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!--pagination Starts-->
+            <nav class="text-center">
+                <ul class="pagination">
+                    <li class="previous"><a href="javascript:void(0)" data-bind="click: function (e) { e.go().first(); }">&lt;&lt;</a></li>
+                    <li><a href="javascript:void(0)" data-bind="click: function (e) { e.go().previous(); }">&lt;</a></li>
+                    <li><a href="javascript:void(0)" data-bind="click: function (e) { e.go().next(); }">&gt;</a></li>
+                    <li class="next"><a href="javascript:void(0)" data-bind="click: function (e) { e.go().last(); }">&gt;&gt;</a></li>
+                </ul>
+            </nav>
+            <!--pagination finish-->
+
+                </div>
+
+        <!-- /#page-content-wrapper -->
+
+            </div>
+    <!-- /#wrapper -->
+     <script type="text/javascript">
+         $(document).ready(function () {
+             $('#example-enableFiltering-optgroups').multiselect({
+                 enableFiltering: true
+             });
+         });
+     </script>
+
+
+    <!-- jQuery -->
+    <script src="JavaScripts/jquery-2.1.3.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="JavaScripts/bootstrap.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+    <script type="text/javascript">
+        jQuery(function ($) {
+            $('.panel-heading span.clickable').on("click", function (e) {
+                if ($(this).hasClass('panel-collapsed')) {
+                    // expand the panel
+                    $(this).parents('.panel').find('.panel-body').slideDown();
+                    $(this).removeClass('panel-collapsed');
+                    $(this).find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+                }
+                else {
+                    // collapse the panel
+                    $(this).parents('.panel').find('.panel-body').slideUp();
+                    $(this).addClass('panel-collapsed');
+                    $(this).find('i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+                }
+            });
+        });
+    </script>
+       
+    <script src="JavaScripts/jquery-2.1.3.js"></script>
+    <script src="JavaScripts/jquery-2.1.3.min.js"></script>
+    <script src="JavaScripts/knockout-3.3.0.js"></script>
+    <script src="JavaScripts/bootstrap.js"></script>    
+    <script src="JavaScripts/CRMAPI.js"></script>
+    <script src="JavaScripts/app.js"></script>
+    
+     <script type="text/javascript" src="Content/docs/js/jquery-2.1.3.min.js"></script>
+        <script type="text/javascript" src="Content/docs/js/bootstrap-3.3.2.min.js"></script>
+        <script type="text/javascript" src="Content/docs/js/prettify.js"></script>
+        <script type="text/javascript" src="Content/dist/js/bootstrap-multiselect.js"></example-example-enableFiltering-optgroups>
+
+      <script type="text/javascript" src="Content/dist/js/bootstrap-multiselect-collapsible-groups.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                window.prettyPrint() && prettyPrint();
+            });
+        </script>
+     <script type="text/javascript">
+         $(document).ready(function () {
+             $('#example-enableFiltering-includeSelectAllOption').multiselect({
+                 includeSelectAllOption: true,
+                 enableFiltering: true
+             });
+         });
+     </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#Select1').multiselect({
+                includeSelectAllOption: true,
+                enableFiltering: true
+            });
+        });
+                                        </script>
+ 
+
+</body>
+
+</html>
+
