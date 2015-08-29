@@ -11,7 +11,13 @@
     <link rel="stylesheet" href="Content/bootstrap-multiselect.min.css" />
     <link rel="stylesheet" href="Content/taskqueueeditform.css" />
     <link rel="stylesheet" href="Content/app.min.css" />
-    <title>Bootstrap 101 Template</title>
+    
+   <!--  auto complete için referanslar-->
+    <link href="Content/koc-typehead-v1.0.css" rel="stylesheet" />
+   <script src="Scripts/knockout-3.3.0.js"></script>
+        <script src="Scripts/jquery-2.1.4.min.js"></script>
+   <!--  auto complete için referanslar-->
+    <title>KOCSAM CRM v2</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <!--[if lt IE 9]>
@@ -232,12 +238,13 @@
             $("#listpersonel").click(function () {
                 $("#templateContainer").load("Templates/ListPersonel.html");
             });
-
-            
-            
         });
-    </script>
 
+
+    </script>
+    
+
+    <script src="Scripts/koc-typehead-v1.0.min.js"></script>
 
 </body>
 </html>
