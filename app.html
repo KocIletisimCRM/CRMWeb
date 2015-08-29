@@ -201,9 +201,43 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#templateContainer").load("Templates/ListTaskqueue.html");
+            $("#templateContainer").load("Templates/ListTaskqueue.html", function () {
+                $(".kth").kocTypeHead({
+                    dataLoaderParams: {
+                        url: "http://localhost:50752/api/Filter/getSite",
+                        method: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify({ siteName: { fieldName: "sitename", op: 6, value: "@Key" } }),
+                        crossDomain: true
+                    },
+                    prepareData: function (rawData) {
+                        data = []
+                        $.each(rawData, function (d) {
+                            data.push(rawData[d].sitename)
+                        });
+                        return data;
+                    }
+                });
+            });
             $("#listSites").click(function () {
-                $("#templateContainer").load("Templates/Sites.html");
+                $("#templateContainer").load("Templates/Sites.html", function () {
+                    $(".kth").kocTypeHead({
+                        dataLoaderParams: {
+                            url: "http://localhost:50752/api/Filter/getSite",
+                            method: "POST",
+                            contentType: "application/json",
+                            data: JSON.stringify({ siteName: { fieldName: "sitename", op: 6, value: "@Key" } }),
+                            crossDomain: true
+                        },
+                        prepareData: function (rawData) {
+                            data = []
+                            $.each(rawData, function (d) {
+                                data.push(rawData[d].sitename)
+                            });
+                            return data;
+                        }
+                    });
+                });
             });
             $("#listTaskqueue").click(function () {
                 $("#templateContainer").load("Templates/ListTaskqueue.html");
@@ -242,7 +276,7 @@
 
 
     </script>
-    
+   
 
     <script src="Scripts/koc-typehead-v1.0.min.js"></script>
 
