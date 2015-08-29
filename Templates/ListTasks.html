@@ -1,0 +1,164 @@
+﻿
+		<div class="container-fluid" style="background-color: lightcyan">
+			<div class="col-md-12 container" style="padding: 0 !important; margin: 20px 0 0 0 !important; border-radius: 0 0 8px 8px !important;">
+				<div class="panel-group">
+					<div class="panel" style="border: 1px solid #fff !important;">
+						<div class="panel-heading filter-gradient">Filtreleme</div>
+						<div class="panel-body">
+							<div class="col-xs-12 col-sm-4 col-md-4">
+								<div class="form-group-sm has-info cls-margin-bottom">
+									<label class="control-label" for="taskadi">Task Adı</label>
+									<select id="taskadi" multiple="multiple">
+										<option value="1">Task Adı 1</option>
+										<option value="2">Task Adı 2</option>
+										<option value="3">Task Adı 3</option>
+										<option value="4">Task Adı 4</option>
+										<option value="5">Task Adı 5</option>
+										<option value="6">Task Adı 6</option>
+									</select>
+								</div>
+							</div>
+							
+							<div class="col-xs-12 col-sm-4 col-md-4">
+								<div class="form-group-sm has-info cls-margin-bottom">
+									<label class="control-label" for="taskturu">Task Türü</label>
+									<select id="taskturu" class="form-control">
+										<option>Diğer</option>
+										<option>Satış Taskı</option>
+										<option>Randevu Taskı</option>
+										<option>Kurulum Taskı</option>
+										<option>Randevusuz Kurulum Taskı</option>
+										<option>SOL Kapama Taskı</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-4 col-md-4" style="margin-top: 21px;">
+								<div class="btn-group pull-right" role="group">
+									<button type="button" class="btn btn-success">Sorgula</button>
+									<button type="button" class="btn btn-info">Temizle</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12 container" style="padding: 0 !important; margin: 20px 0 0 0 !important; border-radius: 0 0 8px 8px !important;">
+				<div class="panel-group">
+					<div class="panel" style="border: 1px solid #fff !important;">
+						<div class="panel-heading task-gradient">
+							<div class="row cls-padding-0px">
+								<div class="col-xs-6 col-sm-6 col-md-6">
+									Task Tanımları
+								</div>
+								<div class="col-xs-6 col-sm-6 col-md-6">
+									<!--pagination Starts-->
+									<nav class="text-center" style="margin: 0px !important;padding: 0px !important;">
+										<ul class="pagination" style="margin: 0 !important;padding: 0px !important; float:right;">
+											<li class="previous"><a href="javascript:void(0)" data-bind="click: function (e) { e.go().first(); }">&lt;&lt;</a></li>
+											<li><a href="javascript:void(0)" data-bind="click: function (e) { e.go().previous(); }">&lt;</a></li>
+											<li><a href="javascript:void(0)" data-bind="click: function (e) { e.go().next(); }">&gt;</a></li>
+											<li class="next"><a href="javascript:void(0)" data-bind="click: function (e) { e.go().last(); }">&gt;&gt;</a></li>
+										</ul>
+									</nav>
+									<!--pagination finish-->
+								</div>
+							</div>
+						</div>
+						<div class="panel-body" style="margin: 0 15px 0 15px !important; padding: 0px !important;">
+							<div class="container-fluid cls-padding-0px cls-deneme-height ">
+								<div class="row cls-margin-task">
+									<div class="col-lg-12 cls-padding-0px">
+										<div class="col-lg-12 cls-task cls-padding-0px">
+											<table class="table" id="taskquetable" data-pagination="true" data-search="true">
+												<thead>
+													<tr>
+														<th class="col-md-1" style="border-right: 1px solid #ddd;">
+															<div class="dropdown">
+																<a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary" style="padding: 2px 15px;">
+																	İşlemler <span class="caret"></span>
+																</a>
+																<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+																	<li>
+																		<a href="#myModal1" role="button" class="btn" data-toggle="modal" style="padding-right: 110px; float: left;">Yeni</a>
+																	</li>
+																	<br />
+																	<li class="divider"></li>
+																	<li class="dropdown-submenu">
+																		<a tabindex="-1" href="#">Seçim</a>
+																		<ul class="dropdown-menu">
+																			<li><a tabindex="-1" href="#">Tümünü Seç</a></li>
+																			<li><a href="#">Seçimi Çevir</a></li>
+																			<li><a href="#">Seçimi Temizle</a></li>
+																		</ul>
+																	</li>
+																	<li class="divider"></li>
+																	<li><a href="#">Filtreyi Temizle</a></li>
+																	<li><a href="#">Excel'e Kaydet</a></li>
+																</ul>
+															</div>
+														</th>
+														<th class="col-md-2" style="border-right: 1px solid #ddd;">Task Adı</th>
+														<th class="col-md-2" style="border-right: 1px solid #ddd;">Görevli</th>
+														<th class="col-md-2" style="border-right: 1px solid #ddd;">Task Türü</th>
+														<th class="col-md-2" style="border-right: 1px solid #ddd;">İlgi</th>
+														<th class="col-md-2">Puan</th>
+													</tr>
+												</thead>
+												<tbody>
+													<!-- ko if:(pageNo()==0) -->
+													<tr>
+														<td colspan="9" style="background: url('/Content/images/progresbar.gif') center center no-repeat;"></td>
+													</tr>
+													<!-- /ko -->
+													<!-- ko foreach: taskqueuelist -->
+													<!--<tr data-bind="click: function (data, evt) { $parent.select(data, evt); }" class="cls_line" onclick="">
+														<td></td>
+														<td><input type="text" class="form-control" id="exampleInputName2"></td>
+														<td><select class="form-control"><option></option><option>Tamamlandı</option><option>Devam Ediyor</option><option>İptal</option></select></td>
+													</tr>-->
+													<tr data-bind="click: function (data, evt) { $parent.select(data, evt); }" class="cls_line" onclick="">
+														<td>
+															<!-- Button trigger modal -->
+															<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="padding: 3px; border-radius: 0px; font-size:14px;">
+																Düzenle
+															</button>
+															<input type="checkbox" />
+															
+														</td>
+														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
+														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
+														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
+														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
+														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!--pagination Starts-->
+							<nav class="text-center">
+								<ul class="pagination">
+									<li class="previous"><a href="javascript:void(0)" data-bind="click: function (e) { e.go().first(); }">&lt;&lt;</a></li>
+									<li><a href="javascript:void(0)" data-bind="click: function (e) { e.go().previous(); }">&lt;</a></li>
+									<li><a href="javascript:void(0)" data-bind="click: function (e) { e.go().next(); }">&gt;</a></li>
+									<li class="next"><a href="javascript:void(0)" data-bind="click: function (e) { e.go().last(); }">&gt;&gt;</a></li>
+								</ul>
+							</nav>
+							<!--pagination finish-->
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	
+
+
+	
+	
+
