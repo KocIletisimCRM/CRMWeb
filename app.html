@@ -145,8 +145,8 @@
                                             </p>
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a id="stockcard">Stok Hareketleri</a></li>
-                                            <li><a id="listBlocks">Stok Durumu</a></li>
+                                            <li><a id="stockcardmovements">Stok Hareketleri</a></li>
+                                            <li><a id="stockcase">Stok Durumu</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -211,8 +211,11 @@
             $("#listBlocks").click(function () {
                 $("#templateContainer").load("Templates/Blocks.html");
             });
-            $("#stockcard").click(function () {
-                $("#templateContainer").load("Templates/ListStockCards.html");
+            $("#stockcardmovements").click(function () {
+                $("#templateContainer").load("Templates/ListStockMovements.html");
+            });
+            $("#stockcase").click(function () {
+            	$("#templateContainer").load("Templates/ListStockCase.html");
             });
             $("#listTaskDefinetion").click(function () {
                 $("#templateContainer").load("Templates/ListTasks.html");
