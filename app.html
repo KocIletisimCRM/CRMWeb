@@ -11,11 +11,9 @@
     <link rel="stylesheet" href="Content/bootstrap-multiselect.min.css" />
     <link rel="stylesheet" href="Content/taskqueueeditform.css" />
     <link rel="stylesheet" href="Content/app.min.css" />
-    
    <!--  auto complete için referanslar-->
     <link href="Content/koc-typehead-v1.0.css" rel="stylesheet" />
-   <script src="Scripts/knockout-3.3.0.js"></script>
-        <script src="Scripts/jquery-2.1.4.min.js"></script>
+    <script src="Scripts/knockout-3.3.0.js"></script>
    <!--  auto complete için referanslar-->
     <title>KOCSAM CRM v2</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -25,7 +23,8 @@
 	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 
-
+    
+	
 </head>
 <body>
     <script src="Scripts/app.min.js"></script>
@@ -34,6 +33,7 @@
     <script src="Scripts/crmwebapi.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="Scripts/bootstrap-multiselect.min.js"></script>
+    
     <div class="noscroll-wraper">
         <div class="page-wraper">
             <input type="checkbox" id="leftPanelControl" class="left-panel-control" />
@@ -196,7 +196,37 @@
         </div>
     </div>
 
+    <div class="row">
+		<div class="col-md-8">
+			<div class="panel panel-default cls">
+				<div class="panel-heading cls-1">
+					<h3 class="panel-title">Panel 1</h3>
+					<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+				</div>
+				<div class="panel-body cls-2">
+                    Founded in 1892 and headquartered in Fairfield, CT, LexisNexis Corporate Affiliations 
+                    is a technology and financial services company. 
+                    According to the company's current 10K government filing it had FYE 12/31/2011 revenue of 
+                    $147.3 billion and has 301,000 employees.
+				</div>
+			</div>
+		</div>
+	</div>
+	<style>
+		.panel-heading span {
+			margin-top: -20px;
+			font-size: 15px;
+		}
 
+		.row {
+			margin-top: 40px;
+			padding: 0 10px;
+		}
+
+		.clickable {
+			cursor: pointer;
+		}
+	</style>
 
 
     <script type="text/javascript">
@@ -276,13 +306,9 @@
                 $("#templateContainer").load("Templates/ListPersonel.html");
             });
         });
-
-
     </script>
-   
-
     <script src="Scripts/koc-typehead-v1.0.min.js"></script>
-
+    
 </body>
 </html>
 
