@@ -1,41 +1,50 @@
 ﻿
 		<div class="container-fluid" style="background-color: lightcyan">
 			<div class="col-md-12 container" style="padding: 0 !important; margin: 20px 0 0 0 !important; border-radius: 0 0 8px 8px !important;">
-				<div class="panel-group">
-					<div class="panel" style="border: 1px solid #fff !important;">
-						<div class="panel-heading filter-gradient">Filtreleme</div>
-						<div class="panel-body">
-							<div class="col-xs-12 col-sm-4 col-md-4">
-								<div class="form-group-sm has-info cls-margin-bottom">
-									<label class="control-label" for="taskadi">Task Adı</label>
-									<select id="taskadi" multiple="multiple">
-										<option value="1">Task Adı 1</option>
-										<option value="2">Task Adı 2</option>
-										<option value="3">Task Adı 3</option>
-										<option value="4">Task Adı 4</option>
-										<option value="5">Task Adı 5</option>
-										<option value="6">Task Adı 6</option>
-									</select>
+				<div class="panel-group" id="accordion">
+					<div class="panel" id="panel2" style="border: 1px solid #fff !important;">
+						<div class="panel-heading filter-gradient">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-target="#collapse1"
+								   href="#collapse1" class="collapsed">
+									Filtreleme
+								</a>
+							</h4>
+						</div>
+						<div id="collapse1" class="panel-collapse collapse">
+							<div class="panel-body">
+								<div class="col-xs-12 col-sm-4 col-md-4">
+									<div class="form-group-sm has-info cls-margin-bottom">
+										<label class="control-label" for="taskadi">Task Adı</label>
+										<select id="taskadi" multiple="multiple">
+											<option value="1">Task Adı 1</option>
+											<option value="2">Task Adı 2</option>
+											<option value="3">Task Adı 3</option>
+											<option value="4">Task Adı 4</option>
+											<option value="5">Task Adı 5</option>
+											<option value="6">Task Adı 6</option>
+										</select>
+									</div>
 								</div>
-							</div>
-							
-							<div class="col-xs-12 col-sm-4 col-md-4">
-								<div class="form-group-sm has-info cls-margin-bottom">
-									<label class="control-label" for="taskturu">Task Türü</label>
-									<select id="taskturu" class="form-control">
-										<option>Diğer</option>
-										<option>Satış Taskı</option>
-										<option>Randevu Taskı</option>
-										<option>Kurulum Taskı</option>
-										<option>Randevusuz Kurulum Taskı</option>
-										<option>SOL Kapama Taskı</option>
-									</select>
+
+								<div class="col-xs-12 col-sm-4 col-md-4">
+									<div class="form-group-sm has-info cls-margin-bottom">
+										<label class="control-label" for="taskturu">Task Türü</label>
+										<select id="taskturu" class="form-control">
+											<option>Diğer</option>
+											<option>Satış Taskı</option>
+											<option>Randevu Taskı</option>
+											<option>Kurulum Taskı</option>
+											<option>Randevusuz Kurulum Taskı</option>
+											<option>SOL Kapama Taskı</option>
+										</select>
+									</div>
 								</div>
-							</div>
-							<div class="col-xs-12 col-sm-4 col-md-4" style="margin-top: 21px;">
-								<div class="btn-group pull-right" role="group">
-									<button type="button" class="btn btn-success">Sorgula</button>
-									<button type="button" class="btn btn-info">Temizle</button>
+								<div class="col-xs-12 col-sm-4 col-md-4" style="margin-top: 21px;">
+									<div class="btn-group pull-right" role="group">
+										<button type="button" class="btn btn-success">Sorgula</button>
+										<button type="button" class="btn btn-info">Temizle</button>
+									</div>
 								</div>
 							</div>
 						</div>

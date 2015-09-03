@@ -1,28 +1,37 @@
 ﻿
 	<div class="container-fluid" style="background-color: lightcyan">
 			<div class="col-md-12 container" style="padding: 0 !important; margin: 20px 0 0 0 !important; border-radius: 0 0 8px 8px !important;">
-				<div class="panel-group">
-					<div class="panel" style="border: 1px solid #fff !important;">
-						<div class="panel-heading filter-gradient">Filtreleme</div>
-						<div class="panel-body">
-							<div class="col-xs-12 col-sm-4 col-md-4">
-								<div class="form-group-sm has-info cls-margin-bottom">
-									<label class="control-label" for="durumtanimi">Site</label>
-									 <span class="kth col-md-4 form-control"></span>
+				<div class="panel-group" id="accordion">
+					<div class="panel" id="panel2" style="border: 1px solid #fff !important;">
+						<div class="panel-heading filter-gradient">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-target="#collapse1"
+								   href="#collapse1" class="collapsed">
+									Filtreleme
+								</a>
+							</h4>
+						</div>
+						<div id="collapse1" class="panel-collapse collapse">
+							<div class="panel-body">
+								<div class="col-xs-12 col-sm-4 col-md-4">
+									<div class="form-group-sm has-info cls-margin-bottom">
+										<label class="control-label" for="durumtanimi">Site</label>
+										<span class="kth col-md-4 form-control"></span>
+									</div>
 								</div>
-							</div>
-						
-							<div class="col-xs-12 col-sm-4 col-md-4">
-								<div class="form-group-sm has-info cls-margin-bottom">
-									<label class="control-label" for="durumtanimi">Öbek</label>
-									<input type="text" class="form-control" id="exampleInputName2" value="" />
+
+								<div class="col-xs-12 col-sm-4 col-md-4">
+									<div class="form-group-sm has-info cls-margin-bottom">
+										<label class="control-label" for="durumtanimi">Öbek</label>
+										<input type="text" class="form-control" id="exampleInputName2" value="" />
+									</div>
 								</div>
-							</div>
-						
-							<div class="col-xs-12 col-sm-4 col-md-4" style="margin-top: 21px;">
-								<div class="btn-group pull-right" role="group">
-									<button type="button" class="btn btn-success">Sorgula</button>
-									<button type="button" class="btn btn-info">Temizle</button>
+
+								<div class="col-xs-12 col-sm-4 col-md-4" style="margin-top: 21px;">
+									<div class="btn-group pull-right" role="group">
+										<button type="button" class="btn btn-success">Sorgula</button>
+										<button type="button" class="btn btn-info">Temizle</button>
+									</div>
 								</div>
 							</div>
 						</div>

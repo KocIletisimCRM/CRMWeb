@@ -1,37 +1,46 @@
 ﻿
 		<div class="container-fluid" style="background-color: #D1E9F6 !important;">
 			<div class="col-md-12 container" style="padding: 0 !important; margin: 20px 0 0 0 !important; border-radius: 0 0 8px 8px !important;">
-				<div class="panel-group">
-					<div class="panel" style="border: 1px solid #fff !important;">
-						<div class="panel-heading filter-gradient">Filtreleme</div>
-						<div class="panel-body">
-							<div class="col-xs-12 col-sm-4 col-md-5">
-								<div class="form-group-sm has-info cls-margin-bottom">
-									<label class="control-label" for="durumtanimi">Task</label>
-									<select id="durumtanimi" class="form-control">
-										<option>Task1</option>
-										<option>Task2</option>
-										<option>Task3</option>
-										<option>Task4</option>
-										<option>Task5</option>
-										<option>Task6</option>
-									</select>
+				<div class="panel-group" id="accordion">
+					<div class="panel" id="panel2" style="border: 1px solid #fff !important;">
+						<div class="panel-heading filter-gradient">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-target="#collapse1"
+								   href="#collapse1" class="collapsed">
+									Filtreleme
+								</a>
+							</h4>
+						</div>
+						<div id="collapse1" class="panel-collapse collapse">
+							<div class="panel-body">
+								<div class="col-xs-12 col-sm-4 col-md-4">
+									<div class="form-group-sm has-info cls-margin-bottom">
+										<label class="control-label" for="durumtanimi">Task</label>
+										<select id="durumtanimi" class="form-control">
+											<option>Task1</option>
+											<option>Task2</option>
+											<option>Task3</option>
+											<option>Task4</option>
+											<option>Task5</option>
+											<option>Task6</option>
+										</select>
+									</div>
 								</div>
-							</div>
-							<div class="col-xs-12 col-sm-4 col-md-5">
-								<div class="form-group-sm has-info cls-margin-bottom">
-									<label class="control-label" for="durumturu">Task Durumu</label>
-									<select id="durumturu" class="form-control">
-										<option>Task Durumu1 </option>
-										<option>Task Durumu2</option>
-										<option>Task Durumu3</option>
-									</select>
+								<div class="col-xs-12 col-sm-4 col-md-4">
+									<div class="form-group-sm has-info cls-margin-bottom">
+										<label class="control-label" for="durumturu">Task Durumu</label>
+										<select id="durumturu" class="form-control">
+											<option>Task Durumu1 </option>
+											<option>Task Durumu2</option>
+											<option>Task Durumu3</option>
+										</select>
+									</div>
 								</div>
-							</div>
-							<div class="col-xs-12 col-sm-4 col-md-2" style="margin-top: 21px;">
-								<div class="btn-group pull-right" role="group">
-									<button type="button" class="btn btn-success">Sorgula</button>
-									<button type="button" class="btn btn-info">Temizle</button>
+								<div class="col-xs-12 col-sm-4 col-md-4" style="margin-top: 21px;">
+									<div class="btn-group pull-right" role="group">
+										<button type="button" class="btn btn-success">Sorgula</button>
+										<button type="button" class="btn btn-info">Temizle</button>
+									</div>
 								</div>
 							</div>
 						</div>
