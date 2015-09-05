@@ -1,23 +1,12 @@
 ﻿/// <reference path="crmwebapi.js" />
 
-$(document).ready(function () {
-    $('#taskNameFilter').multiselect();
-});
 
-var taskFilterModel = (function () {
-    return {
-        data: ko.observable([]),
-        value: ko.observable({}),
-        afterTemplateRender: function () {
-            var _self = taskFilterModel;
-            crmAPI.getTaskFilter(function (data) {
-                _self.data(data);
-                $('#taskNameFilter').multiselect('rebuild');
-            }, function (error) {
+jQuery.fn.extend({
+    loadTemplate: function (url, onload) {
+        return this.load(url, function () {
+            if (dataModel && dataModel.renderBindings) dataModel.renderBindings();
+            if (onload) onload();
+        });
 
-            });
-        }
     }
-})();
-
-ko.applyBindings();
+});

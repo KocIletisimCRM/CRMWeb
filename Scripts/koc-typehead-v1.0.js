@@ -146,6 +146,7 @@ jQuery.fn.extend({
                 createInputValue();
                 createPreElement();
                 createMenu();
+                ko.cleanNode(_self[0]);
                 ko.applyBindings(dataModel, _self[0]);
             }
             var loadData = function (key) {
