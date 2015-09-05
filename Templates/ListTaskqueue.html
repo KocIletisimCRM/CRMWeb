@@ -20,11 +20,11 @@
 							</div>
 							<div class="col-xs-12 col-sm-4 col-md-4">
 								<div class="form-group-sm has-info cls-margin-bottom">
-									<div class="col-md-8">
+									<div class="col-md-12" style="padding: 0;">
 										<label class="control-label" for="blokadi">Blok</label>
 									</div>
-									<div class="col-md-8">
-										<select id="blokadi" multiple="multiple">
+									<div class="col-md-12" style="padding: 0;">
+										<select id="blokadi" multiple="multiple" size="4">
 											<option value="1">Blok Adı 1</option>
 											<option value="2">Blok Adı 2</option>
 											<option value="3">Blok Adı 3</option>
@@ -65,9 +65,7 @@
 										<label class="control-label" for="taskNameFilter">Task Adı</label>
 									</div>
 									<div class="col-md-12">
-										<select id="taskNameFilter" data-bind="options: tasks, optionsText: 'taskname', optionsValue: 'taskid'" multiple="multiple">
-                            	           
-                                            </select>
+										<select id="taskNameFilter" data-bind="options: tasks, optionsText: 'taskname', optionsValue: 'taskid'" multiple="multiple"></select>
 									</div>
 								</div>
 							</div>
@@ -101,7 +99,7 @@
 										<label class="control-label" for="taskadi">Personel</label>
 									</div>
 									<div class="col-md-12">
-										<select id="personel" data-bind="options: personellist, optionsText: 'personelname', optionsValue: 'personelid'" multiple="multiple">
+										<select data-size="10" id="personel" data-bind="options: personellist, optionsText: 'personelname', optionsValue: 'personelid'" multiple="multiple">
 										
 										</select>
 									</div>
