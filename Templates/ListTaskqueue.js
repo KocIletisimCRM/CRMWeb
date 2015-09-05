@@ -19,7 +19,15 @@ var dataModel = {
             self.tasks(a);
             $("#taskNameFilter").multiselect({
                 includeSelectAllOption: true,
-                selectAllValue: 'select-all-value'
+                selectAllValue: 'select-all-value',
+                maxHeight: 250,
+                buttonWidth: '100%',
+                nonSelectedText: 'Task Adını Seçiniz',
+                nSelectedText: 'Task Adı Seçildi!',
+                numberDisplayed: 2,
+                selectAllText: 'Tümünü Seç!',
+                enableFiltering: true,
+                filterPlaceholder: 'Ara'
             });
         }, null, null);
     
@@ -30,7 +38,15 @@ var dataModel = {
             self.ctstatuslist(a);
             $("#abonedurumu").multiselect({
                 includeSelectAllOption: true,
-                selectAllValue: 'select-all-value'
+                selectAllValue: 'select-all-value',
+                maxHeight: 250,
+                buttonWidth: '100%',
+                nonSelectedText: 'Abone Durumunu Seçiniz',
+                nSelectedText: 'Abone Durumu Seçildi!',
+                numberDisplayed: 2,
+                selectAllText: 'Tümünü Seç!',
+                enableFiltering: true,
+                filterPlaceholder: 'Ara'
             });
         }, null, null)
     },
@@ -40,7 +56,15 @@ var dataModel = {
             self.isslist(a);
             $("#servissaglayici").multiselect({
                 includeSelectAllOption: true,
-                selectAllValue: 'select-all-value'
+                selectAllValue: 'select-all-value',
+                maxHeight: 250,
+                buttonWidth: '100%',
+                nonSelectedText: 'ISS Seçiniz',
+                nSelectedText: 'ISS Seçildi!',
+                numberDisplayed: 2,
+                selectAllText: 'Tümünü Seç!',
+                enableFiltering: true,
+                filterPlaceholder: 'Ara'
             });
         }, null, null)
     },
@@ -50,7 +74,15 @@ var dataModel = {
             self.taskstatuslist(a);
             $("#taskdurumu").multiselect({
                 includeSelectAllOption: true,
-                selectAllValue: 'select-all-value'
+                selectAllValue: 'select-all-value',
+                maxHeight: 250,
+                buttonWidth: '100%',
+                nonSelectedText: 'Task Durumunu Seçiniz',
+                nSelectedText: 'Task Durumu Seçildi!',
+                numberDisplayed: 2,
+                selectAllText: 'Tümünü Seç!',
+                enableFiltering: true,
+                filterPlaceholder: 'Ara'
             });
         }, null, null)
     },
@@ -60,7 +92,15 @@ var dataModel = {
             self.personellist(a);
             $("#personel").multiselect({
                 includeSelectAllOption: true,
-                selectAllValue: 'select-all-value'
+                selectAllValue: 'select-all-value',
+                maxHeight: 250,
+                buttonWidth: '100%',
+                nonSelectedText: 'Personel Seçiniz',
+                nSelectedText: 'Personel Seçildi!',
+                numberDisplayed: 2,
+                selectAllText: 'Tümünü Seç!',
+                enableFiltering: true,
+                filterPlaceholder: 'Ara'
             });
         }, null, null)
     },
@@ -76,7 +116,15 @@ var dataModel = {
     renderBindings: function () {
         $("#blokadi").multiselect({
             includeSelectAllOption: true,
-            selectAllValue: 'select-all-value'
+            selectAllValue: 'select-all-value',
+            maxHeight: 250,
+            buttonWidth: '100%',
+            nonSelectedText: 'Blok Seçiniz',
+            nSelectedText: 'Blok Seçildi!',
+            numberDisplayed: 2,
+            selectAllText: 'Tümünü Seç!',
+            enableFiltering: true,
+            filterPlaceholder: 'Ara'
         });
         this.getisslist();
         this.gettaskstatus();
