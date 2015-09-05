@@ -6,12 +6,13 @@ body {
 }
 .noscroll-wraper {
   width: 100%;
+  height:inherit;
   min-height: 100%;
   overflow-x: hidden;
 }
 .noscroll-wraper .page-wraper {
   width: 100%;
-  height: inherit;
+  height: auto;
 }
 @media only screen and (max-width: 767px) {
   .noscroll-wraper .page-wraper {
@@ -114,6 +115,7 @@ body {
 }
 .noscroll-wraper .page-wraper .left-panel-control:checked ~ .content-wraper {
   width: calc(100% - 20em);
+  margin-left: 280px;
   -moz-transition: all 0.5s ease-out;
   -o-transition: all 0.5s ease-out;
   -webkit-transition: all 0.5s ease-out;
@@ -131,4 +133,20 @@ body {
 
 .cls_line:hover{
     background-color: tomato !important;
+}
+.cls-qw{color: #fff;}
+.cls-qw:hover{color: #FF6347;}
+.cls-left-menu-button{background-color: deepskyblue;}
+.gradient-border{
+    border: 10px solid transparent;
+    border-image: linear-gradient(to bottom, royalblue 50%, deepskyblue 100%);
+    border-image-slice: 1;
+}
+.task-gradient{
+    background: linear-gradient(to bottom, #708090 0% , #fff 200%);
+    color: #fff;
+}
+.filter-gradient{
+    background: linear-gradient(to bottom, #FF6347 0% , #fff 200%);
+    color: #fff;
 }
