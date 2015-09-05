@@ -5,18 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="Content/bootstrap-multiselect.min.css" />
     <link rel="stylesheet" href="Content/taskqueueeditform.css" />
     <link rel="stylesheet" href="Content/app.min.css" />
-    
-   <!--  auto complete için referanslar-->
+    <!--  auto complete için referanslar-->
     <link href="Content/koc-typehead-v1.0.css" rel="stylesheet" />
-   <script src="Scripts/knockout-3.3.0.js"></script>
-        <script src="Scripts/jquery-2.1.4.min.js"></script>
-   <!--  auto complete için referanslar-->
+    <!--  auto complete için referanslar-->
     <title>KOCSAM CRM v2</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -24,6 +20,12 @@
 	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
+    <script src="Scripts/knockout-3.3.0.js"></script>
+    <script src="Scripts/crmwebapi.js"></script>
+    <script src="Scripts/bootstrap-multiselect.js"></script>
+    <script src="Scripts/koc-typehead-v1.0.js"></script>
+    <script src="Scripts/mainpage.js"></script>
+    <script src="Scripts/app.js"></script>
 	<style>
 		.panel-heading > h4 > a:after {
 			font-family: 'Glyphicons Halflings';
@@ -40,12 +42,6 @@
 	
 </head>
 <body>
-    <script src="Scripts/app.min.js"></script>
-    <script src="Scripts/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
-    <script src="Scripts/crmwebapi.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="Scripts/bootstrap-multiselect.min.js"></script>
       
     <div class="noscroll-wraper">
 		<div class="page-wraper">
@@ -206,84 +202,7 @@
 			<br class="clear-fix" />
 		</div>
     </div>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#templateContainer").load("Templates/ListTaskqueue.html", function () {
-                $(".kth").kocTypeHead({
-                    dataLoaderParams: {
-                        url: "http://localhost:50752/api/Filter/getSite",
-                        method: "POST",
-                        contentType: "application/json",
-                        data: JSON.stringify({ siteName: { fieldName: "sitename", op: 6, value: "@Key" } }),
-                        crossDomain: true
-                    },
-                    prepareData: function (rawData) {
-                        data = []
-                        $.each(rawData, function (d) {
-                            data.push(rawData[d].sitename)
-                        });
-                        return data;
-                    }
-                });
-            });
-            $("#listSites").click(function () {
-                $("#templateContainer").load("Templates/Sites.html", function () {
-                    $(".kth").kocTypeHead({
-                        dataLoaderParams: {
-                            url: "http://localhost:50752/api/Filter/getSite",
-                            method: "POST",
-                            contentType: "application/json",
-                            data: JSON.stringify({ siteName: { fieldName: "sitename", op: 6, value: "@Key" } }),
-                            crossDomain: true
-                        },
-                        prepareData: function (rawData) {
-                            data = []
-                            $.each(rawData, function (d) {
-                                data.push(rawData[d].sitename)
-                            });
-                            return data;
-                        }
-                    });
-                });
-            });
-            $("#listTaskqueue").click(function () {
-                $("#templateContainer").load("Templates/ListTaskqueue.html");
-            }); 
-            $("#listBlocks").click(function () {
-                $("#templateContainer").load("Templates/Blocks.html");
-            });
-            $("#stockcardmovements").click(function () {
-                $("#templateContainer").load("Templates/ListStockMovements.html");
-            });
-            $("#stockcase").click(function () {
-            	$("#templateContainer").load("Templates/ListStockCase.html");
-            });
-            $("#listTaskDefinetion").click(function () {
-                $("#templateContainer").load("Templates/ListTasks.html");
-            });
-            $("#taskstatepool").click(function () {
-                $("#templateContainer").load("Templates/ListTaskStatePool.html");
-            });
-            $("#taskstatematches").click(function () {
-                $("#templateContainer").load("Templates/ListTaskStateMatches.html");
-            });
-            $("#documentdefination").click(function () {
-                $("#templateContainer").load("Templates/ListDocument.html");
-            });
-            $("#listcampaigns").click(function () {
-                $("#templateContainer").load("Templates/ListCampaigns.html");
-            });
-            $("#listproducts").click(function () {
-                $("#templateContainer").load("Templates/ListProducts.html");
-            });
-            $("#liststockcards").click(function () {
-                $("#templateContainer").load("Templates/ListStockCards.html");
-            });
-            $("#listpersonel").click(function () {
-                $("#templateContainer").load("Templates/ListPersonel.html");
-            });
-        });
-    </script>
+  
    
 
     <script src="Scripts/koc-typehead-v1.0.min.js"></script>
