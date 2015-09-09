@@ -42,4 +42,8 @@ $(document).ready(function () {
         $("#listpersonel").click(function () {
             $("#templateContainer").loadTemplate("Templates/ListPersonel.html");
         });
+        $("#duzenle").click(function () {
+            $("#templateContainer").loadTemplate("Templates/TaskQueueEditForm.html");
+        });
+
     });

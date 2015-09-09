@@ -6,13 +6,28 @@ var dataModel = {
 
     multiSelectTagIds: "#blokadi,#taskNameFilter,#servissaglayici,#abonedurumu,#personel,#taskdurumu",
     typeHeadTagIds: "#site",
+
+    selectedTaskname:ko.observable(),
+    sitename: ko.observable(),
+    blockname: ko.observable(),
+    customername: ko.observable(),
+    customerstatus: ko.observable(),
+    iss: ko.observable(),
+    attachmentdate: ko.observable(),
+    appointmentdate: ko.observable(),
+    selectedPersonelname: ko.observable(),
+    selectedTaskstatus: ko.observable(),
+    consummationdate: ko.observable(),
+    description:ko.observable(),
+
     tasks: ko.observableArray([]),
     ctstatuslist: ko.observableArray([]),
     isslist: ko.observableArray([]),
     taskstatuslist: ko.observableArray([]),
     personellist: ko.observableArray([]),
     taskqueuelist: ko.observableArray([]),
-    totalpagecount:ko.observable(0),
+    totalpagecount: ko.observable(0),
+
     getTasks: function () {
         var self = this;
         crmAPI.getTaskFilter({}, function (a, b, c) {
@@ -104,14 +119,47 @@ var dataModel = {
             });
         }, null, null)
     },
-    pageNo: ko.observable(0),
     gettaskqueue: function () {
         var self = this;
-        crmAPI.getTaskQueues({ pageNo: 1, rowsPerPage: 20, filter: {tableName:'taskqueue',keyField:'taskorderno'}},function (a, b, c) {
+        var data = {
+            pageNo: 1,
+            rowsPerPage: 20,
+            site: { fieldName: "sitename", op: 6, value: this.sitename() },
+            block: { fieldName: "blockname", op: 6, value: this.blockname() },
+            customer: { fieldName: "customername", op: 6, value: this.customername() },
+            task: { fieldName: "taskname", op: 6, value: this.selectedTaskname() },
+            personel: { fieldName: "personelname", op: 6, value: this.selectedPersonelname() },
+            taskstate: { fieldName: "taskstate", op: 6, value: this.selectedTaskstatus() },
+        };
+        crmAPI.getTaskQueues(data, function (a, b, c) {
             self.taskqueuelist(a.data.rows);
             self.totalpagecount(a.data.pageCount);
         }, null, null)
     },
+    getFilter: function () {
+        var self = this;
+        var data = {
+            pageNo: 1,
+            rowsPerPage: 20,
+            site: { fieldName: "sitename", op: 6, value: this.sitename() },
+            block: { fieldName: "blockname", op: 6, value: this.blockname() },
+            customer: { fieldName: "customername", op: 6, value: this.customername() },
+            task: { fieldName: "taskname", op: 6, value: this.selectedTaskname() },
+            personel: { fieldName: "personelname", op: 6, value: this.selectedPersonelname() },
+            taskstate: { fieldName: "taskstate", op: 6, value: this.selectedTaskstatus() },
+        };
+        crmAPI.getTaskQueues(data, function (a, b, c) {
+            self.taskqueuelist(a.data.rows);
+            self.totalpagecount(a.data.pageCount);
+        }, null, null)
+    },
+    pageNo: ko.observable(0),
+    select :function (d, e) {
+        $("#customer tr").removeClass("selected");
+        $(e.currentTarget).addClass("selected");
+        this.customerid = d.customerid;
+    },
+
 
     renderBindings: function () {
         $("#blokadi").multiselect({
@@ -125,6 +173,7 @@ var dataModel = {
             selectAllText: 'Tümünü Seç!',
             enableFiltering: true,
             filterPlaceholder: 'Ara'
+            
         });
         this.getisslist();
         this.gettaskstatus();

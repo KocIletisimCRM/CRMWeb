@@ -1,4 +1,16 @@
-﻿		<div id="bindingContainer" class="container-fluid" style="background-color: lightcyan">
+﻿<style>
+        #taskquetable {
+            cursor: pointer;
+            color: #000;
+        }
+            #taskquetable tr:hover {
+                background: #00ffff;
+            }
+        .selected {
+            background: #ffd800;
+        }
+    </style>	
+<div id="bindingContainer" class="container-fluid" style="background-color: lightcyan">
 			<div class="col-md-12 container" style="padding: 0 !important; margin: 20px 0 0 0 !important; border-radius: 0 0 8px 8px !important;">
 				<div class="panel-group" id="accordion">
 					<div class="panel" id="panel2" style="border: 1px solid #fff !important;">
@@ -15,7 +27,8 @@
 							<div class="col-xs-12 col-sm-4 col-md-4">
 								<div class="form-group-sm has-info cls-margin-bottom">
 									<label class="control-label" for="durumtanimi">Site</label>
-									 <span id="site" class="kth col-md-12 form-control"></span>
+                                    <input type="text" class="form-control" id="Text1" data-bind="value: sitename" />
+								<!--	 <span id="site" class="kth col-md-12 form-control" data-bind="value:sitename"></span>-->
 								</div>
 							</div>
 							<div class="col-xs-12 col-sm-4 col-md-4">
@@ -38,7 +51,7 @@
 							<div class="col-xs-12 col-sm-4 col-md-4">
 								<div class="form-group-sm has-info cls-margin-bottom">
 									<label class="control-label" for="durumtanimi">Abone Ad-Soyad</label>
-									<input type="text" class="form-control" id="Text2" value="" />
+									<input type="text" class="form-control" id="Text2" data-bind="value:customername" />
 								</div>
 							</div>
 							<div class="col-xs-12 col-sm-4 col-md-4">
@@ -65,7 +78,7 @@
 										<label class="control-label" for="taskNameFilter">Task Adı</label>
 									</div>
 									<div class="col-md-12">
-										<select id="taskNameFilter" data-bind="options: tasks, optionsText: 'taskname', optionsValue: 'taskid'" multiple="multiple"></select>
+										<select id="taskNameFilter" data-bind="options: tasks, optionsText: 'taskname', optionsValue: 'taskname',value:selectedTaskname " multiple="multiple"></select>
 									</div>
 								</div>
 							</div>
@@ -99,7 +112,10 @@
 										<label class="control-label" for="taskadi">Personel</label>
 									</div>
 									<div class="col-md-12">
-										<select data-size="10" id="personel" data-bind="options: personellist, optionsText: 'personelname', optionsValue: 'personelid'" multiple="multiple">
+										<select data-size="10" id="personel" data-bind="options: personellist,
+                                                                                        optionsText: 'personelname',
+                                                                                        optionsValue: 'personelname',
+                                                                                        value: selectedPersonelname" multiple="multiple">
 										
 										</select>
 									</div>
@@ -111,7 +127,7 @@
 										<label class="control-label" for="taskdurumu">Task Durumu</label>
 									</div>
 									<div class="col-md-12">
-										<select id="taskdurumu"  data-bind="options: taskstatuslist, optionsText: 'taskstate', optionsValue: 'taskstateid'"  multiple="multiple">
+										<select id="taskdurumu"  data-bind="options: taskstatuslist, optionsText: 'taskstate', optionsValue: 'taskstate', value: selectedTaskstatus"  multiple="multiple">
 										    
 										</select>
 									</div>
@@ -119,7 +135,7 @@
 							</div>
 							<div class="col-xs-12 col-sm-4 col-md-4" style="margin-top: 21px;">
 								<div class="btn-group pull-right" role="group">
-									<button type="button" class="btn btn-success">Sorgula</button>
+									<button data-bind="click: getFilter" type="button" class="btn btn-success">Sorgula</button>
 									<button type="button" class="btn btn-info">Temizle</button>
 								</div>
 							</div>
@@ -198,48 +214,42 @@
 													</tr>
 												</thead>
 												<tbody>
-													<!-- ko if:(pageNo()==0) -->
+													<!-- ko if:taskqueuelist==null-->
 													<tr>
-														<td colspan="9" style="background: url('/Content/images/progresbar.gif') center center no-repeat;"></td>
+														<td colspan="9" style="background: url('/content/images/progressbar.gif') center center no-repeat;"></td>
 													</tr>
 													<!-- /ko -->
 													<!-- ko foreach: taskqueuelist -->
-													<!--<tr data-bind="click: function (data, evt) { $parent.select(data, evt); }" class="cls_line" onclick="">
-														<td></td>
-														<td><input type="text" class="form-control" id="exampleInputName2"></td>
-														<td><select class="form-control"><option></option><option>Tamamlandı</option><option>Devam Ediyor</option><option>İptal</option></select></td>
-													</tr>-->
-													<tr data-bind="click: function (data, evt) { $parent.select(data, evt); }" class="cls_line" onclick="">
+													<tr data-bind="click: function (data, evt) {select(data, evt); }" onclick=""></tr>
+													<tr  onclick="">
 														<td>
 															<!-- Button trigger modal -->
-															<a href="TaskQueueEditForm.html" target="_blank">
-																<button type="button" class="btn btn-primary btn-lg" style="padding: 3px; border-radius: 0px; font-size:14px;">
+																<button id="duzenle" type="button" class="btn btn-primary btn-lg" style="padding: 3px; border-radius: 0px; font-size:14px;">
 																	Düzenle
 																</button>
 																<input type="checkbox" />
-															</a>
-
 														</td>
-														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
-														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
-														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
-														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
-														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
-														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
-														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
-														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
-														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
-														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
-														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
-														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
-													</tr>
+														<td data-bind="text:task.taskname"></td>
+														<td data-bind="text:(attachedobject && attachedobject.block.site.sitename ||'')"></td>
+														<td data-bind="text:(attachedobject && attachedobject.block.blockname || '')"></td>
+														<td data-bind="text:attachedobject.customername + ' ' + attachedobject.customersurname"></td>
+														<td data-bind="text:(attachedobject && attachedobject.customer_status || '') "></td>
+														<td data-bind="text:(attachedobject&&attachedobject.issStatus || '')"></td>
+														<td data-bind="text:attachmentdate? moment(attachmentdate).format('LLL') : ''" ></td>
+														<td data-bind="text:appointmentdate "></td>
+														<td data-bind="text:(attachedpersonel &&attachedpersonel.personelname ||'') "></td>
+														<td data-bind="text:(taskstatepool &&taskstatepool.taskstate || 'AÇIK')"></td>
+														<td data-bind="text:consummationdate ? moment(consummationdate).subtract(1, 'days').calendar() :''"></td>
+														<td data-bind="text:description"></td>
+													</tr>  
+                                                    <!-- /ko -->  
+
 												</tbody>
 											</table>
 										</div>
 									</div>
 								</div>
 							</div>
-
 							<!--pagination Starts-->
 							<nav class="text-center">
 								<ul class="pagination">
@@ -250,7 +260,6 @@
 								</ul>
 							</nav>
 							<!--pagination finish-->
-
 						</div>
 					</div>
 				</div>
@@ -259,3 +268,16 @@
 
 
 <script type="text/javascript" src="Templates/ListTaskqueue.js"></script>
+<script type="text/javascript" src="../Scripts/moment.js">
+
+</script>
+<script>
+    $(document).ready(function () {
+
+        $("#duzenle").click(function () {
+            $("#templateContainer").loadTemplate("Templates/TaskQueueEditForm.html");
+        });
+        moment.locale('tr');
+    });
+  
+</script>
