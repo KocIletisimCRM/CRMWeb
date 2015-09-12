@@ -1,17 +1,5 @@
 ﻿/// <reference path="_references.js" />
 
-jQuery.fn.wrapInTag = function(opts) {
-
-    var tag = opts.tag || 'strong'
-      , words = opts.words || []
-      , regex = RegExp(words.join('|'), 'gi') // case insensitive
-      , replacement = '<'+ tag +'>$&</'+ tag +'>';
-
-    return this.html(function() {
-        return $(this).text().replace(regex, replacement);
-    });
-};
-
 jQuery.fn.extend({
     kocTypeHead: function (opts) {
         return this.each(function () {

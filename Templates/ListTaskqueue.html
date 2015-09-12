@@ -9,6 +9,11 @@
         .selected {
             background: #ffd800;
         }
+
+        .a { position: relative; padding:0 }
+      .a i {
+        position: absolute; bottom: 10px; right: 24px; top: auto; cursor: pointer;
+      }
     </style>	
     <div id="bindingContainer" class="container-fluid" style="background-color: lightcyan">
 			<div class="col-md-12 container" style="padding: 0 !important; margin: 20px 0 0 0 !important; border-radius: 0 0 8px 8px !important;">
@@ -57,33 +62,27 @@
 							<div class="col-xs-12 col-sm-4 col-md-4">
 								<div class="form-group-sm has-info cls-margin-bottom">
 									<label class="control-label" for="durumtanimi">Atanma Tarihi</label>
-									 <div class='input-group date' id='datetimepicker1'>
-                                                        <input id="attachmentdate" data-bind="value: attachmentdate()" type='text' class="form-control" />
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-calendar"></span>
-                                                        </span>
+									<div class="col-md-12 a">
+                                        <input type="text" id="daterangepicker1" class="form-control">
+                                        <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
                                     </div>
 								</div>
 							</div>
 							<div class="col-xs-12 col-sm-4 col-md-4">
 								<div class="form-group-sm has-info cls-margin-bottom">
 									<label class="control-label" for="durumtanimi">Randevu Tarihi</label>
-									 <div class='input-group date' id='datetimepicker2'>
-                                                        <input id="appointmentdate" data-bind="value: appointmentdate" type='text' class="form-control" />
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-calendar"></span>
-                                                        </span>
+									<div class="col-md-12 a">
+                                        <input type="text" id="daterangepicker2" class="form-control">
+                                        <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
                                     </div>
 								</div>
 							</div>
 							<div class="col-xs-12 col-sm-4 col-md-4">
 								<div class="form-group-sm has-info cls-margin-bottom">
 									<label class="control-label" for="durumtanimi">Sonlanma Tarihi</label>
-									 <div class='input-group date' id='datetimepicker3'>
-                                                        <input id="consummationdate" data-bind="value: consummationdate" type='text' class="form-control" />
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-calendar"></span>
-                                                        </span>
+									 <div class="col-md-12 a">
+                                        <input type="text" id="daterangepicker3" class="form-control">
+                                        <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
                                     </div>
 								</div>
 							</div>

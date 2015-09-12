@@ -190,6 +190,17 @@ var dataModel = {
         $(function () {
             $('#datetimepicker1,#datetimepicker2,#datetimepicker3').datetimepicker();
         });
+        $('#daterangepicker1,#daterangepicker2,#daterangepicker3').daterangepicker({
+            "timePicker": true,
+            ranges: {
+                'Bugün': [moment(), moment()],
+                'Dün': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Son 7 Gün': [moment().subtract(6, 'days'), moment()],
+                'Son 30 Gün': [moment().subtract(29, 'days'), moment()],
+                'Bu Ay': [moment().startOf('month'), moment().endOf('month')],
+                'Geçen Ay': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            }
+        });
         self.getisslist();
         self.gettaskstatus();
         self.getTasks();
