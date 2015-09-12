@@ -48,7 +48,7 @@ var dataModel = {
                              ));
                 self.customername(a.data.rows[0].attachedobject.customername && (a.data.rows[0].attachedobject.customername + ' ' + a.data.rows[0].attachedobject.customersurname) || '&lt;boş&gt;');
                 self.customergsm(a.data.rows[0].attachedobject && a.data.rows[0].attachedobject.gsm || '&lt;boş&gt;');
-                self.customerstatus(a.data.rows[0].attachedobject && a.data.rows[0].attachedobject.customer_status || '');
+                self.customerstatus(a.data.rows[0].attachedobject.customer_status && a.data.rows[0].attachedobject.customer_status.Text || '&lt;boş&gt;');
                 self.description(a.data.rows[0].description);
                 self.locationid(a.data.rows[0].attachedobject.locationid || (a.data.rows[0].attachedobject.block && a.data.rows[0].attachedobject.block.locationid) || '&lt;boş&gt;');
             }, null, null)
