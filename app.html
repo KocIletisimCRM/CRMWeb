@@ -40,6 +40,13 @@
 		.panel-heading > h4 > a.collapsed:after {
 			content: "\e080";
 		}
+        .filtertitle{
+            text-transform: none;
+            color: #fff !important;
+        }
+        .filtertitle:hover, .filtertitle:active, .filtertitle:visited{
+            color: #fff !important;
+        }
 	</style>
 
 	
@@ -68,17 +75,6 @@
 											</p>
 										</button>
 										<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-											<li><a href="#yeni" role="button" data-toggle="modal">Yeni</a></li>
-											<li class="dropdown-submenu">
-												<a tabindex="-1" href="#">Seçim</a>
-												<ul class="dropdown-menu">
-													<li><a tabindex="-1" href="#">Tümünü Seç</a></li>
-													<li><a href="#">Seçimi Çevir</a></li>
-													<li><a href="#">Seçimi Temizle</a></li>
-												</ul>
-											</li>
-											<li><a href="#">Filtreyi Temizle</a></li>
-											<li><a href="#">Excel'e Kaydet</a></li>
 											<li class="dropdown-submenu">
 												<a tabindex="-1" href="#">Satış Taskları</a>
 												<ul class="dropdown-menu">
@@ -183,7 +179,7 @@
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12 cls-padding-0px  cls-left-menu-button">
-									<a href="app.html" class="col-xs-12 col-sm-12 col-md-12 btn cls-left-menu-button cls-qw" role="button" style="border-radius: 0;">
+									<a href="#ListCustomers" class="col-xs-12 col-sm-12 col-md-12 btn cls-left-menu-button cls-qw" role="button" style="border-radius: 0;">
 										<p style="height: 10px; float: left;">Müşteriler</p>
 									</a>
 								</div>

@@ -10,17 +10,17 @@
             background: #ffd800;
         }
     </style>	
-<div id="bindingContainer" class="container-fluid" style="background-color: lightcyan">
+    <div id="bindingContainer" class="container-fluid" style="background-color: lightcyan">
 			<div class="col-md-12 container" style="padding: 0 !important; margin: 20px 0 0 0 !important; border-radius: 0 0 8px 8px !important;">
 				<div class="panel-group" id="accordion">
 					<div class="panel" id="panel2" style="border: 1px solid #fff !important;">
 						<div class="panel-heading filter-gradient">
-							<h4 class="panel-title">
-								<a data-toggle="collapse" data-target="#collapse1"
-								   href="javascript:void(0)" class="collapsed">
-									Filtreleme 
-								</a>
-							</h4>
+                            <a data-toggle="collapse" data-target="#collapse1"
+                               href="javascript:void(0)" class="collapsed filtertitle">
+                                <h4 class="panel-title">
+                                    Filtreleme
+                                </h4>
+                            </a>
 						</div>
 						<div id="collapse1" class="panel-collapse collapse">
 							<div class="panel-body">
@@ -165,7 +165,7 @@
 						<div class="panel-heading task-gradient">
 							<div class="row cls-padding-0px">
 								<div class="col-xs-6 col-sm-6 col-md-6">
-									Task Tanımları
+									Task İşlemleri
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<!--pagination Starts-->
@@ -186,7 +186,7 @@
 							<div class="container-fluid cls-padding-0px cls-deneme-height ">
 								<div class="row cls-margin-task">
 									<div class="col-lg-12 cls-padding-0px">
-										<div class="col-lg-12 cls-task cls-padding-0px">
+										<div class="col-lg-12 cls-task cls-padding-0px table-responsive">
 											<table class="table" id="taskquetable" data-pagination="true" data-search="true">
 												<thead>
 													<tr>
@@ -196,11 +196,6 @@
 																	İşlemler <span class="caret"></span>
 																</a>
 																<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-																	<li>
-																		<a href="#myModal1" role="button" class="btn" data-toggle="modal" style="padding-right: 110px; float: left;">Yeni</a>
-																	</li>
-																	<br />
-																	<li class="divider"></li>
 																	<li class="dropdown-submenu">
 																		<a tabindex="-1" href="#">Seçim</a>
 																		<ul class="dropdown-menu">
@@ -210,7 +205,6 @@
 																		</ul>
 																	</li>
 																	<li class="divider"></li>
-																	<li><a href="#">Filtreyi Temizle</a></li>
 																	<li><a href="#">Excel'e Kaydet</a></li>
 																</ul>
 															</div>
