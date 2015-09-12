@@ -17,7 +17,7 @@
 						<div class="panel-heading filter-gradient">
 							<h4 class="panel-title">
 								<a data-toggle="collapse" data-target="#collapse1"
-								   href="#collapse1" class="collapsed">
+								   href="javascript:void(0)" class="collapsed">
 									Filtreleme 
 								</a>
 							</h4>
@@ -57,19 +57,34 @@
 							<div class="col-xs-12 col-sm-4 col-md-4">
 								<div class="form-group-sm has-info cls-margin-bottom">
 									<label class="control-label" for="durumtanimi">Atanma Tarihi</label>
-									<input type="date" class="form-control" id="Date1" value="" />
+									 <div class='input-group date' id='datetimepicker1'>
+                                                        <input id="attachmentdate" data-bind="value: attachmentdate()" type='text' class="form-control" />
+                                                        <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                    </div>
 								</div>
 							</div>
 							<div class="col-xs-12 col-sm-4 col-md-4">
 								<div class="form-group-sm has-info cls-margin-bottom">
 									<label class="control-label" for="durumtanimi">Randevu Tarihi</label>
-									<input type="date" class="form-control" id="Date2" value="" />
+									 <div class='input-group date' id='datetimepicker2'>
+                                                        <input id="appointmentdate" data-bind="value: appointmentdate" type='text' class="form-control" />
+                                                        <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                    </div>
 								</div>
 							</div>
 							<div class="col-xs-12 col-sm-4 col-md-4">
 								<div class="form-group-sm has-info cls-margin-bottom">
 									<label class="control-label" for="durumtanimi">Sonlanma Tarihi</label>
-									<input type="date" class="form-control" id="Date3" value="" />
+									 <div class='input-group date' id='datetimepicker3'>
+                                                        <input id="consummationdate" data-bind="value: consummationdate" type='text' class="form-control" />
+                                                        <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                    </div>
 								</div>
 							</div>
 							<div class="col-xs-12 col-sm-4 col-md-4" style="padding:1px;">
@@ -88,7 +103,7 @@
 										<label class="control-label" for="taskadi">İnternet Servis Sağlayıcı</label>
 									</div>
 									<div class="col-md-12">
-										<select id="servissaglayici" data-bind="options: isslist, optionsText: 'issText', optionsValue: 'id'" multiple="multiple">
+										<select id="servissaglayici" data-bind="options: isslist, optionsText: 'issText', optionsValue: 'issText',value:selectedIss" multiple="multiple">
 										
 										</select>
 									</div>
@@ -100,7 +115,7 @@
 										<label class="control-label" for="taskadi">Abone Durumu</label>
 									</div>
 									<div class="col-md-12">
-										<select id="abonedurumu" data-bind="options: ctstatuslist, optionsText: 'Text', optionsValue: 'ID'" multiple="multiple">
+										<select id="abonedurumu" data-bind="options: ctstatuslist, optionsText: 'Text', optionsValue: 'Text' ,value:selectedCustomerstatus" multiple="multiple">
 											
 										</select>
 									</div>
@@ -135,7 +150,7 @@
 							</div>
 							<div class="col-xs-12 col-sm-4 col-md-4" style="margin-top: 21px;">
 								<div class="btn-group pull-right" role="group">
-									<button data-bind="click: getFilter" type="button" class="btn btn-success">Sorgula</button>
+									<button data-bind="click: getFilter(1,dataModel.rowsPerPage())"  type="button" class="btn btn-success">Sorgula</button>
 									<button type="button" class="btn btn-info">Temizle</button>
 								</div>
 							</div>
@@ -156,10 +171,11 @@
 									<!--pagination Starts-->
 									<nav class="text-center" style="margin: 0px !important;padding: 0px !important;">
 										<ul class="pagination" style="margin: 0 !important;padding: 0px !important; float:right;">
-											<li class="previous"><a href="javascript:void(0)" data-bind="click: function (e) { e.go().first(); }">&lt;&lt;</a></li>
-											<li><a href="javascript:void(0)" data-bind="click: function (e) { e.go().previous(); }">&lt;</a></li>
-											<li><a href="javascript:void(0)" data-bind="click: function (e) { e.go().next(); }">&gt;</a></li>
-											<li class="next"><a href="javascript:void(0)" data-bind="click: function (e) { e.go().last(); }">&gt;&gt;</a></li>
+											<li class="previous"><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoFirstPage(); } ,enable:pageNo>1">&lt;&lt;</a></li>
+											<li><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoBackPage();}">&lt;</a></li>
+                                            <li><select > <option >0</option></select></li>
+											<li><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoNextPage(); }">&gt;</a></li>
+											<li class="next"><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoLastPage(); }">&gt;&gt;</a></li>
 										</ul>
 									</nav>
 									<!--pagination finish-->
@@ -216,7 +232,7 @@
 												<tbody>
 													<!-- ko if:taskqueuelist==null-->
 													<tr>
-														<td colspan="9" style="background: url('/content/images/progressbar.gif') center center no-repeat;"></td>
+														<!--<td colspan="9" style="background: url('/content/images/progressbar.gif') center center no-repeat;"></td>-->
 													</tr>
 													<!-- /ko -->
 													<!-- ko foreach: taskqueuelist -->
@@ -224,23 +240,27 @@
 													<tr  onclick="">
 														<td>
 															<!-- Button trigger modal -->
+                                                            <a href="#TaskQueueEditForm" data-bind="attr: {href:'#TaskQueueEditForm?'+taskorderno}">
 																<button id="duzenle" type="button" class="btn btn-primary btn-lg" style="padding: 3px; border-radius: 0px; font-size:14px;">
 																	Düzenle
-																</button>
+																</button></a>
 																<input type="checkbox" />
 														</td>
 														<td data-bind="text:task.taskname"></td>
-														<td data-bind="text:(attachedobject && attachedobject.block.site.sitename ||'')"></td>
-														<td data-bind="text:(attachedobject && attachedobject.block.blockname || '')"></td>
-														<td data-bind="text:attachedobject.customername + ' ' + attachedobject.customersurname"></td>
-														<td data-bind="text:(attachedobject && attachedobject.customer_status || '') "></td>
-														<td data-bind="text:(attachedobject&&attachedobject.issStatus || '')"></td>
-														<td data-bind="text:attachmentdate? moment(attachmentdate).format('LLL') : ''" ></td>
-														<td data-bind="text:appointmentdate "></td>
-														<td data-bind="text:(attachedpersonel &&attachedpersonel.personelname ||'') "></td>
+														<td data-bind="text: ((attachedobject.sitename || (attachedobject.site && attachedobject.site.sitename) ||
+                                                                              (attachedobject.block && attachedobject.block.site && attachedobject.block.site.sitename)) ||
+                                                                              '&lt;boş&gt;'
+                                                                             )"></td>
+														<td data-bind="text: (attachedobject.blockname || (attachedobject.block && attachedobject.block.blockname) || '&lt;boş&gt;')"></td>
+														<td data-bind="text: (attachedobject.customername && (attachedobject.customername + ' ' + attachedobject.customersurname) || '&lt;boş&gt;')"></td>
+														<td data-bind="text: (attachedobject.customer_status && attachedobject.customer_status.Text || '&lt;boş&gt;') "></td>
+														<td data-bind="text: (attachedobject.issStatus && attachedobject.issStatus.issText || '&lt;boş&gt;')"></td>
+														<td data-bind="text: attachmentdate ? moment(attachmentdate).format('LLL') : '&lt;boş&gt;'" ></td>
+														<td data-bind="text: (appointmentdate ? moment(appointmentdate).format('LLL') : '&lt;boş&gt;' )"></td>
+														<td data-bind="text: (attachedpersonel && attachedpersonel.personelname || '&lt;atanmamış&gt;') "></td>
 														<td data-bind="text:(taskstatepool &&taskstatepool.taskstate || 'AÇIK')"></td>
-														<td data-bind="text:consummationdate ? moment(consummationdate).subtract(1, 'days').calendar() :''"></td>
-														<td data-bind="text:description"></td>
+														<td data-bind="text: consummationdate ? moment(consummationdate).subtract(1, 'days').calendar() : '&lt;boş&gt;'"></td>
+														<td data-bind="text: description"></td>
 													</tr>  
                                                     <!-- /ko -->  
 
@@ -251,14 +271,17 @@
 								</div>
 							</div>
 							<!--pagination Starts-->
-							<nav class="text-center">
-								<ul class="pagination">
-									<li class="previous"><a href="javascript:void(0)" data-bind="click: function (e) { e.go().first(); }">&lt;&lt;</a></li>
-									<li><a href="javascript:void(0)" data-bind="click: function (e) { e.go().previous(); }">&lt;</a></li>
-									<li><a href="javascript:void(0)" data-bind="click: function (e) { e.go().next(); }">&gt;</a></li>
-									<li class="next"><a href="javascript:void(0)" data-bind="click: function (e) { e.go().last(); }">&gt;&gt;</a></li>
-								</ul>
-							</nav>
+							<nav class="text-center" style="margin: 0px !important;padding: 0px !important;">
+										<ul class="pagination" style="margin: 0 !important;padding: 0px !important; float:right;">
+											<li class="previous"><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoFirstPage(); }, enable: pageNo > 1">&lt;&lt;</a></li>
+											<li><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoBackPage(); }">&lt;</a></li>
+                                            <li><select >
+                                            <option value="0">0</option>
+                                            </select></li>
+											<li><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoNextPage(); }">&gt;</a></li>
+											<li class="next"><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoLastPage(); }">&gt;&gt;</a></li>
+										</ul>
+									</nav>
 							<!--pagination finish-->
 						</div>
 					</div>
@@ -268,15 +291,11 @@
 
 
 <script type="text/javascript" src="Templates/ListTaskqueue.js"></script>
-<script type="text/javascript" src="../Scripts/moment.js">
 
-</script>
+
 <script>
     $(document).ready(function () {
 
-        $("#duzenle").click(function () {
-            $("#templateContainer").loadTemplate("Templates/TaskQueueEditForm.html");
-        });
         moment.locale('tr');
     });
   

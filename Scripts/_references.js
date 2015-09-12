@@ -13,4 +13,3 @@
 /// <reference path="../Templates/ListTaskqueue.js" />
 /// <reference path="../Templates/ListTasks.js" />
 /// <reference path="../Templates/Sites.js" />
-/// <reference path="mainpage.js" />

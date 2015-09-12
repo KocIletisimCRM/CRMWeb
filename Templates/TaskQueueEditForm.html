@@ -8,103 +8,129 @@
 							<div class="col-md-12" style="padding: 1px 0 1px 0 !important; margin: 0 !important;">
 								<div class=" col-md-3 height-40">
 									<div class="col-md-6" style="padding: 10px 0 0 0;">Task No<span style="float:right;">:</span></div>
-									<div class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;360194</div>
+									<div data-bind="text:taskorderno" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
 								</div>
 								<div class="col-md-3 height-40">
 									<div class="col-md-6" style="padding: 10px 0 0 0;">Oluşturulma Tarihi<span style="float:right;">:</span></div>
-									<div class="col-md-6" style="padding: 5px 0 0 0;">
-										<input type="date" class="form-control" id="Date1" style="padding: 0 !important; margin: 0 !important;">
-									</div>
-								</div>
+                                            <div class='col-sm-6'>
+                                                <div class="form-group">
+                                                    <div class='input-group date' id='datetimepicker1'>
+                                                        <input data-bind="value:creationdate" type='text' class="form-control" />
+                                                        <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+							   </div>
 								<div class=" col-md-3 height-40">
 									<div class="col-md-6" style="padding: 10px 0 0 0;">Personel<span style="float:right;">:</span></div>
-									<div class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;Murat Karabina</div>
+									<div data-bind="text: personelname" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
 								</div>
 								<div class=" col-md-3 height-40">
 									<div class="col-md-6" style="padding: 10px 0 0 0;">Abone Ad-Soyad<span style="float:right;">:</span></div>
-									<div class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;info</div>
+									<div data-bind="text: customername" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
 								</div>
 							</div>
 							<div class="col-md-12" style="padding: 1px 0 1px 0 !important; margin: 0 !important;">
 								<div class=" col-md-3 height-40">
 									<div class="col-md-6" style="padding: 10px 0 0 0;">Task<span style="float:right;">:</span></div>
-									<div class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;Test Taskı</div>
+									<div data-bind="text: taskname" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
 								</div>
 								<div class="col-md-3 height-40">
 									<div class="col-md-6" style="padding: 10px 0 0 0;">Atanma Tarihi<span style="float:right;">:</span></div>
-									<div class="col-md-6" style="padding: 5px 0 0 0;">
-										<input type="date" class="form-control" id="exampleInputEmail2" style="padding: 0 !important; margin: 0 !important;">
-									</div>
+									<div class='col-sm-6'>
+                                                <div class="form-group">
+                                                    <div class='input-group date' id='datetimepicker2'>
+                                                        <input id="attachmentdate" data-bind="value: attachmentdate" type='text' class="form-control" />
+                                                        <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
 								</div>
 								<div class="col-md-3 height-40">
 									<div class="col-md-6" style="padding: 10px 0 0 0;">Yardımcı Personel<span style="float:right;">:</span></div>
-									<div class="col-md-6" style="padding: 5px 0 0 0;">
-										<input type="text" class="form-control" id="Text1" style="padding: 0 !important; margin: 0 !important;">
-									</div>
+									<div data-bind="text: assistantpersonelname" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
 								</div>
 								<div class=" col-md-3 height-40">
 									<div class="col-md-6" style="padding: 10px 0 0 0;">Location ID<span style="float:right;">:</span></div>
-									<div class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;UL468</div>
+									<div data-bind="text: locationid" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
 								</div>
 							</div>
 							<div class="col-md-12" style="padding: 1px 0 1px 0 !important; margin: 0 !important;">
 								<div class=" col-md-3 height-40">
 									<div class="col-md-6" style="padding: 10px 0 0 0;">Önceki Task<span style="float:right;">:</span></div>
-									<div class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;info</div>
+									<div data-bind="text: previoustask" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
 								</div>
 								<div class="col-md-3 height-40">
 									<div class="col-md-6" style="padding: 10px 0 0 0;">Randevu Tarihi<span style="float:right;">:</span></div>
-									<div class="col-md-6" style="padding: 5px 0 0 0;">
-										<input type="date" class="form-control" id="exampleInputEmail1" style="padding: 0 !important; margin: 0 !important;">
-									</div>
+									<div class='col-sm-6'>
+                                                <div class="form-group">
+                                                    <div class='input-group date' id='datetimepicker3'>
+                                                        <input data-bind="value: appointmentdate" type='text' class="form-control" />
+                                                        <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
 								</div>
 
 								<div class=" col-md-3 height-40">
 									<div class="col-md-6" style="padding: 10px 0 0 0;">Site<span style="float:right;">:</span></div>
-									<div class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;Erdoğdu</div>
+									<div data-bind="text: sitename" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
 								</div>
 								<div class=" col-md-3 height-40">
 									<div class="col-md-6" style="padding: 10px 0 0 0;">Gsm<span style="float:right;">:</span></div>
-									<div class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;Erdoğdu</div>
+									<div data-bind="text: customergsm" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
 								</div>
 							</div>
 							<div class="col-md-12" style="padding: 1px 0 1px 0 !important; margin: 0 !important;">
 								<div class=" col-md-3 height-40">
 									<div class="col-md-6" style="padding: 10px 0 0 0;">İlişkili Task<span style="float:right;">:</span></div>
-									<div class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;info</div>
+									<div data-bind="text: relatedtask" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
 								</div>
 								<div class="col-md-3 height-40">
 									<div class="col-md-6" style="padding: 10px 0 0 0;">Kapanma Tarihi<span style="float:right;">:</span></div>
-									<div class="col-md-6" style="padding: 5px 0 0 0;">
-										<input type="date" class="form-control" id="Date2" style="padding: 0 !important; margin: 0 !important;">
-									</div>
+								<div class='col-sm-6'>
+                                                <div class="form-group">
+                                                    <div class='input-group date' id='datetimepicker4'>
+                                                        <input data-bind="value: consummationdate" type='text' class="form-control" />
+                                                        <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
 								</div>
 								<div class=" col-md-3 height-40">
 									<div class="col-md-6" style="padding: 10px 0 0 0;">Blok<span style="float:right;">:</span></div>
-									<div class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;Erdoğdu</div>
+									<div data-bind="text: blockname" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
 								</div>
 								<div class=" col-md-3 height-40">
 									<div class="col-md-6" style="padding: 10px 0 0 0;">Müşteri Statü<span style="float:right;">:</span></div>
-									<div class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;infooo</div>
+									<div data-bind="text: customerstatus" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
 								</div>
 							</div>
 							<div class="col-md-12" style="padding: 1px 0 1px 0 !important; margin: 0 !important;">
 								<div class=" col-md-3 height-40">
 									<div class="col-md-6" style="padding: 10px 0 0 0;">Task Durumu<span style="float:right;">:</span></div>
-									<div class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;info</div>
+									<div data-bind="text: taskstatus" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
 								</div>
 								<div class="col-md-3 height-40">
 									<div class="col-md-6" style="padding: 10px 0 0 0;">Açıklama<span style="float:right;">:</span></div>
 									<div class="col-md-6" style="padding: 5px 0 0 0;">
-										<textarea class="form-control" rows="1"></textarea>
+										<textarea data-bind="text:description" class="form-control" rows="1"></textarea>
 									</div>
 								</div>
 								<div class=" col-md-3 height-40">
 									<div class="col-md-6" style="padding: 10px 0 0 0;">Öbek<span style="float:right;">:</span></div>
-									<div class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;Erdoğdu</div>
+									<div data-bind="text: region" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
 								</div>
 								<div class="col-md-3 height-30">
-									<button type="button" class="btn btn-primary">Sorgula</button>
+									<button type="button" class="btn btn-primary">Kaydet</button>
 								</div>
 							</div>
 						</div>
@@ -193,7 +219,7 @@
 									</div>
 									<div class="col-md-12 cls-padding-0px">
 										<div class="col-md-2 cls-panel-body cls-margin-top">
-											<button data-bind="click: getTaskName" type="button" class="btn btn-primary cls-right cls-button-control">Kaydet</button>
+											<button  type="button" class="btn btn-primary cls-right cls-button-control">Kaydet</button>
 										</div>
 									</div>
 								</form>
@@ -250,13 +276,12 @@
 														</tr>
 													</thead>
 													<tbody>
-														<!-- ko if:(pageNo()==0) -->
+														
 														<tr>
-															<td colspan="9" style="background: url('/Content/images/progresbar.gif') center center no-repeat;"></td>
+															<!--<td colspan="9" style="background: url('/Content/images/progresbar.gif') center center no-repeat;"></td>-->
 														</tr>
-														<!-- /ko -->
-														<!-- ko foreach: taskqueuelist -->
-														<tr data-bind="click: function (data, evt) { $parent.select(data, evt); }" class="cls_line" onclick="">
+														
+														<tr class="cls_line" onclick="">
 															<td>
 																<!-- Button trigger modal -->
 																<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="padding: 6px; border-radius: 0px; font-size:14px;">
@@ -272,7 +297,7 @@
 															<td><input type="text" class="form-control" id="exampleInputName2" style="height:30px;" value="" placeholder="Default" disabled /></td>
 															<td><input type="text" class="form-control" id="exampleInputName2" style="height:30px;" value="" placeholder="Default" disabled /></td>
 														</tr>
-														<!-- /ko -->
+														
 													</tbody>
 												</table>
 											</div>
@@ -284,9 +309,10 @@
 					</div>
 				</div>
 			</div>
+         <script type="text/javascript" src="Templates/TaskQueueEditForm.js"></script> 
+            <script>
+                $(document).ready(function () {
 
-
-
-	
-
-	
+                    moment.locale('tr');
+                });
+            </script>

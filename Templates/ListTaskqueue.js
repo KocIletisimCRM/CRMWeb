@@ -1,25 +1,29 @@
 ﻿/// <reference path="../Scripts/koc-typehead-v1.0.js" />
+/// <reference path="../Scripts/knockout-3.3.0.js" />
 /// <reference path="../Scripts/crmwebapi.js" />
 ///
 
 var dataModel = {
-
     multiSelectTagIds: "#blokadi,#taskNameFilter,#servissaglayici,#abonedurumu,#personel,#taskdurumu",
     typeHeadTagIds: "#site",
+
+    pageCount: ko.observable(),
+    pageNo: ko.observable(1),
+    rowsPerPage: ko.observable(20),
 
     selectedTaskname:ko.observable(),
     sitename: ko.observable(),
     blockname: ko.observable(),
     customername: ko.observable(),
     customerstatus: ko.observable(),
-    iss: ko.observable(),
+    selectedIss: ko.observable(),
     attachmentdate: ko.observable(),
     appointmentdate: ko.observable(),
     selectedPersonelname: ko.observable(),
     selectedTaskstatus: ko.observable(),
+    selectedCustomerstatus:ko.observable(),
     consummationdate: ko.observable(),
-    description:ko.observable(),
-
+    description: ko.observable(),
     tasks: ko.observableArray([]),
     ctstatuslist: ko.observableArray([]),
     isslist: ko.observableArray([]),
@@ -119,49 +123,57 @@ var dataModel = {
             });
         }, null, null)
     },
-    gettaskqueue: function () {
+
+    getFilter: function (pageno,rowsperpage) {
         var self = this;
+        self.pageNo(pageno);
+        self.rowsPerPage(rowsperpage);
         var data = {
-            pageNo: 1,
-            rowsPerPage: 20,
-            site: { fieldName: "sitename", op: 6, value: this.sitename() },
-            block: { fieldName: "blockname", op: 6, value: this.blockname() },
-            customer: { fieldName: "customername", op: 6, value: this.customername() },
-            task: { fieldName: "taskname", op: 6, value: this.selectedTaskname() },
-            personel: { fieldName: "personelname", op: 6, value: this.selectedPersonelname() },
-            taskstate: { fieldName: "taskstate", op: 6, value: this.selectedTaskstatus() },
+            pageNo:pageno,
+            rowsPerPage:rowsperpage,
+            site: this.sitename()? { fieldName: "sitename", op: 6, value: this.sitename() }: null,
+            customer: this.customername()?{ fieldName: "customername", op: 6, value: this.customername() }:null,
+            task:this.selectedTaskname()? { fieldName: "taskname", op: 6, value: this.selectedTaskname() }:null,
+            personel: this.selectedPersonelname() ? { fieldName: "personelname", op: 6, value: this.selectedPersonelname() } : null,
+            taskstate: this.selectedTaskstatus() ?{ fieldName: "taskstate", op: 6, value: this.selectedTaskstatus() }:null,
+            iss: this.selectedIss() ? { fieldName: "issText", op: 6, value: this.selectedIss() } : null,
+            customerstatus:this.selectedCustomerstatus() ? {fieldName:"Text",op:6,value:this.selectedCustomerstatus() }:null,
         };
         crmAPI.getTaskQueues(data, function (a, b, c) {
             self.taskqueuelist(a.data.rows);
-            self.totalpagecount(a.data.pageCount);
+            self.pageCount(a.data.pagingInfo.pageCount);
         }, null, null)
+
     },
-    getFilter: function () {
-        var self = this;
-        var data = {
-            pageNo: 1,
-            rowsPerPage: 20,
-            site: { fieldName: "sitename", op: 6, value: this.sitename() },
-            block: { fieldName: "blockname", op: 6, value: this.blockname() },
-            customer: { fieldName: "customername", op: 6, value: this.customername() },
-            task: { fieldName: "taskname", op: 6, value: this.selectedTaskname() },
-            personel: { fieldName: "personelname", op: 6, value: this.selectedPersonelname() },
-            taskstate: { fieldName: "taskstate", op: 6, value: this.selectedTaskstatus() },
-        };
-        crmAPI.getTaskQueues(data, function (a, b, c) {
-            self.taskqueuelist(a.data.rows);
-            self.totalpagecount(a.data.pageCount);
-        }, null, null)
-    },
-    pageNo: ko.observable(0),
     select :function (d, e) {
         $("#customer tr").removeClass("selected");
         $(e.currentTarget).addClass("selected");
         this.customerid = d.customerid;
     },
-
-
+    navigate: {
+        gotoPage: function (pageNo) {
+            if (pageNo == dataModel.pageNo() || pageNo <= 0 || pageNo > dataModel.pageCount()) return;
+            dataModel.getFilter(pageNo, dataModel.rowsPerPage());
+        },
+        gotoFirstPage: function(){
+            dataModel.navigate.gotoPage(1);
+        },
+        gotoLastPage:function(){
+            dataModel.navigate.gotoPage(dataModel.pageCount());
+        },
+        gotoNextPage: function () {
+            var pc = dataModel.pageNo() + 1;
+            if (pc >= dataModel.pageCount()) return;
+            dataModel.navigate.gotoPage(pc);
+        },
+        gotoBackPage: function () {
+            var pc = dataModel.pageNo() - 1;
+            if (pc <= 0) return;
+            dataModel.navigate.gotoPage(pc);
+        },
+    },
     renderBindings: function () {
+        var self = this;
         $("#blokadi").multiselect({
             includeSelectAllOption: true,
             selectAllValue: 'select-all-value',
@@ -175,16 +187,20 @@ var dataModel = {
             filterPlaceholder: 'Ara'
             
         });
-        this.getisslist();
-        this.gettaskstatus();
-        this.getTasks();
-        this.getpersonel();
-        this.getCustomerStatus();
-        this.gettaskqueue();
+        $(function () {
+            $('#datetimepicker1,#datetimepicker2,#datetimepicker3').datetimepicker();
+        });
+        self.getisslist();
+        self.gettaskstatus();
+        self.getTasks();
+        self.getpersonel();
+        self.getCustomerStatus();
+        self.getFilter(dataModel.pageNo(),dataModel.rowsPerPage());
+      
+
         ko.applyBindings(dataModel, $("#bindingContainer")[0]);
 
         $(this.typeHeadTagIds).kocTypeHead();
         
     }
-
 }

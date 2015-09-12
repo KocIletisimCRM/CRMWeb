@@ -8,6 +8,7 @@
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="Content/bootstrap-multiselect.min.css" />
+    <link href="Content/bootstrap-datetimepicker.css" rel="stylesheet" />
     <link rel="stylesheet" href="Content/taskqueueeditform.css" />
     <link rel="stylesheet" href="Content/app.min.css" />
     <!--  auto complete için referanslar-->
@@ -23,10 +24,11 @@
     <script src="Scripts/knockout-3.3.0.js"></script>
     <script src="Scripts/crmwebapi.js"></script>
     <script src="Scripts/bootstrap-multiselect.js"></script>
+   
     <script src="Scripts/koc-typehead-v1.0.js"></script>
-    <script src="Scripts/mainpage.js"></script>
     <script src="Scripts/app.js"></script>
-    <script src="Templates/ListTaskqueue.js"></script>
+    <script type="text/javascript" src="/Scripts/moment.js"></script>
+
 	<style>
 		.panel-heading > h4 > a:after {
 			font-family: 'Glyphicons Halflings';
@@ -128,7 +130,7 @@
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12 cls-padding-0px cls-left-menu-button">
-									<a id="listTaskqueue" class="col-xs-12 col-sm-12 col-md-12 btn cls-qw" role="button" style="border-radius: 0px;">
+									<a href="#ListTaskqueue" id="listTaskqueue" class="col-xs-12 col-sm-12 col-md-12 btn cls-qw" role="button" style="border-radius: 0px;">
 										<p style="height: 10px; float: left;">Task İşlemleri</p>
 									</a>
 								</div>
@@ -141,8 +143,8 @@
 											</p>
 										</button>
 										<ul class="dropdown-menu">
-											<li><a id="listSites">Siteleri Listele</a></li>
-											<li><a id="listBlocks">Blokları Listele</a></li>
+											<li><a href="#Sites" id="listSites">Siteleri Listele</a></li>
+											<li><a href="#Blocks" id="listBlocks">Blokları Listele</a></li>
 										</ul>
 									</div>
 								</div>
@@ -155,8 +157,8 @@
 											</p>
 										</button>
 										<ul class="dropdown-menu">
-											<li><a id="stockcardmovements">Stok Hareketleri</a></li>
-											<li><a id="stockcase">Stok Durumu</a></li>
+											<li><a href="#ListStockMovements" id="stockcardmovements">Stok Hareketleri</a></li>
+											<li><a href="#ListStockCase" id="stockcase">Stok Durumu</a></li>
 										</ul>
 									</div>
 								</div>
@@ -169,14 +171,14 @@
 											</p>
 										</button>
 										<ul class="dropdown-menu">
-											<li><a id="listTaskDefinetion">Task Tanımları</a></li>
-											<li><a id="taskstatepool">Task Durum Havuzu</a></li>
-											<li><a id="taskstatematches">Task Durum Eşleştirme</a></li>
-											<li><a id="documentdefination">Evrak Tanımları</a></li>
-											<li><a id="listcampaigns">Kampanyalar</a></li>
-											<li><a id="listproducts">Ürün Hizmetleri</a></li>
-											<li><a id="liststockcards">Depo Kart Tanımları</a></li>
-											<li><a id="listpersonel">Personel Tanımları</a></li>
+											<li><a href="#ListTasks" id="listTaskDefinetion">Task Tanımları</a></li>
+											<li><a href="#ListTaskStatePool" id="taskstatepool">Task Durum Havuzu</a></li>
+											<li><a href="#ListTaskStateMatches" id="taskstatematches">Task Durum Eşleştirme</a></li>
+											<li><a href="#ListDocument" id="documentdefination">Evrak Tanımları</a></li>
+											<li><a href="#ListCampaigns" id="listcampaigns">Kampanyalar</a></li>
+											<li><a href="#ListProducts" id="listproducts">Ürün Hizmetleri</a></li>
+											<li><a href="#ListStockCards" id="liststockcards">Depo Kart Tanımları</a></li>
+											<li><a href="#ListPersonel" id="listpersonel">Personel Tanımları</a></li>
 										</ul>
 									</div>
 								</div>
@@ -203,11 +205,8 @@
 			<br class="clear-fix" />
 		</div>
     </div>
-  
-   
 
-    <script src="Scripts/koc-typehead-v1.0.min.js"></script>
+     <script src="../Scripts/bootstrap-datetimepicker.js"></script>
 </body>
-
 </html>
 

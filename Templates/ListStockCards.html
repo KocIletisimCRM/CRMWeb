@@ -106,20 +106,12 @@
 													</tr>
 												</thead>
 												<tbody>
-													<!-- ko if:(pageNo()==0) -->
 													<tr>
 														<td colspan="9" style="background: url('/Content/images/progresbar.gif') center center no-repeat;"></td>
 													</tr>
-													<!-- /ko -->
-													<!-- ko foreach: taskqueuelist -->
-													<!--<tr data-bind="click: function (data, evt) { $parent.select(data, evt); }" class="cls_line" onclick="">
-														<td></td>
-														<td><input type="text" class="form-control" id="exampleInputName2"></td>
-														<td><select class="form-control"><option></option><option>Tamamlandı</option><option>Devam Ediyor</option><option>İptal</option></select></td>
-													</tr>-->
+
 													<tr data-bind="click: function (data, evt) { $parent.select(data, evt); }" class="cls_line" onclick="">
 														<td>
-															<!-- Button trigger modal -->
 															<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="padding: 3px; border-radius: 0px; font-size:14px;">
 																Düzenle
 															</button>
@@ -137,7 +129,6 @@
 									</div>
 								</div>
 							</div>
-
 							<!--pagination Starts-->
 							<nav class="text-center">
 								<ul class="pagination">
