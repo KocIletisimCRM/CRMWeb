@@ -24,6 +24,7 @@
                                href="javascript:void(0)" class="collapsed filtertitle">
                                 <h4 class="panel-title">
                                     Filtreleme
+                                    <span class="glyphicon glyphicon glyphicon-filter" aria-hidden="true"></span>
                                 </h4>
                             </a>
 						</div>
@@ -63,7 +64,7 @@
 								<div class="form-group-sm has-info cls-margin-bottom">
 									<label class="control-label" for="durumtanimi">Atanma Tarihi</label>
 									<div class="col-md-12 a">
-                                        <input type="text" id="daterangepicker1" class="form-control">
+                                        <input type="text" id="daterangepicker1" class="form-control" data-bind="value:attachmentDate">
                                         <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
                                     </div>
 								</div>
@@ -72,7 +73,7 @@
 								<div class="form-group-sm has-info cls-margin-bottom">
 									<label class="control-label" for="durumtanimi">Randevu Tarihi</label>
 									<div class="col-md-12 a">
-                                        <input type="text" id="daterangepicker2" class="form-control">
+                                        <input type="text" id="daterangepicker2" class="form-control" data-bind="value: appointmentDate">
                                         <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
                                     </div>
 								</div>
@@ -81,7 +82,7 @@
 								<div class="form-group-sm has-info cls-margin-bottom">
 									<label class="control-label" for="durumtanimi">Sonlanma Tarihi</label>
 									 <div class="col-md-12 a">
-                                        <input type="text" id="daterangepicker3" class="form-control">
+                                        <input type="text" id="daterangepicker3" class="form-control" data-bind="value: consummationDate">
                                         <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
                                     </div>
 								</div>
@@ -129,8 +130,7 @@
 										<select data-size="10" id="personel" data-bind="options: personellist,
                                                                                         optionsText: 'personelname',
                                                                                         optionsValue: 'personelname',
-                                                                                        value: selectedPersonelname" multiple="multiple">
-										
+                                                                                        value: selectedPersonelname " multiple="multiple">										
 										</select>
 									</div>
 								</div>
@@ -141,8 +141,7 @@
 										<label class="control-label" for="taskdurumu">Task Durumu</label>
 									</div>
 									<div class="col-md-12">
-										<select id="taskdurumu"  data-bind="options: taskstatuslist, optionsText: 'taskstate', optionsValue: 'taskstate', value: selectedTaskstatus"  multiple="multiple">
-										    
+										<select id="taskdurumu"  data-bind="options: taskstatuslist, optionsText: 'taskstate', optionsValue: 'taskstate', value: selectedTaskstatus"  multiple="multiple">										    
 										</select>
 									</div>
 								</div>
@@ -150,7 +149,7 @@
 							<div class="col-xs-12 col-sm-4 col-md-4" style="margin-top: 21px;">
 								<div class="btn-group pull-right" role="group">
 									<button data-bind="click: getFilter(1,dataModel.rowsPerPage())"  type="button" class="btn btn-success">Sorgula</button>
-									<button type="button" class="btn btn-info">Temizle</button>
+									<button  data-bind="click: clean()" type="button" class="btn btn-primary">Temizle</button>
 								</div>
 							</div>
 						</div>
@@ -165,6 +164,10 @@
 							<div class="row cls-padding-0px">
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									Task İşlemleri
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    Toplam sorgu süresi 
+                                    <span id="querytime" data-bind="text: querytime"></span> saniye &nbsp;&nbsp;
+                                    <span class="glyphicon   glyphicon glyphicon-dashboard " aria-hidden="true"></span>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<!--pagination Starts-->
@@ -172,7 +175,7 @@
 										<ul class="pagination" style="margin: 0 !important;padding: 0px !important; float:right;">
 											<li class="previous"><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoFirstPage(); } ,enable:pageNo>1">&lt;&lt;</a></li>
 											<li><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoBackPage();}">&lt;</a></li>
-                                            <li><select > <option >0</option></select></li>
+                                            <li><select> <option >1</option> </select></li>
 											<li><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoNextPage(); }">&gt;</a></li>
 											<li class="next"><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoLastPage(); }">&gt;&gt;</a></li>
 										</ul>
@@ -220,14 +223,13 @@
 														<th class="col-md-1" style="border-right: 1px solid #ddd;">Durum</th>
 														<th class="col-md-1" style="border-right: 1px solid #ddd;">Sonlanma Tarihi</th>
 														<th class="col-md-1" style="border-right: 1px solid #ddd;">Açıklama</th>
-													</tr>
+													</tr>                                                   
+													
 												</thead>
 												<tbody>
-													<!-- ko if:taskqueuelist==null-->
-													<tr>
-														<!--<td colspan="9" style="background: url('/content/images/progressbar.gif') center center no-repeat;"></td>-->
+                                                    <tr style="height:500px" data-bind="visible:isLoading">
+														<td data-bind="visible: isLoading" colspan="12" style="background: url('/img/loadiing.gif')  center no-repeat;"></td>
 													</tr>
-													<!-- /ko -->
 													<!-- ko foreach: taskqueuelist -->
 													<tr data-bind="click: function (data, evt) {select(data, evt); }" onclick=""></tr>
 													<tr  onclick="">
@@ -248,11 +250,11 @@
 														<td data-bind="text: (attachedobject.customername && (attachedobject.customername + ' ' + attachedobject.customersurname) || '&lt;boş&gt;')"></td>
 														<td data-bind="text: (attachedobject.customer_status && attachedobject.customer_status.Text || '&lt;boş&gt;') "></td>
 														<td data-bind="text: (attachedobject.issStatus && attachedobject.issStatus.issText || '&lt;boş&gt;')"></td>
-														<td data-bind="text: attachmentdate ? moment(attachmentdate).format('LLL') : '&lt;boş&gt;'" ></td>
-														<td data-bind="text: (appointmentdate ? moment(appointmentdate).format('LLL') : '&lt;boş&gt;' )"></td>
+														<td data-bind="text: attachmentdate ? moment(attachmentdate).calendar() : '&lt;boş&gt;'" ></td>
+														<td data-bind="text: (appointmentdate ? moment(appointmentdate).calendar() : '&lt;boş&gt;' )"></td>
 														<td data-bind="text: (attachedpersonel && attachedpersonel.personelname || '&lt;atanmamış&gt;') "></td>
 														<td data-bind="text:(taskstatepool &&taskstatepool.taskstate || 'AÇIK')"></td>
-														<td data-bind="text: consummationdate ? moment(consummationdate).subtract(1, 'days').calendar() : '&lt;boş&gt;'"></td>
+														<td data-bind="text: consummationdate ? moment(consummationdate).calendar() : '&lt;boş&gt;'"></td>
 														<td data-bind="text: description"></td>
 													</tr>  
                                                     <!-- /ko -->  
@@ -288,7 +290,6 @@
 
 <script>
     $(document).ready(function () {
-
         moment.locale('tr');
     });
   

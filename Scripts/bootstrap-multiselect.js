@@ -227,7 +227,7 @@
             onDropdownHidden: function(event) {
                 
             },
-            buttonClass: 'btn btn-default',
+            buttonClass: 'btn btn-info',
             dropRight: false,
             selectedClass: 'active',
             buttonWidth: 'auto',
@@ -240,7 +240,7 @@
             includeSelectAllIfMoreThan: 0,
             selectAllText: ' Select all',
             selectAllValue: 'multiselect-all',
-            enableFiltering: false,
+            enableFiltering: true,
             enableCaseInsensitiveFiltering: true,
             filterPlaceholder: 'Search',
             // possible options: 'text', 'value', 'both'
