@@ -32,7 +32,7 @@ var dataModel = {
     personellist: ko.observableArray([]),
     taskqueuelist: ko.observableArray([]),
     totalpagecount: ko.observable(0),
-    
+    totalRowCount: ko.observable(),
     getTasks: function () {
         var self = this;
         crmAPI.getTaskFilter({}, function (a, b, c) {
@@ -161,6 +161,7 @@ var dataModel = {
             self.taskqueuelist(a.data.rows);
             self.pageCount(a.data.pagingInfo.pageCount);
             self.querytime(a.performance.TotalResponseDuration);
+            self.totalRowCount(a.data.pagingInfo.totalRowCount);
             self.isLoading(false);
         }, null, null)
     },

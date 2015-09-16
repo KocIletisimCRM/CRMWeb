@@ -1,4 +1,10 @@
 ﻿
+<style>
+    .a { position: relative; padding:0 }
+      .a i {
+        position: absolute; bottom: 10px; right: 24px; top: auto; cursor: pointer;
+      }
+</style>
 		<div id="bindingContainer" class="container-fluid" style="background-color: #D1E9F6 !important;">
 			<div class="col-md-12 container" style="padding: 0 !important; margin: 20px 0 0 0 !important; border-radius: 0 0 8px 8px !important;">
 				<div class="panel-group">
@@ -41,18 +47,17 @@
 									<div class="col-md-6" style="padding: 10px 0 0 0;">Atanma Tarihi<span style="float:right;">:</span></div>
 									<div class='col-sm-6'>
                                                 <div class="form-group">
-                                                    <div class='input-group date' id='datetimepicker2'>
-                                                        <input id="attachmentdate" data-bind="value: attachmentdate" type='text' class="form-control" />
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-calendar"></span>
-                                                        </span>
-                                                    </div>
+                                                    <div class="col-md-12 a">
+                                        <input type="text" id="daterangepicker1" class="form-control" data-bind="value: attachmentdate">
+                                    </div>
                                                 </div>
                                             </div>
 								</div>
 								<div class="col-md-3 height-40">
 									<div class="col-md-6" style="padding: 10px 0 0 0;">Yardımcı Personel<span style="float:right;">:</span></div>
-									<div data-bind="text: assistantpersonelname" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
+									 <div class="col-md-6">
+                     <select id="assistantPersonel"  data-bind="options: personellist, optionsText: 'personelname', optionsValue: 'personelid', value: assistantpersonel,"  multiple="multiple">										    
+                           </select></div>
 								</div>
 								<div class=" col-md-3 height-40">
 									<div class="col-md-6" style="padding: 10px 0 0 0;">Location ID<span style="float:right;">:</span></div>
@@ -68,12 +73,9 @@
 									<div class="col-md-6" style="padding: 10px 0 0 0;">Randevu Tarihi<span style="float:right;">:</span></div>
 									<div class='col-sm-6'>
                                                 <div class="form-group">
-                                                    <div class='input-group date' id='datetimepicker3'>
-                                                        <input data-bind="value: appointmentdate" type='text' class="form-control" />
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-calendar"></span>
-                                                        </span>
-                                                    </div>
+                                                     <div class="col-md-12 a">
+                                        <input type="text" id="daterangepicker2" class="form-control" data-bind="value: appointmentdate">
+                                    </div>
                                                 </div>
                                             </div>
 								</div>
@@ -111,18 +113,25 @@
 								</div>
 								<div class=" col-md-3 height-40">
 									<div class="col-md-6" style="padding: 10px 0 0 0;">Müşteri Statü<span style="float:right;">:</span></div>
-									<div data-bind="text: customerstatus" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
+                                    <div class="col-md-6">
+										<select id="abonedurumu" data-bind="options: ctstatuslist, optionsText: 'Text', optionsValue: 'Text', value: customerstatus" multiple="multiple">
+											
+										</select>
+									</div>
 								</div>
 							</div>
 							<div class="col-md-12" style="padding: 1px 0 1px 0 !important; margin: 0 !important;">
 								<div class=" col-md-3 height-40">
 									<div class="col-md-6" style="padding: 10px 0 0 0;">Task Durumu<span style="float:right;">:</span></div>
-									<div data-bind="text: taskstatus" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
+                                    <div class="col-md-6">
+										<select id="taskdurumu"  data-bind="options: taskstatuslist, optionsText: 'taskstate', optionsValue: 'taskstateid', value: taskstatus,"  multiple="multiple">										    
+										</select>
+									</div>
 								</div>
 								<div class="col-md-3 height-40">
 									<div class="col-md-6" style="padding: 10px 0 0 0;">Açıklama<span style="float:right;">:</span></div>
 									<div class="col-md-6" style="padding: 5px 0 0 0;">
-										<textarea data-bind="text:description" class="form-control" rows="1"></textarea>
+										<textarea data-bind="value:description" class="form-control" rows="1"></textarea>
 									</div>
 								</div>
 								<div class=" col-md-3 height-40">
@@ -130,13 +139,19 @@
 									<div data-bind="text: region" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
 								</div>
 								<div class="col-md-3 height-30">
-									<button type="button" class="btn btn-primary">Kaydet</button>
+									<button type="button" class="btn btn-primary" data-bind="click: saveTaskQueues" >Kaydet</button>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+                 <div class="col-md-6 col-md-offset-3" data-bind="visible : message" style="position: absolute; top: 150px;" id="id_alert" onclick="setTimeout(function () { $('#id_alert').css({ display: 'none' }); }, 1000)">
+		            <div class="alert alert-success alert-dismissible cls_alert" role="alert" style="height: 100px;">
+			            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			            <strong>İşlem Başarılı</strong>
+		            </div>
+	            </div>
 			<br />
 			<div class="col-md-12 cls-padding-0px">
 				<div class="panel-group" id="accordion">

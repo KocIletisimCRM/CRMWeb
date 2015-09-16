@@ -56,7 +56,9 @@ var crmAPI = (function () {
         getTaskQueues: function (data,onsuccess, onerror, before) {
             getData("POST", "Task/getTaskQueues", data, onsuccess, onerror, before)
         },
-        
+        saveTaskQueues: function (data,onsuccess,onerror,before) {
+            getData("POST", "Task/saveTaskQueues", data, onsuccess, onerror, before)
+        },        
         
     }
 })();

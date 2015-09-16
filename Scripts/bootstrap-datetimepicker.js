@@ -2368,8 +2368,8 @@
 
     $.fn.datetimepicker.defaults = {
         timeZone: 'UTC/GMT',
-        format: false,
-        dayViewHeaderFormat: 'DD MMMM YYYY',
+        format:moment().format(),
+        dayViewHeaderFormat: 'YYYY MM DD',
         extraFormats: false,
         stepping: 1,
         minDate: false,
@@ -2423,7 +2423,7 @@
         daysOfWeekDisabled: false,
         calendarWeeks: false,
         viewMode: 'days',
-        toolbarPlacement: 'default',
+        toolbarPlacement: 'top',
         showTodayButton: true,
         showClear: true,
         showClose: true,

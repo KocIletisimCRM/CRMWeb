@@ -615,7 +615,7 @@
 
             // Add the options of the group.
             $('option', group).each($.proxy(function(index, element) {
-                this.createOptionValue(element);
+                this.createOptionValue(element)
             }, this));
         },
 
