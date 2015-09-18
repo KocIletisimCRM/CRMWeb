@@ -99,7 +99,7 @@
 								<div class='col-sm-6'>
                                                 <div class="form-group">
                                                     <div class='input-group date' id='datetimepicker4'>
-                                                        <input data-bind="value: consummationdate" type='text' class="form-control" />
+                                                        <input  id="consummationdate" data-bind=" value: consummationdate" type='text' class="form-control" />
                                                         <span class="input-group-addon">
                                                             <span class="glyphicon glyphicon-calendar"></span>
                                                         </span>
@@ -277,6 +277,14 @@
 																		</li>
 																		<li class="divider"></li>
 																		<li><a href="#">Filtreyi Temizle</a></li>
+                                                                        <li class="dropdown-submenu">
+												<a tabindex="-1" href="#">Kat Ziyaret İşlemleri</a>
+												<ul class="dropdown-menu">
+													<li><a href="#katziyareti1" role="button" class="btn" data-toggle="modal" style="float: left;">Kat Ziyaret Sonuçlarını Toplu Gir</a></li>
+													<li><a href="#katziyareti2" role="button" class="btn" data-toggle="modal" style="float: left;">Müşteri Statülerini Toplu Değiştir</a></li>
+													<li><a href="#katziyareti3" role="button" class="btn" data-toggle="modal" style="float: left;">Müşteri Kat Ziyareti Toplu Task Kapama</a></li>
+												</ul>
+											</li>
 																		<li><a href="#">Excel'e Kaydet</a></li>
 																	</ul>
 																</div>

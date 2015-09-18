@@ -2365,10 +2365,11 @@
             }
         });
     };
+    
 
     $.fn.datetimepicker.defaults = {
         timeZone: 'UTC/GMT',
-        format:moment().format(),
+        format: '',
         dayViewHeaderFormat: 'YYYY MM DD',
         extraFormats: false,
         stepping: 1,

@@ -12,7 +12,8 @@ var dataModel = {
     rowsPerPage: ko.observable(20),
     querytime: ko.observable(0),
     isLoading:ko.observable(),
-    selectedTaskname:ko.observable(),
+    selectedTaskname: ko.observable(),
+    selectedtaskorderno:ko.observableArray([]),
     sitename: ko.observable(),
     blockname: ko.observable(),
     customername: ko.observable(),
@@ -33,6 +34,7 @@ var dataModel = {
     taskqueuelist: ko.observableArray([]),
     totalpagecount: ko.observable(0),
     totalRowCount: ko.observable(),
+    
     getTasks: function () {
         var self = this;
         crmAPI.getTaskFilter({}, function (a, b, c) {
@@ -163,13 +165,17 @@ var dataModel = {
             self.querytime(a.performance.TotalResponseDuration);
             self.totalRowCount(a.data.pagingInfo.totalRowCount);
             self.isLoading(false);
-        }, null, null)
+        }, null, null)       
     },
     select :function (d, e) {
-        $("#customer tr").removeClass("selected");
+        var self=this;
+        $("#taskquetable tr").removeClass("selected");
         $(e.currentTarget).addClass("selected");
-        this.customerid = d.customerid;
+        console.log("seçilen " + d.taskorderno);
+        self.selectedtaskorderno(d.taskorderno);
+        
     },
+
     navigate: {
         gotoPage: function (pageNo) {
             if (pageNo == dataModel.pageNo() || pageNo <= 0 || pageNo > dataModel.pageCount()) return;
@@ -223,15 +229,24 @@ var dataModel = {
                 'Geçen Ay': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
             }
         });
-
+      
+        $('.sel').change(function () {
+            var ids = [];
+            $('.sel').each(function () {
+                if ($(this).is(':checked')) {
+                    var id = $(this).val();
+                    ids.push(id);
+                    console.log("Seçim: " + id + "");
+                }
+            });
+            self.selectedtaskorderno(ids);
+        });
         self.getisslist();
         self.gettaskstatus();
         self.getTasks();
         self.getpersonel();
         self.getCustomerStatus();
-        self.getFilter(dataModel.pageNo(), dataModel.rowsPerPage());
-        
-
+        self.getFilter(dataModel.pageNo(), dataModel.rowsPerPage());           
         ko.applyBindings(dataModel, $("#bindingContainer")[0]);
 
         $(this.typeHeadTagIds).kocTypeHead();

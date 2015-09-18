@@ -7,7 +7,7 @@
                 background: #00ffff;
             }
         .selected {
-            background: #ffd800;
+            background: #6fc679;
         }
 
         .a { position: relative; padding:0 }
@@ -209,7 +209,20 @@
 																			<li><a href="#">Seçimi Temizle</a></li>
 																		</ul>
 																	</li>
-																	<li class="divider"></li>
+                                                                    <li class="divider"></li>
+                                                                    <li><a href="#randevu" role="button" data-toggle="modal">Randevu Tarihi</a></li>
+											                        <li><a href="#personelatama" role="button" data-toggle="modal">Personel Ata</a></li>
+											                        <li><a href="#sonlandir" role="button" data-toggle="modal">Taskları Sonlandır</a></li>
+                                                                    <li class="divider"></li>
+                                                                      <li class="dropdown-submenu">
+												                            <a tabindex="-1" href="#">Kat Ziyaret İşlemleri</a>
+												                            <ul class="dropdown-menu">
+													                            <li><a href="#katziyareti1" role="button" class="btn" data-toggle="modal" style="float: left;">Kat Ziyaret Sonuçlarını Toplu Gir</a></li>
+													                            <li><a href="#katziyareti2" role="button" class="btn" data-toggle="modal" style="float: left;">Müşteri Statülerini Toplu Değiştir</a></li>
+													                            <li><a href="#katziyareti3" role="button" class="btn" data-toggle="modal" style="float: left;">Müşteri Kat Ziyareti Toplu Task Kapama</a></li>
+												                            </ul>
+                                                                     </li>
+                                                                    	<li class="divider"></li>
 																	<li><a href="#">Excel'e Kaydet</a></li>
 																</ul>
 															</div>
@@ -234,15 +247,14 @@
 														<td data-bind="visible: isLoading" colspan="12" style="background: url('/img/loadiing.gif')  center no-repeat;"></td>
 													</tr>
 													<!-- ko foreach: taskqueuelist -->
-													<tr data-bind="click: function (data, evt) {select(data, evt); }" onclick=""></tr>
-													<tr  onclick="">
-														<td>
-															<!-- Button trigger modal -->
-                                                            <a href="#TaskQueueEditForm" data-bind="attr: {href:'#TaskQueueEditForm?'+taskorderno}">
+													<tr >
+													
+														<td><a href="#TaskQueueEditForm" data-bind="attr: {href:'#TaskQueueEditForm?'+taskorderno}">
 																<button id="duzenle" type="button" class="btn btn-primary btn-lg" style="padding: 3px; border-radius: 0px; font-size:14px;">
 																	Düzenle
-																</button></a>
-																<input type="checkbox" />
+																</button>
+														    </a>
+																<input class="sel"  type="checkbox" data-bind="value:taskorderno" />
 														</td>
 														<td data-bind="text:task.taskname"></td>
 														<td data-bind="text: ((attachedobject.sitename || (attachedobject.site && attachedobject.site.sitename) ||
@@ -258,10 +270,9 @@
 														<td data-bind="text: (attachedpersonel && attachedpersonel.personelname || '&lt;atanmamış&gt;') "></td>
 														<td data-bind="text:(taskstatepool &&taskstatepool.taskstate || 'AÇIK')"></td>
 														<td data-bind="text: consummationdate ? moment(consummationdate).calendar() : '&lt;boş&gt;'"></td>
-														<td data-bind="text: description"></td>
-													</tr>  
-                                                    <!-- /ko -->  
-
+														<td data-bind="text: description"></td> 
+                                                         </tr>
+                                                    <!-- /ko -->                                                    
 												</tbody>
 											</table>
 										</div>
@@ -287,6 +298,40 @@
 			</div>
 		</div>
 
+<!-- İşlemler *personel atama* For Modal Start -->
+	<div class="modal fade" id="personelatama" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document" style="margin-top: 50px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Personel Atama</h4>
+				</div>
+				<div class="modal-body" data-bind="with:selectedtaskorderno" style="display: inline-block;position:relative; min-height:50px;">
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+						<p>Personel</p>
+					</div>
+                    <div class="col-md-6 modal-col-md-12-height">Müşteri No</div>
+                     <div class="col-md-6 modal-col-md-12-height">
+                        <div class="modal-col-md-12-height-div" data-bind="text: selectedtaskorderno"></div>
+                    </div>
+					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+						<select data-size="10" id="Select1" data-bind="options: personellist,
+                                            optionsText: 'personelname',
+                                            optionsValue: 'personelname',
+                                            value: selectedPersonelname ">										
+						</select>
+					</div>
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+					<button type="button" class="btn btn-primary">Kaydet</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- İşlemler *personel atama* For Modal Finish-->
 
 <script type="text/javascript" src="Templates/ListTaskqueue.js"></script>
 
@@ -294,6 +339,7 @@
 <script>
     $(document).ready(function () {
         moment.locale('tr');
+
     });
   
 </script>

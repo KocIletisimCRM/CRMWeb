@@ -82,6 +82,8 @@ var dataModel = {
     },
     saveTaskQueues: function () {
         var self = this;
+        var tarih = new Date();
+        tarih='02.1.01.2015 00:00:00';
         data = {
             taskorderno: self.taskorderno(),
             task:{taskid:self.taskid()},
@@ -89,7 +91,8 @@ var dataModel = {
             description: self.description() ? self.description() : null,
             asistanPersonel: { personelid: self.assistantpersonel() ? self.assistantpersonel() : null },
             attachedobject:{customerid:self.customerid()?self.customerid():null},
-            appointmentdate: self.appointmentdate() ? self.appointmentdate(): null,
+            appointmentdate: self.appointmentdate() ? Date(self.appointmentdate()) : null,
+            consummationdate: tarih,
         };
         crmAPI.saveTaskQueues(data, function (a, b, c) {
             self.message(a);
@@ -140,6 +143,7 @@ var dataModel = {
             self.getCustomerStatus();
             $(function () {
                 $('#datetimepicker1,#datetimepicker2, #datetimepicker3,#datetimepicker4').datetimepicker();
+
             });
             $('#daterangepicker1,#daterangepicker2').daterangepicker({
                 "singleDatePicker": true,
@@ -151,9 +155,6 @@ var dataModel = {
                 "locale": {
                     "format":'',
                 },
-            });
-            $("#id_alert").delay(1000).slideUp(200, function () {
-                $(this).alert('close');
             });
             ko.applyBindings(dataModel, $("#bindingContainer")[0]);
         }
