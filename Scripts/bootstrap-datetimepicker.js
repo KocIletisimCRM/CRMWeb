@@ -2369,7 +2369,7 @@
 
     $.fn.datetimepicker.defaults = {
         timeZone: 'UTC/GMT',
-        format: '',
+        format: false,
         dayViewHeaderFormat: 'YYYY MM DD',
         extraFormats: false,
         stepping: 1,

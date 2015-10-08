@@ -20,12 +20,9 @@
 									<div class="col-md-6" style="padding: 10px 0 0 0;">Oluşturulma Tarihi<span style="float:right;">:</span></div>
                                             <div class='col-sm-6'>
                                                 <div class="form-group">
-                                                    <div class='input-group date' id='datetimepicker1'>
-                                                        <input data-bind="value:creationdate" type='text' class="form-control" />
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-calendar"></span>
-                                                        </span>
-                                                    </div>
+                                                    <div class="col-md-12 a">
+                                        <input type="text" id="daterangepicker3" class="form-control" data-bind="value: creationdate ? creationdate :null">
+                                    </div>
                                                 </div>
                                             </div>
 							   </div>
@@ -48,7 +45,7 @@
 									<div class='col-sm-6'>
                                                 <div class="form-group">
                                                     <div class="col-md-12 a">
-                                        <input type="text" id="daterangepicker1" class="form-control" data-bind="value: attachmentdate">
+                                        <input type="text" id="daterangepicker1" class="form-control" data-bind="value: attachmentdate ? attachmentdate :null">
                                     </div>
                                                 </div>
                                             </div>
@@ -74,7 +71,7 @@
 									<div class='col-sm-6'>
                                                 <div class="form-group">
                                                      <div class="col-md-12 a">
-                                        <input type="text" id="daterangepicker2" class="form-control" data-bind="value: appointmentdate">
+                                        <input type="text" id="daterangepicker2" class="form-control" data-bind="value:appointmentdate ? appointmentdate :null">
                                     </div>
                                                 </div>
                                             </div>
@@ -97,13 +94,10 @@
 								<div class="col-md-3 height-40">
 									<div class="col-md-6" style="padding: 10px 0 0 0;">Kapanma Tarihi<span style="float:right;">:</span></div>
 								<div class='col-sm-6'>
-                                                <div class="form-group">
-                                                    <div class='input-group date' id='datetimepicker4'>
-                                                        <input  id="consummationdate" data-bind=" value: consummationdate" type='text' class="form-control" />
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-calendar"></span>
-                                                        </span>
-                                                    </div>
+                                                 <div class="form-group">
+                                                    <div class="col-md-12 a">
+                                        <input type="text" id="daterangepicker4" class="form-control" data-bind="value: consummationdate ? consummationdate :null">
+                                    </div>
                                                 </div>
                                             </div>
 								</div>
@@ -148,7 +142,7 @@
 			</div>
                  <div class="col-md-6 col-md-offset-3" data-bind="visible : message" style="position: absolute; top: 150px;" id="id_alert" onclick="setTimeout(function () { $('#id_alert').css({ display: 'none' }); }, 1000)">
 		            <div class="alert alert-success alert-dismissible cls_alert" role="alert" style="height: 100px;">
-			            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			            <button type="button" data-bind="click :redirect" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			            <strong>İşlem Başarılı</strong>
 		            </div>
 	            </div>
@@ -335,7 +329,7 @@
          <script type="text/javascript" src="Templates/TaskQueueEditForm.js"></script> 
             <script>
                 $(document).ready(function () {
-
                     moment.locale('tr');
+                    
                 });
             </script>

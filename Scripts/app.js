@@ -5,7 +5,7 @@ jQuery.fn.extend({
     loadTemplate: function (url, onload) {
         return this.load(url, function () {
             if (dataModel && dataModel.renderBindings) dataModel.renderBindings();
-            if (onload) onload();
+            if (onload) onload(); 
         });
     }
 });
@@ -13,10 +13,6 @@ jQuery.fn.extend({
 $(window).bind("hashchange", function () {
     document.location.reload();
 }).load(function () {
-
     var tempPage = document.location.hash.replace("#", "").split("?")[0];
-
-    $("#templateContainer").loadTemplate( "Templates/" + (tempPage || "ListTaskqueue") + ".html");
-
-
+    $("#templateContainer").loadTemplate("Templates/" + (tempPage || "ListTaskqueue") + ".html");
   });

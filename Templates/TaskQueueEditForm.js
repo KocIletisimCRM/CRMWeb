@@ -26,10 +26,16 @@ var dataModel = {
     personellist:ko.observableArray([]),
     selectedTaskstatus: ko.observable(),
     ctstatuslist: ko.observableArray([]),
-    message:ko.observable(),
-    gettaskstatus: function () {
+    message: ko.observable(),
+    redirect : function () {
+        window.location.href = "app.html";
+    },
+    gettaskstatus: function (taskorderno) {
         var self = this;
-        crmAPI.getTaskStatus(function (a, b, c) {
+        var data = {
+            taskorderno:taskorderno,
+        };
+        crmAPI.getTaskStatus(data, function (a, b, c) {
             self.taskstatuslist(a);
             $("#taskdurumu").multiselect({
                 includeSelectAllOption: true,
@@ -42,6 +48,7 @@ var dataModel = {
                 enableFiltering: true,
                 filterPlaceholder: 'Ara'
             });
+
         }, null, null)
     },
     getpersonel: function () {
@@ -82,17 +89,16 @@ var dataModel = {
     },
     saveTaskQueues: function () {
         var self = this;
-        var tarih = new Date();
-        tarih='02.1.01.2015 00:00:00';
         data = {
             taskorderno: self.taskorderno(),
             task:{taskid:self.taskid()},
-            taskstatepool:{taskstateid: self.taskstatus()?self.taskstatus():null},
+            taskstatepool:{taskstateid: self.taskstatus()>0? self.taskstatus() : null},
             description: self.description() ? self.description() : null,
-            asistanPersonel: { personelid: self.assistantpersonel() ? self.assistantpersonel() : null },
-            attachedobject:{customerid:self.customerid()?self.customerid():null},
-            appointmentdate: self.appointmentdate() ? Date(self.appointmentdate()) : null,
-            consummationdate: tarih,
+            asistanPersonel: { personelid: self.assistantpersonel()>0? self.assistantpersonel() : null },
+            appointmentdate: self.appointmentdate() ? moment(self.appointmentdate()).format() : null,
+            consummationdate: self.consummationdate() ? moment(self.consummationdate()).format() : null,
+            creationdate: self.creationdate() ? moment(self.creationdate()).format() : null,
+            attachmentdate: self.attachmentdate() ? moment(self.attachmentdate()).format() : null,
         };
         crmAPI.saveTaskQueues(data, function (a, b, c) {
             self.message(a);
@@ -101,11 +107,23 @@ var dataModel = {
     },
     renderBindings: function () {
         var self = this;
-       
+
         var hashSearches = document.location.hash.split("?");
         if(hashSearches.length > 1) { 
             var data = { taskOrderNo: hashSearches[1] };
+            self.gettaskstatus(data.taskOrderNo);
             crmAPI.getTaskQueues(data, function (a, b, c) {
+                $("#taskdurumu").multiselect({
+                    includeSelectAllOption: true,
+                    selectAllValue: 'select-all-value',
+                    maxHeight: 250,
+                    buttonWidth: '100%',
+                    nonSelectedText: 'Seçiniz',
+                    numberDisplayed: 2,
+                    selectAllText: 'Tümünü Seç!',
+                    enableFiltering: true,
+                    filterPlaceholder: 'Ara'
+                });
                 self.taskorderno(a.data.rows[0].taskorderno);
                 self.taskname(a.data.rows[0].task.taskname);
                 self.taskid(a.data.rows[0].task.taskid);
@@ -137,15 +155,10 @@ var dataModel = {
                 self.description(a.data.rows[0].description);
                 self.locationid(a.data.rows[0].attachedobject.locationid || (a.data.rows[0].attachedobject.block && a.data.rows[0].attachedobject.block.locationid) || '');
             }, null, null)
-
-            self.gettaskstatus();
+            
             self.getpersonel();
             self.getCustomerStatus();
-            $(function () {
-                $('#datetimepicker1,#datetimepicker2, #datetimepicker3,#datetimepicker4').datetimepicker();
-
-            });
-            $('#daterangepicker1,#daterangepicker2').daterangepicker({
+            $('#daterangepicker1,#daterangepicker2,#daterangepicker3,#daterangepicker4').daterangepicker({
                 "singleDatePicker": true,
                 "autoApply": true,
                 "linkedCalendars": false,
@@ -153,7 +166,7 @@ var dataModel = {
                 "timePicker24Hour": true,
                 "timePickerSeconds": true,
                 "locale": {
-                    "format":'',
+                    "format": 'MM/DD/YYYY h:mm A',
                 },
             });
             ko.applyBindings(dataModel, $("#bindingContainer")[0]);

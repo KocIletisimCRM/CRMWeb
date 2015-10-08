@@ -24,13 +24,10 @@
 	<![endif]-->
     <script src="Scripts/knockout-3.3.0.js"></script>
     <script src="Scripts/crmwebapi.js"></script>
-    <script src="Scripts/bootstrap-multiselect.js"></script>
-   
+    <script src="Scripts/bootstrap-multiselect.js"></script> 
     <script src="Scripts/koc-typehead-v1.0.js"></script>
     <script src="Scripts/app.js"></script>
     <script type="text/javascript" src="/Scripts/moment.js"></script>
-
-
 	<style>
 		.panel-heading > h4 > a:after {
 			font-family: 'Glyphicons Halflings';
@@ -49,17 +46,21 @@
         .filtertitle:hover, .filtertitle:active, .filtertitle:visited{
             color: #fff !important;
         }
+         .a { position: relative; padding:0 }
+      .a i {
+        position: absolute; bottom: 10px; right: 24px; top: auto; cursor: pointer;
+      }
 	</style>
 
 	
 </head>
 <body>
       
-    <div class="noscroll-wraper">
+    <div  id="bindingContainerMain"class="noscroll-wraper">
 		<div class="page-wraper">
 			<input type="checkbox" id="leftPanelControl" class="left-panel-control" />
 			<div class="left-panel">
-				<div class="left-panel-content" style="background-color: deepskyblue; padding: 0px;">
+				<div class="left-panel-content"" style="background-color: deepskyblue; padding: 0px;">
 					<div class="col-md-12 gradient-border" style="background-color: aliceblue; padding: 0;">
 						<h3></h3>
 						<h4 style="color: royalblue;">SAM<small style="color: royalblue;"> CRM v2.0</small></h4>
@@ -186,70 +187,71 @@
 							<span class="glyphicon glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 						</label>
 					</div>
+                    <div class="pull-right">
+                        <label>
+                            <span class="glyphicon glyphicon-user" style="color:#fff" aria-hidden="true">ADMİN</span>
+                        </label>
+                    </div>
 				</div>
 				<div class="content" id="templateContainer"></div>
 			</div>
 			<br class="clear-fix" />
 		</div>
-    </div>
+        </div>
 
     <!-- Yeni Fiber Satış For Modal Start-->
 	<div class="modal fade" id="satistaski1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog modal-sm" role="document" style="margin-top: 50px;">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="myModalLabel">Yeni Fiber Satış</h4>
-				</div>
-				<div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Satış Tarihi</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<input type="date" class="form-control" id="exampleInputName2" value="" placeholder="">
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Personel</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<select class="form-control">
-							<option></option>
-							<option>Personel1</option>
-							<option>Personel2</option>
-							<option>Personel3</option>
-						</select>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Öbek</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<select class="form-control">
-							<option></option>
-							<option>Öbek1</option>
-							<option>Öbek2</option>
-							<option>Öbek3</option>
-						</select>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Site</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<input type="text" class="form-control" id="Text1" value="" placeholder="">
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Müşteri</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<input type="text" class="form-control" id="Text2" value="" placeholder="">
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
-					<button type="button" class="btn btn-primary">Kaydet</button>
-				</div>
-			</div>
-		</div>
-	</div>
+        <div class="modal-dialog modal-sm" role="document" style="margin-top: 50px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Yeni Fiber Satış</h4>
+                </div>
+                <div class="modal-body" style="display: inline-block; position: relative; min-height: 50px;">
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Satış Tarihi</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <input type="text" id="daterangepicker11" class="form-control"">
+                       
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Personel</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                   
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Öbek</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <select class="form-control">
+                            <option></option>
+                            <option>Öbek1</option>
+                            <option>Öbek2</option>
+                            <option>Öbek3</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Site</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <input type="text" class="form-control" id="Text1" value="" placeholder="">
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Müşteri</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <input type="text" class="form-control" id="Text2" value="" placeholder="">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+                    <button type="button" class="btn btn-primary">Kaydet</button>
+                </div>
+            </div>
+        </div>
+    </div> 
 	<!-- Yeni Fiber Satış For Modal Finish-->
     
 	<!-- Yeni Yanında(Ek Ürün) Satış For Modal Start-->
@@ -1511,8 +1513,12 @@
 		</div>
 	</div>
 	<!-- Yeni Kanal Şikayeti For Modal Finish-->
-     <script src="../Scripts/bootstrap-datetimepicker.js"></script>
-     <script src="Scripts/daterangepicker.js"></script>
+
+
+  
+    <script src="Scripts/bootstrap-datetimepicker.js"></script>
+    <script src="Scripts/daterangepicker.js"></script>
+    
 </body>
 </html>
 

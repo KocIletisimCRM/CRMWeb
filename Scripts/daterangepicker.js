@@ -69,7 +69,7 @@
         this.cancelClass = 'btn-default';
 
         this.locale = {
-            format: 'MM/DD/YYYY',
+            format: "MM/DD/YYYY h:mm A",
             separator: ' - ',
             applyLabel: 'Sec',
             cancelLabel: 'Iptal',

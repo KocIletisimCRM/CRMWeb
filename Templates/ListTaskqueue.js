@@ -11,7 +11,9 @@ var dataModel = {
     pageNo: ko.observable(1),
     rowsPerPage: ko.observable(20),
     querytime: ko.observable(0),
-    isLoading:ko.observable(),
+    errormessage: ko.observable(),
+    errorcode:ko.observable(),
+    isLoading: ko.observable(),
     selectedTaskname: ko.observable(),
     selectedtaskorderno:ko.observableArray([]),
     sitename: ko.observable(),
@@ -19,10 +21,11 @@ var dataModel = {
     customername: ko.observable(),
     customerstatus: ko.observable(),
     selectedIss: ko.observable(),
+    selectedPersonelname: ko.observable(),
+    selectedAttachmentPersonelname: ko.observable(),
     attachmentDate: ko.observable(),
     appointmentDate: ko.observable(),
     consummationDate:ko.observable(),
-    selectedPersonelname: ko.observable(),
     selectedTaskstatus: ko.observable(),
     selectedCustomerstatus:ko.observable(),
     description: ko.observable(),
@@ -34,6 +37,9 @@ var dataModel = {
     taskqueuelist: ko.observableArray([]),
     totalpagecount: ko.observable(0),
     totalRowCount: ko.observable(),
+    //modallar ile ilgili değişkenler
+    toplurandevutarihi:ko.observable(),
+    //
     
     getTasks: function () {
         var self = this;
@@ -92,7 +98,7 @@ var dataModel = {
     },
     gettaskstatus: function () {
         var self = this;
-        crmAPI.getTaskStatus(function (a, b, c) {
+        crmAPI.getTaskStatus({},function (a, b, c) {
             self.taskstatuslist(a);
             $("#taskdurumu").multiselect({
                 includeSelectAllOption: true,
@@ -112,7 +118,7 @@ var dataModel = {
         var self = this;    
         crmAPI.getPersonel(function (a, b, c) {
             self.personellist(a);
-            $("#personel").multiselect({
+            $("#personel,#personelatamacombo").multiselect({
                 includeSelectAllOption: true,
                 selectAllValue: 'select-all-value',
                 maxHeight: 250,
@@ -126,6 +132,32 @@ var dataModel = {
             });
         }, null, null)
     },
+    attacheablecontrol: function () {
+        var self = this;
+        var data = {
+            ids: self.selectedtaskorderno(),
+            personelname: self.selectedAttachmentPersonelname(),
+        };
+        crmAPI.personelattachment(data, function (a, b, c) {
+            self.errormessage(a.errorMessage);
+            self.errorcode(a.errorCode);
+        }, null, null);       
+    },
+    attachmentpersonel: function () {
+        var self = this;
+        var data = {
+            ids: self.selectedtaskorderno(),
+            personelname:self.selectedAttachmentPersonelname(),
+        };
+        crmAPI.personelattachment(data, function (a, b, c) {
+            self.errormessage(a.errorMessage);
+            self.errorcode(a.errorCode);
+            window.setTimeout(function () {
+                $('#personelatama').modal('hide');
+                self.redirect();
+            }, 1000);
+        }, null, null);       
+    },
     clean: function () {
         var self = this;
         self.appointmentDate(null);
@@ -134,12 +166,20 @@ var dataModel = {
         self.consummationDate(null);
         self.sitename(null);
         self.selectedCustomerstatus(null);
+        $("#taskNameFilter,#abonedurumu,#servissaglayici,#taskdurumu,#personel,#personelatamacombo").multiselect('deselectAll', false);
+        $("#taskNameFilter,#abonedurumu,#servissaglayici,#taskdurumu,#personel,#personelatamacombo").multiselect('refresh');
         self.selectedPersonelname(null);
         self.selectedIss(null);
         self.selectedTaskname(null);
         self.selectedTaskstatus(null);
     },
-
+    enterfilter: function (d,e) {
+        var self = this;
+        if (e && (e.which == 1 || e.which == 13)) {
+            self.getFilter(1, self.rowsPerPage());
+        }
+        return true;
+    },
     getFilter: function (pageno,rowsperpage) {
         var self = this;
         self.pageNo(pageno);
@@ -151,21 +191,36 @@ var dataModel = {
             site: this.sitename()? { fieldName: "sitename", op: 6, value: this.sitename() }: null,
             customer: this.customername()?{ fieldName: "customername", op: 6, value: this.customername() }:null,
             task:this.selectedTaskname()? { fieldName: "taskname", op: 6, value: this.selectedTaskname() }:null,
-            personel: this.selectedPersonelname() ? { fieldName: "personelname", op: 6, value: this.selectedPersonelname() } : null,
-            taskstate: this.selectedTaskstatus() ?{ fieldName: "taskstate", op: 6, value: this.selectedTaskstatus() }:null,
+            personel: this.selectedPersonelname() ? (this.selectedPersonelname() == "Atanmamış" ? { fieldName: "personelname", op: 8, value: null } : { fieldName: "personelname", op: 6, value: this.selectedPersonelname() }) : null,
+            taskstate: this.selectedTaskstatus() ? (this.selectedTaskstatus() == 'AÇIK' ? { fieldName: "taskstate", op: 8, value: null } : { fieldName: "taskstate", op: 6, value: this.selectedTaskstatus() }) : null,
             iss: this.selectedIss() ? { fieldName: "issText", op: 6, value: this.selectedIss() } : null,
             customerstatus: this.selectedCustomerstatus() ? { fieldName: "Text", op: 6, value: this.selectedCustomerstatus() } : null,
             attachmentDate: this.attachmentDate() ? this.attachmentDate() : null,
             appointmentDate: this.appointmentDate() ? this.appointmentDate() : null,
             consummationDate:this.consummationDate()? this.consummationDate() :null,
         };
-        crmAPI.getTaskQueues(data, function (a, b, c) {
-            self.taskqueuelist(a.data.rows);
-            self.pageCount(a.data.pagingInfo.pageCount);
-            self.querytime(a.performance.TotalResponseDuration);
-            self.totalRowCount(a.data.pagingInfo.totalRowCount);
-            self.isLoading(false);
-        }, null, null)       
+       
+            crmAPI.getTaskQueues(data, function (a, b, c) {
+                self.taskqueuelist(a.data.rows);
+                self.pageCount(a.data.pagingInfo.pageCount);
+                self.querytime(a.performance.TotalResponseDuration);
+                self.totalRowCount(a.data.pagingInfo.totalRowCount);
+                self.isLoading(false);
+
+                $('.sel').change(function () {
+                    var ids = [];
+                    $('.sel').each(function () {
+                        if ($(this).is(':checked')) {
+                            var id = $(this).val();
+                            ids.push(id);
+                            console.log("Seçim: " + id + "");
+                        }
+                    });
+                    self.selectedtaskorderno(ids);
+                });
+
+            }, null, null)
+
     },
     select :function (d, e) {
         var self=this;
@@ -175,7 +230,9 @@ var dataModel = {
         self.selectedtaskorderno(d.taskorderno);
         
     },
-
+    redirect: function () {
+        window.location.href = "app.html";
+    },
     navigate: {
         gotoPage: function (pageNo) {
             if (pageNo == dataModel.pageNo() || pageNo <= 0 || pageNo > dataModel.pageCount()) return;
@@ -229,18 +286,18 @@ var dataModel = {
                 'Geçen Ay': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
             }
         });
-      
-        $('.sel').change(function () {
-            var ids = [];
-            $('.sel').each(function () {
-                if ($(this).is(':checked')) {
-                    var id = $(this).val();
-                    ids.push(id);
-                    console.log("Seçim: " + id + "");
-                }
-            });
-            self.selectedtaskorderno(ids);
+        $('#randevutarihi').daterangepicker({
+            "singleDatePicker": true,
+            "autoApply": true,
+            "linkedCalendars": false,
+            "timePicker": true,
+            "timePicker24Hour": true,
+            "timePickerSeconds": true,
+            "locale": {
+                "format": 'MM/DD/YYYY h:mm A',
+            },
         });
+      
         self.getisslist();
         self.gettaskstatus();
         self.getTasks();
