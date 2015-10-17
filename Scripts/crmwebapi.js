@@ -15,8 +15,8 @@
 
 var crmAPI = (function () {
     var getData = function (callType, path, sendData, onsuccess, onerror, before) {
-        var baseURL = "http://crmapitest.kociletisim.com.tr:8083/api/";
-        //var baseURL = "http://localhost:50752/api/"; 
+       // var baseURL = "http://crmapitest.kociletisim.com.tr:8083/api/";
+        var baseURL = "http://localhost:50752/api/"; 
 
         $.ajax({
             method: callType,
@@ -47,7 +47,7 @@ var crmAPI = (function () {
             getData("POST", "Filter/getIssStatus", {}, onsuccess, onerror, before)
         },
         getTaskStatus: function (data,onsuccess, onerror, before) {
-            getData("POST", "Filter/getTaskStatus", data, onsuccess, onerror, before)
+            getData("POST", "Filter/getTasks", data, onsuccess, onerror, before)
         },
         getPersonel: function (onsuccess, onerror, before) {
             getData("POST", "Filter/getPersonel", {}, onsuccess, onerror, before)
@@ -58,8 +58,14 @@ var crmAPI = (function () {
         saveTaskQueues: function (data,onsuccess,onerror,before) {
             getData("POST", "Task/saveTaskQueues", data, onsuccess, onerror, before)
         },
+        savesalestask: function (data, onsuccess, onerror, before) {
+            getData("POST", "Task/saveSalesTask", data, onsuccess, onerror, before)
+        },
         personelattachment: function (data, onsuccess, onerror, before) {
             getData("POST", "Task/personelattachment", data, onsuccess, onerror, before)
+        },
+        getCampaignInfo: function (data, onsuccess, onerror, before) {
+            getData("POST", "Filter/getCampaignInfo", data, onsuccess, onerror, before)
         },
 
         

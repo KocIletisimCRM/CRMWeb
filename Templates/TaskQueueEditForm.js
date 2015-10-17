@@ -3,7 +3,8 @@ var dataModel = {
 
     taskorderno: ko.observable(),
     taskname: ko.observable(),
-    taskid:ko.observable(),
+    taskid: ko.observable(),
+    taskstatetype:ko.observable(),
     previoustask: ko.observable(),
     relatedtask: ko.observable(),
     taskstatus: ko.observable(),
@@ -24,32 +25,137 @@ var dataModel = {
     description: ko.observable(),
     taskstatuslist: ko.observableArray([]),
     personellist:ko.observableArray([]),
-    selectedTaskstatus: ko.observable(),
     ctstatuslist: ko.observableArray([]),
     message: ko.observable(),
-    redirect : function () {
-        window.location.href = "app.html";
-    },
-    gettaskstatus: function (taskorderno) {
+    flag: ko.observable(false),
+
+
+    //abone ürün kampanya bilgileri işlemleri
+    subcategorylist: ko.observableArray([]),
+    categorylist: ko.observableArray([]),
+    campaignlist: ko.observableArray([]),
+    category: ko.observable(),
+    subcategory: ko.observable(),
+    campaignname:ko.observable(),
+   
+
+    getcategory: function () {
         var self = this;
-        var data = {
-            taskorderno:taskorderno,
-        };
-        crmAPI.getTaskStatus(data, function (a, b, c) {
-            self.taskstatuslist(a);
-            $("#taskdurumu").multiselect({
+        data = {
+            category: { fieldName: 'category', op: 6, value: '' }
+        },
+        crmAPI.getCampaignInfo(data, function (a, b, c) {
+            self.categorylist(a);
+            $("#kategori").multiselect({
                 includeSelectAllOption: true,
-                selectAllValue: 'select-all-value',               
+                selectAllValue: 'select-all-value',
                 maxHeight: 250,
                 buttonWidth: '100%',
-                nonSelectedText: 'Seçiniz',
+                nonSelectedText: ' Seçiniz',
+                nSelectedText: ' Seçildi!',
                 numberDisplayed: 2,
                 selectAllText: 'Tümünü Seç!',
                 enableFiltering: true,
                 filterPlaceholder: 'Ara'
             });
-
         }, null, null)
+    },
+    getsubcategory: function () {
+        var self = this;
+        data = {
+            category: { fieldName: 'category', op: 6, value: self.category()?self.category() :'' },
+            subcategory: { fieldName: 'subcategory', op: 6, value: '' }
+        },
+        crmAPI.getCampaignInfo(data, function (a, b, c) {
+            self.subcategorylist(a);
+            $("#urun").multiselect({
+                includeSelectAllOption: true,
+                selectAllValue: 'select-all-value',
+                maxHeight: 250,
+                buttonWidth: '100%',
+                nonSelectedText: ' Seçiniz',
+                nSelectedText: ' Seçildi!',
+                numberDisplayed: 2,
+                selectAllText: 'Tümünü Seç!',
+                enableFiltering: true,
+                filterPlaceholder: 'Ara'
+            });
+        }, null, null)
+    },
+    getcamapign: function () {
+        var self = this;
+        data = {
+            category: { fieldName: 'category', op: 6, value: self.category() ? self.category() : '' },
+            subcategory: { fieldName: 'subcategory', op: 6, value: self.subcategory()?self.subcategory():'' },
+            campaign: { fieldName: 'name', op: 6, value: '' }
+        },
+        crmAPI.getCampaignInfo(data, function (a, b, c) {
+            self.campaignlist(a);
+            $("#kampanya").multiselect({
+                includeSelectAllOption: true,
+                selectAllValue: 'select-all-value',
+                maxHeight: 250,
+                buttonWidth: '100%',
+                nonSelectedText: ' Seçiniz',
+                nSelectedText: ' Seçildi!',
+                numberDisplayed: 2,
+                selectAllText: 'Tümünü Seç!',
+                enableFiltering: true,
+                filterPlaceholder: 'Ara'
+            });
+        }, null, null)
+    },
+    getproduct: function () {
+        var self = this;
+        data = {
+            category: { fieldName: 'category', op: 6, value: self.category() ? self.category() : '' },
+            subcategory: { fieldName: 'subcategory', op: 6, value: self.subcategory() ? self.subcategory() : '' },
+            campaign: { fieldName: 'name', op: 6, value: '' },
+            selectedcampaign:{fieldName:'',op:6,value:self.campaignname()}
+        },
+        crmAPI.getCampaignInfo(data, function (a, b, c) {
+            self.campaignlist(a);
+            $("#kampanya").multiselect({
+                includeSelectAllOption: true,
+                selectAllValue: 'select-all-value',
+                maxHeight: 250,
+                buttonWidth: '100%',
+                nonSelectedText: ' Seçiniz',
+                nSelectedText: ' Seçildi!',
+                numberDisplayed: 2,
+                selectAllText: 'Tümünü Seç!',
+                enableFiltering: true,
+                filterPlaceholder: 'Ara'
+            });
+        }, null, null)
+    },
+
+
+
+    gettaskstatus: function (statusVal) {
+        var self = this;
+        var data = {
+            task: { fieldName: "taskid", op: 2, value:self.taskid()},
+            taskstate: { fieldName: "taskstate", op: 6, value: '' },
+        };
+        crmAPI.getTaskStatus(data, function (a, b, c) {
+             self.taskstatuslist(a);
+             self.taskstatus(statusVal);
+             $("#taskdurumu").multiselect({
+                 includeSelectAllOption: true,
+                 selectAllValue: 'select-all-value',
+                 maxHeight: 250,
+                 buttonWidth: '100%',
+                 nonSelectedText: 'Seçiniz',
+                 numberDisplayed: 2,
+                 selectAllText: 'Tümünü Seç!',
+                 enableFiltering: true,
+                 filterPlaceholder: 'Ara'
+             });
+         }, null, null)
+    },
+    redirect : function () {
+        window.location.href = "app.html";
     },
     getpersonel: function () {
         var self = this;
@@ -92,7 +198,11 @@ var dataModel = {
         data = {
             taskorderno: self.taskorderno(),
             task:{taskid:self.taskid()},
-            taskstatepool:{taskstateid: self.taskstatus()>0? self.taskstatus() : null},
+            //taskstatepool: 
+            //    { taskstateid: $("#taskdurumu").val() ?$("#taskdurumu").val()[0]:null ,
+            //    taskstate: $("#taskdurumu option:selected").text() ? $("#taskdurumu option:selected").text():null
+            //    },
+            taskstatepool: self.taskstatus() ? self.taskstatus() :null,
             description: self.description() ? self.description() : null,
             asistanPersonel: { personelid: self.assistantpersonel()>0? self.assistantpersonel() : null },
             appointmentdate: self.appointmentdate() ? moment(self.appointmentdate()).format() : null,
@@ -111,26 +221,16 @@ var dataModel = {
         var hashSearches = document.location.hash.split("?");
         if(hashSearches.length > 1) { 
             var data = { taskOrderNo: hashSearches[1] };
-            self.gettaskstatus(data.taskOrderNo);
             crmAPI.getTaskQueues(data, function (a, b, c) {
-                $("#taskdurumu").multiselect({
-                    includeSelectAllOption: true,
-                    selectAllValue: 'select-all-value',
-                    maxHeight: 250,
-                    buttonWidth: '100%',
-                    nonSelectedText: 'Seçiniz',
-                    numberDisplayed: 2,
-                    selectAllText: 'Tümünü Seç!',
-                    enableFiltering: true,
-                    filterPlaceholder: 'Ara'
-                });
-                self.taskorderno(a.data.rows[0].taskorderno);
+                self.taskorderno(a.data.rows[0].taskorderno);               
                 self.taskname(a.data.rows[0].task.taskname);
                 self.taskid(a.data.rows[0].task.taskid);
+                self.taskstatetype(a.data.rows[0].taskstatepool && a.data.rows[0].taskstatepool.statetype || null)
+                var status = a.data.rows[0].taskstatepool && a.data.rows[0].taskstatepool.taskstateid || null;
+                self.gettaskstatus(status);
+
                 self.previoustask(a.data.rows[0].previoustaskorderid);
                 self.relatedtask(a.data.rows[0].relatedtaskorderid);
-                self.taskstatus(a.data.rows[0].taskstatepool ? a.data.rows[0].taskstatepool.taskstateid:'');
-                $("#taskdurumu,#assistantPersonel,#abonedurumu").multiselect("refresh");
                 self.creationdate(moment(a.data.rows[0].creationdate).format('lll'));
                 self.attachmentdate(a.data.rows[0].attachmentdate && a.data.rows[0].attachmentdate || null);
                 self.appointmentdate(a.data.rows[0].appointmentdate ? a.data.rows[0].appointmentdate : null);
@@ -154,10 +254,11 @@ var dataModel = {
                 $("#abonedurumu").multiselect("refresh");
                 self.description(a.data.rows[0].description);
                 self.locationid(a.data.rows[0].attachedobject.locationid || (a.data.rows[0].attachedobject.block && a.data.rows[0].attachedobject.block.locationid) || '');
-            }, null, null)
-            
+            }, null, null);          
             self.getpersonel();
             self.getCustomerStatus();
+            self.getcategory();
+           
             $('#daterangepicker1,#daterangepicker2,#daterangepicker3,#daterangepicker4').daterangepicker({
                 "singleDatePicker": true,
                 "autoApply": true,
@@ -173,3 +274,10 @@ var dataModel = {
         }
     }
 }
+
+dataModel.category.subscribe(function (v) {
+    dataModel.getsubcategory();
+});
+dataModel.subcategory.subscribe(function (v) {
+    dataModel.getcamapign();
+});

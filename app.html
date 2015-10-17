@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="Content/bootstrap-multiselect.min.css" />
     <link href="Content/bootstrap-datetimepicker.css" rel="stylesheet" />
@@ -60,7 +60,7 @@
 		<div class="page-wraper">
 			<input type="checkbox" id="leftPanelControl" class="left-panel-control" />
 			<div class="left-panel">
-				<div class="left-panel-content"" style="background-color: deepskyblue; padding: 0px;">
+				<div class="left-panel-content" style="background-color: deepskyblue; padding: 0px;">
 					<div class="col-md-12 gradient-border" style="background-color: aliceblue; padding: 0;">
 						<h3></h3>
 						<h4 style="color: royalblue;">SAM<small style="color: royalblue;"> CRM v2.0</small></h4>
@@ -81,24 +81,24 @@
 											<li class="dropdown-submenu">
 												<a tabindex="-1" href="#">Satış Taskları</a>
 												<ul class="dropdown-menu">
-													<li><a href="#satistaski1" role="button" class="btn" data-toggle="modal" style="float: left;">Satış Taskı</a></li>
-													<li><a href="#satistaski2" role="button" class="btn" data-toggle="modal" style="float: left;">Yanında (Ek Ürün) Satış Taskı</a></li>
-													<li><a href="#satistaski3" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Adsl Satış Taskı</a></li>
-													<li><a href="#satistaski4" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Retention Satış Taskı</a></li>
-													<li><a href="#satistaski5" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Cayma Bedeli Taskı</a></li>
-													<li><a href="#satistaski6" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Yönetim Odası Satışı</a></li>
+													<li><a href="#ModalContainer" id="fibersatis" role="button" class="btn" data-toggle="modal" style="float: left;">Satış Taskı</a></li>
+													<li><a href="#ModalContainer" id ="yanindaekurun"role="button" class="btn" data-toggle="modal" style="float: left;">Yanında (Ek Ürün) Satış Taskı</a></li>
+													<li><a href="#ModalContainer" id="adslsatis "role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Adsl Satış Taskı</a></li>
+													<li><a href="#ModalContainer" id="retentionsatis"role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Retention Satış Taskı</a></li>
+													<li><a href="#ModalContainer" id="caymabedeli" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Cayma Bedeli Taskı</a></li>
+													<li><a href="#ModalContainer" id="yonetimodasi" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Yönetim Odası Satışı</a></li>
 												</ul>
 											</li>
 											<li class="dropdown-submenu">
 												<a tabindex="-1" href="#">Arıza Taskları</a>
 												<ul class="dropdown-menu">
-													<li><a href="#arizataski1" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Arıza Taskı</a></li>
-													<li><a href="#arizataski2" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni CC Arıza Taskı</a></li>
-													<li><a href="#arizataski3" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Turkcell TV Arıza Taskı</a></li>
-													<li><a href="#arizataski4" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Turkcell TV CC Arıza Taskı</a></li>
-													<li><a href="#arizataski5" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni NON Teknik Taskı Taskı</a></li>
-													<li><a href="#arizataski6" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Kanal Şikayet Taskı</a></li>
-													<li><a href="#arizataski7" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Turkcell TV Şikayet Taskı</a></li>
+													<li><a href="#ModalContainer"  id="arizataski"role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Arıza Taskı</a></li>
+													<li><a href="#ModalContainer" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni CC Arıza Taskı</a></li>
+													<li><a href="#ModalContainer" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Turkcell TV Arıza Taskı</a></li>
+													<li><a href="#ModalContainer" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Turkcell TV CC Arıza Taskı</a></li>
+													<li><a href="#ModalContainer" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni NON Teknik Taskı Taskı</a></li>
+													<li><a href="#ModalContainer" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Kanal Şikayet Taskı</a></li>
+													<li><a href="#ModalContainer" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Turkcell TV Şikayet Taskı</a></li>
 												</ul>
 											</li>
 											<li class="dropdown-submenu">
@@ -199,426 +199,14 @@
 		</div>
         </div>
 
-    <!-- Yeni Fiber Satış For Modal Start-->
-	<div class="modal fade" id="satistaski1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog modal-sm" role="document" style="margin-top: 50px;">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Yeni Fiber Satış</h4>
-                </div>
-                <div class="modal-body" style="display: inline-block; position: relative; min-height: 50px;">
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                        <p>Satış Tarihi</p>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                        <input type="text" id="daterangepicker11" class="form-control"">
-                       
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                        <p>Personel</p>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                   
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                        <p>Öbek</p>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <select class="form-control">
-                            <option></option>
-                            <option>Öbek1</option>
-                            <option>Öbek2</option>
-                            <option>Öbek3</option>
-                        </select>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                        <p>Site</p>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <input type="text" class="form-control" id="Text1" value="" placeholder="">
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                        <p>Müşteri</p>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <input type="text" class="form-control" id="Text2" value="" placeholder="">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
-                    <button type="button" class="btn btn-primary">Kaydet</button>
-                </div>
-            </div>
-        </div>
-    </div> 
-	<!-- Yeni Fiber Satış For Modal Finish-->
     
-	<!-- Yeni Yanında(Ek Ürün) Satış For Modal Start-->
-	<div class="modal fade" id="satistaski2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog modal-sm" role="document" style="margin-top: 50px;">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="H1">Yeni Yanında(Ek Ürün) Satış</h4>
-				</div>
-				<div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Satış Tarihi</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<input type="date" class="form-control" id="Date1" value="" placeholder="">
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Personel</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<select class="form-control">
-							<option></option>
-							<option>Personel1</option>
-							<option>Personel2</option>
-							<option>Personel3</option>
-						</select>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Öbek</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<select class="form-control">
-							<option></option>
-							<option>Öbek1</option>
-							<option>Öbek2</option>
-							<option>Öbek3</option>
-						</select>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Site</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<input type="text" class="form-control" id="Text3" value="" placeholder="">
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Müşteri</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<input type="text" class="form-control" id="Text4" value="" placeholder="">
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
-					<button type="button" class="btn btn-primary">Kaydet</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Yeni Yanında(Ek Ürün) Satış For Modal Finish-->
-    <!-- Yeni Adsl Satış For Modal Start-->
-	<div class="modal fade" id="satistaski3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog modal-sm" role="document" style="margin-top: 50px;">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="H2">Yeni Adsl Satış</h4>
-				</div>
-				<div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Satış Tarihi</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<input type="date" class="form-control" id="Date2" value="" placeholder="">
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Personel</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<select class="form-control">
-							<option></option>
-							<option>Personel1</option>
-							<option>Personel2</option>
-							<option>Personel3</option>
-						</select>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Öbek</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<select class="form-control">
-							<option></option>
-							<option>Öbek1</option>
-							<option>Öbek2</option>
-							<option>Öbek3</option>
-						</select>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Site</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<input type="text" class="form-control" id="Text5" value="" placeholder="">
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Müşteri</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<input type="text" class="form-control" id="Text6" value="" placeholder="">
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
-					<button type="button" class="btn btn-primary">Kaydet</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Yeni Adsl Satış For Modal Start-->
-    <!-- Yeni Retention Satış For Modal Finish-->
+	<div class="modal fade" id="ModalContainer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      
+    </div> 
 
-	<div class="modal fade" id="satistaski4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog modal-sm" role="document" style="margin-top: 50px;">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="H3">Yeni Retention Satış</h4>
-				</div>
-				<div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Satış Tarihi</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<input type="date" class="form-control" id="Date3" value="" placeholder="">
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Personel</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<select class="form-control">
-							<option></option>
-							<option>Personel1</option>
-							<option>Personel2</option>
-							<option>Personel3</option>
-						</select>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Öbek</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<select class="form-control">
-							<option></option>
-							<option>Öbek1</option>
-							<option>Öbek2</option>
-							<option>Öbek3</option>
-						</select>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Site</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<input type="text" class="form-control" id="Text7" value="" placeholder="">
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Müşteri</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<input type="text" class="form-control" id="Text8" value="" placeholder="">
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
-					<button type="button" class="btn btn-primary">Kaydet</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Yeni Retention Satış For Modal Finish-->
-    <!-- Yeni Cayma Bedeli For Modal Start-->
-	<div class="modal fade" id="satistaski5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog modal-sm" role="document" style="margin-top: 50px;">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="H4">Yeni Cayma Bedeli</h4>
-				</div>
-				<div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Satış Tarihi</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<input type="date" class="form-control" id="Date4" value="" placeholder="">
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Personel</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<select class="form-control">
-							<option></option>
-							<option>Personel1</option>
-							<option>Personel2</option>
-							<option>Personel3</option>
-						</select>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Öbek</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<select class="form-control">
-							<option></option>
-							<option>Öbek1</option>
-							<option>Öbek2</option>
-							<option>Öbek3</option>
-						</select>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Site</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<input type="text" class="form-control" id="Text9" value="" placeholder="">
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Müşteri</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<input type="text" class="form-control" id="Text10" value="" placeholder="">
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
-					<button type="button" class="btn btn-primary">Kaydet</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Yeni Cayma Bedeli For Modal Finish-->
-    <!-- Yeni Yönetim Odası Satışı For Modal Start-->
-	<div class="modal fade" id="satistaski6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog modal-sm" role="document" style="margin-top: 50px;">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="H5">Yeni Yönetim Odası Satışı</h4>
-				</div>
-				<div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Satış Tarihi</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<input type="date" class="form-control" id="Date5" value="" placeholder="">
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Personel</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<select class="form-control">
-							<option></option>
-							<option>Personel1</option>
-							<option>Personel2</option>
-							<option>Personel3</option>
-						</select>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Öbek</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<select class="form-control">
-							<option></option>
-							<option>Öbek1</option>
-							<option>Öbek2</option>
-							<option>Öbek3</option>
-						</select>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Site</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<input type="text" class="form-control" id="Text11" value="" placeholder="">
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Müşteri</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<input type="text" class="form-control" id="Text12" value="" placeholder="">
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
-					<button type="button" class="btn btn-primary">Kaydet</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Yeni Yönetim Odası Satışı For Modal Finish-->
+
     <!-- Yeni Arıza Taskı For Modal Start-->
-	<div class="modal fade" id="arizataski1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog modal-sm" role="document" style="margin-top: 50px;">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="H6">Yeni Arıza Taskı</h4>
-				</div>
-				<div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Arıza Tarihi</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<input type="date" class="form-control" id="Date6" value="" placeholder="">
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Kaynek</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<select class="form-control">
-							<option></option>
-							<option>Kaynak1</option>
-							<option>Kaynak2</option>
-							<option>Kaynak3</option>
-						</select>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Personel</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<select class="form-control">
-							<option></option>
-							<option>Personel1</option>
-							<option>Personel2</option>
-							<option>Personel3</option>
-						</select>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Öbek</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<select class="form-control">
-							<option></option>
-							<option>Öbek1</option>
-							<option>Öbek2</option>
-							<option>Öbek3</option>
-						</select>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Site</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<input type="text" class="form-control" id="Text13" value="" placeholder="">
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Müşteri</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<input type="text" class="form-control" id="Text14" value="" placeholder="">
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Açıklama</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<textarea class="form-control" rows="3"></textarea>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
-					<button type="button" class="btn btn-primary">Kaydet</button>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 	<!-- Yeni Arıza Taskı For Modal Finish-->
     <!-- Yeni CC Arıza For Modal Start-->
 	<div class="modal fade" id="arizataski2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

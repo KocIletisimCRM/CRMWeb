@@ -37,13 +37,14 @@ var dataModel = {
     taskqueuelist: ko.observableArray([]),
     totalpagecount: ko.observable(0),
     totalRowCount: ko.observable(),
-    //modallar ile ilgili değişkenler
-    toplurandevutarihi:ko.observable(),
-    //
+
     
     getTasks: function () {
         var self = this;
-        crmAPI.getTaskFilter({}, function (a, b, c) {
+        var data={
+            task:  { fieldName: "taskname", op: 6, value:"" },
+        };
+        crmAPI.getTaskFilter(data, function (a, b, c) {
             self.tasks(a);
             $("#taskNameFilter").multiselect({
                 includeSelectAllOption: true,
@@ -98,7 +99,10 @@ var dataModel = {
     },
     gettaskstatus: function () {
         var self = this;
-        crmAPI.getTaskStatus({},function (a, b, c) {
+        var data = {
+            taskstate:{ fieldName: "taskstate", op: 6, value: "" },
+        };
+        crmAPI.getTaskStatus(data,function (a, b, c) {
             self.taskstatuslist(a);
             $("#taskdurumu").multiselect({
                 includeSelectAllOption: true,
@@ -154,7 +158,7 @@ var dataModel = {
             self.errorcode(a.errorCode);
             window.setTimeout(function () {
                 $('#personelatama').modal('hide');
-                self.redirect();
+                self.getFilter(1, dataModel.rowsPerPage());
             }, 1000);
         }, null, null);       
     },
@@ -190,9 +194,9 @@ var dataModel = {
             rowsPerPage:rowsperpage,
             site: this.sitename()? { fieldName: "sitename", op: 6, value: this.sitename() }: null,
             customer: this.customername()?{ fieldName: "customername", op: 6, value: this.customername() }:null,
-            task:this.selectedTaskname()? { fieldName: "taskname", op: 6, value: this.selectedTaskname() }:null,
+            task:this.selectedTaskname()? { fieldName: "taskname", op: 2, value: this.selectedTaskname() }:null,
             personel: this.selectedPersonelname() ? (this.selectedPersonelname() == "Atanmamış" ? { fieldName: "personelname", op: 8, value: null } : { fieldName: "personelname", op: 6, value: this.selectedPersonelname() }) : null,
-            taskstate: this.selectedTaskstatus() ? (this.selectedTaskstatus() == 'AÇIK' ? { fieldName: "taskstate", op: 8, value: null } : { fieldName: "taskstate", op: 6, value: this.selectedTaskstatus() }) : null,
+            taskstate: this.selectedTaskstatus() ? (this.selectedTaskstatus() == 'AÇIK' ? { fieldName: "taskstate", op: 8, value: null } : { fieldName: "taskstate", op: 2, value: this.selectedTaskstatus() }) : null,
             iss: this.selectedIss() ? { fieldName: "issText", op: 6, value: this.selectedIss() } : null,
             customerstatus: this.selectedCustomerstatus() ? { fieldName: "Text", op: 6, value: this.selectedCustomerstatus() } : null,
             attachmentDate: this.attachmentDate() ? this.attachmentDate() : null,

@@ -127,7 +127,12 @@
 										<label class="control-label" for="personel">Personel</label>
 									</div>
 									<div class="col-md-12">
-										<select data-size="10" id="personel" data-bind="options: personellist, optionsText: 'personelname', optionsValue: 'personelname', value: selectedPersonelname, valueUpdate: 'keydown', event: { keypress: enterfilter }" multiple="multiple">										
+										<select data-size="10" id="personel" data-bind="options: personellist,
+                                                                                        optionsText: 'personelname',
+                                                                                        optionsValue: 'personelname',
+                                                                                        value: selectedPersonelname,
+                                                                                        valueUpdate: 'keydown',
+                                                                                        event: { keypress: enterfilter }" multiple="multiple">										
 										</select>
 									</div>
 								</div>
@@ -335,34 +340,6 @@
             </div>
         </div>
 	<!-- İşlemler *personel atama* For Modal Finish-->
-    <!-- Randevu Tarihi Gir For Modal Start-->
-	<div class="modal fade" id="randevu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog modal-sm" role="document" style="margin-top: 50px;">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="H4">Randevu Tarihini Toplu Gir</h4>
-				</div>
-				<div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Randevu Tarihi</p>
-					</div>
-        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-            <div class="form-group">
-                <div class="col-md-12 a">
-                    <input type="text" id="randevutarihi" class="form-control" data-bind="value: toplurandevutarihi">
-                </div>
-            </div>
-        </div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
-					<button type="button" class="btn btn-primary">Kaydet</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Randevu Tarihi Gir For Modal Finish-->
     <!-- Kat Ziyaret Sonuçlarını Toplu Gir For Modal Start-->
 	<div class="modal fade" id="katziyareti1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog modal-sm" role="document" style="margin-top: 50px;">

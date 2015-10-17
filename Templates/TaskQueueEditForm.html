@@ -1,335 +1,332 @@
 ﻿
 <style>
-    .a { position: relative; padding:0 }
-      .a i {
-        position: absolute; bottom: 10px; right: 24px; top: auto; cursor: pointer;
-      }
+    .a {
+        position: relative;
+        padding: 0;
+    }
+
+        .a i {
+            position: absolute;
+            bottom: 10px;
+            right: 24px;
+            top: auto;
+            cursor: pointer;
+        }
 </style>
-		<div id="bindingContainer" class="container-fluid" style="background-color: #D1E9F6 !important;">
-			<div class="col-md-12 container" style="padding: 0 !important; margin: 20px 0 0 0 !important; border-radius: 0 0 8px 8px !important;">
-				<div class="panel-group">
-					<div class="panel" style="border: 1px solid #fff !important;">
-						<div class="panel-heading  panel-danger task-gradient filter-gradient">Task Bilgileri</div>
-						<div class="panel-body">
-							<div class="col-md-12" style="padding: 1px 0 1px 0 !important; margin: 0 !important;">
-								<div class=" col-md-3 height-40">
-									<div class="col-md-6" style="padding: 10px 0 0 0;">Task No<span style="float:right;">:</span></div>
-									<div data-bind="text:taskorderno" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
-								</div>
-								<div class="col-md-3 height-40">
-									<div class="col-md-6" style="padding: 10px 0 0 0;">Oluşturulma Tarihi<span style="float:right;">:</span></div>
-                                            <div class='col-sm-6'>
-                                                <div class="form-group">
-                                                    <div class="col-md-12 a">
+<div id="bindingContainer" class="container-fluid" style="background-color: #D1E9F6 !important;">
+    <div class="col-md-12 container" style="padding: 0 !important; margin: 20px 0 0 0 !important; border-radius: 0 0 8px 8px !important;">
+        <div class="panel-group">
+            <div class="panel" style="border: 1px solid #fff !important;">
+                <div class="panel-heading  panel-danger task-gradient filter-gradient">Task Bilgileri</div>
+                <div class="panel-body">
+                    <div class="col-md-12" style="padding: 1px 0 1px 0 !important; margin: 0 !important;">
+                        <div class=" col-md-3 height-40">
+                            <div class="col-md-6" style="padding: 10px 0 0 0;">Task No<span style="float:right;">:</span></div>
+                            <div data-bind="text:taskorderno" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
+                        </div>
+                        <div class="col-md-3 height-40">
+                            <div class="col-md-6" style="padding: 10px 0 0 0;">Oluşturulma Tarihi<span style="float:right;">:</span></div>
+                            <div class='col-sm-6'>
+                                <div class="form-group">
+                                    <div class="col-md-12 a">
                                         <input type="text" id="daterangepicker3" class="form-control" data-bind="value: creationdate ? creationdate :null">
                                     </div>
-                                                </div>
-                                            </div>
-							   </div>
-								<div class=" col-md-3 height-40">
-									<div class="col-md-6" style="padding: 10px 0 0 0;">Personel<span style="float:right;">:</span></div>
-									<div data-bind="text: personelname" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
-								</div>
-								<div class=" col-md-3 height-40">
-									<div class="col-md-6" style="padding: 10px 0 0 0;">Abone Ad-Soyad<span style="float:right;">:</span></div>
-									<div data-bind="text: customername" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
-								</div>
-							</div>
-							<div class="col-md-12" style="padding: 1px 0 1px 0 !important; margin: 0 !important;">
-								<div class=" col-md-3 height-40">
-									<div class="col-md-6" style="padding: 10px 0 0 0;">Task<span style="float:right;">:</span></div>
-									<div data-bind="text: taskname" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
-								</div>
-								<div class="col-md-3 height-40">
-									<div class="col-md-6" style="padding: 10px 0 0 0;">Atanma Tarihi<span style="float:right;">:</span></div>
-									<div class='col-sm-6'>
-                                                <div class="form-group">
-                                                    <div class="col-md-12 a">
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" col-md-3 height-40">
+                            <div class="col-md-6" style="padding: 10px 0 0 0;">Personel<span style="float:right;">:</span></div>
+                            <div data-bind="text: personelname" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
+                        </div>
+                        <div class=" col-md-3 height-40">
+                            <div class="col-md-6" style="padding: 10px 0 0 0;">Abone Ad-Soyad<span style="float:right;">:</span></div>
+                            <div data-bind="text: customername" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="padding: 1px 0 1px 0 !important; margin: 0 !important;">
+                        <div class=" col-md-3 height-40">
+                            <div class="col-md-6" style="padding: 10px 0 0 0;">Task<span style="float:right;">:</span></div>
+                            <div data-bind="text: taskname" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
+                        </div>
+                        <div class="col-md-3 height-40">
+                            <div class="col-md-6" style="padding: 10px 0 0 0;">Atanma Tarihi<span style="float:right;">:</span></div>
+                            <div class='col-sm-6'>
+                                <div class="form-group">
+                                    <div class="col-md-12 a">
                                         <input type="text" id="daterangepicker1" class="form-control" data-bind="value: attachmentdate ? attachmentdate :null">
                                     </div>
-                                                </div>
-                                            </div>
-								</div>
-								<div class="col-md-3 height-40">
-									<div class="col-md-6" style="padding: 10px 0 0 0;">Yardımcı Personel<span style="float:right;">:</span></div>
-									 <div class="col-md-6">
-                     <select id="assistantPersonel"  data-bind="options: personellist, optionsText: 'personelname', optionsValue: 'personelid', value: assistantpersonel,"  multiple="multiple">										    
-                           </select></div>
-								</div>
-								<div class=" col-md-3 height-40">
-									<div class="col-md-6" style="padding: 10px 0 0 0;">Location ID<span style="float:right;">:</span></div>
-									<div data-bind="text: locationid" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
-								</div>
-							</div>
-							<div class="col-md-12" style="padding: 1px 0 1px 0 !important; margin: 0 !important;">
-								<div class=" col-md-3 height-40">
-									<div class="col-md-6" style="padding: 10px 0 0 0;">Önceki Task<span style="float:right;">:</span></div>
-									<div data-bind="text: previoustask" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
-								</div>
-								<div class="col-md-3 height-40">
-									<div class="col-md-6" style="padding: 10px 0 0 0;">Randevu Tarihi<span style="float:right;">:</span></div>
-									<div class='col-sm-6'>
-                                                <div class="form-group">
-                                                     <div class="col-md-12 a">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 height-40">
+                            <div class="col-md-6" style="padding: 10px 0 0 0;">Yardımcı Personel<span style="float:right;">:</span></div>
+                            <div class="col-md-6">
+                                <select id="assistantPersonel" data-bind="options: personellist, optionsText: 'personelname', optionsValue: 'personelid', value: assistantpersonel," multiple="multiple"></select>
+                            </div>
+                        </div>
+                        <div class=" col-md-3 height-40">
+                            <div class="col-md-6" style="padding: 10px 0 0 0;">Location ID<span style="float:right;">:</span></div>
+                            <div data-bind="text: locationid" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="padding: 1px 0 1px 0 !important; margin: 0 !important;">
+                        <div class=" col-md-3 height-40">
+                            <div class="col-md-6" style="padding: 10px 0 0 0;">Önceki Task<span style="float:right;">:</span></div>
+                            <div data-bind="text: previoustask" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
+                        </div>
+                        <div class="col-md-3 height-40">
+                            <div class="col-md-6" style="padding: 10px 0 0 0;">Randevu Tarihi<span style="float:right;">:</span></div>
+                            <div class='col-sm-6'>
+                                <div class="form-group">
+                                    <div class="col-md-12 a">
                                         <input type="text" id="daterangepicker2" class="form-control" data-bind="value:appointmentdate ? appointmentdate :null">
                                     </div>
-                                                </div>
-                                            </div>
-								</div>
+                                </div>
+                            </div>
+                        </div>
 
-								<div class=" col-md-3 height-40">
-									<div class="col-md-6" style="padding: 10px 0 0 0;">Site<span style="float:right;">:</span></div>
-									<div data-bind="text: sitename" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
-								</div>
-								<div class=" col-md-3 height-40">
-									<div class="col-md-6" style="padding: 10px 0 0 0;">Gsm<span style="float:right;">:</span></div>
-									<div data-bind="text: customergsm" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
-								</div>
-							</div>
-							<div class="col-md-12" style="padding: 1px 0 1px 0 !important; margin: 0 !important;">
-								<div class=" col-md-3 height-40">
-									<div class="col-md-6" style="padding: 10px 0 0 0;">İlişkili Task<span style="float:right;">:</span></div>
-									<div data-bind="text: relatedtask" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
-								</div>
-								<div class="col-md-3 height-40">
-									<div class="col-md-6" style="padding: 10px 0 0 0;">Kapanma Tarihi<span style="float:right;">:</span></div>
-								<div class='col-sm-6'>
-                                                 <div class="form-group">
-                                                    <div class="col-md-12 a">
+                        <div class=" col-md-3 height-40">
+                            <div class="col-md-6" style="padding: 10px 0 0 0;">Site<span style="float:right;">:</span></div>
+                            <div data-bind="text: sitename" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
+                        </div>
+                        <div class=" col-md-3 height-40">
+                            <div class="col-md-6" style="padding: 10px 0 0 0;">Gsm<span style="float:right;">:</span></div>
+                            <div data-bind="text: customergsm" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="padding: 1px 0 1px 0 !important; margin: 0 !important;">
+                        <div class=" col-md-3 height-40">
+                            <div class="col-md-6" style="padding: 10px 0 0 0;">İlişkili Task<span style="float:right;">:</span></div>
+                            <div data-bind="text: relatedtask" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
+                        </div>
+                        <div class="col-md-3 height-40">
+                            <div class="col-md-6" style="padding: 10px 0 0 0;">Kapanma Tarihi<span style="float:right;">:</span></div>
+                            <div class='col-sm-6'>
+                                <div class="form-group">
+                                    <div class="col-md-12 a">
                                         <input type="text" id="daterangepicker4" class="form-control" data-bind="value: consummationdate ? consummationdate :null">
                                     </div>
-                                                </div>
-                                            </div>
-								</div>
-								<div class=" col-md-3 height-40">
-									<div class="col-md-6" style="padding: 10px 0 0 0;">Blok<span style="float:right;">:</span></div>
-									<div data-bind="text: blockname" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
-								</div>
-								<div class=" col-md-3 height-40">
-									<div class="col-md-6" style="padding: 10px 0 0 0;">Müşteri Statü<span style="float:right;">:</span></div>
-                                    <div class="col-md-6">
-										<select id="abonedurumu" data-bind="options: ctstatuslist, optionsText: 'Text', optionsValue: 'Text', value: customerstatus" multiple="multiple">
-											
-										</select>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-12" style="padding: 1px 0 1px 0 !important; margin: 0 !important;">
-								<div class=" col-md-3 height-40">
-									<div class="col-md-6" style="padding: 10px 0 0 0;">Task Durumu<span style="float:right;">:</span></div>
-                                    <div class="col-md-6">
-										<select id="taskdurumu"  data-bind="options: taskstatuslist, optionsText: 'taskstate', optionsValue: 'taskstateid', value: taskstatus,"  multiple="multiple">										    
-										</select>
-									</div>
-								</div>
-								<div class="col-md-3 height-40">
-									<div class="col-md-6" style="padding: 10px 0 0 0;">Açıklama<span style="float:right;">:</span></div>
-									<div class="col-md-6" style="padding: 5px 0 0 0;">
-										<textarea data-bind="value:description" class="form-control" rows="1"></textarea>
-									</div>
-								</div>
-								<div class=" col-md-3 height-40">
-									<div class="col-md-6" style="padding: 10px 0 0 0;">Öbek<span style="float:right;">:</span></div>
-									<div data-bind="text: region" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
-								</div>
-								<div class="col-md-3 height-30">
-									<button type="button" class="btn btn-primary" data-bind="click: saveTaskQueues" >Kaydet</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-                 <div class="col-md-6 col-md-offset-3" data-bind="visible : message" style="position: absolute; top: 150px;" id="id_alert" onclick="setTimeout(function () { $('#id_alert').css({ display: 'none' }); }, 1000)">
-		            <div class="alert alert-success alert-dismissible cls_alert" role="alert" style="height: 100px;">
-			            <button type="button" data-bind="click :redirect" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			            <strong>İşlem Başarılı</strong>
-		            </div>
-	            </div>
-			<br />
-			<div class="col-md-12 cls-padding-0px">
-				<div class="panel-group" id="accordion">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4 class="panel-title">
-								<a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Abone Kampanya & Ürün Bilgileri </a>
-							</h4>
-						</div>
-						<div id="collapse2" class="panel-collapse collapse">
-							<div class="panel-body">
-								<form action="Taskqueues.html" method="post">
-									<div class="col-md-12 cls-padding-0px">
-										<div class="col-md-4 cls-padding-10px">
-											<div class="form-group-sm has-info cls-margin-bottom">
-												<select id="Select1" class="form-control">
-													<option>1</option>
-													<option>2</option>
-												</select>
-											</div>
-											<div class="form-group-sm has-info cls-margin-top">
-												<select id="Select2" class="form-control">
-													<option>3</option>
-													<option>4</option>
-												</select>
-											</div>
-											<div class="form-group-sm has-info cls-margin-top">
-												<select id="Select3" class="form-control">
-													<option>5</option>
-													<option>6</option>
-												</select>
-											</div>
-										</div>
-										<div class="col-md-8 cls-padding-0px">
-											<div class="col-md-3 cls-padding-0px">
-												<div class="col-md-12 bgcolor-lightgrey cls-padding-0px"><div class="panel-heading"><h4 class="panel-title">ISS</h4></div></div>
-												<div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio1">Yok</label></div>
-												<div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio1">Cayma Bedeli</label></div>
-											</div>
-											<div class="col-md-3 cls-padding-0px">
-												<div class="col-md-12 bgcolor-lightgrey cls-padding-0px"><div class="panel-heading"><h4 class="panel-title">Fiber</h4></div></div>
-												<div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio2">Yok</label></div>
-												<div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio2">25 Mbps 0 AKK</label></div>
-											</div>
-											<div class="col-md-3 cls-padding-0px">
-												<div class="col-md-12 bgcolor-lightgrey cls-padding-0px"><div class="panel-heading"><h4 class="panel-title">Tv</h4></div></div>
-												<div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio3">Yok</label></div>
-												<div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio3">Turkcell Tv+ Ev Paketi</label></div>
-												<div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio3">Turkcell Tv+ Ev Ekstra Paketi</label></div>
-											</div>
-											<div class="col-md-3 cls-padding-0px">
-												<div class="col-md-12 bgcolor-lightgrey cls-padding-0px"><div class="panel-heading"><h4 class="panel-title">Dakika</h4></div></div>
-												<div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio4">Yok</label></div>
-												<div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio4">Süper Konuşma 200 Dk</label></div>
-											</div>
-										</div>
-									</div>
-									<div class="col-md-12 cls-padding-0px">
-										<div class="col-md-3 cls-padding-0px">
-											<div class="col-md-12 bgcolor-lightgrey cls-padding-0px"><div class="panel-heading"><h4 class="panel-title">ISS</h4></div></div>
-											<div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio1">Yok</label></div>
-											<div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio1">Cayma Bedeli</label></div>
-										</div>
-										<div class="col-md-3 cls-padding-0px">
-											<div class="col-md-12 bgcolor-lightgrey cls-padding-0px"><div class="panel-heading"><h4 class="panel-title">Fiber</h4></div></div>
-											<div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio2">Yok</label></div>
-											<div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio2">25 Mbps 0 AKK</label></div>
-										</div>
-										<div class="col-md-3 cls-padding-0px">
-											<div class="col-md-12 bgcolor-lightgrey cls-padding-0px"><div class="panel-heading"><h4 class="panel-title">Tv</h4></div></div>
-											<div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio3">Yok</label></div>
-											<div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio3">Turkcell Tv+ Ev Paketi</label></div>
-											<div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio3">Turkcell Tv+ Ev Ekstra Paketi</label></div>
-										</div>
-										<div class="col-md-3 cls-padding-0px">
-											<div class="col-md-12 bgcolor-lightgrey cls-padding-0px"><div class="panel-heading"><h4 class="panel-title">Dakika</h4></div></div>
-											<div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio4">Yok</label></div>
-											<div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio4">Süper Konuşma 200 Dk</label></div>
-										</div>
-									</div>
-									<div class="col-md-12 cls-padding-0px">
-										<div class="col-md-2 cls-panel-body cls-margin-top">
-											<button  type="button" class="btn btn-primary cls-right cls-button-control">Kaydet</button>
-										</div>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4 class="panel-title">
-								<a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Seri Numaralı Ürünler</a>
-							</h4>
-						</div>
-						<div id="collapse3" class="panel-collapse collapse">
-							<div class="panel-body">
-								<div class="container-fluid cls-padding-0px cls-deneme-height ">
-									<div class="row cls-margin-task">
-										<div class="col-lg-12 cls-padding-0px">
-											<div class="col-lg-12 cls-task cls-padding-0px">
-												<table class="table" id="taskquetable" data-pagination="true" data-search="true">
-													<thead>
-														<tr>
-															<th class="success">
-																<div class="dropdown">
-																	<a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary">
-																		İşlemler <span class="caret"></span>
-																	</a>
-																	<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-																		<li>
-																			<a href="#myModal1" role="button" class="btn" data-toggle="modal" style="padding-right: 110px; float: left;">Yeni</a>
-																		</li>
-																		<br />
-																		<li class="divider"></li>
-																		<li class="dropdown-submenu">
-																			<a tabindex="-1" href="#">Seçim</a>
-																			<ul class="dropdown-menu">
-																				<li><a tabindex="-1" href="#">Tümünü Seç</a></li>
-																				<li><a href="#">Seçimi Çevir</a></li>
-																				<li><a href="#">Seçimi Temizle</a></li>
-																			</ul>
-																		</li>
-																		<li class="divider"></li>
-																		<li><a href="#">Filtreyi Temizle</a></li>
-                                                                        <li class="dropdown-submenu">
-												<a tabindex="-1" href="#">Kat Ziyaret İşlemleri</a>
-												<ul class="dropdown-menu">
-													<li><a href="#katziyareti1" role="button" class="btn" data-toggle="modal" style="float: left;">Kat Ziyaret Sonuçlarını Toplu Gir</a></li>
-													<li><a href="#katziyareti2" role="button" class="btn" data-toggle="modal" style="float: left;">Müşteri Statülerini Toplu Değiştir</a></li>
-													<li><a href="#katziyareti3" role="button" class="btn" data-toggle="modal" style="float: left;">Müşteri Kat Ziyareti Toplu Task Kapama</a></li>
-												</ul>
-											</li>
-																		<li><a href="#">Excel'e Kaydet</a></li>
-																	</ul>
-																</div>
-															</th>
-															<th class="warning">Hareket Tarihi</th>
-															<th class="info">Çıkış Yapan Birim</th>
-															<th class="info">Çıkış Yapılan Birim</th>
-															<th class="info">ürün Adı</th>
-															<th class="info">Adet</th>
-															<th class="info">Serial No</th>
-															<th class="info">Onay Durumu</th>
-														</tr>
-													</thead>
-													<tbody>
-														
-														<tr>
-															<!--<td colspan="9" style="background: url('/Content/images/progresbar.gif') center center no-repeat;"></td>-->
-														</tr>
-														
-														<tr class="cls_line" onclick="">
-															<td>
-																<!-- Button trigger modal -->
-																<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="padding: 6px; border-radius: 0px; font-size:14px;">
-																	Düzenle
-																</button>
-																<input type="checkbox" />
-															</td>
-															<td><input type="text" class="form-control" id="exampleInputName2" style="height:30px;" value="" placeholder="Default" disabled /></td>
-															<td><input type="text" class="form-control" id="exampleInputName2" style="height:30px;" value="" placeholder="Default" disabled /></td>
-															<td><input type="text" class="form-control" id="exampleInputName2" style="height:30px;" value="" placeholder="Default" disabled /></td>
-															<td><input type="text" class="form-control" id="exampleInputName2" style="height:30px;" value="" placeholder="Default" disabled /></td>
-															<td><input type="text" class="form-control" id="exampleInputName2" style="height:30px;" value="" placeholder="Default" disabled /></td>
-															<td><input type="text" class="form-control" id="exampleInputName2" style="height:30px;" value="" placeholder="Default" disabled /></td>
-															<td><input type="text" class="form-control" id="exampleInputName2" style="height:30px;" value="" placeholder="Default" disabled /></td>
-														</tr>
-														
-													</tbody>
-												</table>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-         <script type="text/javascript" src="Templates/TaskQueueEditForm.js"></script> 
-            <script>
-                $(document).ready(function () {
-                    moment.locale('tr');
-                    
-                });
-            </script>
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" col-md-3 height-40">
+                            <div class="col-md-6" style="padding: 10px 0 0 0;">Blok<span style="float:right;">:</span></div>
+                            <div data-bind="text: blockname" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
+                        </div>
+                        <div class=" col-md-3 height-40">
+                            <div class="col-md-6" style="padding: 10px 0 0 0;">Müşteri Statü<span style="float:right;">:</span></div>
+                            <div class="col-md-6">
+                                <select id="abonedurumu" data-bind="options: ctstatuslist, optionsText: 'Text', optionsValue: 'Text', value: customerstatus" multiple="multiple"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="padding: 1px 0 1px 0 !important; margin: 0 !important;">
+                        <div class=" col-md-3 height-40">
+                            <div class="col-md-6" style="padding: 10px 0 0 0;">Task Durumu<span style="float:right;">:</span></div>
+                            <div class="col-md-6">
+                                <select id="taskdurumu" data-bind="options: taskstatuslist, optionsText: 'taskstate', optionsValue: 'taskstateid',value:taskstatus" multiple="multiple"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-3 height-40">
+                            <div class="col-md-6" style="padding: 10px 0 0 0;">Açıklama<span style="float:right;">:</span></div>
+                            <div class="col-md-6" style="padding: 5px 0 0 0;">
+                                <textarea data-bind="value:description" class="form-control" rows="1"></textarea>
+                            </div>
+                        </div>
+                        <div class=" col-md-3 height-40">
+                            <div class="col-md-6" style="padding: 10px 0 0 0;">Öbek<span style="float:right;">:</span></div>
+                            <div data-bind="text: region" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
+                        </div>
+                        <div class="col-md-3 height-30">
+                            <button type="button" class="btn btn-primary" data-bind="click: saveTaskQueues">Kaydet</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-md-offset-3" data-bind="visible : message" style="position: absolute; top: 150px;" id="id_alert" onclick="setTimeout(function () { $('#id_alert').css({ display: 'none' }); }, 1000)">
+        <div class="alert alert-success alert-dismissible cls_alert" role="alert" style="height: 100px;">
+            <button type="button" data-bind="click :redirect" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>İşlem Başarılı</strong>
+        </div>
+    </div>
+    <br />
+    <div data-bind="visible: taskstatus()!=null && taskstatus()!=0 && taskstatetype()!=2" class="col-md-12 cls-padding-0px">
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Abone Kampanya & Ürün Bilgileri </a>
+                    </h4>
+                </div>
+                <div id="collapse2" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <form action="Taskqueues.html" method="post">
+                            <div class="col-md-12 cls-padding-0px">
+                                <div class="col-md-4 cls-padding-10px">
+                                    <div class="form-group-sm has-info cls-margin-bottom">
+                                        <select id="kategori"  data-bind="options:categorylist,optionsText:'category',optionsValue:'category',value:category" multiple="multiple"></select>  
+                                    </div>
+                                    <div  data-bind="visible:category" class="form-group-sm has-info cls-margin-top">
+                                        <select id="urun" data-bind="options:subcategorylist,optionsText:'subcategory',optionsValue:'subcategory',value:subcategory" multiple="multiple"></select>  
+                                    </div>
+                                    <div data-bind="visible:subcategory" class="form-group-sm has-info cls-margin-top">
+                                        <select id="kampanya" data-bind="options:campaignlist,optionsText:'name',optionsValue:'name',value:campaignname" multiple="multiple"></select>  
+                                    </div>
+                                </div>
+                                <div class="col-md-8 cls-padding-0px">
+                                    <div class="col-md-3 cls-padding-0px">
+                                        <div class="col-md-12 bgcolor-lightgrey cls-padding-0px"><div class="panel-heading"><h4 class="panel-title">ISS</h4></div></div>
+                                        <div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio1">Yok</label></div>
+                                        <div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio1">Cayma Bedeli</label></div>
+                                    </div>
+                                    <div class="col-md-3 cls-padding-0px">
+                                        <div class="col-md-12 bgcolor-lightgrey cls-padding-0px"><div class="panel-heading"><h4 class="panel-title">Fiber</h4></div></div>
+                                        <div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio2">Yok</label></div>
+                                        <div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio2">25 Mbps 0 AKK</label></div>
+                                    </div>
+                                    <div class="col-md-3 cls-padding-0px">
+                                        <div class="col-md-12 bgcolor-lightgrey cls-padding-0px"><div class="panel-heading"><h4 class="panel-title">Tv</h4></div></div>
+                                        <div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio3">Yok</label></div>
+                                        <div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio3">Turkcell Tv+ Ev Paketi</label></div>
+                                        <div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio3">Turkcell Tv+ Ev Ekstra Paketi</label></div>
+                                    </div>
+                                    <div class="col-md-3 cls-padding-0px">
+                                        <div class="col-md-12 bgcolor-lightgrey cls-padding-0px"><div class="panel-heading"><h4 class="panel-title">Dakika</h4></div></div>
+                                        <div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio4">Yok</label></div>
+                                        <div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio4">Süper Konuşma 200 Dk</label></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 cls-padding-0px">
+                                <div class="col-md-3 cls-padding-0px">
+                                    <div class="col-md-12 bgcolor-lightgrey cls-padding-0px"><div class="panel-heading"><h4 class="panel-title">ISS</h4></div></div>
+                                    <div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio1">Yok</label></div>
+                                    <div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio1">Cayma Bedeli</label></div>
+                                </div>
+                                <div class="col-md-3 cls-padding-0px">
+                                    <div class="col-md-12 bgcolor-lightgrey cls-padding-0px"><div class="panel-heading"><h4 class="panel-title">Fiber</h4></div></div>
+                                    <div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio2">Yok</label></div>
+                                    <div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio2">25 Mbps 0 AKK</label></div>
+                                </div>
+                                <div class="col-md-3 cls-padding-0px">
+                                    <div class="col-md-12 bgcolor-lightgrey cls-padding-0px"><div class="panel-heading"><h4 class="panel-title">Tv</h4></div></div>
+                                    <div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio3">Yok</label></div>
+                                    <div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio3">Turkcell Tv+ Ev Paketi</label></div>
+                                    <div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio3">Turkcell Tv+ Ev Ekstra Paketi</label></div>
+                                </div>
+                                <div class="col-md-3 cls-padding-0px">
+                                    <div class="col-md-12 bgcolor-lightgrey cls-padding-0px"><div class="panel-heading"><h4 class="panel-title">Dakika</h4></div></div>
+                                    <div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio4">Yok</label></div>
+                                    <div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio4">Süper Konuşma 200 Dk</label></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 cls-padding-0px">
+                                <div class="col-md-2 cls-panel-body cls-margin-top">
+                                    <button type="button" class="btn btn-primary cls-right cls-button-control">Kaydet</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Seri Numaralı Ürünler</a>
+                    </h4>
+                </div>
+                <div id="collapse3" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="container-fluid cls-padding-0px cls-deneme-height ">
+                            <div class="row cls-margin-task">
+                                <div class="col-lg-12 cls-padding-0px">
+                                    <div class="col-lg-12 cls-task cls-padding-0px">
+                                        <table class="table" id="taskquetable" data-pagination="true" data-search="true">
+                                            <thead>
+                                                <tr>
+                                                    <th class="success">
+                                                        <div class="dropdown">
+                                                            <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary">
+                                                                İşlemler <span class="caret"></span>
+                                                            </a>
+                                                            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                                                                <li>
+                                                                    <a href="#myModal1" role="button" class="btn" data-toggle="modal" style="padding-right: 110px; float: left;">Yeni</a>
+                                                                </li>
+                                                                <br />
+                                                                <li class="divider"></li>
+                                                                <li class="dropdown-submenu">
+                                                                    <a tabindex="-1" href="#">Seçim</a>
+                                                                    <ul class="dropdown-menu">
+                                                                        <li><a tabindex="-1" href="#">Tümünü Seç</a></li>
+                                                                        <li><a href="#">Seçimi Çevir</a></li>
+                                                                        <li><a href="#">Seçimi Temizle</a></li>
+                                                                    </ul>
+                                                                </li>
+                                                                <li class="divider"></li>
+                                                                <li><a href="#">Filtreyi Temizle</a></li>
+                                                                <li class="dropdown-submenu">
+                                                                    <a tabindex="-1" href="#">Kat Ziyaret İşlemleri</a>
+                                                                    <ul class="dropdown-menu">
+                                                                        <li><a href="#katziyareti1" role="button" class="btn" data-toggle="modal" style="float: left;">Kat Ziyaret Sonuçlarını Toplu Gir</a></li>
+                                                                        <li><a href="#katziyareti2" role="button" class="btn" data-toggle="modal" style="float: left;">Müşteri Statülerini Toplu Değiştir</a></li>
+                                                                        <li><a href="#katziyareti3" role="button" class="btn" data-toggle="modal" style="float: left;">Müşteri Kat Ziyareti Toplu Task Kapama</a></li>
+                                                                    </ul>
+                                                                </li>
+                                                                <li><a href="#">Excel'e Kaydet</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </th>
+                                                    <th class="warning">Hareket Tarihi</th>
+                                                    <th class="info">Çıkış Yapan Birim</th>
+                                                    <th class="info">Çıkış Yapılan Birim</th>
+                                                    <th class="info">ürün Adı</th>
+                                                    <th class="info">Adet</th>
+                                                    <th class="info">Serial No</th>
+                                                    <th class="info">Onay Durumu</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <tr>
+                                                    <!--<td colspan="9" style="background: url('/Content/images/progresbar.gif') center center no-repeat;"></td>-->
+                                                </tr>
+
+                                                <tr class="cls_line" onclick="">
+                                                    <td>
+                                                        <!-- Button trigger modal -->
+                                                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="padding: 6px; border-radius: 0px; font-size:14px;">
+                                                            Düzenle
+                                                        </button>
+                                                        <input type="checkbox" />
+                                                    </td>
+                                                    <td><input type="text" class="form-control" id="exampleInputName2" style="height:30px;" value="" placeholder="Default" disabled /></td>
+                                                    <td><input type="text" class="form-control" id="exampleInputName2" style="height:30px;" value="" placeholder="Default" disabled /></td>
+                                                    <td><input type="text" class="form-control" id="exampleInputName2" style="height:30px;" value="" placeholder="Default" disabled /></td>
+                                                    <td><input type="text" class="form-control" id="exampleInputName2" style="height:30px;" value="" placeholder="Default" disabled /></td>
+                                                    <td><input type="text" class="form-control" id="exampleInputName2" style="height:30px;" value="" placeholder="Default" disabled /></td>
+                                                    <td><input type="text" class="form-control" id="exampleInputName2" style="height:30px;" value="" placeholder="Default" disabled /></td>
+                                                    <td><input type="text" class="form-control" id="exampleInputName2" style="height:30px;" value="" placeholder="Default" disabled /></td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="Templates/TaskQueueEditForm.js"></script>
+<script>
+    $(document).ready(function () {
+        moment.locale('tr');
+    });
+</script>
