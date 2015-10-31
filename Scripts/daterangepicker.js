@@ -44,7 +44,7 @@
         this.minDate = false;
         this.maxDate = false;
         this.dateLimit = false;
-        this.autoApply = false;
+        this.autoApply = true;
         this.singleDatePicker = false;
         this.showDropdowns = false;
         this.showWeekNumbers = false;
@@ -1289,6 +1289,7 @@
             this.startDate = this.oldStartDate;
             this.endDate = this.oldEndDate;
             this.hide();
+            this.element.val("");
             this.element.trigger('cancel.daterangepicker', this);
         },
 

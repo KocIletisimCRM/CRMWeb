@@ -16,20 +16,21 @@
 						<div class="col-xs-12 col-sm-4 col-md-4">
 							<div class="form-group-sm has-info cls-margin-bottom">
 								<label class="control-label" for="site">Site</label>
-								<span id="site" class="kth col-md-4 form-control"></span>
+                                <input type="text" class="form-control" id="exampleInputName2" data-bind="value:site, valueUpdate: 'keydown', event: { keypress: enterfilter }" />
 							</div>
 						</div>
 						<div class="col-xs-12 col-sm-4 col-md-4">
 							<div class="form-group-sm has-info cls-margin-bottom">
 								<label class="control-label" for="region">Öbek</label>
-								<span id="region" class="kth col-md-4 form-control"></span>
+                                <input type="text" class="form-control" id="exampleInputName2" data-bind="value:region, valueUpdate: 'keydown', event: { keypress: enterfilter }" />
+
 							</div>
 						</div>
 
 						<div class="col-xs-12 col-sm-4 col-md-4" style="margin-top: 21px;">
 							<div class="btn-group pull-right" role="group">
-								<button type="button" class="btn btn-success">Sorgula</button>
-								<button type="button" class="btn btn-info">Temizle</button>
+								<button data-bind="click:getSiteList(1,dataModel.rowsPerPage())" type="button" class="btn btn-success">Sorgula</button>
+								<button data-bind="click:clean" type="button" class="btn btn-info">Temizle</button>
 							</div>
 						</div>
 					</div>
@@ -38,7 +39,7 @@
 		</div>
 	</div>
 
-	<div class="col-md-6 col-md-offset-3" style="position: absolute; top: 150px;" id="id_alert" onclick="setTimeout(function () { $('#id_alert').css({ display: 'none' }); }, 1000)">
+	<div data-bind="visible:siteList().length<1" class="col-md-6 col-md-offset-3" style="position: absolute; top: 150px;" id="id_alert" onclick="setTimeout(function () { $('#id_alert').css({ display: 'none' }); }, 1000)">
 		<div class="alert alert-danger alert-dismissible cls_alert" role="alert" style="height: 100px;">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			<strong>Warning!</strong> Better check yourself, you're not looking too good.
@@ -55,14 +56,15 @@
 						</div>
 						<div class="col-xs-6 col-sm-6 col-md-6">
 							<!--pagination Starts-->
-							<nav class="text-center" style="margin: 0px !important;padding: 0px !important;">
-								<ul class="pagination" style="margin: 0 !important;padding: 0px !important; float:right;">
-									<li class="previous"><a href="javascript:void(0)" data-bind="click: function (e) { e.go().first(); }">&lt;&lt;</a></li>
-									<li><a href="javascript:void(0)" data-bind="click: function (e) { e.go().previous(); }">&lt;</a></li>
-									<li><a href="javascript:void(0)" data-bind="click: function (e) { e.go().next(); }">&gt;</a></li>
-									<li class="next"><a href="javascript:void(0)" data-bind="click: function (e) { e.go().last(); }">&gt;&gt;</a></li>
-								</ul>
-							</nav>
+                            <nav class="text-center" style="margin: 0px !important;padding: 0px !important;">
+                                <ul class="pagination" style="margin: 0 !important;padding: 0px !important; float:right;">
+                                    <li class="previous"><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoFirstPage(); } ,enable:pageNo>1">&lt;&lt;</a></li>
+                                    <li><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoBackPage();}">&lt;</a></li>
+                                    <li><select> <option>1</option> </select></li>
+                                    <li><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoNextPage(); }">&gt;</a></li>
+                                    <li class="next"><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoLastPage(); }">&gt;&gt;</a></li>
+                                </ul>
+                            </nav>
 							<!--pagination finish-->
 						</div>
 					</div>
@@ -106,31 +108,25 @@
 											</tr>
 										</thead>
 										<tbody>
-											<!-- ko if:(pageNo()==0) -->
+											
 											<tr>
-												<td colspan="9" style="background: url('/Content/images/progresbar.gif') center center no-repeat;"></td>
+												<td colspan="9"></td>
 											</tr>
-											<!-- /ko -->
-											<!-- ko foreach: taskqueuelist -->
-											<!--<tr data-bind="click: function (data, evt) { $parent.select(data, evt); }" class="cls_line" onclick="">
-												<td></td>
-												<td><input type="text" class="form-control" id="exampleInputName2"></td>
-												<td><select class="form-control"><option></option><option>Tamamlandı</option><option>Devam Ediyor</option><option>İptal</option></select></td>
-											</tr>-->
-											<tr data-bind="click: function (data, evt) { $parent.select(data, evt); }" class="cls_line" onclick="">
+											
+											<!-- ko foreach: siteList -->
+											<tr  class="cls_line" onclick="">
 												<td>
-													<!-- Button trigger modal -->
-													<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="padding: 3px; border-radius: 0px; font-size:14px;">
+													<button type="button" data-bind="value:siteid" class="btn btn-primary btn-lg edit" data-toggle="modal" data-target="#myModal" style="padding: 3px; border-radius: 0px; font-size:14px;">
 														Düzenle
 													</button>
 													<input type="checkbox" />
-
 												</td>
-												<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
-												<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
-												<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
-												<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
+                                                <td data-bind="text:sitename"></td>
+                                                <td data-bind="text:siteaddress"></td>
+                                                <td data-bind="text:region"></td>
+                                                <td data-bind="text:sitedistrict"></td>
 											</tr>
+                                            <!-- /ko -->  
 										</tbody>
 									</table>
 								</div>
@@ -138,159 +134,171 @@
 						</div>
 					</div>
 					<!--pagination Starts-->
-					<nav class="text-center">
-						<ul class="pagination">
-							<li class="previous"><a href="javascript:void(0)" data-bind="click: function (e) { e.go().first(); }">&lt;&lt;</a></li>
-							<li><a href="javascript:void(0)" data-bind="click: function (e) { e.go().previous(); }">&lt;</a></li>
-							<li><a href="javascript:void(0)" data-bind="click: function (e) { e.go().next(); }">&gt;</a></li>
-							<li class="next"><a href="javascript:void(0)" data-bind="click: function (e) { e.go().last(); }">&gt;&gt;</a></li>
-						</ul>
-					</nav>
+                    <nav class="text-center" style="margin: 0px !important;padding: 0px !important;">
+                        <ul class="pagination" style="margin: 0 !important;padding: 0px !important; float:right;">
+                            <li class="previous"><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoFirstPage(); } ,enable:pageNo>1">&lt;&lt;</a></li>
+                            <li><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoBackPage();}">&lt;</a></li>
+                            <li><select> <option>1</option> </select></li>
+                            <li><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoNextPage(); }">&gt;</a></li>
+                            <li class="next"><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoLastPage(); }">&gt;&gt;</a></li>
+                        </ul>
+                    </nav>
 					<!--pagination finish-->
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
-<!-- İşlemler Yeni For Modal Start -->
-<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	<div class="modal-dialog" role="document" style="margin-top: 50px;">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Edit Form</h4>
-			</div>
-			<div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
-				<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-					<p>Site ID</p>
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-					<div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;"></p></div>
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-					<p>Site Adı</p>
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-					<input type="text" class="form-control" id="Text1" value="">
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-					<p>Adres</p>
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-					<textarea class="form-control" rows="2"></textarea>
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-					<p>Öbek</p>
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-					<select class="form-control">
-						<option></option>
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-					</select>
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-					<p>Mahalle/Semt</p>
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-					<select class="form-control">
-						<option></option>
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-					</select>
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-					<p>Bölge Kodu</p>
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-					<input type="text" class="form-control" id="Text2" value="">
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-					<p>Adres Tarifi</p>
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-					<textarea class="form-control" rows="2"></textarea>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
-				<button type="button" class="btn btn-primary">Kaydet</button>
-			</div>
-		</div>
-	</div>
+    <!-- İşlemler Yeni For Modal Start -->
+    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document" style="margin-top: 50px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Edit Form</h4>
+                </div>
+                <div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Site ID</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;"></p></div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Site Adı</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <input type="text" class="form-control" id="Text1" value="">
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Adres</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <textarea class="form-control" rows="2"></textarea>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Öbek</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <select class="form-control">
+                            <option></option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Mahalle/Semt</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <select class="form-control">
+                            <option></option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Bölge Kodu</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <input type="text" class="form-control" id="Text2" value="">
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Adres Tarifi</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <textarea class="form-control" rows="2"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+                    <button type="button" class="btn btn-primary">Kaydet</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- İşlemler Yeni For Modal Finish-->
+    <!-- Duzenle For Modal Start-->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document" style="margin-top: 50px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="H1">Site Düzenleme</h4>
+                </div>
+                <div data-bind="with:selectedSite" class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Site ID</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <div data-bind="text:siteid" class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;"></p></div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Site Adı</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <input data-bind="value:sitename" type="text" class="form-control" id="Text3" >
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Adres</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <textarea data-bind="value:siteaddress" class="form-control" rows="2"></textarea>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Öbek</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <select class="form-control">
+                            <option>Beşirli</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Mahalle/Semt</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <select class="form-control">
+                            <option>BEŞİRLİ</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Bölge Kodu</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <input data-bind="value:siteregioncode" type="text" class="form-control" id="Text4" >
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Adres Tarifi</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <textarea data-bind="value:description" class="form-control" rows="2"></textarea>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 cls-padding-0px" style="margin-top: 3px;" data-bind="visible: $root.errorcode()">
+                        <span class="label label-success" data-bind="text: $root.errormessage , visible:$root.errorcode()==1"></span>
+                        <span class="label label-danger" data-bind="text: $root.errormessage, visible: $root.errorcode() != 1"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button  type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+                    <button data-bind="click:$root.editSite" type="button" class="btn btn-primary">Kaydet</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Duzenle For Modal Finish-->
+
+
 </div>
-<!-- İşlemler Yeni For Modal Finish-->
-<!-- Duzenle For Modal Start-->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	<div class="modal-dialog" role="document" style="margin-top: 50px;">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="H1">Edit Form</h4>
-			</div>
-			<div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
-				<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-					<p>Site ID</p>
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-					<div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">1</p></div>
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-					<p>Site Adı</p>
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-					<input type="text" class="form-control" id="Text3" value="Kültür Sitesi">
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-					<p>Adres</p>
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-					<textarea class="form-control" rows="2"></textarea>
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-					<p>Öbek</p>
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-					<select class="form-control">
-						<option>Beşirli</option>
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-					</select>
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-					<p>Mahalle/Semt</p>
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-					<select class="form-control">
-						<option>BEŞİRLİ</option>
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-					</select>
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-					<p>Bölge Kodu</p>
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-					<input type="text" class="form-control" id="Text4" value="">
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-					<p>Adres Tarifi</p>
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-					<textarea class="form-control" rows="2">Senyuvama giderken yokus baslangicinda sol tarafta</textarea>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
-				<button type="button" class="btn btn-primary">Kaydet</button>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- Duzenle For Modal Finish-->
 <script type="text/javascript" src="Templates/Sites.js"></script>
+<script>
+    $(document).ready(function () {
+        moment.locale('tr');
+    });
+</script>

@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="Scripts/jquery.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
+    <script src="Scripts/knockout-3.3.0.js"></script>
+    
+</head>
+<body>
+
+    <img class="myImage" data-bind="attr: {src: $root.photoUrl() || 'img/koc_logo.png'}" />
+    <input data-bind="event: {change: $root.fileUpload}" type="file" accept="*" class="fileChooser" />
+
+
+</body>
+</html>
+
+
+<script>
+var myController = function()
+{
+    var self = this;
+    this.photoUrl = ko.observable();
+    this.fileUpload = function(data, e)
+    {
+        var file    = e.target.files[0];
+        var reader  = new FileReader();
+
+        reader.onloadend = function (onloadend_e)
+        {
+            var result = reader.result; // Here is your base 64 encoded file. Do with it what you want.
+            console.log(self.photoUrl());
+           self.photoUrl(result);
+        };
+
+        if(file)
+        {
+            console.log(self.photoUrl());
+            reader.readAsDataURL(file);
+        }
+    };
+};
+</script>

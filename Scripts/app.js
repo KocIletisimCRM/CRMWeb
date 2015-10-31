@@ -20,6 +20,7 @@ $(window).bind("hashchange", function () {
 }).load(function () {
     var tempPage = document.location.hash.replace("#", "").split("?")[0];
     $("#templateContainer").loadTemplate("Templates/" + (tempPage || "ListTaskqueue") + ".html");
+
     $("#fibersatis").click(function () {
         $("#ModalContainer").loadTemplate("Templates/New/FiberSales.html");
     });

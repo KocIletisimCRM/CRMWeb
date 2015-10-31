@@ -1,4 +1,4 @@
-﻿<div class="container-fluid" style="background-color: #D1E9F6 !important;">
+﻿<div id="bindingContainer" class="container-fluid" style="background-color: #D1E9F6 !important;">
 	<div class="col-md-12 container" style="padding: 0 !important; margin: 20px 0 0 0 !important; border-radius: 0 0 8px 8px !important;">
 		<div class="panel-group" id="accordion">
 			<div class="panel" id="panel2" style="border: 1px solid #fff !important;">
@@ -63,14 +63,15 @@
 						</div>
 						<div class="col-xs-6 col-sm-6 col-md-6">
 							<!--pagination Starts-->
-							<nav class="text-center" style="margin: 0px !important;padding: 0px !important;">
-								<ul class="pagination" style="margin: 0 !important;padding: 0px !important; float:right;">
-									<li class="previous"><a href="javascript:void(0)" data-bind="click: function (e) { e.go().first(); }">&lt;&lt;</a></li>
-									<li><a href="javascript:void(0)" data-bind="click: function (e) { e.go().previous(); }">&lt;</a></li>
-									<li><a href="javascript:void(0)" data-bind="click: function (e) { e.go().next(); }">&gt;</a></li>
-									<li class="next"><a href="javascript:void(0)" data-bind="click: function (e) { e.go().last(); }">&gt;&gt;</a></li>
-								</ul>
-							</nav>
+                            <nav class="text-center" style="margin: 0px !important;padding: 0px !important;">
+                                <ul class="pagination" style="margin: 0 !important;padding: 0px !important; float:right;">
+                                    <li class="previous"><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoFirstPage(); } ,enable:pageNo>1">&lt;&lt;</a></li>
+                                    <li><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoBackPage();}">&lt;</a></li>
+                                    <li><select> <option>1</option> </select></li>
+                                    <li><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoNextPage(); }">&gt;</a></li>
+                                    <li class="next"><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoLastPage(); }">&gt;&gt;</a></li>
+                                </ul>
+                            </nav>
 							<!--pagination finish-->
 						</div>
 					</div>
@@ -92,14 +93,7 @@
 											</tr>
 										</thead>
 										<tbody>
-											<!-- ko if:(pageNo()==0) -->
-											<!-- /ko -->
 											<!-- ko foreach: taskqueuelist -->
-											<!--<tr data-bind="click: function (data, evt) { $parent.select(data, evt); }" class="cls_line" onclick="">
-												<td></td>
-												<td><input type="text" class="form-control" id="exampleInputName2"></td>
-												<td><select class="form-control"><option></option><option>Tamamlandı</option><option>Devam Ediyor</option><option>İptal</option></select></td>
-											</tr>-->
 											<tr data-bind="click: function (data, evt) { $parent.select(data, evt); }" class="cls_line" onclick="">
 												<td colspan="9" style="background-color: #eee;"><input type="checkbox" id="checkbox_1" /></td>
 											</tr>
@@ -118,17 +112,19 @@
 						</div>
 					</div>
 					<!--pagination Starts-->
-					<nav class="text-center">
-						<ul class="pagination">
-							<li class="previous"><a href="javascript:void(0)" data-bind="click: function (e) { e.go().first(); }">&lt;&lt;</a></li>
-							<li><a href="javascript:void(0)" data-bind="click: function (e) { e.go().previous(); }">&lt;</a></li>
-							<li><a href="javascript:void(0)" data-bind="click: function (e) { e.go().next(); }">&gt;</a></li>
-							<li class="next"><a href="javascript:void(0)" data-bind="click: function (e) { e.go().last(); }">&gt;&gt;</a></li>
-						</ul>
-					</nav>
+                    <nav class="text-center" style="margin: 0px !important;padding: 0px !important;">
+                        <ul class="pagination" style="margin: 0 !important;padding: 0px !important; float:right;">
+                            <li class="previous"><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoFirstPage(); } ,enable:pageNo>1">&lt;&lt;</a></li>
+                            <li><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoBackPage();}">&lt;</a></li>
+                            <li><select> <option>1</option> </select></li>
+                            <li><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoNextPage(); }">&gt;</a></li>
+                            <li class="next"><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoLastPage(); }">&gt;&gt;</a></li>
+                        </ul>
+                    </nav>
 					<!--pagination finish-->
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+<script src="Templates/ListStockCase.js"></script>

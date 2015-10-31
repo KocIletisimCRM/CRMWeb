@@ -3,7 +3,6 @@ var dataModel = {
   
     customerid: ko.observable(),
     attachedpersonelid: ko.observable(),
-    deneme:ko.observable("mirac"),
     appointmentdate: ko.observable(),
     personellist: ko.observableArray([]),
     regionlist: ko.observableArray([]),
@@ -117,7 +116,7 @@ var dataModel = {
         };
         if (data.customerid != null && data.attachedpersonelid != null && data.appointmentdate != null)
             crmAPI.savesalestask(data, function (a, b, c) { self.returntaskorderno(a) }, null, null);
-        return alert("Eksik Bilgi Girdiniz.!");
+        else alert("Eksik Bilgi Girdiniz.!");
     },
     renderBindings: function () {
         var self = this;

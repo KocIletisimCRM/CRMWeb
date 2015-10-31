@@ -2365,17 +2365,16 @@
             }
         });
     };
-    
 
     $.fn.datetimepicker.defaults = {
-        timeZone: 'UTC/GMT',
+        timeZone: 'Etc/UTC',
         format: false,
-        dayViewHeaderFormat: 'YYYY MM DD',
+        dayViewHeaderFormat: 'MMMM YYYY',
         extraFormats: false,
         stepping: 1,
         minDate: false,
         maxDate: false,
-        useCurrent: false,
+        useCurrent: true,
         collapse: true,
         locale: moment.locale('tr'),
         defaultDate: false,
@@ -2393,12 +2392,12 @@
             close: 'glyphicon glyphicon-remove'
         },
         tooltips: {
-            today: 'Bugüne Git',
-            clear: 'Seçimi Temizle',
-            close: 'Kapat',
-            selectMonth: 'Ay Seç',
-            prevMonth: 'Önceki Ay',
-            nextMonth: 'Sonraki Ay',
+            today: 'Go to today',
+            clear: 'Clear selection',
+            close: 'Close the picker',
+            selectMonth: 'Select Month',
+            prevMonth: 'Previous Month',
+            nextMonth: 'Next Month',
             selectYear: 'Select Year',
             prevYear: 'Previous Year',
             nextYear: 'Next Year',
@@ -2419,12 +2418,12 @@
             togglePeriod: 'Toggle Period',
             selectTime: 'Select Time'
         },
-        useStrict: false,
-        sideBySide: true,
+        useStrict: true,
+        sideBySide: false,
         daysOfWeekDisabled: false,
         calendarWeeks: false,
         viewMode: 'days',
-        toolbarPlacement: 'top',
+        toolbarPlacement: 'default',
         showTodayButton: true,
         showClear: true,
         showClose: true,

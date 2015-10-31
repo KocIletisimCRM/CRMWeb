@@ -6,7 +6,7 @@
 var dataModel = {
     multiSelectTagIds: "#blokadi,#taskNameFilter,#servissaglayici,#abonedurumu,#personel,#taskdurumu",
     typeHeadTagIds: "#site",
-
+    flag:ko.observable(),
     pageCount: ko.observable(),
     pageNo: ko.observable(1),
     rowsPerPage: ko.observable(20),
@@ -37,7 +37,6 @@ var dataModel = {
     taskqueuelist: ko.observableArray([]),
     totalpagecount: ko.observable(0),
     totalRowCount: ko.observable(),
-
     
     getTasks: function () {
         var self = this;
@@ -156,10 +155,12 @@ var dataModel = {
         crmAPI.personelattachment(data, function (a, b, c) {
             self.errormessage(a.errorMessage);
             self.errorcode(a.errorCode);
+            self.flag(true);
             window.setTimeout(function () {
                 $('#personelatama').modal('hide');
                 self.getFilter(1, dataModel.rowsPerPage());
             }, 1000);
+            self.selectedAttachmentPersonelname(null);
         }, null, null);       
     },
     clean: function () {
@@ -189,19 +190,23 @@ var dataModel = {
         self.pageNo(pageno);
         self.rowsPerPage(rowsperpage);
         self.isLoading(true);
+        self.errormessage(null);
+        self.errorcode(null);
+        self.flag(null);
+        self.selectedAttachmentPersonelname(null);
         var data = {
             pageNo:pageno,
             rowsPerPage:rowsperpage,
-            site: this.sitename()? { fieldName: "sitename", op: 6, value: this.sitename() }: null,
-            customer: this.customername()?{ fieldName: "customername", op: 6, value: this.customername() }:null,
-            task:this.selectedTaskname()? { fieldName: "taskname", op: 2, value: this.selectedTaskname() }:null,
-            personel: this.selectedPersonelname() ? (this.selectedPersonelname() == "Atanmamış" ? { fieldName: "personelname", op: 8, value: null } : { fieldName: "personelname", op: 6, value: this.selectedPersonelname() }) : null,
-            taskstate: this.selectedTaskstatus() ? (this.selectedTaskstatus() == 'AÇIK' ? { fieldName: "taskstate", op: 8, value: null } : { fieldName: "taskstate", op: 2, value: this.selectedTaskstatus() }) : null,
-            iss: this.selectedIss() ? { fieldName: "issText", op: 6, value: this.selectedIss() } : null,
-            customerstatus: this.selectedCustomerstatus() ? { fieldName: "Text", op: 6, value: this.selectedCustomerstatus() } : null,
-            attachmentDate: this.attachmentDate() ? this.attachmentDate() : null,
-            appointmentDate: this.appointmentDate() ? this.appointmentDate() : null,
-            consummationDate:this.consummationDate()? this.consummationDate() :null,
+            site: self.sitename() ? { fieldName: "sitename", op: 6, value: self.sitename() } : null,
+            customer: self.customername() ? { fieldName: "customername", op: 6, value: self.customername() } : null,
+            task: self.selectedTaskname() ? { fieldName: "taskname", op: 2, value: self.selectedTaskname() } : null,
+            personel: self.selectedPersonelname() ? (self.selectedPersonelname() == "Atanmamış" ? { fieldName: "personelname", op: 8, value: null } : { fieldName: "personelname", op: 6, value: self.selectedPersonelname() }) : null,
+            taskstate: self.selectedTaskstatus() ? (self.selectedTaskstatus() == 'AÇIK' ? { fieldName: "taskstate", op: 8, value: null } : { fieldName: "taskstate", op: 2, value: self.selectedTaskstatus() }) : null,
+            iss: self.selectedIss() ? { fieldName: "issText", op: 6, value: self.selectedIss() } : null,
+            customerstatus: self.selectedCustomerstatus() ? { fieldName: "Text", op: 6, value: self.selectedCustomerstatus() } : null,
+            attachmentDate: self.attachmentDate() ? self.attachmentDate() : null,
+            appointmentDate: self.appointmentDate() ? self.appointmentDate() : null,
+            consummationDate: self.consummationDate() ? self.consummationDate() : null,
         };
        
             crmAPI.getTaskQueues(data, function (a, b, c) {
@@ -210,7 +215,8 @@ var dataModel = {
                 self.querytime(a.performance.TotalResponseDuration);
                 self.totalRowCount(a.data.pagingInfo.totalRowCount);
                 self.isLoading(false);
-
+                self.errormessage(null);
+                self.errorcode(null);
                 $('.sel').change(function () {
                     var ids = [];
                     $('.sel').each(function () {
@@ -260,7 +266,7 @@ var dataModel = {
             dataModel.navigate.gotoPage(pc);
         },
     },
-    
+
     renderBindings: function () {
         var self = this;
         $("#blokadi").multiselect({
@@ -315,3 +321,13 @@ var dataModel = {
     }
    
 }
+
+dataModel.flag.subscribe(function (v) {
+    if (v == null)
+        return true;
+    else {
+    $("#personelatamacombo").multiselect('deselect', dataModel.selectedAttachmentPersonelname());
+    dataModel.selectedAttachmentPersonelname(null);
+    }
+
+});

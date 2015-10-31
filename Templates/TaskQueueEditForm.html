@@ -8,7 +8,7 @@
         .a i {
             position: absolute;
             bottom: 10px;
-            right: 24px;
+            right: 24px; 
             top: auto;
             cursor: pointer;
         }
@@ -40,7 +40,9 @@
                         </div>
                         <div class=" col-md-3 height-40">
                             <div class="col-md-6" style="padding: 10px 0 0 0;">Abone Ad-Soyad<span style="float:right;">:</span></div>
-                            <div data-bind="text: customername" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
+                            <div class="col-md-6" style="padding: 10px 0 0 0;">
+                                <a href="#customerinfo" data-bind="text:customername,click:getCustomerCard" role="button" data-toggle="modal"></a>
+                            &nbsp;&nbsp;</div>
                         </div>
                     </div>
                     <div class="col-md-12" style="padding: 1px 0 1px 0 !important; margin: 0 !important;">
@@ -66,7 +68,8 @@
                         </div>
                         <div class=" col-md-3 height-40">
                             <div class="col-md-6" style="padding: 10px 0 0 0;">Location ID<span style="float:right;">:</span></div>
-                            <div data-bind="text: locationid" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
+                      
+                            <a href="#customerinfo" data-bind="text:locationid,click:getCustomerCard" role="button" data-toggle="modal"></a>
                         </div>
                     </div>
                     <div class="col-md-12" style="padding: 1px 0 1px 0 !important; margin: 0 !important;">
@@ -111,7 +114,7 @@
                         </div>
                         <div class=" col-md-3 height-40">
                             <div class="col-md-6" style="padding: 10px 0 0 0;">Blok<span style="float:right;">:</span></div>
-                            <div data-bind="text: blockname" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
+                            <div data-bind="text:blockname() +' Daire: '+ flat()" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
                         </div>
                         <div class=" col-md-3 height-40">
                             <div class="col-md-6" style="padding: 10px 0 0 0;">Müşteri Statü<span style="float:right;">:</span></div>
@@ -124,7 +127,7 @@
                         <div class=" col-md-3 height-40">
                             <div class="col-md-6" style="padding: 10px 0 0 0;">Task Durumu<span style="float:right;">:</span></div>
                             <div class="col-md-6">
-                                <select id="taskdurumu" data-bind="options: taskstatuslist, optionsText: 'taskstate', optionsValue: 'taskstateid',value:taskstatus" multiple="multiple"></select>
+                                <select id="taskdurumu" data-bind="options: taskstatuslist, optionsText: 'taskstate', optionsValue: 'taskstateid',value:taskstatus"></select>
                             </div>
                         </div>
                         <div class="col-md-3 height-40">
@@ -140,6 +143,7 @@
                         <div class="col-md-3 height-30">
                             <button type="button" class="btn btn-primary" data-bind="click: saveTaskQueues">Kaydet</button>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -147,91 +151,69 @@
     </div>
     <div class="col-md-6 col-md-offset-3" data-bind="visible : message" style="position: absolute; top: 150px;" id="id_alert" onclick="setTimeout(function () { $('#id_alert').css({ display: 'none' }); }, 1000)">
         <div class="alert alert-success alert-dismissible cls_alert" role="alert" style="height: 100px;">
-            <button type="button" data-bind="click :redirect" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" data-bind="click :refresh" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <strong>İşlem Başarılı</strong>
         </div>
     </div>
     <br />
-    <div data-bind="visible: taskstatus()!=null && taskstatus()!=0 && taskstatetype()!=2" class="col-md-12 cls-padding-0px">
-        <div class="panel-group" id="accordion">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Abone Kampanya & Ürün Bilgileri </a>
-                    </h4>
-                </div>
-                <div id="collapse2" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        <form action="Taskqueues.html" method="post">
-                            <div class="col-md-12 cls-padding-0px">
-                                <div class="col-md-4 cls-padding-10px">
-                                    <div class="form-group-sm has-info cls-margin-bottom">
-                                        <select id="kategori"  data-bind="options:categorylist,optionsText:'category',optionsValue:'category',value:category" multiple="multiple"></select>  
-                                    </div>
-                                    <div  data-bind="visible:category" class="form-group-sm has-info cls-margin-top">
-                                        <select id="urun" data-bind="options:subcategorylist,optionsText:'subcategory',optionsValue:'subcategory',value:subcategory" multiple="multiple"></select>  
-                                    </div>
-                                    <div data-bind="visible:subcategory" class="form-group-sm has-info cls-margin-top">
-                                        <select id="kampanya" data-bind="options:campaignlist,optionsText:'name',optionsValue:'name',value:campaignname" multiple="multiple"></select>  
-                                    </div>
+
+    <div class="col-md-12 cls-padding-0px" id="editContainer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div id="abonecontainer" class="col-md-12 cls-padding-0px">
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Abone Kampanya & Ürün Bilgileri </a>
+                        </h4>
+                    </div>
+
+                    <div id="collapse2" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class=" row">
+                                <div class="col-md-4  form-group-sm has-info cls-margin-bottom">
+                                    <select id="kategori" data-bind="options:categorylist,optionsText:'category',optionsValue:'category',value:category,optionsCaption: 'Kategori Seçiniz...'"></select>
                                 </div>
-                                <div class="col-md-8 cls-padding-0px">
-                                    <div class="col-md-3 cls-padding-0px">
-                                        <div class="col-md-12 bgcolor-lightgrey cls-padding-0px"><div class="panel-heading"><h4 class="panel-title">ISS</h4></div></div>
-                                        <div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio1">Yok</label></div>
-                                        <div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio1">Cayma Bedeli</label></div>
-                                    </div>
-                                    <div class="col-md-3 cls-padding-0px">
-                                        <div class="col-md-12 bgcolor-lightgrey cls-padding-0px"><div class="panel-heading"><h4 class="panel-title">Fiber</h4></div></div>
-                                        <div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio2">Yok</label></div>
-                                        <div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio2">25 Mbps 0 AKK</label></div>
-                                    </div>
-                                    <div class="col-md-3 cls-padding-0px">
-                                        <div class="col-md-12 bgcolor-lightgrey cls-padding-0px"><div class="panel-heading"><h4 class="panel-title">Tv</h4></div></div>
-                                        <div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio3">Yok</label></div>
-                                        <div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio3">Turkcell Tv+ Ev Paketi</label></div>
-                                        <div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio3">Turkcell Tv+ Ev Ekstra Paketi</label></div>
-                                    </div>
-                                    <div class="col-md-3 cls-padding-0px">
-                                        <div class="col-md-12 bgcolor-lightgrey cls-padding-0px"><div class="panel-heading"><h4 class="panel-title">Dakika</h4></div></div>
-                                        <div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio4">Yok</label></div>
-                                        <div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio4">Süper Konuşma 200 Dk</label></div>
+                                <div data-bind="visible:category" class="col-md-4  form-group-sm has-info">
+                                    <select id="urun" data-bind="options:subcategorylist,optionsText:'subcategory',optionsValue:'subcategory',value:subcategory,optionsCaption: 'Alt Kategori Seçiniz...'"></select>
+                                </div>
+                                <div data-bind="visible:subcategory" class=" col-md-4 form-group-sm has-info">
+                                    <select id="kampanya" data-bind="options:campaignlist,optionsText:'name',optionsValue:'id',value:campaignid,optionsCaption: 'Kampanya Seçiniz...'"></select>
+                                </div>
+                            </div>
+                            <div class="row" data-bind="foreach:{ data: productlist, as:'categories'}">
+                                <div class="col-md-3">
+                                    <div class="list-group">
+                                        <h4 data-bind="text:categories.category" class="list-group-item active"></h4>
+                                        <label class="list-group-item">
+                                            <input data-bind="attr:{name: ('category' + $index()), value: 0},checked:categories.selectedProduct" type="radio" name="optradio1">Yok
+                                        </label>
+                                        <!-- ko foreach:{ data: categories.products, as: 'product'} -->
+                                        <label class="list-group-item">
+                                            <input data-bind="attr:{name: ('category' + $parentContext.$index()), value: product.productid},checked:categories.selectedProduct" type="radio" name="optradio1">
+                                            <span data-bind="text: product.productname"></span>
+                                        </label>
+                                        <!-- /ko -->
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-12 cls-padding-0px">
-                                <div class="col-md-3 cls-padding-0px">
-                                    <div class="col-md-12 bgcolor-lightgrey cls-padding-0px"><div class="panel-heading"><h4 class="panel-title">ISS</h4></div></div>
-                                    <div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio1">Yok</label></div>
-                                    <div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio1">Cayma Bedeli</label></div>
-                                </div>
-                                <div class="col-md-3 cls-padding-0px">
-                                    <div class="col-md-12 bgcolor-lightgrey cls-padding-0px"><div class="panel-heading"><h4 class="panel-title">Fiber</h4></div></div>
-                                    <div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio2">Yok</label></div>
-                                    <div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio2">25 Mbps 0 AKK</label></div>
-                                </div>
-                                <div class="col-md-3 cls-padding-0px">
-                                    <div class="col-md-12 bgcolor-lightgrey cls-padding-0px"><div class="panel-heading"><h4 class="panel-title">Tv</h4></div></div>
-                                    <div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio3">Yok</label></div>
-                                    <div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio3">Turkcell Tv+ Ev Paketi</label></div>
-                                    <div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio3">Turkcell Tv+ Ev Ekstra Paketi</label></div>
-                                </div>
-                                <div class="col-md-3 cls-padding-0px">
-                                    <div class="col-md-12 bgcolor-lightgrey cls-padding-0px"><div class="panel-heading"><h4 class="panel-title">Dakika</h4></div></div>
-                                    <div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio4">Yok</label></div>
-                                    <div class="col-md-12 bgcolor-white"><label class="radio-inline col-md-12"><input type="radio" name="optradio4">Süper Konuşma 200 Dk</label></div>
-                                </div>
-                            </div>
+
+
                             <div class="col-md-12 cls-padding-0px">
                                 <div class="col-md-2 cls-panel-body cls-margin-top">
-                                    <button type="button" class="btn btn-primary cls-right cls-button-control">Kaydet</button>
+                                    <button data-bind="visible:selectedProductIds().length>0 && info()==null, click:closeTaskQueues" type="button" class="btn btn-success cls-right cls-button-control">Kaydet</button>
                                 </div>
                             </div>
-                        </form>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-md-offset-3" data-bind="visible:closedTaskqueueResponseMessage" style="position: absolute; top: 150px;" id="id_alert" onclick="setTimeout(function () { $('#id_alert').css({ display: 'none' }); }, 1000)">
+                        <div class="alert alert-success alert-dismissible cls_alert" role="alert" style="height: 100px;">
+                            <button type="button" data-bind="click :redirect" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <strong>İşlem Başarılı</strong>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Seri Numaralı Ürünler</a>
@@ -246,69 +228,29 @@
                                         <table class="table" id="taskquetable" data-pagination="true" data-search="true">
                                             <thead>
                                                 <tr>
-                                                    <th class="success">
-                                                        <div class="dropdown">
-                                                            <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary">
-                                                                İşlemler <span class="caret"></span>
-                                                            </a>
-                                                            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-                                                                <li>
-                                                                    <a href="#myModal1" role="button" class="btn" data-toggle="modal" style="padding-right: 110px; float: left;">Yeni</a>
-                                                                </li>
-                                                                <br />
-                                                                <li class="divider"></li>
-                                                                <li class="dropdown-submenu">
-                                                                    <a tabindex="-1" href="#">Seçim</a>
-                                                                    <ul class="dropdown-menu">
-                                                                        <li><a tabindex="-1" href="#">Tümünü Seç</a></li>
-                                                                        <li><a href="#">Seçimi Çevir</a></li>
-                                                                        <li><a href="#">Seçimi Temizle</a></li>
-                                                                    </ul>
-                                                                </li>
-                                                                <li class="divider"></li>
-                                                                <li><a href="#">Filtreyi Temizle</a></li>
-                                                                <li class="dropdown-submenu">
-                                                                    <a tabindex="-1" href="#">Kat Ziyaret İşlemleri</a>
-                                                                    <ul class="dropdown-menu">
-                                                                        <li><a href="#katziyareti1" role="button" class="btn" data-toggle="modal" style="float: left;">Kat Ziyaret Sonuçlarını Toplu Gir</a></li>
-                                                                        <li><a href="#katziyareti2" role="button" class="btn" data-toggle="modal" style="float: left;">Müşteri Statülerini Toplu Değiştir</a></li>
-                                                                        <li><a href="#katziyareti3" role="button" class="btn" data-toggle="modal" style="float: left;">Müşteri Kat Ziyareti Toplu Task Kapama</a></li>
-                                                                    </ul>
-                                                                </li>
-                                                                <li><a href="#">Excel'e Kaydet</a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </th>
                                                     <th class="warning">Hareket Tarihi</th>
                                                     <th class="info">Çıkış Yapan Birim</th>
                                                     <th class="info">Çıkış Yapılan Birim</th>
                                                     <th class="info">ürün Adı</th>
                                                     <th class="info">Adet</th>
                                                     <th class="info">Serial No</th>
-                                                    <th class="info">Onay Durumu</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-
-                                                <tr>
-                                                    <!--<td colspan="9" style="background: url('/Content/images/progresbar.gif') center center no-repeat;"></td>-->
-                                                </tr>
-
+                                            <tbody data-bind="foreach:{ data:stockcardlist , as:'stockcard'}">
                                                 <tr class="cls_line" onclick="">
+                                                    <td data-bind="text:moment().format('lll')"></td>
+                                                    <td data-bind="text:$root.personelname"></td>
+                                                    <td data-bind="text:$root.customername"></td>
+                                                    <td data-bind="text:stockcard.productname"></td>
                                                     <td>
-                                                        <!-- Button trigger modal -->
-                                                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="padding: 6px; border-radius: 0px; font-size:14px;">
-                                                            Düzenle
-                                                        </button>
-                                                        <input type="checkbox" />
+                                                        <input data-bind="value:stockcard.used,disable:stockcard.max()<=0, attr:{'max':stockcard.max},valueUpdate:'input'"
+                                                               type="text" class="form-control" id="exampleInputName2" style="height:30px;" placeholder="Default" /> / <span data-bind="text:stockcard.available"></span>
                                                     </td>
-                                                    <td><input type="text" class="form-control" id="exampleInputName2" style="height:30px;" value="" placeholder="Default" disabled /></td>
-                                                    <td><input type="text" class="form-control" id="exampleInputName2" style="height:30px;" value="" placeholder="Default" disabled /></td>
-                                                    <td><input type="text" class="form-control" id="exampleInputName2" style="height:30px;" value="" placeholder="Default" disabled /></td>
-                                                    <td><input type="text" class="form-control" id="exampleInputName2" style="height:30px;" value="" placeholder="Default" disabled /></td>
-                                                    <td><input type="text" class="form-control" id="exampleInputName2" style="height:30px;" value="" placeholder="Default" disabled /></td>
-                                                    <td><input type="text" class="form-control" id="exampleInputName2" style="height:30px;" value="" placeholder="Default" disabled /></td>
-                                                    <td><input type="text" class="form-control" id="exampleInputName2" style="height:30px;" value="" placeholder="Default" disabled /></td>
+                                                    <td>
+                                                        <!--ko if:stockcard.hasserial-->
+                                                        <select id="serialno" data-bind="options:stockcard.serials,optionsCaption:'Seçiniz...', value:stockcard.serial"></select>
+                                                        <!--/ko-->
+                                                    </td>
                                                 </tr>
 
                                             </tbody>
@@ -317,13 +259,148 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-12 cls-padding-0px">
+                            <div class="col-md-2 cls-panel-body cls-margin-top">
+                                <button  data-bind="click:saveStockMovements" type="button" class="btn btn-success cls-right cls-button-control">Kaydet</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- müşteri bilgilerini düzenleme For Modal Start -->
+    <div class="modal fade" id="customerinfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-sm" role="document" style="margin-top: 50px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Müşteri Kimlik Kartı</h4>
+                </div>
+                <div class="modal-body" data-bind="with: selectedCustomer" style="display: inline-block; position: relative; min-height: 50px;">
+                   
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Müşteri No:</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <p><label data-bind="text:customerid"></label></p> 
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Blok</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <p><label data-bind="text:block.blockid"></label></p> 
+                    </div>
+                    <div  class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Daire</p>
+                    </div>
+                    <div  class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <p><label data-bind="text:flat"></label></p> 
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Tc No</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <p><input class="form-control" data-bind="value:tckimlikno" ></p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Ad</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <p><input data-bind="value:customername" class="form-control"></p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Soyad</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <p> <input data-bind="value:customersurname" class="form-control"></p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Gsm</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <p><input data-bind="value:gsm" class="form-control"></p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Telefon</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <p><input data-bind="value:phone" class="form-control"></p>
+                    </div>
+                    <div  class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Müşteri Statüsü</p>
+                    </div>
+                    <div  class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <select class="form-control" id="abonedurumuinfo" data-bind="options: $parent.ctstatuslist, optionsText: 'Text', optionsValue: 'ID', value: (customer_status && customer_status.ID || 0)" ></select>
+                    </div>
+                    <div  class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>İnternet SS</p>
+                    </div>
+                    <div  class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                    <select class="form-control" id="abonedurumuinfo" data-bind="options: $parent.issStatusList, optionsText: 'issText', optionsValue: 'id', value: (issStatus && issStatus.id || 0)" ></select>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>İnternet Ücreti</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                    <select id="netstatus" class="form-control" data-bind="options: $parent.netStatusList, optionsText: 'netText', optionsValue: 'id', value: (netStatus && netStatus.id || 0)" ></select>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Telefon Ücreti</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                      <select id="telstatus" class="form-control" data-bind=" options: $parent.telStatusList,
+    optionsText: 'telText',
+    optionsValue: 'id',
+    value: (telStatus && telStatus.id || 0),
+    optionsCaption: 'Gsm Kullanımı Seçiniz...'" ></select>
+
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Televizyon Kullanımı</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                    <select id="tvstatus" class="form-control" data-bind="options: $parent.tvStatusList,
+    optionsText: 'tvKullanımıText',
+    optionsValue: 'id',
+    value: (TvKullanımıStatus && TvKullanımıStatus.id || 0),
+    optionsCaption: 'Tv Kullanımı Seçiniz...'" ></select>
+
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Turkcell Tv</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                    <select id="ttvstatus" class="form-control"data-bind="options: $parent.TurkcellTvStatusList,
+    optionsText: 'TurkcellTvText',
+    optionsValue: 'id',
+    value: (turkcellTv && TurkcellTVStatus.id || 0),
+    optionsCaption: 'TTV + Kullanımı Seçiniz...'" ></select>
+
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Gsm Kullanımı</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <select id="gsmstatus" class="form-control" data-bind=" options: $parent.gsmStatusList,
+    optionsText: 'gsmText',
+    optionsValue: 'id',
+    value: (gsmKullanımıStatus && gsmKullanımıStatus.id || 0),
+    optionsCaption: 'Gsm Kullanımı Seçiniz...'" ></select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+                    <button type="button" data-bind="click:saveCustomer"  class="btn btn-primary">Kaydet</button>
+                </div>
+            </div>
+
+        </div>
+    <!-- müşteri bilgilerini düzenleme For Modal Finish-->
 </div>
 
+  </div>
 <script type="text/javascript" src="Templates/TaskQueueEditForm.js"></script>
 <script>
     $(document).ready(function () {

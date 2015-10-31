@@ -10,63 +10,66 @@
                     <p>Arıza Tarihi</p>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                    <input type="date" class="form-control" id="Date6" value="" placeholder="">
+                    <input type="text" class="form-control" id="arizatarihi" data-bind="value:appointmentdate" placeholder="">
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                    <p>Kaynek</p>
+                    <p>Kaynak</p>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                    <select class="form-control">
-                        <option></option>
-                        <option>Kaynak1</option>
-                        <option>Kaynak2</option>
-                        <option>Kaynak3</option>
+                    <select id="kaynak" multiple="multiple" data-bind="value:fault">
+                        <option value="Teknik Personel">Teknik Personel</option>
+                        <option value="Karşılama">Karşılama</option>
+                        <option value="Satış Personeli">Satış Personeli</option>
+                        <option value="Diğer Personel">Diğer Personel</option>
                     </select>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                     <p>Personel</p>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                    <select class="form-control">
-                        <option></option>
-                        <option>Personel1</option>
-                        <option>Personel2</option>
-                        <option>Personel3</option>
-                    </select>
+                    <select id="ariza_personel" data-bind="options: personellist,
+                                                                                        optionsText: 'personelname',
+                                                                                        optionsValue: 'personelid',
+                                                                                        value: attachedpersonelid" class="form-control" multiple="multiple"></select>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                     <p>Öbek</p>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                    <select class="form-control">
-                        <option></option>
-                        <option>Öbek1</option>
-                        <option>Öbek2</option>
-                        <option>Öbek3</option>
-                    </select>
+                    <select id="ariza_region" data-bind="options:regionlist,optionsText:'region',optionsValue:'region',value:region" class="form-control" multiple="multiple"></select>
                 </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                <div  data-bind="visible:region" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                     <p>Site</p>
                 </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                    <input type="text" class="form-control" id="Text13" value="" placeholder="">
+                <div  data-bind="visible:region" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                    <select id="site" data-bind="options:sitelist,optionsText:'sitename',optionsValue:'siteid',value:siteid" class="form-control" multiple="multiple"></select>
                 </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                <div  data-bind="visible:siteid" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                    <p>Blok</p>
+                </div>
+                <div  data-bind="visible:siteid" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                    <select id="ariza_block" data-bind="options:blocklist,optionsText:'blockname',optionsValue:'blockid',value:blockid" class="form-control" multiple="multiple"></select>
+                </div>
+                <div  data-bind="visible:blockid" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                     <p>Müşteri</p>
                 </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                    <input type="text" class="form-control" id="Text14" value="" placeholder="">
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                <div  data-bind="visible:blockid" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                    <select id="ariza_customer" data-bind="options:customerlist,
+                                                              optionsText: function(item) {
+                                                return item.customername ?(item.customerid+ ' Daire :'+item.flat+' '+ item.customername + ' ' + item.customersurname) : item.customerid + ' Daire: '+item.flat +'  BOŞ DAİRE '
+                                                          },
+                                                              optionsValue:'customerid',
+                                                              value:customerid" class="form-control" multiple="multiple"></select>        </div>
+                <div  data-bind="visible:customerid" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                     <p>Açıklama</p>
                 </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                    <textarea class="form-control" rows="3"></textarea>
+                <div  data-bind="visible:customerid" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                    <textarea data-bind="value:description" class="form-control" rows="3"></textarea>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
-                <button type="button" class="btn btn-primary">Kaydet</button>
+                <button  data-bind="visible:customerid && attachedpersonelid && appointmentdate && fault ,click:saveFaultTask" type="button" class="btn btn-success">Kaydet</button>
             </div>
         </div>
     </div>

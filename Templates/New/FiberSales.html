@@ -45,7 +45,7 @@
                     <div data-bind="visible:blockid" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
                         <select id="salescustomer" data-bind="options:customerlist,
                                                               optionsText: function(item) {
-                                                return item.customername ?(item.customerid+ ' '+ item.customername + ' ' + item.customersurname) : item.customerid + '  BOŞ DAİRE '
+                                                return item.customername ?(item.customerid+ ' Daire :'+item.flat+' ' +  item.customername + ' ' + item.customersurname) : item.customerid + ' Daire: '+item.flat +'  BOŞ DAİRE '
                                                           },
                                                               optionsValue:'customerid',
                                                               value:customerid" class="form-control" multiple="multiple"></select>

@@ -15,8 +15,8 @@
 
 var crmAPI = (function () {
     var getData = function (callType, path, sendData, onsuccess, onerror, before) {
-       // var baseURL = "http://crmapitest.kociletisim.com.tr:8083/api/";
-        var baseURL = "http://localhost:50752/api/"; 
+       //var baseURL = "http://crmapitest.kociletisim.com.tr:8083/api/";
+    var baseURL = "http://localhost:50752/api/"; 
 
         $.ajax({
             method: callType,
@@ -24,6 +24,7 @@ var crmAPI = (function () {
             data: JSON.stringify(sendData),
             contentType: "application/json",
             async: true,
+            
             beforeSend: function () {
                 if (before) before();
             }
@@ -37,6 +38,42 @@ var crmAPI = (function () {
         getTaskFilter: function (data,onsuccess, onerror, before) {
             getData("POST", "Filter/getTasks",data, onsuccess, onerror, before);
         },
+        saveTask: function (data, onsuccess, onerror, before) {
+            getData("POST", "Task/saveTask", data, onsuccess, onerror, before);
+        },
+        insertTask: function (data, onsuccess, onerror, before) {
+            getData("POST", "Task/insertTask", data, onsuccess, onerror, before);
+        },
+        getTSPFilter: function (data,onsuccess, onerror, before) {
+            getData("POST", "Task/getTaskState",data, onsuccess, onerror, before);
+        },
+        saveTaskState: function (data, onsuccess, onerror, before) {
+            getData("POST", "Task/saveTaskState", data, onsuccess, onerror, before);
+        },
+        insertTaskState: function (data, onsuccess, onerror, before) {
+            getData("POST", "Task/insertTaskState", data, onsuccess, onerror, before);
+        },
+        getTaskStateMatches: function (data, onsuccess, onerror, before) {
+            getData("POST", "Task/getTaskStateMatches", data, onsuccess, onerror, before);
+        },
+        getDocuments: function (data, onsuccess, onerror, before) {
+            getData("POST", "Task/getDocuments", data, onsuccess, onerror, before);
+        },
+        saveDocument: function (data, onsuccess, onerror, before) {
+            getData("POST", "Task/saveDocument", data, onsuccess, onerror, before);
+        },
+        insertDocument: function (data, onsuccess, onerror, before) {
+            getData("POST", "Task/insertDocument", data, onsuccess, onerror, before);
+        },
+        getCampaigns: function (data, onsuccess, onerror, before) {
+            getData("POST", "Task/getCampaigns", data, onsuccess, onerror, before);
+        },
+        saveCampaigns: function (data, onsuccess, onerror, before) {
+            getData("POST", "Task/saveCampaigns", data, onsuccess, onerror, before);
+        },
+        insertCampaigns: function (data, onsuccess, onerror, before) {
+            getData("POST", "Task/insertCampaigns", data, onsuccess, onerror, before);
+        },
         getSiteFilter: function (data, onsuccess, onerror, before) {
             getData("POST", "Filter/getCSB",data,onsuccess,onerror,before)
         },
@@ -46,14 +83,35 @@ var crmAPI = (function () {
         getIssStatus: function (onsuccess, onerror, before) {
             getData("POST", "Filter/getIssStatus", {}, onsuccess, onerror, before)
         },
+        getNetStatus: function (onsuccess, onerror, before) {
+            getData("POST", "Filter/getNetStatus", {}, onsuccess, onerror, before)
+        },
+        getTelStatus: function (onsuccess, onerror, before) {
+            getData("POST", "Filter/getTelStatus", {}, onsuccess, onerror, before)
+        },
+        getTvKullanımıStatus: function (onsuccess, onerror, before) {
+            getData("POST", "Filter/getTvKullanımıStatus", {}, onsuccess, onerror, before)
+        },
+        getTurkcellTvStatus: function (onsuccess, onerror, before) {
+            getData("POST", "Filter/getTurkcellTvStatus", {}, onsuccess, onerror, before)
+        },
+        getGsmStatus: function (onsuccess, onerror, before) {
+            getData("POST", "Filter/getGsmStatus", {}, onsuccess, onerror, before)
+        },
         getTaskStatus: function (data,onsuccess, onerror, before) {
             getData("POST", "Filter/getTasks", data, onsuccess, onerror, before)
         },
         getPersonel: function (onsuccess, onerror, before) {
             getData("POST", "Filter/getPersonel", {}, onsuccess, onerror, before)
         },
+        getProducts: function (onsuccess, onerror, before) {
+            getData("POST", "Filter/getProducts", {}, onsuccess, onerror, before)
+        },
         getTaskQueues: function (data,onsuccess, onerror, before) {
             getData("POST", "Task/getTaskQueues", data, onsuccess, onerror, before)
+        },
+        closeTaskQueues: function (data, onsuccess, onerror, before) {
+            getData("POST", "Task/closeTaskQueues", data, onsuccess, onerror, before)
         },
         saveTaskQueues: function (data,onsuccess,onerror,before) {
             getData("POST", "Task/saveTaskQueues", data, onsuccess, onerror, before)
@@ -61,14 +119,45 @@ var crmAPI = (function () {
         savesalestask: function (data, onsuccess, onerror, before) {
             getData("POST", "Task/saveSalesTask", data, onsuccess, onerror, before)
         },
+        saveFaultTask: function (data, onsuccess, onerror, before) {
+            getData("POST", "Task/saveFaultTask", data, onsuccess, onerror, before)
+        },
         personelattachment: function (data, onsuccess, onerror, before) {
             getData("POST", "Task/personelattachment", data, onsuccess, onerror, before)
         },
         getCampaignInfo: function (data, onsuccess, onerror, before) {
             getData("POST", "Filter/getCampaignInfo", data, onsuccess, onerror, before)
         },
-
-        
+        saveCustomerCard: function (data, onsuccess, onerror, before) {
+            getData("POST", "Task/saveCustomerCard", data, onsuccess, onerror, before)
+        },
+        getBlockList: function (data,onsucces,onerror,before) {
+            getData("POST", "SiteBlock/getBlocks",data,onsucces,onerror,before)
+        },
+        editBlock: function (data, onsucces, onerror, before) {
+            getData("POST", "SiteBlock/editBlock", data, onsucces, onerror, before)
+        },
+        getSiteList: function (data, onsucces, onerror, before) {
+            getData("POST", "SiteBlock/getSites", data, onsucces, onerror, before)
+        },
+        editSite: function (data, onsuccess, onerror, before) {
+            getData("POST", "SiteBlock/editSite", data, onsuccess, onerror, before)
+        },
+        getTaskDefination: function (data, onsucces, onerror, before) {
+            getData("POST", "Task/getTaskList", data, onsucces, onerror, before)
+        },
+        getObjectType: function (onsuccess, onerror, before) {
+            getData("POST", "Filter/getObjectType",{}, onsuccess, onerror, before)
+        },
+        getObject: function (data, onsuccess, onerror, before) {
+            getData("POST", "Filter/getObject", data, onsuccess, onerror, before)
+        },
+        getStockMovements: function (data,onsucces, onerror, before) {
+            getData("POST", "Stock/getStockMovements", data,onsucces, onerror, before)
+        },
+        SaveStockMovementMultiple: function (data, onsucces, onerror, before) {
+            getData("POST", "Stock/SaveStockMovementMultiple", data, onsucces, onerror, before)
+        },
     }
 })();
 

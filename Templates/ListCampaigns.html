@@ -1,5 +1,5 @@
 ﻿
-		<div class="container-fluid" style="background-color: lightskyblue;">
+<div id="bindingContainer" class="container-fluid" style="background-color: lightskyblue;">
 			<div class="col-md-12 container" style="padding: 0 !important; margin: 20px 0 0 0 !important; border-radius: 0 0 8px 8px !important;">
 				<div class="panel-group" id="accordion">
 					<div class="panel" id="panel2" style="border: 1px solid #fff !important;">
@@ -11,46 +11,35 @@
 								</a>
 							</h4>
 						</div>
-						<div id="collapse1" class="panel-collapse collapse">
-							<div class="panel-body">
-								<div class="col-xs-12 col-sm-6 col-md-3">
-									<div class="form-group-sm has-info cls-margin-bottom">
-										<label class="control-label" for="durumtanimi">Kampanya Adı</label>
-										<select id="durumtanimi" class="form-control">
-											<option>Default</option>
-											<option>Default</option>
-											<option>Default</option>
-										</select>
-									</div>
-								</div>
-								<div class="col-xs-12 col-sm-6 col-md-3">
-									<div class="form-group-sm has-info cls-margin-bottom">
-										<label class="control-label" for="durumturu">Kampanya Kategorisi</label>
-										<select id="durumturu" class="form-control">
-											<option>Default</option>
-											<option>Default</option>
-											<option>Default</option>
-										</select>
-									</div>
-								</div>
-								<div class="col-xs-12 col-sm-6 col-md-3">
-									<div class="form-group-sm has-info cls-margin-bottom">
-										<label class="control-label" for="durumturu">Kampanya Alt Kategorisi</label>
-										<select id="durumturu" class="form-control">
-											<option>Default</option>
-											<option>Default</option>
-											<option>Default</option>
-										</select>
-									</div>
-								</div>
-								<div class="col-xs-12 col-sm-6 col-md-3" style="margin-top: 21px;">
-									<div class="btn-group pull-right" role="group">
-										<button type="button" class="btn btn-success">Sorgula</button>
-										<button type="button" class="btn btn-info">Temizle</button>
-									</div>
-								</div>
-							</div>
-						</div>
+                        <div id="collapse1" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="col-xs-12 col-sm-6 col-md-3">
+                                    <div class="form-group-sm has-info ">
+                                        <label class="control-label" for="campaign">Kampanya Adı</label>
+                                        <select data-bind="options:campaignCombo,optionsText:'name',optionsValue:'id',value:selectedCampaign,optionsCaption:'Kampanya Seçiniz'" id="campaign" class="form-control"></select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-3">
+                                    <div class="form-group-sm has-info">
+                                        <label class="control-label" for="category">Kampanya Kategorisi</label>
+                                        <select data-bind="options:categoryCombo,optionsText:'category',optionsValue:'category',value:selectedCategory,optionsCaption:'Kategory Seçiniz'" id="category" class="form-control"></select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-3">
+                                    <div class="form-group-sm has-info ">
+                                        <label class="control-label" for="subcategory">Kampanya Alt Kategorisi</label>
+                                        <select data-bind="options:subcategoryCombo,optionsText:'subcategory',optionsValue:'subcategory',value:selectedSubcategory,optionsCaption:'Alt Kategori Seçiniz'" id="subcategory" class="form-control"></select>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 col-md-3" style="margin-top: 21px;">
+                                    <div class="btn-group pull-right" role="group">
+                                        <button data-bind="click:getCampaigns(1,dataModel.rowsPerPage())" type="button" class="btn btn-success">Sorgula</button>
+                                        <button data-bind="click:clean" type="button" class="btn btn-info">Temizle</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 					</div>
 				</div>
 			</div>
@@ -64,14 +53,15 @@
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<!--pagination Starts-->
-									<nav class="text-center" style="margin: 0px !important;padding: 0px !important;">
-										<ul class="pagination" style="margin: 0 !important;padding: 0px !important; float:right;">
-											<li class="previous"><a href="javascript:void(0)" data-bind="click: function (e) { e.go().first(); }">&lt;&lt;</a></li>
-											<li><a href="javascript:void(0)" data-bind="click: function (e) { e.go().previous(); }">&lt;</a></li>
-											<li><a href="javascript:void(0)" data-bind="click: function (e) { e.go().next(); }">&gt;</a></li>
-											<li class="next"><a href="javascript:void(0)" data-bind="click: function (e) { e.go().last(); }">&gt;&gt;</a></li>
-										</ul>
-									</nav>
+                                    <nav class="text-center" style="margin: 0px !important;padding: 0px !important;">
+                                        <ul class="pagination" style="margin: 0 !important;padding: 0px !important; float:right;">
+                                            <li class="previous"><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoFirstPage(); } ,enable:pageNo>1">&lt;&lt;</a></li>
+                                            <li><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoBackPage();}">&lt;</a></li>
+                                            <li><select> <option>1</option> </select></li>
+                                            <li><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoNextPage(); }">&gt;</a></li>
+                                            <li class="next"><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoLastPage(); }">&gt;&gt;</a></li>
+                                        </ul>
+                                    </nav>
 									<!--pagination finish-->
 								</div>
 							</div>
@@ -91,9 +81,9 @@
 																</a>
 																<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
 																	<li>
-																		<a href="#myModal1" role="button" class="btn" data-toggle="modal" style="padding-right: 110px; float: left;">Yeni</a>
+																		<a id="new" href="#myModal1" role="button" class="btn" data-toggle="modal" style="padding-right: 110px; float: left;">Yeni</a>
 																	</li>
-																	<br />
+																	
 																	<li class="divider"></li>
 																	<li class="dropdown-submenu">
 																		<a tabindex="-1" href="#">Seçim</a>
@@ -114,29 +104,20 @@
 													</tr>
 												</thead>
 												<tbody>
-													<!-- ko if:(pageNo()==0) -->
-													<tr>
-														<td colspan="9" style="background: url('/Content/images/progresbar.gif') center center no-repeat;"></td>
-													</tr>
-													<!-- /ko -->
-													<!-- ko foreach: taskqueuelist -->
-													<!--<tr data-bind="click: function (data, evt) { $parent.select(data, evt); }" class="cls_line" onclick="">
-														<td></td>
-														<td><input type="text" class="form-control" id="exampleInputName2"></td>
-														<td><select class="form-control"><option></option><option>Tamamlandı</option><option>Devam Ediyor</option><option>İptal</option></select></td>
-													</tr>-->
-													<tr data-bind="click: function (data, evt) { $parent.select(data, evt); }" class="cls_line" onclick="">
+													<!-- ko foreach: campaignList -->
+													<tr  class="cls_line" onclick="">
 														<td>
-															<!-- Button trigger modal -->
-															<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="padding: 3px; border-radius: 0px; font-size:14px;">
+															<button data-bind="value:id"  type="button" class="btn btn-primary btn-lg edit" data-toggle="modal" data-target="#myModal" style="padding: 3px; border-radius: 0px; font-size:14px;">
 																Düzenle
 															</button>
 															<input type="checkbox" />
 														</td>
-														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
-														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
-														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
+														<td data-bind="text:name"></td>
+														<td data-bind="text:category"></td>
+                                                        <td data-bind="text:subcategory"></td>
+														<td ></td>
 													</tr>
+                                                    <!--/ko-->
 												</tbody>
 											</table>
 										</div>
@@ -145,186 +126,143 @@
 							</div>
 
 							<!--pagination Starts-->
-							<nav class="text-center">
-								<ul class="pagination">
-									<li class="previous"><a href="javascript:void(0)" data-bind="click: function (e) { e.go().first(); }">&lt;&lt;</a></li>
-									<li><a href="javascript:void(0)" data-bind="click: function (e) { e.go().previous(); }">&lt;</a></li>
-									<li><a href="javascript:void(0)" data-bind="click: function (e) { e.go().next(); }">&gt;</a></li>
-									<li class="next"><a href="javascript:void(0)" data-bind="click: function (e) { e.go().last(); }">&gt;&gt;</a></li>
-								</ul>
-							</nav>
+                            <nav class="text-center" style="margin: 0px !important;padding: 0px !important;">
+                                <ul class="pagination" style="margin: 0 !important;padding: 0px !important; float:right;">
+                                    <li class="previous"><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoFirstPage(); } ,enable:pageNo>1">&lt;&lt;</a></li>
+                                    <li><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoBackPage();}">&lt;</a></li>
+                                    <li><select> <option>1</option> </select></li>
+                                    <li><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoNextPage(); }">&gt;</a></li>
+                                    <li class="next"><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoLastPage(); }">&gt;&gt;</a></li>
+                                </ul>
+                            </nav>
 							<!--pagination finish-->
 
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+    <!-- İşlemler Yeni For Modal Start -->
+    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document" style="margin-top: 50px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Edit Form</h4>
+                </div>
+                <div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
+                    <div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Kampanya Adı</p>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
+                        <input data-bind="value:newcampname" type="text" class="form-control" id="Text1">
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Kampanya Kategorisi</p>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
+                        <input data-bind="value:newcatname" type="text" class="form-control" id="Text1">
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Kampanya Alt Kategorisi</p>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
+                        <input data-bind="value:newsubcatname" type="text" class="form-control" id="Text1">
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Kampanya Ürünleri</p>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <select id="newproducts"  data-bind="options:$root.productListCombo,optionsText:'productname',optionsValue:'productid',optionsCaption:'Ürün Seçiniz'" multiple="multiple">
+                            
+                        </select>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Kampanya Belgeleri</p>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <select id="newdocuments" data-bind="options:$root.documentListCombo,optionsText:'documentname',optionsValue:'documentid',optionsCaption:'Belge Seçiniz'" multiple="multiple">
+                           
+                        </select>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 cls-padding-0px" style="margin-top: 3px;" data-bind="visible: $root.savemessagecode()">
+                        <span class="label label-success" data-bind="text: $root.savemessage , visible:$root.savemessagecode()==1"></span>
+                        <span class="label label-danger" data-bind="text: $root.savemessage, visible: $root.savemessagecode() != 1"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+                    <button data-bind="click:insertCampaigns" type="button" class="btn btn-success">Kaydet</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- İşlemler Yeni For Modal Finish -->
+    <!-- Duzenle For Modal Start-->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document" style="margin-top: 50px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="H1">Edit Form</h4>
+                </div>
+                <div data-bind="with:selectedCampaignRow" class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
+                    <div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Kampanya ID</p>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
+                        <div data-bind="text:id" class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;"></p></div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Kampanya Adı</p>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
+                        <input data-bind="value:name" type="text" class="form-control" id="Text1">
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Kampanya Kategorisi</p>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
+                        <select id="editcategory"  data-bind="options:$root.categoryCombo,optionsText:'category',optionsValue:'category',value:category,optionsCaption:'Kategory Seçiniz'"  class="form-control">
+                        </select>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Kampanya Alt Kategorisi</p>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
+                        <select id="editsubcategory"  data-bind="options:$root.subcategoryCombo,optionsText:'subcategory',optionsValue:'subcategory',value:subcategory,optionsCaption:'Alt Kategory Seçiniz'"  class="form-control">
+                        </select>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Kampanya Ürünleri</p>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <select id="editproduct" data-bind="options:$root.productListCombo,optionsText:'productname',optionsValue:'productid',optionsCaption:'Ürün Seçiniz'" class="form-control" multiple="multiple">
+                        </select>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Kampanya Belgeleri</p>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <select id="editdocument" data-bind="options:$root.documentListCombo,optionsText:'documentname',optionsValue:'documentid',optionsCaption:'Belge Seçiniz'" class="form-control" multiple="multiple">
+                        </select>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 cls-padding-0px" style="margin-top: 3px;" data-bind="visible: $root.savemessagecode()">
+                        <span class="label label-success" data-bind="text: $root.savemessage , visible:$root.savemessagecode()==1"></span>
+                        <span class="label label-danger" data-bind="text: $root.savemessage, visible: $root.savemessagecode() != 1"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+                    <button data-bind="click:saveCampaigns" type="button" class="btn btn-success">Kaydet</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Duzenle For Modal Finish-->	
+</div>
 
-<!-- İşlemler Yeni For Modal Start -->
-	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document" style="margin-top: 50px;">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="myModalLabel">Edit Form</h4>
-				</div>
-				<div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
-					<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Kampanya ID</p>
-					</div>
-					<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
-						<div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;"></p></div>
-					</div>
-					<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Kampanya Adı</p>
-					</div>
-					<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
-						<div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;"></p></div>
-					</div>
-					<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Kampanya Kategorisi</p>
-					</div>
-					<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
-						<select class="form-control">
-							<option></option>
-							<option>Fiber</option>
-							<option>Adsl</option>
-							<option>Yanında</option>
-							<option>Retention</option>
-						</select>
-					</div>
-					<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Kampanya Alt Kategorisi</p>
-					</div>
-					<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
-						<select class="form-control">
-							<option></option>
-							<option>Alt Kategori</option>
-							<option>Tablet</option>
-							<option>Dakika</option>
-							<option>Turkcell TV</option>
-							<option>Dect</option>
-							<option>ADAPTOR</option>
-							<option>PC</option>
-						</select>
-					</div>
-					<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Kampanya Ürünleri</p>
-					</div>
-					<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<select id="Kampanya-Urunleri1" multiple="multiple">
-							<option value="1">Default1</option>
-							<option value="2">Default2</option>
-							<option value="3">Default3</option>
-							<option value="4">Default4</option>
-							<option value="5">Default5</option>
-							<option value="6">Default6</option>
-						</select>
-					</div>
-					<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Kampanya Belgeleri</p>
-					</div>
-					<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<select id="Kampanya-Belgeleri1" multiple="multiple">
-							<option value="1">Default1</option>
-							<option value="2">Default2</option>
-							<option value="3">Default3</option>
-							<option value="4">Default4</option>
-							<option value="5">Default5</option>
-							<option value="6">Default6</option>
-						</select>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
-					<button type="button" class="btn btn-primary">Kaydet</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- İşlemler Yeni For Modal Finish -->
-<!-- Duzenle For Modal Start-->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document" style="margin-top: 50px;">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="H1">Edit Form</h4>
-				</div>
-				<div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
-					<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Kampanya ID</p>
-					</div>
-					<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
-						<div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">1</p></div>
-					</div>
-					<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Kampanya Adı</p>
-					</div>
-					<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
-						<div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Fiber Hızını Seç Kampanyası</p></div>
-					</div>
-					<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Kampanya Kategorisi</p>
-					</div>
-					<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
-						<select class="form-control">
-							<option>Fiber</option>
-							<option>Adsl</option>
-							<option>Yanında</option>
-							<option>Retention</option>
-						</select>
-					</div>
-					<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Kampanya Alt Kategorisi</p>
-					</div>
-					<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
-						<select class="form-control">
-							<option>Alt Kategori</option>
-							<option>Tablet</option>
-							<option>Dakika</option>
-							<option>Turkcell TV</option>
-							<option>Dect</option>
-							<option>ADAPTOR</option>
-							<option>PC</option>
-						</select>
-					</div>
-					<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Kampanya Ürünleri</p>
-					</div>
-					<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<select id="Kampanya-Urunleri2" multiple="multiple">
-							<option value="1">Default1</option>
-							<option value="2">Default2</option>
-							<option value="3">Default3</option>
-							<option value="4">Default4</option>
-							<option value="5">Default5</option>
-							<option value="6">Default6</option>
-						</select>
-					</div>
-					<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Kampanya Belgeleri</p>
-					</div>
-					<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<select id="Kampanya-Belgeleri2" multiple="multiple">
-							<option value="1">Default1</option>
-							<option value="2">Default2</option>
-							<option value="3">Default3</option>
-							<option value="4">Default4</option>
-							<option value="5">Default5</option>
-							<option value="6">Default6</option>
-						</select>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
-					<button type="button" class="btn btn-primary">Kaydet</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Duzenle For Modal Finish-->
+<script type="text/javascript" src="Templates/ListCampaigns.js"></script>
+
 
 	
 
