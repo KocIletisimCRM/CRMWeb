@@ -12,14 +12,14 @@
     <link href="Content/daterangepicker.css" rel="stylesheet" />
     <link rel="stylesheet" href="Content/taskqueueeditform.css" />
     <link rel="stylesheet" href="Content/app.min.css" />
+    <link href="Content/fileinput.css" rel="stylesheet" />
     <!--  auto complete için referanslar-->
     <link href="Content/koc-typehead-v1.0.css" rel="stylesheet" />
     <!--  auto complete için referanslar-->
     <title>KOCSAM CRM v2</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-
-
+    
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <!--[if lt IE 9]>
 	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -31,6 +31,7 @@
     <script src="Scripts/koc-typehead-v1.0.js"></script>
     <script src="Scripts/app.js"></script>
     <script type="text/javascript" src="/Scripts/moment.js"></script>
+
 	<style>
 		.panel-heading > h4 > a:after {
 			font-family: 'Glyphicons Halflings';
@@ -84,8 +85,9 @@
 											<li class="dropdown-submenu">
 												<a tabindex="-1" href="#">Satış Taskları</a>
 												<ul class="dropdown-menu">
-													<li><a href="#ModalContainer" id="fibersatis" role="button" class="btn" data-toggle="modal" style="float: left;">Satış Taskı</a></li>
-													<li><a href="#ModalContainer" id ="yanindaekurun"role="button" class="btn" data-toggle="modal" style="float: left;">Yanında (Ek Ürün) Satış Taskı</a></li>
+                                                    <li><a href="#ModalContainer" id="fibersatis" role="button" class="btn" data-toggle="modal" style="float: left;">Satış Taskı</a></li>
+                                                    <li><a href="#ModalContainer" id="newadslsatis" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Adsl Satış Taskı</a></li>
+                                                    <li><a href="#ModalContainer" id ="yanindaekurun"role="button" class="btn" data-toggle="modal" style="float: left;">Yanında (Ek Ürün) Satış Taskı</a></li>
 													<li><a href="#ModalContainer" id="adslsatis "role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Adsl Satış Taskı</a></li>
 													<li><a href="#ModalContainer" id="retentionsatis"role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Retention Satış Taskı</a></li>
 													<li><a href="#ModalContainer" id="caymabedeli" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Cayma Bedeli Taskı</a></li>

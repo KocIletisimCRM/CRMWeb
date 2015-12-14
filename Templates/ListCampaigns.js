@@ -116,7 +116,7 @@ var dataModel = {
     },
     getproduct: function () {
         var self = this;
-        crmAPI.getProducts( function (a, b, c) {
+        crmAPI.getProductList(function (a, b, c) {
             self.productListCombo(a);
             $("#newproducts").multiselect({
                 includeSelectAllOption: true,

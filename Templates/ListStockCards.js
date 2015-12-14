@@ -8,79 +8,89 @@ var dataModel = {
     savemessage: ko.observable(),
     savemessagecode: ko.observable(),
 
-    docList: ko.observableArray([]),
-    selectedDoc: ko.observable(),
-    docname: ko.observable(),
-    docdescription:ko.observable(),
-    newdocname:ko.observable(),
-    newdocdescription:ko.observable(),
-    getDocuments: function (pageno, rowsperpage) {
+    stockCardList: ko.observableArray([]),
+    selectedStockCard: ko.observable(),
+    productName:ko.observable(),
+    category:ko.observable(),
+
+    newProductName: ko.observable(),
+    newCategory: ko.observable(),
+    newHasSerial: ko.observable(),
+    newStockBirim: ko.observable(),
+    newDescription: ko.observable(),
+
+    getStockCards: function (pageno, rowsperpage) {
         var self = this;
+        self.pageNo(pageno);
         var data = {
             pageNo: pageno,
             rowsPerPage: rowsperpage,
-            documentname: self.docname() ?{ fieldName: 'documentname', op: 6, value: self.docname() }: { fieldName: 'documentname', op: 6, value: '' },
-            documentdescription: self.docdescription() ? { fieldName: 'documentdescription', op: 6, value: self.docdescription() } : null,
+            stockcard: self.productName() ? { fieldName: 'productname', op: 6, value: self.productName() } : { fieldName: 'productname', op: 6, value: '' },
+            category: self.category() ? { fieldName: 'category', op: 6, value: self.category() } : { fieldName: 'category', op: 6, value: '' },
         };
-        crmAPI.getDocuments(data, function (a, b, c) {
-            self.docList(a.data.rows);
+        crmAPI.getStockCards(data, function (a, b, c) {
+            self.stockCardList(a.data.rows);
             self.pageCount(a.data.pagingInfo.pageCount);
             self.totalRowCount(a.data.pagingInfo.totalRowCount);
             self.savemessage(null);
             self.savemessagecode(null);
             $(".edit").click(function () {
-                self.getDocCard($(this).val());
+                self.getStockCard($(this).val());
                 console.log($(this).val());
             });
         }, null, null);
     },
-    getDocCard: function (documentid) {
+    getStockCard: function (stockid) {
         var self = this;
         var data = {
-            documentname: { fieldName: 'documentid', op: 2, value: documentid },
+            stockcard:{ fieldName: 'stockid', op: 2, value: stockid },
         };
-        crmAPI.getDocuments(data, function (a, b, c) {
-            self.selectedDoc(a.data.rows[0]);
+        crmAPI.getStockCards(data, function (a, b, c) {
+            self.selectedStockCard(a.data.rows[0]);
         }, null, null);
     },
-    saveDoc: function () {
+   
+    saveStockCard: function () {
         var self = this;
-        var data = self.selectedDoc();
-        crmAPI.saveDocument(data, function (a, b, c) {
+        var data = self.selectedStockCard();
+        crmAPI.saveStockCard(data, function (a, b, c) {
             self.savemessage(a.errorMessage);
             self.savemessagecode(a.errorCode);
             window.setTimeout(function () {
                 $('#myModal').modal('hide');
-                self.getDocuments(1, dataModel.rowsPerPage());
+                self.getStockCards(1, dataModel.rowsPerPage());
             }, 1000);
         }, null, null);
     },
-    insertDoc: function () {
+    insertStockCard: function () {
         var self = this;
         var data = {
-            documentname: self.newdocname(),
-            documentdescription:self.newdocdescription(),
+            productname: self.newProductName(),
+            category: self.newCategory(),
+            hasserial: self.newHasSerial(),
+            unit: self.newStockBirim(),
+            description: self.newDescription(),
         };
-        crmAPI.insertDocument(data, function (a, b, c) {
+        crmAPI.insertStockCard(data, function (a, b, c) {
             self.savemessage(a.errorMessage);
             self.savemessagecode(a.errorCode);
             window.setTimeout(function () {
                 $('#myModal1').modal('hide');
-                self.getDocuments(1, dataModel.rowsPerPage());
+                self.getStockCards(1, dataModel.rowsPerPage());
             }, 1000);
         }, null, null);
     },
 
     clean: function () {
         var self = this;
-        self.docname(null);
-        self.docdescription(null);
-        self.getDocuments(dataModel.pageNo(), dataModel.rowsPerPage());
+        self.productName(null);
+        self.category(null);
+        self.getStockCards(dataModel.pageNo(), dataModel.rowsPerPage());
     },
     navigate: {
         gotoPage: function (pageNo) {
             if (pageNo == dataModel.pageNo() || pageNo <= 0 || pageNo > dataModel.pageCount()) return;
-            dataModel.getDocuments(pageNo, dataModel.rowsPerPage());
+            dataModel.getStockCards(pageNo, dataModel.rowsPerPage());
         },
         gotoFirstPage: function () {
             dataModel.navigate.gotoPage(1);
@@ -101,7 +111,8 @@ var dataModel = {
     },
     renderBindings: function () {
         var self = this;
-        self.getDocuments(dataModel.pageNo(), dataModel.rowsPerPage());
+        self.getStockCards(dataModel.pageNo(), dataModel.rowsPerPage());
         ko.applyBindings(dataModel, $("#bindingContainer")[0]);
+
     }
 }

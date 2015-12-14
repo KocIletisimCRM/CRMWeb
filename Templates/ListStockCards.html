@@ -1,43 +1,42 @@
 ﻿<div id="bindingContainer" class="container-fluid" style="background-color: #D1E9F6 !important;">
-			<div class="col-md-12 container" style="padding: 0 !important; margin: 20px 0 0 0 !important; border-radius: 0 0 8px 8px !important;">
-				<div class="panel-group" id="accordion">
-					<div class="panel" id="panel2" style="border: 1px solid #fff !important;">
-						<div class="panel-heading filter-gradient">
-							<h4 class="panel-title">
-								<a data-toggle="collapse" data-target="#collapse1"
-								   href="javascript:void(0)" class="collapsed">
-									Filtreleme
-								</a>
-							</h4>
-						</div>
-						<div id="collapseTwo" class="panel-collapse collapse">
-							<div class="panel-body">
-								<div class="col-xs-12 col-sm-4 col-md-4">
-									<div class="form-group-sm has-info cls-margin-bottom">
-										<label class="control-label" for="u-1">Ürün Adı</label>
-										<select id="u-1" class="form-control">
-										</select>
-									</div>
-								</div>
-								<div class="col-xs-12 col-sm-4 col-md-4">
-									<div class="form-group-sm has-info cls-margin-bottom">
-										<label class="control-label" for="u-2">Ürün Kategorisi</label>
-										<select id="u-2" class="form-control">
-										</select>
-									</div>
-								</div>
-								<div class="col-xs-12 col-sm-4 col-md-4" style="margin-top: 21px;">
-									<div class="btn-group pull-right" role="group">
-										<button type="button" class="btn btn-success">Sorgula</button>
-										<button type="button" class="btn btn-info">Temizle</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-12 container" style="padding: 0 !important; margin: 20px 0 0 0 !important; border-radius: 0 0 8px 8px !important;">
+			
+    <div class="col-md-12 container" style="padding: 0 !important; margin: 20px 0 0 0 !important; border-radius: 0 0 8px 8px !important;">
+        <div class="panel-group" id="accordion">
+            <div class="panel" id="panel2" style="border: 1px solid #fff !important;">
+                <div class="panel-heading filter-gradient">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-target="#collapse1"
+                           href="javascript:void(0)" class="collapsed">
+                            Filtreleme
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="col-xs-12 col-sm-4 col-md-3">
+                            <div class="form-group-sm has-info cls-margin-bottom">
+                                <label class="control-label" for="u-1">Ürün Adı</label>
+                                <input data-bind="value:productName" type="text" class="form-control" id="exampleInputName2" />
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-3">
+                            <div class="form-group-sm has-info cls-margin-bottom">
+                                <label class="control-label" for="u-1">Ürün Adı</label>
+                                <input data-bind="value:category" type="text" class="form-control" id="exampleInputName2" />
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-3" style="margin-top: 21px;">
+                            <div class="btn-group pull-right" role="group">
+                                <button data-bind="click:getStockCards(1,dataModel.rowsPerPage())" type="button" class="btn btn-success">Sorgula</button>
+                                <button data-bind="click:clean" type="button" class="btn btn-info">Temizle</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<div class="col-md-12 container" style="padding: 0 !important; margin: 20px 0 0 0 !important; border-radius: 0 0 8px 8px !important;">
 				<div class="panel-group">
 					<div class="panel" style="border: 1px solid #fff !important;">
 						<div class="panel-heading task-gradient">
@@ -47,14 +46,15 @@
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<!--pagination Starts-->
-									<nav class="text-center" style="margin: 0px !important;padding: 0px !important;">
-										<ul class="pagination" style="margin: 0 !important;padding: 0px !important; float:right;">
-											<li class="previous"><a href="javascript:void(0)" data-bind="click: function (e) { e.go().first(); }">&lt;&lt;</a></li>
-											<li><a href="javascript:void(0)" data-bind="click: function (e) { e.go().previous(); }">&lt;</a></li>
-											<li><a href="javascript:void(0)" data-bind="click: function (e) { e.go().next(); }">&gt;</a></li>
-											<li class="next"><a href="javascript:void(0)" data-bind="click: function (e) { e.go().last(); }">&gt;&gt;</a></li>
-										</ul>
-									</nav>
+                                    <nav class="text-center" style="margin: 0px !important;padding: 0px !important;">
+                                        <ul class="pagination" style="margin: 0 !important;padding: 0px !important; float:right;">
+                                            <li class="previous"><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoFirstPage(); } ,enable:pageNo>1">&lt;&lt;</a></li>
+                                            <li><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoBackPage();}">&lt;</a></li>
+                                            <li><select> <option>1</option> </select></li>
+                                            <li><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoNextPage(); }">&gt;</a></li>
+                                            <li class="next"><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoLastPage(); }">&gt;&gt;</a></li>
+                                        </ul>
+                                    </nav>
 									<!--pagination finish-->
 								</div>
 							</div>
@@ -74,9 +74,9 @@
 																</a>
 																<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
 																	<li>
-																		<a href="#myModal1" role="button" class="btn" data-toggle="modal" style="padding-right: 110px; float: left;">Yeni</a>
+																		<a id="new" href="#myModal1" role="button" class="btn" data-toggle="modal" style="padding-right: 110px; float: left;">Yeni</a>
 																	</li>
-																	<br />
+																	
 																	<li class="divider"></li>
 																	<li class="dropdown-submenu">
 																		<a tabindex="-1" href="#">Seçim</a>
@@ -99,23 +99,21 @@
 													</tr>
 												</thead>
 												<tbody>
-													<tr>
-														<td colspan="9" style="background: url('/Content/images/progresbar.gif') center center no-repeat;"></td>
-													</tr>
-
-													<tr data-bind="click: function (data, evt) { $parent.select(data, evt); }" class="cls_line" onclick="">
+                                                    <!-- ko foreach: stockCardList -->
+													<tr class="cls_line" onclick="">
 														<td>
-															<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="padding: 3px; border-radius: 0px; font-size:14px;">
+															<button data-bind="value:stockid" type="button" class="btn btn-primary btn-lg edit" data-toggle="modal" data-target="#myModal" style="padding: 3px; border-radius: 0px; font-size:14px;">
 																Düzenle
 															</button>
 															<input type="checkbox" />
 														</td>
-														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
-														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
-														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><div class="checkbox text-center" style=" margin: 0px !important;"><label><input type="checkbox" style="width: 25px; height: 25px;" disabled></label></div></div></td>
-														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
-														<td><div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">Default</p></div></td>
+														<td data-bind="text:productname"></td>
+														<td data-bind="text:category"></td>
+														<td data-bind="text:hasserial"></td>
+														<td data-bind="text:unit"></td>
+														<td data-bind="text:description"></td>
 													</tr>
+                                                    <!--/ko-->
 												</tbody>
 											</table>
 										</div>
@@ -123,152 +121,127 @@
 								</div>
 							</div>
 							<!--pagination Starts-->
-							<nav class="text-center">
-								<ul class="pagination">
-									<li class="previous"><a href="javascript:void(0)" data-bind="click: function (e) { e.go().first(); }">&lt;&lt;</a></li>
-									<li><a href="javascript:void(0)" data-bind="click: function (e) { e.go().previous(); }">&lt;</a></li>
-									<li><a href="javascript:void(0)" data-bind="click: function (e) { e.go().next(); }">&gt;</a></li>
-									<li class="next"><a href="javascript:void(0)" data-bind="click: function (e) { e.go().last(); }">&gt;&gt;</a></li>
-								</ul>
-							</nav>
+                            <nav class="text-center" style="margin: 0px !important;padding: 0px !important;">
+                                <ul class="pagination" style="margin: 0 !important;padding: 0px !important; float:right;">
+                                    <li class="previous"><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoFirstPage(); } ,enable:pageNo>1">&lt;&lt;</a></li>
+                                    <li><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoBackPage();}">&lt;</a></li>
+                                    <li><select> <option>1</option> </select></li>
+                                    <li><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoNextPage(); }">&gt;</a></li>
+                                    <li class="next"><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoLastPage(); }">&gt;&gt;</a></li>
+                                </ul>
+                            </nav>
 							<!--pagination finish-->
 
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 
-<!-- İşlemler Yeni For Modal Start -->
-	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document" style="margin-top: 50px;">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="myModalLabel">Edit Form</h4>
-				</div>
-				<div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
-					<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Stok ID</p>
-					</div>
-					<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
-						<div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;"></p></div>
-					</div>
-					<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Ürün Adı</p>
-					</div>
-					<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
-						<input type="text" class="form-control" id="exampleInputName2" value="" />
-					</div>
-					<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Ürün Kategorisi</p>
-					</div>
-					<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
-						<select class="form-control">
-							<option></option>
-							<option>Default1</option>
-							<option>Default2</option>
-							<option>Default3</option>
-							<option>Default4</option>
-						</select>
-					</div>
-					<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Seri No</p>
-					</div>
-					<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
-						<div class="checkbox"><label><input type="checkbox"></label></div>
-					</div>
-					<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Stok Birimi</p>
-					</div>
-					<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<select class="form-control">
-							<option></option>
-							<option>Default1</option>
-							<option>Default2</option>
-							<option>Default3</option>
-							<option>Default4</option>
-						</select>
-					</div>
-					<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Açıklama</p>
-					</div>
-					<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<textarea class="form-control" rows="4"></textarea>
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-4 col-md-4" style="margin-top: 21px;">
-					<div class="btn-group pull-right" role="group">
-						<button type="button" class="btn btn-success">Sorgula</button>
-						<button type="button" class="btn btn-info">Temizle</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- İşlemler Yeni For Modal Finish -->
-<!-- Duzenle For Modal Start -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document" style="margin-top: 50px;">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="H1">Edit Form</h4>
-				</div>
-				<div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
-					<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Stok ID</p>
-					</div>
-					<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
-						<div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;">1</p></div>
-					</div>
-					<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Ürün Adı</p>
-					</div>
-					<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
-						<input type="text" class="form-control" id="Text1" value="Cat6 Kablo" />
-					</div>
-					<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Ürün Kategorisi</p>
-					</div>
-					<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
-						<select class="form-control">
-							<option>Default1</option>
-							<option>Default2</option>
-							<option>Default3</option>
-							<option>Default4</option>
-						</select>
-					</div>
-					<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Seri No</p>
-					</div>
-					<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
-						<div class="checkbox"><label><input type="checkbox"></label></div>
-					</div>
-					<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Stok Birimi</p>
-					</div>
-					<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<select class="form-control">
-							<option>Default1</option>
-							<option>Default2</option>
-							<option>Default3</option>
-							<option>Default4</option>
-						</select>
-					</div>
-					<div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Açıklama</p>
-					</div>
-					<div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<textarea class="form-control" rows="4"></textarea>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
-					<button type="button" class="btn btn-primary">Kaydet</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Duzenle For Modal Finish -->
+    <!-- İşlemler Yeni For Modal Start -->
+    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document" style="margin-top: 50px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Edit Form</h4>
+                </div>
+                <div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
+                    <div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Ürün Adı</p>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
+                        <input data-bind="value:newProductName" type="text" class="form-control" id="exampleInputName2"  />
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Ürün Kategorisi</p>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
+                        <input data-bind="value:newCategory" type="text" class="form-control" id="exampleInputName2" />
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Seri No</p>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
+                        <div class="checkbox"><label><input data-bind="checked:newHasSerial" type="checkbox"></label></div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Stok Birimi</p>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <input data-bind="value:newStockBirim" type="text" class="form-control" id="exampleInputName2" />
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Açıklama</p>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <textarea data-bind="value:newDescription" class="form-control" rows="4"></textarea>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 cls-padding-0px" style="margin-top: 3px;" data-bind="visible: $root.savemessagecode()">
+                        <span class="label label-success" data-bind="text: $root.savemessage , visible:$root.savemessagecode()==1"></span>
+                        <span class="label label-danger" data-bind="text: $root.savemessage, visible: $root.savemessagecode() != 1"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+                    <button data-bind="click:insertStockCard" type="button" class="btn btn-primary">Kaydet</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- İşlemler Yeni For Modal Finish -->
+    <!-- Duzenle For Modal Start -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document" style="margin-top: 50px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="H1">Edit Form</h4>
+                </div>
+                <div data-bind="with:selectedStockCard" class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
+                    <div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Ürün Adı</p>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
+                        <input data-bind="value:productname" type="text" class="form-control" id="Text1"  />
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Ürün Kategorisi</p>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
+                        <input data-bind="value:category" type="text" class="form-control"  />
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Seri No</p>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
+                        <div class="checkbox"><label><input data-bind="checked:hasserial" type="checkbox"></label></div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Stok Birimi</p>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <input data-bind="value:unit" type="text" class="form-control"  />
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Açıklama</p>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <textarea data-bind="value:description" class="form-control" rows="4"></textarea>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 cls-padding-0px" style="margin-top: 3px;" data-bind="visible: $root.savemessagecode()">
+                        <span class="label label-success" data-bind="text: $root.savemessage , visible:$root.savemessagecode()==1"></span>
+                        <span class="label label-danger" data-bind="text: $root.savemessage, visible: $root.savemessagecode() != 1"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+                    <button data-bind="click:saveStockCard" type="button" class="btn btn-primary">Kaydet</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Duzenle For Modal Finish -->
 
+</div>
+
+<script src="Templates/ListStockCards.js"></script>

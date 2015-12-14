@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+
+    <input type="file" id="file" file-upload multiple/>
+    <button id="upload" onclick="uploadStart()">upload</button>
+</body>
+</html>
+
+<script>
+    var fileNode = document.getElementById("file");
+   
+    function uploadStart() {
+        var request = new XMLHttpRequest();
+        request.upload.addEventListener('loadstart', function () {
+            console.log("Yükleme başlatıldı");
+        });
+        request.upload.addEventListener('progress', function (e) {
+            if (e.lengthComputable) {
+                console.log("Yüklenen : " + e.loaded + ",Toplam: " + e.total);
+            } else {
+                console.log("Dosya boyutu hesaplanamıyor");
+            }
+        });
+        request.upload.addEventListener('load', function (e) {
+            console.log("Dosya Yükleme İşlemi Başarı ile Tamamlandı...");
+        });
+
+        request.open("post", "http://localhost:50752/api/Adsl/Task/upload", true);
+        request.setRequestHeader("Content-Type", "multipart/form-data;boundary=SOME_BOUNDARY");
+        request.setRequestHeader("X-File-Name", fileNode.files[0].name);
+        request.setRequestHeader("X-File-Size", fileNode.files[0].size);
+        request.setRequestHeader("X-File-Type", fileNode.files[0].type);
+        request.send(fileNode.files[0]);
+    }
+
+</script>

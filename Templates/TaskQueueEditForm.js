@@ -153,9 +153,9 @@ var dataModel = {
         }, null, null)
     },
     stockcardlist: ko.observableArray([]),
-    stockmovement:ko.observableArray([]),
-    
+    stockmovement: ko.observableArray([]),
 
+    fileNode: ko.observable(document.getElementById("file")),
 
     gettaskstatus: function (statusVal) {
         var self = this;
@@ -293,7 +293,6 @@ var dataModel = {
         }, null, null);
 
     },
-
     saveStockMovements: function () {
         var self = this;
         var postdata = [];
@@ -315,6 +314,10 @@ var dataModel = {
             self.message(a);
         }, null, null);
         console.log(postdata);
+    },
+    upload: function () {
+        var self = this;
+        crmAPI.uploadFile();
     },
 
     renderBindings: function () {
@@ -358,6 +361,20 @@ var dataModel = {
                 enableFiltering: true,
                 filterPlaceholder: 'Ara'
             });
+            $("#input-702").fileinput({
+                uploadUrl: "http://localhost:50752/api/Adsl/Task/upload", // server upload action
+                uploadAsync: true,
+                minFileCount: 1,
+                maxFileCount: 10,
+                overwriteInitial: false,
+                uploadExtraData: function () {
+                    return {
+                        img_key: self.customerid() + "-" + self.customername(),
+                        tqid: self.taskorderno(),
+                        docid:1
+                    };
+                }
+            });
             var data = { taskOrderNo: hashSearches[1] };
             crmAPI.getTaskQueues(data, function (a, b, c) {
                 self.taskorderno(a.data.rows[0].taskorderno);               
@@ -388,6 +405,8 @@ var dataModel = {
                              ));
                 self.customername(a.data.rows[0].attachedobject.customername && (a.data.rows[0].attachedobject.customername + ' ' + a.data.rows[0].attachedobject.customersurname) || '');
                 self.customerid(a.data.rows[0].attachedobject.customerid && (a.data.rows[0].attachedobject.customerid) || '');
+                console.log("asdf");
+ 
                 self.customer(a.data.rows[0].attachedobject);
                 self.flat(a.data.rows[0].attachedobject && (a.data.rows[0].attachedobject.flat) || '');
                 self.customergsm(a.data.rows[0].attachedobject && a.data.rows[0].attachedobject.gsm || '');
@@ -439,8 +458,7 @@ var dataModel = {
                             if (movement.serialno) stockcard.serials.unshift(movement.serialno);
                             stockcard.serial(movement.serialno);
                         }
-                    });
-                   
+                    });                  
                 });
                 self.stockcardlist(a.data.rows[0].stockcardlist);
                 
@@ -462,6 +480,9 @@ var dataModel = {
             ko.applyBindings(dataModel, $("#bindingContainer")[0]);
         }
     }
+
+
+
 }
 
 dataModel.category.subscribe(function (v) {
@@ -483,4 +504,5 @@ dataModel.campaignInfoIsVisible = ko.computed(function () {
     }
     return false;
 });
+
 

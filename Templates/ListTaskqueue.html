@@ -93,7 +93,7 @@
 										<label class="control-label" for="taskNameFilter">Task Adı</label>
 									</div>
 									<div class="col-md-12">
-										<select id="taskNameFilter" data-bind="options: tasks, optionsText: 'taskname', optionsValue: 'taskname', value: selectedTaskname, valueUpdate: 'keydown', event: { keypress: enterfilter }" multiple="multiple"></select>
+										<select id="taskNameFilter" data-bind="options: tasks, optionsText: 'taskname', optionsValue: 'taskid', valueUpdate: 'keydown', event: { keypress: enterfilter }" multiple="multiple"></select>
 									</div>
 								</div>
 							</div>
@@ -129,8 +129,7 @@
 									<div class="col-md-12">
 										<select data-size="10" id="personel" data-bind="options: personellist,
                                                                                         optionsText: 'personelname',
-                                                                                        optionsValue: 'personelname',
-                                                                                        value: selectedPersonelname,
+                                                                                        optionsValue: 'personelid',
                                                                                         valueUpdate: 'keydown',
                                                                                         event: { keypress: enterfilter }" multiple="multiple">										
 										</select>
@@ -143,7 +142,7 @@
 										<label class="control-label" for="taskdurumu">Task Durumu</label>
 									</div>
 									<div class="col-md-12">
-										<select id="taskdurumu"  data-bind="options: taskstatuslist, optionsText: 'taskstate', optionsValue: 'taskstate', value: selectedTaskstatus, valueUpdate: 'keydown', event: { keypress: enterfilter }" multiple="multiple" >										    
+										<select id="taskdurumu"  data-bind="options: taskstatuslist, optionsText: 'taskstate', optionsValue: 'taskstateid',value:defaultstatus, valueUpdate: 'keydown', event: { keypress: enterfilter }" multiple="multiple" >										    
 										</select>
 									</div>
 								</div>
@@ -239,16 +238,16 @@
 																</ul>
 															</div>
 														</th>
-														<th class="col-md-1 success" style="border-right: 1px solid #ddd;">Task</th>
+														<th class="col-md-1" style="border-right: 1px solid #ddd;">Task</th>
 														<th class="col-md-1" style="border-right: 1px solid #ddd;">Site</th>
 														<th class="col-md-1" style="border-right: 1px solid #ddd;">Blok</th>
-														<th class="col-md-1 info " style="border-right: 1px solid #ddd;">Müşteri Ad-Soyad</th>
+														<th class="col-md-1" style="border-right: 1px solid #ddd;">Müşteri Ad-Soyad</th>
 														<th class="col-md-1" style="border-right: 1px solid #ddd;">Müşteri Statü</th>
 														<th class="col-md-1" style="border-right: 1px solid #ddd;">ISS</th>
 														<th class="col-md-1" style="border-right: 1px solid #ddd;">Atanma Tarihi</th>
 														<th class="col-md-1" style="border-right: 1px solid #ddd;">Randevu Tarihi</th>
 														<th class="col-md-1" style="border-right: 1px solid #ddd;">Personel</th>
-														<th class="col-md-1 warning" style="border-right: 1px solid #ddd;">Durum</th>
+														<th class="col-md-1" style="border-right: 1px solid #ddd;">Durum</th>
 														<th class="col-md-1" style="border-right: 1px solid #ddd;">Sonlanma Tarihi</th>
 														<th class="col-md-1" style="border-right: 1px solid #ddd;">Açıklama</th>
 													</tr>                                                   
@@ -320,7 +319,7 @@
                     </div>
                     <div class="modal-body" style="display: inline-block; position: absolute; min-height: 50px;">
                         <div class="col-xs-12 col-sm-12 col-md-12 cls-padding-0px" style="margin-top: 3px;" data-bind="visible: !errorcode()">
-                            <select id="personelatamacombo" data-bind="options: personellist, optionsText: 'personelname', optionsValue: 'personelname', value: selectedAttachmentPersonelname " multiple="multiple"></select>
+                            <select id="personelatamacombo" data-bind="options: attacheablePersonelList, optionsText: 'personelname', optionsValue: 'personelid', value: selectedAttachmentPersonelid " multiple="multiple"></select>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 cls-padding-0px" style="margin-top: 3px;" data-bind="visible: errorcode()">
                             <span class="label label-success" data-bind="text: errormessage , visible:errorcode()==1" ></span>

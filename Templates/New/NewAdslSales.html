@@ -1,0 +1,105 @@
+﻿<div id="bindingmodal" class="modal-dialog modal-sm" role="document" style="margin-top: 50px;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Yeni ADSL Satış</h4>
+        </div>
+        <div class="modal-body" style="display: inline-block; position: relative; min-height: 50px;">
+            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                <p>Tc Kimlik No</p>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                <input type="text" class="form-control" id="Text3" value="">
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                <p>Müşteri Adı</p>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                <input type="text" class="form-control" id="Text3" value="">
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                <p>Müşteri Soyadı</p>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                <input type="text" class="form-control" id="Text3" value="">
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                <p>Gsm</p>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                <input type="text" class="form-control" id="Text3" value="">
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                <p>Ev Telefonu</p>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                <input type="text" class="form-control" id="Text3" value="">
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                <p>İl</p>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                <select data-bind="options:ilList,optionsText:'ad',optionsValue:'kimlikNo',optionsCaption:'İl Seçiniz...'" class="form-control">
+                </select>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                <p>İlçe</p>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                <select class="form-control">
+                    <option>1</option>
+                    <option>2</option>
+                </select>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                <p>Mahalle/Köy</p>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                <select class="form-control">
+                    <option>1</option>
+                    <option>2</option>
+                </select>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                <p>Cadde/SK</p>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                <select class="form-control">
+                    <option>1</option>
+                    <option>2</option>
+                </select>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                <p>Bina Kapı No</p>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                <select class="form-control">
+                    <option>1</option>
+                    <option>2</option>
+                </select>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                <p>Daire</p>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                <select class="form-control">
+                    <option>1</option>
+                    <option>2</option>
+                </select>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+            <button type="button"  class="btn btn-primary">Kaydet</button>
+        </div>
+    </div>
+
+</div>
+<script src="Scripts/bootstrap-datetimepicker.js"></script>
+<script src="Scripts/daterangepicker.js"></script>
+<script type="text/javascript" src="Templates/New/NewAdslSales.js"></script>
+<script>
+    $(document).ready(function () {
+        moment.locale('tr');
+    });
+</script>

@@ -42,5 +42,8 @@ $(window).bind("hashchange", function () {
     $("#arizataski").click(function () {
         $("#ModalContainer").loadTemplate("Templates/New/ArizaTaski.html");
     });
+    $("#newadslsatis").click(function () {
+        $("#ModalContainer").loadTemplate("Templates/New/NewAdslSales.html");
+    });
 });
 

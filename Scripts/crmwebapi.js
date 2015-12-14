@@ -15,8 +15,8 @@
 
 var crmAPI = (function () {
     var getData = function (callType, path, sendData, onsuccess, onerror, before) {
-       //var baseURL = "http://crmapitest.kociletisim.com.tr:8083/api/";
-    var baseURL = "http://localhost:50752/api/"; 
+    var baseURL = "http://crmapitest.kociletisim.com.tr:8083/api/Fiber/";
+    //var baseURL = "http://localhost:50752/api/Fiber/"; 
 
         $.ajax({
             method: callType,
@@ -35,6 +35,10 @@ var crmAPI = (function () {
         });
     }
     return {
+
+        login: function (data, onsuccess, onerror, before) {
+            getData("POST", "Login/login", data, onsuccess, onerror, before);
+        },
         getTaskFilter: function (data,onsuccess, onerror, before) {
             getData("POST", "Filter/getTasks",data, onsuccess, onerror, before);
         },
@@ -104,8 +108,11 @@ var crmAPI = (function () {
         getPersonel: function (onsuccess, onerror, before) {
             getData("POST", "Filter/getPersonel", {}, onsuccess, onerror, before)
         },
-        getProducts: function (onsuccess, onerror, before) {
-            getData("POST", "Filter/getProducts", {}, onsuccess, onerror, before)
+        getAttacheablePersonel: function (data, onsuccess, onerror, before) {
+            getData("POST", "Filter/getAttacheablePersonel", data, onsuccess, onerror, before)
+        },
+        getProductList: function (onsuccess, onerror, before) {
+            getData("POST", "Filter/getProductList", {}, onsuccess, onerror, before)
         },
         getTaskQueues: function (data,onsuccess, onerror, before) {
             getData("POST", "Task/getTaskQueues", data, onsuccess, onerror, before)
@@ -147,7 +154,7 @@ var crmAPI = (function () {
             getData("POST", "Task/getTaskList", data, onsucces, onerror, before)
         },
         getObjectType: function (onsuccess, onerror, before) {
-            getData("POST", "Filter/getObjectType",{}, onsuccess, onerror, before)
+            getData("POST", "Filter/getObjectType", {}, onsuccess, onerror, before)
         },
         getObject: function (data, onsuccess, onerror, before) {
             getData("POST", "Filter/getObject", data, onsuccess, onerror, before)
@@ -158,6 +165,74 @@ var crmAPI = (function () {
         SaveStockMovementMultiple: function (data, onsucces, onerror, before) {
             getData("POST", "Stock/SaveStockMovementMultiple", data, onsucces, onerror, before)
         },
+        InsertStockMovement: function (data, onsucces, onerror, before) {
+            getData("POST", "Stock/InsertStockMovement", data, onsucces, onerror, before)
+        },      
+        getAdress: function (data, onsucces, onerror, before) {
+            getData("POST", "Task/getAdress", data, onsucces, onerror, before)
+        },
+        getProducts: function (data, onsucces, onerror, before) {
+            getData("POST", "Task/getProducts", data, onsucces, onerror, before)
+        },
+        saveProduct: function (data, onsucces, onerror, before) {
+            getData("POST", "Task/saveProduct", data, onsucces, onerror, before)
+        },
+        insertProduct: function (data, onsucces, onerror, before) {
+            getData("POST", "Task/insertProduct", data, onsucces, onerror, before)
+        },
+        getPersonels: function (data, onsucces, onerror, before) {
+            getData("POST", "Task/getPersonels", data, onsucces, onerror, before)
+        },
+        savePersonel: function (data, onsucces, onerror, before) {
+            getData("POST", "Task/savePersonel", data, onsucces, onerror, before)
+        },
+        insertPersonel: function (data, onsucces, onerror, before) {
+            getData("POST", "Task/insertPersonel", data, onsucces, onerror, before)
+        },
+        getStockCards: function (data, onsucces, onerror, before) {
+            getData("POST", "Task/getStockCards", data, onsucces, onerror, before)
+        },
+        saveStockCard: function (data, onsucces, onerror, before) {
+            getData("POST", "Task/saveStockCard", data, onsucces, onerror, before)
+        },
+        insertStockCard: function (data, onsucces, onerror, before) {
+            getData("POST", "Task/insertStockCard", data, onsucces, onerror, before)
+        },
+        getPersonelStock: function (data, onsucces, onerror, before) {
+            getData("POST", "Filter/getPersonelStock", data, onsucces, onerror, before)
+        },
+        getSerialsOnPersonel: function (data, onsucces, onerror, before) {
+            getData("POST", "Filter/getSerialsOnPersonel", data, onsucces, onerror, before)
+        },
+        
+        
+        uploadFile:function () {
+        for (var i = 0; i < fileNode.files.length; i++) {
+            var request = new XMLHttpRequest();
+            request.upload.addEventListener('loadstart', function () {
+                console.log(i+"'inci Yükleme başlatıldı");
+            });
+            request.upload.addEventListener('progress', function (e) {
+                if (e.lengthComputable) {
+                    console.log(i+"'inci Yüklenen : " + e.loaded + ",Toplam: " + e.total);
+                } else {
+                    console.log(i+"'inci Dosya boyutu hesaplanamıyor");
+                }
+            });
+            request.upload.addEventListener('load', function (e) {
+                console.log(i + "'inci Dosya Yükleme İşlemi Başarı ile Tamamlandı...");
+            });
+
+            request.open("post", "http://localhost:50752/api/Adsl/Upload", true);
+            request.setRequestHeader("Content-Type", "multipart/form-data;boundary=SOME_BOUNDARY");
+            request.setRequestHeader("X-File-Name", fileNode.files[i].name);
+            request.setRequestHeader("X-File-Size", fileNode.files[i].size);
+            request.setRequestHeader("X-File-Type", fileNode.files[i].type);
+            request.send(fileNode.files[0]);
+        }
+       
+}
+        
     }
 })();
 
