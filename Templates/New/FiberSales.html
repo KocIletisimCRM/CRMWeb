@@ -1,4 +1,4 @@
-﻿<div id="bindingmodal" class="modal-dialog modal-md" role="document" style="margin-top: 50px;">
+﻿<div id="bindingmodal" class="modal-dialog modal-sm" role="document" style="margin-top: 50px;">
     <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -18,26 +18,26 @@
                         <select id="salespersonel" data-bind="options: personellist,
                                                                                         optionsText: 'personelname',
                                                                                         optionsValue: 'personelid',
-                                                                                        value: attachedpersonelid,optionsCaption:'Seçiniz'" class="form-control" ></select>
+                                                                                        value: attachedpersonelid" class="form-control" multiple="multiple"></select>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                         <p>Öbek</p>
                     </div>
                     <div  class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <select id="region" data-bind="options:regionlist,optionsText:'region',optionsValue:'region',value:region,optionsCaption:'Seçiniz'" class="form-control" >
+                        <select id="region" data-bind="options:regionlist,optionsText:'region',optionsValue:'region',value:region" class="form-control" multiple="multiple">
                         </select>
                     </div>
                     <div data-bind="visible:region" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                         <p>Site</p>
                     </div>
                     <div data-bind="visible:region" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <select id="salessite" data-bind="options:sitelist,optionsText:'sitename',optionsValue:'siteid',value:siteid,optionsCaption:'Seçiniz'" class="form-control"></select>
+                        <select id="salessite" data-bind="options:sitelist,optionsText:'sitename',optionsValue:'siteid',value:siteid" class="form-control" multiple="multiple"></select>
                     </div>
                     <div data-bind="visible:siteid" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                         <p>Block</p>
                     </div>
                     <div data-bind="visible:siteid" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <select id="salesblock" data-bind="options:blocklist,optionsText:'blockname',optionsValue:'blockid',value:blockid,optionsCaption:'Seçiniz'" class="form-control"></select>
+                        <select id="salesblock" data-bind="options:blocklist,optionsText:'blockname',optionsValue:'blockid',value:blockid" class="form-control" multiple="multiple"></select>
                     </div>
                     <div data-bind="visible:blockid" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                         <p>Müşteri</p>
@@ -48,7 +48,7 @@
                                                 return item.customername ?(item.customerid+ ' Daire :'+item.flat+' ' +  item.customername + ' ' + item.customersurname) : item.customerid + ' Daire: '+item.flat +'  BOŞ DAİRE '
                                                           },
                                                               optionsValue:'customerid',
-                                                              value:customerid,optionsCaption:'Seçiniz'" class="form-control" ></select>
+                                                              value:customerid" class="form-control" multiple="multiple"></select>
                     </div>
                 </div>
                 <div class="modal-footer">

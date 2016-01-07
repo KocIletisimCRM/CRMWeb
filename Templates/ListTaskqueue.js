@@ -39,16 +39,6 @@ var dataModel = {
     totalpagecount: ko.observable(0),
     totalRowCount: ko.observable(),
     defaultstatus: ko.observable(),
-    //kimlik kartı
-    selectedCustomer: ko.observable(),
-    ctstatuslist: ko.observableArray([]),
-    issStatusList: ko.observableArray([]),
-    netStatusList: ko.observableArray([]),
-    telStatusList: ko.observableArray([]),
-    tvStatusList: ko.observableArray([]),
-    TurkcellTvStatusList: ko.observableArray([]),
-    gsmStatusList: ko.observableArray([]),
-    // end of kimlik kartı
     attacheablePersonelList:ko.observableArray([]),
     
     getTasks: function () {
@@ -262,31 +252,10 @@ var dataModel = {
                         if ($(this).is(':checked')) {
                             var id = $(this).val();
                             ids.push(id);
-                            //console.log("Seçim: " + id + "");
+                            console.log("Seçim: " + id + "");
                         }
                     });
                     self.selectedtaskorderno(ids);
-                });
-                $('.satir').click(function () {
-                    var checkedids = [];
-                    var id = $(this).index();
-                    if ($(".sel")[id - 1].checked != true)
-                    {
-                        $(".sel")[id - 1].checked = true;
-                        $(".sel").change();
-                        checkedids.push(id);
-                    }
-                    else
-                   {                       
-                        $(".sel")[id - 1].checked = false;
-                        $(".sel").change();
-                    }
-                });
-                $(".customer").click(function (d) {
-                    var id = $(this).index();
-                    console.log(d);
-                   // self.getCustomerCard(id);
-
                 });
 
             }, null, null)
@@ -326,89 +295,6 @@ var dataModel = {
             dataModel.navigate.gotoPage(pc);
         },
     },
-    getCustomerCard: function (i) {
-        var self = this;
-        self.getIssStatus();
-        self.getGsmStatus();
-        self.getNetStatus();
-        self.getTvKullanımıStatus();
-        self.getTurkcellTvStatus();
-        self.getTelStatus();
-        var obj = dataModel.taskqueuelist()[2].attachedobject;
-        obj.closedKatZiyareti = false;
-        self.selectedCustomer(obj);
-        // getCustomerCard.CustomerCard(self.customerid(),function (a, b, c) {self.customerCardList(a) });
-    },
-    getCustomerStatus: function () {
-        var self = this;
-        crmAPI.getCustomerStatus(function (a, b, c) {
-            self.ctstatuslist(a);
-            $("#abonedurumu,#abonedurumuinfo").multiselect({
-                includeSelectAllOption: true,
-                selectAllValue: 'select-all-value',
-                maxHeight: 250,
-                buttonWidth: '100%',
-                nonSelectedText: 'Abone Durumunu Seçiniz',
-                nSelectedText: 'Abone Durumu Seçildi!',
-                numberDisplayed: 2,
-                selectAllText: 'Tümünü Seç!',
-                enableFiltering: true,
-                filterPlaceholder: 'Ara'
-            });
-        }, null, null)
-    },
-    getIssStatus: function () {
-        var self = this;
-        crmAPI.getIssStatus(function (a, b, c) {
-            self.issStatusList(a);
-        }, null, null);
-    },
-    getNetStatus: function () {
-        var self = this;
-        crmAPI.getNetStatus(function (a, b, c) {
-            self.netStatusList(a);
-        }, null, null)
-    },
-    getTelStatus: function () {
-        var self = this;
-        crmAPI.getTelStatus(function (a, b, c) {
-            self.telStatusList(a);
-        }, null, null)
-    },
-    getTvKullanımıStatus: function () {
-        var self = this;
-        crmAPI.getTvKullanımıStatus(function (a, b, c) {
-            self.tvStatusList(a);
-        }, null, null)
-    },
-    getTurkcellTvStatus: function () {
-        var self = this;
-        crmAPI.getTurkcellTvStatus(function (a, b, c) {
-            self.TurkcellTvStatusList(a);
-        }, null, null)
-    },
-    getGsmStatus: function () {
-        var self = this;
-        crmAPI.getGsmStatus(function (a, b, c) {
-            self.gsmStatusList(a);
-        }, null, null)
-    },
-    saveCustomer: function () {
-        var self = this;
-        self.selectedCustomer().customer_status = { id: $("#abonedurumuinfo").val() };
-        self.selectedCustomer().issStatus = { id: $("#issstatus").val() };
-        self.selectedCustomer().netStatus = { id: $("#netstatus").val() };
-        self.selectedCustomer().gsmKullanımıStatus = { id: $("#gsmstatus").val() };
-        self.selectedCustomer().telStatus = { id: $("#telstatus").val() };
-        self.selectedCustomer().TvKullanımıStatus = { id: $("#tvstatus").val() };
-        self.selectedCustomer().TvKullanımıStatus = { id: $("#telstatus").val() };
-        var data = self.selectedCustomer();
-        crmAPI.saveCustomerCard(data, function (a, b, c) {
-            if (a == "ok")
-                self.refresh();
-        }, null, null);
-    },
-
 
     renderBindings: function () {
         var self = this;

@@ -75,14 +75,8 @@
                     </div>
                     <div class="col-md-12" style="padding: 1px 0 1px 0 !important; margin: 0 !important;">
                         <div class=" col-md-3 height-40">
-                            <div class="col-md-6" style="padding: 10px 0 0 0;" data-bind="visible:previoustask">
-                                <a href="#TaskQueueEditForm" data-bind="attr: {href:'#TaskQueueEditForm?'+ previoustask()}">
-                                    <button id="duzenle" type="button" class="btn btn-primary btn-lg" style="padding: 3px; border-radius: 0px; font-size:14px;">
-                                        Önceki Task
-                                    </button>
-                                </a><span style="float:right;"></span>
-                            </div>
-
+                            <div class="col-md-6" style="padding: 10px 0 0 0;">Önceki Task<span style="float:right;">:</span></div>
+                            <div data-bind="text: previoustask" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
                         </div>
                         <div class="col-md-3 height-40">
                             <div class="col-md-6" style="padding: 10px 0 0 0;">Randevu Tarihi<span style="float:right;">:</span></div>
@@ -106,16 +100,8 @@
                     </div>
                     <div class="col-md-12" style="padding: 1px 0 1px 0 !important; margin: 0 !important;">
                         <div class=" col-md-3 height-40">
-                            <div class="col-md-6" style="padding: 10px 0 0 0;">
-                                <div class="col-md-6" style="padding: 10px 0 0 0;" data-bind="visible:relatedtask">
-                                    <a href="#TaskQueueEditForm" data-bind="attr: {href:'#TaskQueueEditForm?'+ relatedtask()}">
-                                        <button id="duzenle" type="button" class="btn btn-success btn-lg" style="padding: 3px; border-radius: 0px; font-size:14px;">
-                                            İlişkili Task
-                                        </button>
-                                    </a><span style="float:right;"></span>
-                                </div>
-                                <span style="float:right;"></span>
-                            </div>
+                            <div class="col-md-6" style="padding: 10px 0 0 0;">İlişkili Task<span style="float:right;">:</span></div>
+                            <div data-bind="text: relatedtask" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
                         </div>
                         <div class="col-md-3 height-40">
                             <div class="col-md-6" style="padding: 10px 0 0 0;">Kapanma Tarihi<span style="float:right;">:</span></div>
@@ -297,138 +283,138 @@
             </div>
         </div>
     </div>
+</div>
 
+<!-- müşteri bilgilerini düzenleme For Modal Start -->
+<div class="modal fade" id="customerinfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document" style="margin-top: 50px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Müşteri Kimlik Kartı</h4>
+            </div>
+            <div class="modal-body" data-bind="with: selectedCustomer" style="display: inline-block; position: relative; min-height: 50px;">
 
-    <!-- müşteri bilgilerini düzenleme For Modal Start -->
-    <div class="modal fade" id="customerinfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog modal-sm" role="document" style="margin-top: 50px;">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Müşteri Kimlik Kartı</h4>
+                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                    <p>Müşteri No:</p>
                 </div>
-                <div class="modal-body" data-bind="with: selectedCustomer" style="display: inline-block; position: relative; min-height: 50px;">
-
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                        <p>Müşteri No:</p>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <p><label data-bind="text:customerid"></label></p>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                        <p>Blok</p>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <p><label data-bind="text:block.blockid"></label></p>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                        <p>Daire</p>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <p><label data-bind="text:flat"></label></p>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                        <p>Tc No</p>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <p><input class="form-control" data-bind="value:tckimlikno"></p>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                        <p>Ad</p>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <p><input data-bind="value:customername" class="form-control"></p>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                        <p>Soyad</p>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <p> <input data-bind="value:customersurname" class="form-control"></p>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                        <p>Gsm</p>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <p><input data-bind="value:gsm" class="form-control"></p>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                        <p>Telefon</p>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <p><input data-bind="value:phone" class="form-control"></p>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                        <p>Müşteri Statüsü</p>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <select class="form-control" id="abonedurumuinfo" data-bind="options: $parent.ctstatuslist, optionsText: 'Text', optionsValue: 'ID', value: (customer_status && customer_status.ID || 0)"></select>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                        <p>İnternet SS</p>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <select class="form-control" id="abonedurumuinfo" data-bind="options: $parent.issStatusList, optionsText: 'issText', optionsValue: 'id', value: (issStatus && issStatus.id || 0)"></select>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                        <p>İnternet Ücreti</p>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <select id="netstatus" class="form-control" data-bind="options: $parent.netStatusList, optionsText: 'netText', optionsValue: 'id', value: (netStatus && netStatus.id || 0)"></select>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                        <p>Telefon Ücreti</p>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <select id="telstatus" class="form-control" data-bind=" options: $parent.telStatusList,
+                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                    <p><label data-bind="text:customerid"></label></p>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                    <p>Blok</p>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                    <p><label data-bind="text:block.blockid"></label></p>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                    <p>Daire</p>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                    <p><label data-bind="text:flat"></label></p>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                    <p>Tc No</p>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                    <p><input class="form-control" data-bind="value:tckimlikno"></p>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                    <p>Ad</p>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                    <p><input data-bind="value:customername" class="form-control"></p>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                    <p>Soyad</p>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                    <p> <input data-bind="value:customersurname" class="form-control"></p>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                    <p>Gsm</p>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                    <p><input data-bind="value:gsm" class="form-control"></p>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                    <p>Telefon</p>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                    <p><input data-bind="value:phone" class="form-control"></p>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                    <p>Müşteri Statüsü</p>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                    <select class="form-control" id="abonedurumuinfo" data-bind="options: $parent.ctstatuslist, optionsText: 'Text', optionsValue: 'ID', value: (customer_status && customer_status.ID || 0)"></select>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                    <p>İnternet SS</p>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                    <select class="form-control" id="abonedurumuinfo" data-bind="options: $parent.issStatusList, optionsText: 'issText', optionsValue: 'id', value: (issStatus && issStatus.id || 0)"></select>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                    <p>İnternet Ücreti</p>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                    <select id="netstatus" class="form-control" data-bind="options: $parent.netStatusList, optionsText: 'netText', optionsValue: 'id', value: (netStatus && netStatus.id || 0)"></select>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                    <p>Telefon Ücreti</p>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                    <select id="telstatus" class="form-control" data-bind=" options: $parent.telStatusList,
     optionsText: 'telText',
     optionsValue: 'id',
     value: (telStatus && telStatus.id || 0),
     optionsCaption: 'Gsm Kullanımı Seçiniz...'"></select>
 
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                        <p>Televizyon Kullanımı</p>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <select id="tvstatus" class="form-control" data-bind="options: $parent.tvStatusList,
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                    <p>Televizyon Kullanımı</p>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                    <select id="tvstatus" class="form-control" data-bind="options: $parent.tvStatusList,
     optionsText: 'tvKullanımıText',
     optionsValue: 'id',
     value: (TvKullanımıStatus && TvKullanımıStatus.id || 0),
     optionsCaption: 'Tv Kullanımı Seçiniz...'"></select>
 
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                        <p>Turkcell Tv</p>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <select id="ttvstatus" class="form-control" data-bind="options: $parent.TurkcellTvStatusList,
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                    <p>Turkcell Tv</p>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                    <select id="ttvstatus" class="form-control" data-bind="options: $parent.TurkcellTvStatusList,
     optionsText: 'TurkcellTvText',
     optionsValue: 'id',
     value: (turkcellTv && TurkcellTVStatus.id || 0),
     optionsCaption: 'TTV + Kullanımı Seçiniz...'"></select>
 
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                        <p>Gsm Kullanımı</p>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <select id="gsmstatus" class="form-control" data-bind=" options: $parent.gsmStatusList,
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                    <p>Gsm Kullanımı</p>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                    <select id="gsmstatus" class="form-control" data-bind=" options: $parent.gsmStatusList,
     optionsText: 'gsmText',
     optionsValue: 'id',
     value: (gsmKullanımıStatus && gsmKullanımıStatus.id || 0),
     optionsCaption: 'Gsm Kullanımı Seçiniz...'"></select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
-                    <button type="button" data-bind="click:saveCustomer" class="btn btn-primary">Kaydet</button>
                 </div>
             </div>
-
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+                <button type="button" data-bind="click:saveCustomer" class="btn btn-primary">Kaydet</button>
+            </div>
         </div>
-        <!-- müşteri bilgilerini düzenleme For Modal Finish-->
+
     </div>
+    <!-- müşteri bilgilerini düzenleme For Modal Finish-->
 </div>
+
 <script type="text/javascript" src="Templates/TaskQueueEditForm.js"></script>
 <script>
     $(document).ready(function () {

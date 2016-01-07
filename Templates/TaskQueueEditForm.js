@@ -57,9 +57,8 @@ var dataModel = {
         var obj = self.customer();
         obj.closedKatZiyareti = false;
         self.selectedCustomer(obj);
-       // getCustomerCard.CustomerCard(self.customerid(),function (a, b, c) {self.customerCardList(a) });
+        //getCustomerCard.CustomerCard(self.customerid(),function (a, b, c) {self.customerCardList(a) });
    },
- 
    saveCustomer: function () {
        var self = this;
        self.selectedCustomer().customer_status = { id: $("#abonedurumuinfo").val() };
@@ -381,7 +380,6 @@ var dataModel = {
                 self.taskorderno(a.data.rows[0].taskorderno);               
                 self.taskname(a.data.rows[0].task.taskname);
                 self.taskid(a.data.rows[0].task.taskid);
-               
                 self.taskstatetype(a.data.rows[0].taskstatepool && a.data.rows[0].taskstatepool.statetype || null)
                 var status = a.data.rows[0].taskstatepool && a.data.rows[0].taskstatepool.taskstateid || null;
                 self.gettaskstatus(status);
