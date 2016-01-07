@@ -1,0 +1,58 @@
+﻿  <!-- Yeni Penetrasyon Başlangıç For Modal Start-->
+<div id="bindingmodal" class="modal-dialog modal-md" role="document" style="margin-top: 50px;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="H14">Yeni Penetrasyon Başlangıç Taskı</h4>
+        </div>
+        <div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
+            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                <p>Çalışma Tarihi</p>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                <input type="date" class="form-control" id="Date14" data-bind="value:date" placeholder="">
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                <p>Personel</p>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                <select id="ppersonel" data-bind="options:personellist,optionsText:'personelname',optionsValue:'personelid',value:attachedpersonelid,optionsCaption:'Personel Seçiniz...'" class="form-control"></select>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                <p>Öbek</p>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                <select id="obek" class="form-control" data-bind="options:regionlist,optionsText:'region',optionsValue:'region',value:region,optionsCaption:'Öbek Seçiniz...'"></select>
+            </div>
+            <div data-bind="visible:region" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                <p>Site</p>
+            </div>
+            <div data-bind="visible:region" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                <select id="site" data-bind="options:sitelist,optionsText:'sitename',optionsValue:'siteid',value:siteid,optionsCaption:'Site Seçiniz...'" class="form-control"></select>
+            </div>
+            <div data-bind="visible:siteid" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                <p>Blok</p>
+            </div>
+            <div data-bind="visible:siteid" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                <select id="blok" data-bind="options:blocklist,optionsText:'blockname',optionsValue:'blockid',value:blockid,optionsCaption:'Blok Seçiniz...'" class="form-control"></select>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 cls-padding-0px" style="margin-top: 3px;" data-bind="visible:saveMessage">
+                <span class="label label-success" data-bind="text:saveMessage,visible:saveMessage"></span>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+            <button type="button" data-bind="click:savePenetrasyonStart,enable:blockid && attachedpersonelid" class="btn btn-primary">Kaydet</button>
+        </div>
+    </div>
+</div>
+<script src="Scripts/bootstrap-datetimepicker.js"></script>
+<script src="Scripts/daterangepicker.js"></script>
+<script type="text/javascript" src="Templates/New/Penetrasyon.js"></script>
+<script>
+    $(document).ready(function () {
+        moment.locale('tr');
+    });
+</script>
+
+<!-- Yeni Penetrasyon Başlangıç For Modal Finish-->
