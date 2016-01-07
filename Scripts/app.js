@@ -51,5 +51,8 @@ $(window).bind("hashchange", function () {
     $("#newglobaltask").click(function () {
         $("#ModalContainer").loadTemplate("Templates/New/NewGlobalTask.html");
     });
+    $("#newarizatask").click(function () {
+        $("#ModalContainer").loadTemplate("Templates/New/NewArizaTask.html");
+    });
 });
 

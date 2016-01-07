@@ -15,8 +15,8 @@
 
 var crmAPI = (function () {
     var getData = function (callType, path, sendData, onsuccess, onerror, before) {
-    //var baseURL = "http://crmapitest.kociletisim.com.tr:8083/api/Fiber/";
-    var baseURL = "http://localhost:50752/api/Fiber/"; 
+    var baseURL = "http://crmapitest.kociletisim.com.tr:8083/api/Fiber/";
+    //var baseURL = "http://localhost:50752/api/Fiber/"; 
 
         $.ajax({
             method: callType,

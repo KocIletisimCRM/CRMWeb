@@ -2,14 +2,14 @@
     <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Yeni Task Oluşturma</h4>
+            <h4 class="modal-title" id="myModalLabel">Yeni Arıza Task Oluşturma</h4>
         </div>
         <div class="modal-body" style="display: inline-block; position: relative; min-height: 50px;">
             <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                <p>Task</p>
+                <p>Arıza Task</p>
             </div>
             <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                <select id="newglobaltaskcombo" data-bind="options:globaltasklist,optionsText:'taskname',optionsValue:'taskid',value:selectedtaskid,optionsCaption:'Seçiniz'" class="form-control"></select>
+                <select id="newarizataskcombo" data-bind="options:arizatasklist,optionsText:'taskname',optionsValue:'taskid',value:selectedtaskid,optionsCaption:'Seçiniz'" class="form-control"></select>
             </div>
             <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                 <p>Personel</p>
@@ -62,13 +62,12 @@
             <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
             <button type="button" data-bind="click:savesalestask,enable:selectedtaskid()&&((isAttacheableCustomer() && customerid()) || (!isAttacheableCustomer() && blockid()))" class="btn btn-primary">Kaydet</button>
         </div>
-
     </div>
 
 </div>
 <script src="Scripts/bootstrap-datetimepicker.js"></script>
 <script src="Scripts/daterangepicker.js"></script>
-<script type="text/javascript" src="Templates/New/NewGlobalTask.js"></script>
+<script type="text/javascript" src="Templates/New/NewArizaTask.js"></script>
 <script>
     $(document).ready(function () {
         moment.locale('tr');
