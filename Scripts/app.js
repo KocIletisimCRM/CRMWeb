@@ -45,11 +45,5 @@ $(window).bind("hashchange", function () {
     $("#newadslsatis").click(function () {
         $("#ModalContainer").loadTemplate("Templates/New/NewAdslSales.html");
     });
-    $("#newpenetrasyon").click(function () {
-               $("#ModalContainer").loadTemplate("Templates/New/Penetrasyon.html");
-     });
-    $("#newglobaltask").click(function () {
-                $("#ModalContainer").loadTemplate("Templates/New/NewGlobalTask.html");
-     });
 });
 
