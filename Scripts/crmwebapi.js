@@ -204,6 +204,15 @@ var crmAPI = (function () {
         getSerialsOnPersonel: function (data, onsucces, onerror, before) {
             getData("POST", "Filter/getSerialsOnPersonel", data, onsucces, onerror, before)
         },
+        ///Save Tasks Metodları
+        savePenetrasyonStart:function(data,onsuccess,onerror,before){
+            getData("POST", "SaveTasks/savePenetrasyon",data,onsuccess,onerror,before)
+        },
+        saveGlobalTask: function (data, onsuccess, onerror, before) {
+            getData("POST", "SaveTasks/saveGlobalTask", data, onsuccess, onerror, before)
+        },
+        //
+        
         
         uploadFile:function () {
         for (var i = 0; i < fileNode.files.length; i++) {
