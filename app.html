@@ -109,14 +109,14 @@
 											<li class="dropdown-submenu">
 												<a tabindex="-1" href="#">Yeni Tasklar</a>
 												<ul class="dropdown-menu">
-													<li><a href="#yenisaha" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Saha Çalışması</a></li>
-													<li><a href="#penetrasyon" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Penetrasyon Başlangıç</a></li>
-													<li><a href="#musterinakil" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Müşteri Nakil Taskı</a></li>
-													<li><a href="#protokol" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Protokol Takip Taskı</a></li>
-													<li><a href="#periyodikbakim" role="button" class="btn" data-toggle="modal" style="float: left;">Periyodik Bakım Taskı</a></li>
-													<li><a href="#yeninakil" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Nakil Taskı</a></li>
-													<li><a href="#uruniade" role="button" class="btn" data-toggle="modal" style="float: left;">Ürün İade İşlemi</a></li>
-													<li><a href="#kanalsikayeti" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Kanal Şikayeti Taskı</a></li>
+													<li><a href="#ModalContainer" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Saha Çalışması</a></li>
+													<li><a href="#ModalContainer" id="newpenetrasyon" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Penetrasyon Başlangıç</a></li>
+													<li><a href="#ModalContainer" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Müşteri Nakil Taskı</a></li>
+													<li><a href="#ModalContainer" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Protokol Takip Taskı</a></li>
+													<li><a href="#ModalContainer" role="button" class="btn" data-toggle="modal" style="float: left;">Periyodik Bakım Taskı</a></li>
+													<li><a href="#ModalContainer" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Nakil Taskı</a></li>
+													<li><a href="#ModalContainer" role="button" class="btn" data-toggle="modal" style="float: left;">Ürün İade İşlemi</a></li>
+													<li><a href="#ModalContainer" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Kanal Şikayeti Taskı</a></li>
 												</ul>
 											</li>
 										</ul>
@@ -186,23 +186,28 @@
 				</div>
 			</div>
 			<div class="content-wraper">
-				<div class=" top-bar" style="background-color: royalblue">
-					<div class="col-xs-1 col-sm-1 col-md-1">
-						<label id="lbl_leftPanelControl" for="leftPanelControl">
+                <div class=" top-bar" style="background-color: royalblue">
+                    <div class="col-xs-1 col-sm-1 col-md-1">
+                        <label id="lbl_leftPanelControl" for="leftPanelControl">
                             <span class="glyphicon glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-						</label>
-					</div>
-                    <div class="col-xs-8 col-sm-8 col-md-8">
-                        <label id="labeltaskqueue" class="label label-success">
-                            <a href="#ListTaskqueue" id="listTaskqueue2"  role="button" style="border-radius: 0px;">Anasayfa</a>
                         </label>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-8">
+                        <div class="col-md-6">
+                            <div class="btn-group col-md-6" role="group" aria-label="...">
+                                <button onclick="" type="button" class="btn btn-success"><a href="#ListTaskqueue" id="listTaskqueue2">Anasayfa</a></button>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="pull-right">
+                        <button id="exit" role="button" class="btn btn-danger">Çıkış</button>
                         <label>
-                            <span class="glyphicon glyphicon-user" style="color:#fff" aria-hidden="true">ADMİN</span>
+                            <span class="glyphicon glyphicon-user" style="color:#fff" aria-hidden="true"> </span>
+                            <label id="username" style="color:aliceblue"> </label>
                         </label>
                     </div>
-				</div>
+                </div>
 				<div class="content" id="templateContainer"></div>
 			</div>
 			<br class="clear-fix" />
@@ -704,64 +709,7 @@
 		</div>
 	</div>
 	<!-- Yeni Saha Çalışması For Modal Finish-->
-    <!-- Yeni Penetrasyon Başlangıç For Modal Start-->
-	<div class="modal fade" id="penetrasyon" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog modal-sm" role="document" style="margin-top: 50px;">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="H14">Yeni Penetrasyon Başlangıç Taskı</h4>
-				</div>
-				<div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Çalışma Tarihi</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<input type="date" class="form-control" id="Date14" value="" placeholder="">
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Personel</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<select class="form-control">
-							<option></option>
-							<option>Personel1</option>
-							<option>Personel2</option>
-							<option>Personel3</option>
-						</select>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Öbek</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<select class="form-control">
-							<option></option>
-							<option>Öbek1</option>
-							<option>Öbek2</option>
-							<option>Öbek3</option>
-						</select>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Site</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<input type="text" class="form-control" id="Text29" value="" placeholder="">
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-						<p>Blok</p>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<input type="text" class="form-control" id="Text30" value="" placeholder="">
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
-					<button type="button" class="btn btn-primary">Kaydet</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Yeni Penetrasyon Başlangıç For Modal Finish-->
+  
     <!-- Yeni Müşteri Nakil For Modal Start-->
 	<div class="modal fade" id="musterinakil" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog modal-sm" role="document" style="margin-top: 50px;">
