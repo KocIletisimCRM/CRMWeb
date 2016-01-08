@@ -1,17 +1,25 @@
 ﻿
 <style>
+    body {
+        position:relative;
+        height:100%;
+        width:100%
+        
+    }
     .a {
         position: relative;
         padding: 0;
     }
 
-        .a i {
-            position: absolute;
-            bottom: 10px;
-            right: 24px;
-            top: auto;
-            cursor: pointer;
-        }
+    .a i {
+        position: absolute;
+        bottom: 10px;
+        right: 24px;
+        top: auto;
+        cursor: pointer;
+    }
+
+
 </style>
 <div id="bindingContainer" class="container-fluid" style="background-color: #D1E9F6 !important;">
     <div class="col-md-12 container" style="padding: 0 !important; margin: 20px 0 0 0 !important; border-radius: 0 0 8px 8px !important;">
@@ -21,11 +29,11 @@
                 <div class="panel-body">
                     <div class="col-md-12" style="padding: 1px 0 1px 0 !important; margin: 0 !important;">
                         <div class=" col-md-3 height-40">
-                            <div class="col-md-6" style="padding: 10px 0 0 0;">Task No<span style="float:right;">:</span></div>
+                            <div class="col-md-6" style="padding: 10px 0 0 0; font-weight:bold;">Task No<span style="float:right; width:5px;">:&nbsp; </span></div>
                             <div data-bind="text:taskorderno" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
                         </div>
                         <div class="col-md-3 height-40">
-                            <div class="col-md-6" style="padding: 10px 0 0 0;">Oluşturulma Tarihi<span style="float:right;">:</span></div>
+                            <div class="col-md-6" style="padding: 10px 0 0 0; font-weight:bold;">Oluşturulma Tarihi<span style="float:right; font-weight:bold;">:</span></div>
                             <div class='col-sm-6'>
                                 <div class="form-group">
                                     <div class="col-md-12 a">
@@ -35,11 +43,11 @@
                             </div>
                         </div>
                         <div class=" col-md-3 height-40">
-                            <div class="col-md-6" style="padding: 10px 0 0 0;">Personel<span style="float:right;">:</span></div>
+                            <div class="col-md-6" style="padding: 10px 0 0 0; font-weight:bold;">Personel<span style="float:right; font-weight:bold;">:</span></div>
                             <div data-bind="text: personelname" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
                         </div>
                         <div class=" col-md-3 height-40">
-                            <div class="col-md-6" style="padding: 10px 0 0 0;">Abone Ad-Soyad<span style="float:right;">:</span></div>
+                            <div class="col-md-6" style="padding: 10px 0 0 0; font-weight:bold;">Abone Ad-Soyad<span style="float:right; font-weight:bold;">:</span></div>
                             <div class="col-md-6" style="padding: 10px 0 0 0;">
                                 <a href="#customerinfo" data-bind="text:customername,click:getCustomerCard" role="button" data-toggle="modal"></a>
                                 &nbsp;&nbsp;
@@ -48,11 +56,11 @@
                     </div>
                     <div class="col-md-12" style="padding: 1px 0 1px 0 !important; margin: 0 !important;">
                         <div class=" col-md-3 height-40">
-                            <div class="col-md-6" style="padding: 10px 0 0 0;">Task<span style="float:right;">:</span></div>
+                            <div class="col-md-6" style="padding: 10px 0 0 0; font-weight:bold;">Task<span style="float:right; font-weight:bold;">:</span></div>
                             <div data-bind="text: taskname" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
                         </div>
                         <div class="col-md-3 height-40">
-                            <div class="col-md-6" style="padding: 10px 0 0 0;">Atanma Tarihi<span style="float:right;">:</span></div>
+                            <div class="col-md-6" style="padding: 10px 0 0 0; font-weight:bold;">Atanma Tarihi<span style="float:right; font-weight:bold;">:</span></div>
                             <div class='col-sm-6'>
                                 <div class="form-group">
                                     <div class="col-md-12 a">
@@ -62,30 +70,40 @@
                             </div>
                         </div>
                         <div class="col-md-3 height-40">
-                            <div class="col-md-6" style="padding: 10px 0 0 0;">Yardımcı Personel<span style="float:right;">:</span></div>
-                            <div class="col-md-6">
+                            <div class="col-md-6" style="padding: 5px 0 0 0; font-weight:bold;">Yardımcı Personel<span style="float:right; font-weight:bold;">:</span></div>
+                            <div class="col-md-6" style="padding:1px 0 0 0;">
                                 <select id="assistantPersonel" data-bind="options: personellist, optionsText: 'personelname', optionsValue: 'personelid', value: assistantpersonel," multiple="multiple"></select>
                             </div>
                         </div>
-                        <div class=" col-md-3 height-40">
-                            <div class="col-md-6" style="padding: 10px 0 0 0;">Location ID<span style="float:right;">:</span></div>
+                        <div class="col-md-3 height-40">
+                            <div class="col-md-6" style="padding: 10px 0 0 0; font-weight:bold;">Location ID<span style="float:right; font-weight:bold;">:</span></div>
+                            <!--  location neden müşteri bilgilerini gösteriyor ?  -->
+                            <div data-bind="text: locationid" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
 
-                            <a href="#customerinfo" data-bind="text:locationid,click:getCustomerCard" role="button" data-toggle="modal"></a>
+                            <!--<a href="#customerinfo" data-bind="text:locationid,click:getCustomerCard" role="button" data-toggle="modal"></a>-->
                         </div>
                     </div>
                     <div class="col-md-12" style="padding: 1px 0 1px 0 !important; margin: 0 !important;">
-                        <div class=" col-md-3 height-40">
-                            <div class="col-md-6" style="padding: 10px 0 0 0;" data-bind="visible:previoustask">
+                        <div class="col-md-3 height-40">
+                            <div class="col-md-6" style="padding: 10px 0 10px 0;" data-bind="visible:previoustask">
                                 <a href="#TaskQueueEditForm" data-bind="attr: {href:'#TaskQueueEditForm?'+ previoustask()}">
-                                    <button id="duzenle" type="button" class="btn btn-primary btn-lg" style="padding: 3px; border-radius: 0px; font-size:14px;">
+                                    <button id="duzenle" type="button" class="btn btn-primary btn-lg" style="padding: 3px; border-radius: 5px; font-size: 16px;">
                                         Önceki Task
+                                    </button>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6" style="padding: 10px 5px 0 0;" data-bind="visible:relatedtask">
+                                <a href="#TaskQueueEditForm" data-bind="attr: {href:'#TaskQueueEditForm?'+ relatedtask()}">
+                                    <button id="duzenle" type="button" class="btn btn-success btn-lg" style="padding: 3px; border-radius: 5px; font-size: 16px;">
+                                        İlişkili Task
                                     </button>
                                 </a><span style="float:right;"></span>
                             </div>
 
                         </div>
                         <div class="col-md-3 height-40">
-                            <div class="col-md-6" style="padding: 10px 0 0 0;">Randevu Tarihi<span style="float:right;">:</span></div>
+                            <div class="col-md-6" style="padding: 10px 0 0 0; font-weight:bold;">Randevu Tarihi<span style="float:right; font-weight:bold;">:</span></div>
                             <div class='col-sm-6'>
                                 <div class="form-group">
                                     <div class="col-md-12 a">
@@ -95,30 +113,24 @@
                             </div>
                         </div>
 
-                        <div class=" col-md-3 height-40">
-                            <div class="col-md-6" style="padding: 10px 0 0 0;">Site<span style="float:right;">:</span></div>
+                        <div class="col-md-3 height-40">
+                            <div class="col-md-6" style="padding: 10px 0 0 0; font-weight:bold;">Site<span style="float:right; font-weight:bold;">:</span></div>
                             <div data-bind="text: sitename" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
                         </div>
                         <div class=" col-md-3 height-40">
-                            <div class="col-md-6" style="padding: 10px 0 0 0;">Gsm<span style="float:right;">:</span></div>
+                            <div class="col-md-6" style="padding: 10px 0 0 0; font-weight:bold;">Gsm<span style="float:right; font-weight:bold;">:</span></div>
                             <div data-bind="text: customergsm" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
                         </div>
                     </div>
                     <div class="col-md-12" style="padding: 1px 0 1px 0 !important; margin: 0 !important;">
                         <div class=" col-md-3 height-40">
                             <div class="col-md-6" style="padding: 10px 0 0 0;">
-                                <div class="col-md-6" style="padding: 10px 0 0 0;" data-bind="visible:relatedtask">
-                                    <a href="#TaskQueueEditForm" data-bind="attr: {href:'#TaskQueueEditForm?'+ relatedtask()}">
-                                        <button id="duzenle" type="button" class="btn btn-success btn-lg" style="padding: 3px; border-radius: 0px; font-size:14px;">
-                                            İlişkili Task
-                                        </button>
-                                    </a><span style="float:right;"></span>
-                                </div>
+                                
                                 <span style="float:right;"></span>
                             </div>
                         </div>
                         <div class="col-md-3 height-40">
-                            <div class="col-md-6" style="padding: 10px 0 0 0;">Kapanma Tarihi<span style="float:right;">:</span></div>
+                            <div class="col-md-6" style="padding: 10px 0 0 0; font-weight:bold;">Kapanma Tarihi<span style="float:right; font-weight:bold;">:</span></div>
                             <div class='col-sm-6'>
                                 <div class="form-group">
                                     <div class="col-md-12 a">
@@ -128,31 +140,31 @@
                             </div>
                         </div>
                         <div class=" col-md-3 height-40">
-                            <div class="col-md-6" style="padding: 10px 0 0 0;">Blok<span style="float:right;">:</span></div>
+                            <div class="col-md-6" style="padding: 10px 0 0 0; font-weight:bold;">Blok<span style="float:right; font-weight:bold;">:</span></div>
                             <div data-bind="text:blockname() +' Daire: '+ flat()" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
                         </div>
                         <div class=" col-md-3 height-40">
-                            <div class="col-md-6" style="padding: 10px 0 0 0;">Müşteri Statü<span style="float:right;">:</span></div>
-                            <div class="col-md-6">
+                            <div class="col-md-6" style="padding: 10px 0 0 0; font-weight:bold;">Müşteri Statü<span style="float:right; font-weight:bold;">:</span></div>
+                            <div class="col-md-6" style="padding:1px 0 0 0;">
                                 <select id="abonedurumu" data-bind="options: ctstatuslist, optionsText: 'Text', optionsValue: 'Text', value: customerstatus" multiple="multiple"></select>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-12" style="padding: 1px 0 1px 0 !important; margin: 0 !important;">
                         <div class=" col-md-3 height-40">
-                            <div class="col-md-6" style="padding: 10px 0 0 0;">Task Durumu<span style="float:right;">:</span></div>
-                            <div class="col-md-6">
+                            <div class="col-md-6" style="padding: 10px 0 0 0; font-weight:bold;">Task Durumu<span style="float:right; font-weight:bold;">:</span></div>
+                            <div class="col-md-6" style="padding:0;">
                                 <select id="taskdurumu" data-bind="options: taskstatuslist, optionsText: 'taskstate', optionsValue: 'taskstateid',value:taskstatus"></select>
                             </div>
                         </div>
                         <div class="col-md-3 height-40">
-                            <div class="col-md-6" style="padding: 10px 0 0 0;">Açıklama<span style="float:right;">:</span></div>
+                            <div class="col-md-6" style="padding: 10px 0 0 0; font-weight:bold;">Açıklama<span style="float:right; font-weight:bold;">:</span></div>
                             <div class="col-md-6" style="padding: 5px 0 0 0;">
-                                <textarea data-bind="value:description" class="form-control" rows="1"></textarea>
+                                <textarea data-bind="value:description" class="form-control" rows="1" style="padding: 10px 0 0 0;"></textarea>
                             </div>
                         </div>
                         <div class=" col-md-3 height-40">
-                            <div class="col-md-6" style="padding: 10px 0 0 0;">Öbek<span style="float:right;">:</span></div>
+                            <div class="col-md-6" style="padding: 10px 0 0 0; font-weight:bold;">Öbek<span style="float:right;font-weight:bold;">:</span></div>
                             <div data-bind="text: region" class="col-md-6" style="padding: 10px 0 0 0;">&nbsp;&nbsp;</div>
                         </div>
                         <div class="col-md-3 height-30">
@@ -379,7 +391,7 @@
                         <p>Telefon Ücreti</p>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <select id="telstatus" class="form-control" data-bind=" options: $parent.telStatusList,
+                        <select id="telstatus" class="form-control" data-bind="options: $parent.telStatusList,
     optionsText: 'telText',
     optionsValue: 'id',
     value: (telStatus && telStatus.id || 0),
@@ -412,7 +424,7 @@
                         <p>Gsm Kullanımı</p>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <select id="gsmstatus" class="form-control" data-bind=" options: $parent.gsmStatusList,
+                        <select id="gsmstatus" class="form-control" data-bind="options: $parent.gsmStatusList,
     optionsText: 'gsmText',
     optionsValue: 'id',
     value: (gsmKullanımıStatus && gsmKullanımıStatus.id || 0),
