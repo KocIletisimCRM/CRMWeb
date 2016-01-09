@@ -14,34 +14,28 @@
     }
     .baslik {
         float:left; 
-        padding: 10px 0 0 0; 
-        min-width:60px; 
-        max-width:140px; 
+        padding: 5px 0 0 0; 
+        max-width:120px; 
         font-weight:bold;
     }
     .datablok { 
         padding: 10px 0 0 0; 
-        min-width:140px; 
         max-width:200px; 
     }
     .datatext { 
         padding: 2px 0 0 0; 
-        min-width:150px; 
         max-width:180px; 
         max-height:30px;
     }
     .ciftnokta {
         float:left;
         padding: 10px 0 0 0;
-        min-width:8px;
         max-width:8px;
         font-weight:bold;
     }
     .combobox {
         padding:1px 0 0 0;
-        min-width:150px;
         max-width:180px;
-        max-height:20px;
     }
     .buton {
         padding: 3px;
@@ -52,12 +46,12 @@
 
 </style>
 <div id="bindingContainer" class="container-fluid" style="background-color: #D1E9F6 !important;">
-    <div class="col-md-12 container" style="padding: 0 !important; margin: 20px 0 0 0 !important; border-radius: 0 0 8px 8px !important;">
+    <div class="col-md-12 container" style="padding: 0 !important; margin: 20px 0 0 0 !important; border-radius: 8px !important;">
         <div class="panel-group">
             <div class="panel" style="border: 1px solid #fff !important;">
                 <div class="panel-heading  panel-danger task-gradient filter-gradient">Task Bilgileri</div>
                 <div class="panel-body">
-                    <div class="col-md-12" style="padding: 1px 0 1px 0 !important; margin: 0 !important;">
+                    <div class="col-md-12" style="padding: 20px 0 20px 0 !important; margin: 0 !important;">
                         <div class="col-md-3 height-40">
                             <!--<div class="col-md-6" style="padding: 10px 0 0 0; font-weight:bold;">Task No<span style="float:right; width:5px;">:&nbsp; </span></div>-->
                             <div style="">
@@ -106,7 +100,7 @@
                             </div>
                         </div>
                         <div class="col-md-3 height-40">
-                            <div class="col-md-6 baslik">Yardımcı Personel</div>
+                            <div class="col-md-6 baslik" style="padding:0;">Yardımcı Personel</div>
                             <div class="col-md-6 ciftnokta">:</div>
                             <div class="col-md-6 combobox">
                                 <select class="combobox" id="assistantPersonel" data-bind="options: personellist, optionsText: 'personelname', optionsValue: 'personelid', value: assistantpersonel," multiple="multiple"></select>
@@ -202,7 +196,7 @@
                             <div class="col-md-6 baslik">Açıklama</div>
                             <div class="col-md-6 ciftnokta">:</div>
                             <div class="col-md-6">
-                                <textarea data-bind="value:description" class="form-control" rows="1" style="min-width:150px; min-height:50px;"></textarea>
+                                <textarea data-bind="value:description" class="form-control" rows="1" style="min-width:140px; min-height:50px;"></textarea>
                             </div>
                         </div>
                         <div class="col-md-3 height-40">
