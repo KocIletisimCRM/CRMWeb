@@ -261,13 +261,13 @@
 													<tr  data-bind="attr:{class :attachedpersonel==null? 'danger satir' : (taskstatepool==null ?'info satir' :'success satir' )},value:taskorderno" style="line-height: 50px;" >
 													
 														<td><a href="#TaskQueueEditForm" data-bind="attr: {href:'#TaskQueueEditForm?'+taskorderno}">
-																<button data-bind="visible:attachedpersonel && attachedpersonel.personelname" id="duzenle" type="button" class="btn btn-primary btn-lg" style="padding: 3px; border-radius: 0px; font-size:14px;">
+																<button data-bind="visible:attachedpersonel && attachedpersonel.personelname" id="duzenle" type="button" class="btn btn-primary btn-lg" style="padding: 3px; border-radius: 5px; font-size:14px;">
 																	Düzenle
 																</button>
 														    </a>
 																<input class="sel"  type="checkbox" data-bind="value:taskorderno" />
 														</td>
-														<td style=" color:#284af5;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif" data-bind="text:task.taskname"></td>
+														<td style="color:#284af5;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif" data-bind="text:task.taskname"></td>
 														<td data-bind="text: (attachedobject && (attachedobject.sitename || (attachedobject.site && attachedobject.site.sitename) ||
                                                                               (attachedobject.block && attachedobject.block.site && attachedobject.block.site.sitename)) ||
                                                                               '&lt;boş&gt;'
