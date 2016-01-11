@@ -113,7 +113,7 @@ var dataModel = {
     },
     getTasks: function () {
         var self = this;
-        var  taskids = [6117,1,6115,65,8165,36,85,87];
+        var  taskids = [6117,1,6115,65,8165,36,85,87,3];
         var data = {
             task: { fieldName: "taskid", op:7 , value:taskids},
         };
