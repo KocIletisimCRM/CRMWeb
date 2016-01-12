@@ -4,7 +4,7 @@
             color: #000;
         }
             #taskquetable tr:hover {
-                background: #00ffff;
+                background: #56caf6;
             }
         .selected {
             background: #6fc679;
@@ -258,7 +258,7 @@
 														<td data-bind="visible: isLoading" colspan="12" style="background: url('/img/load.gif')  center no-repeat;"></td>
 													</tr>
 													<!-- ko foreach: taskqueuelist -->
-													<tr  data-bind="attr:{class :attachedpersonel==null? 'danger satir' : (taskstatepool==null ?'info satir' :'success satir' )},value:taskorderno" style="line-height: 50px;" >
+													<tr  data-bind="attr:{class :attachedpersonel==null? ' satir' : (taskstatepool==null ?' satir' :' satir' )},value:taskorderno" style="line-height: 50px;" >
 													
 														<td><a href="#TaskQueueEditForm" data-bind="attr: {href:'#TaskQueueEditForm?'+taskorderno}">
 																<button data-bind="visible:attachedpersonel && attachedpersonel.personelname" id="duzenle" type="button" class="btn btn-primary btn-lg" style="padding: 3px; border-radius: 5px; font-size:14px;">

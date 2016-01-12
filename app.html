@@ -155,8 +155,8 @@
 				</div>
 			</div>
 			<div class="content-wraper">
-                <div class=" top-bar" style="background-color: royalblue">
-                    <div class="col-xs-1 col-sm-1 col-md-1">
+                <!--<div class=" top-bar" style="background-color: royalblue">-->
+                    <!--<div class="col-xs-1 col-sm-1 col-md-1">
                         <label id="lbl_leftPanelControl" for="leftPanelControl">
                             <span class="glyphicon glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                         </label>
@@ -164,7 +164,7 @@
                     <div class="col-xs-8 col-sm-8 col-md-8">
                         <div class="col-md-6">
                             <div class="btn-group col-md-6" role="group" aria-label="...">
-                                <!-- butonun içinde bulunan <a>link yönlendirme yapıyordu butonun yapması sağlandı -->
+                                 butonun içinde bulunan <a>link yönlendirme yapıyordu butonun yapması sağlandı 
 
                                 <button onclick="location.href = '#ListTaskqueue'" type="button" class="btn btn-success" style="font-size:16px; border-radius:7px;">Anasayfa</button>
                             </div>
@@ -177,8 +177,81 @@
                             <span class="glyphicon glyphicon-user" style="color:#fff" aria-hidden="true"> </span>
                             <label id="username" style="color:aliceblue"> </label>
                         </label>
-                    </div>
-                </div>
+                    </div>-->
+                   
+
+                    <nav class="navbar navbar-default top-bar" style="height:auto">
+                        <div class="container-fluid">
+                            <!-- Brand and toggle get grouped for better mobile display -->
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                               
+                                <div class="col-xs-1 col-sm-1 col-md-1">
+                                    <label id="lbl_leftPanelControl" for="leftPanelControl">
+                                        <span class="glyphicon glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                    </label>
+                                </div>
+                            </div>
+                           
+                          <!--<div class="col-xs-8 col-sm-8 col-md-8">
+                        <div class="col-md-6">
+                            <div class="btn-group col-md-6" role="group" aria-label="...">
+                                <button onclick="location.href = '#ListTaskqueue'" type="button" class="btn btn-success" style="font-size:16px; border-radius:7px;">Anasayfa</button>
+                            </div>
+                        </div>
+
+                    </div>-->
+                            <!-- Collect the nav links, forms, and other content for toggling -->
+                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                <ul class="nav navbar-nav">
+                                    <li><a href="#ListTaskqueue">Anasayfa <span class="sr-only">(current)</span></a></li>
+                                  
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">İşlemler <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a tabindex="-1" href="#ModalContainer" id="newglobaltask1" role="button" class="btn" data-toggle="modal" style="float: left;">Yeni Task</a>
+                                            </li>
+                                            <li>
+                                                <a tabindex="-1" href="#ModalContainer" id="newarizatask1" role="button" class="btn" data-toggle="modal" style="float: left;">Arıza Task</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tanımlamalar <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#ListTasks" id="listTaskDefinetion">Task Tanımları</a></li>
+                                            <li><a href="#ListTaskStatePool" id="taskstatepool">Task Durum Havuzu</a></li>
+                                            <li><a href="#ListTaskStateMatches" id="taskstatematches">Task Durum Eşleştirme</a></li>
+                                            <li><a href="#ListDocument" id="documentdefination">Evrak Tanımları</a></li>
+                                            <li><a href="#ListCampaigns" id="listcampaigns">Kampanyalar</a></li>
+                                            <li><a href="#ListProducts" id="listproducts">Ürün Hizmetleri</a></li>
+                                            <li><a href="#ListStockCards" id="liststockcards">Depo Kart Tanımları</a></li>
+                                            <li><a href="#ListPersonel" id="listpersonel">Personel Tanımları</a></li>
+                                        </ul>
+
+                                    </li>
+                                </ul>
+                                <ul class="nav navbar-nav navbar-right">                                   
+                                    <li>
+                                        <label>
+                                            <span class="glyphicon glyphicon-user" style="color:#fff" aria-hidden="true"> </span>
+                                            <label id="username" style="color:aliceblue"> </label>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <button id="exit" role="button" class="btn btn-danger">Çıkış</button>
+                                    </li> 
+                                        
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
 				<div class="content" id="templateContainer"></div>
 			</div>
 			<br class="clear-fix" />

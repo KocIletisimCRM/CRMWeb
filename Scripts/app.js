@@ -48,10 +48,10 @@ $(window).bind("hashchange", function () {
     $("#newpenetrasyon").click(function () {
         $("#ModalContainer").loadTemplate("Templates/New/Penetrasyon.html");
     });
-    $("#newglobaltask").click(function () {
+    $("#newglobaltask,#newglobaltask1").click(function () {
         $("#ModalContainer").loadTemplate("Templates/New/NewGlobalTask.html");
     });
-    $("#newarizatask").click(function () {
+    $("#newarizatask,#newarizatask1").click(function () {
         $("#ModalContainer").loadTemplate("Templates/New/NewArizaTask.html");
     });
 
