@@ -13,29 +13,33 @@
         cursor: pointer;
     }
     .baslik {
+        padding: 15px 0 0 0;
         float:left; 
-        padding: 5px 0 0 0; 
-        max-width:120px; 
+        max-width:145px;
+        min-width:145px;
         font-weight:bold;
     }
-    .datablok { 
-        padding: 10px 0 0 0; 
-        max-width:200px; 
-    }
-    .datatext { 
-        padding: 2px 0 0 0; 
-        max-width:180px; 
-        max-height:30px;
-    }
     .ciftnokta {
+        padding: 15px 0 0 0;
         float:left;
-        padding: 10px 0 0 0;
         max-width:8px;
         font-weight:bold;
     }
+    .bosluk {
+        max-width:30px;
+        min-width:30px;
+    }
+    .satir {
+        max-height:50px;
+        min-height:50px;
+    }
+    .verisutun {
+        padding: 5px 0 0 0;
+        max-width:150px;
+        min-width:150px;
+    }
     .combobox {
         padding:1px 0 0 0;
-        max-width:180px;
     }
     .buton {
         padding: 3px;
@@ -48,169 +52,121 @@
 <div id="bindingContainer" class="container-fluid" style="background-color: #D1E9F6 !important;">
     <div class="col-md-12 container" style="padding: 0 !important; margin: 20px 0 0 0 !important; border-radius: 8px !important;">
         <div class="panel-group">
-            <div class="panel" style="border: 1px solid #fff !important;">
+            <div class="panel" style="width:100%; border: 1px solid #fff !important;">
+
                 <div class="panel-heading  panel-danger task-gradient filter-gradient">Task Bilgileri</div>
-                <div class="panel-body">
-                    <div class="col-md-12" style="padding: 20px 0 20px 0 !important; margin: 0 !important;">
-                        <div class="col-md-3 height-40">
-                            <!--<div class="col-md-6" style="padding: 10px 0 0 0; font-weight:bold;">Task No<span style="float:right; width:5px;">:&nbsp; </span></div>-->
-                            <div style="">
-                                <div class="col-md-6 baslik">Task No</div>
-                                <div class="col-md-6 ciftnokta">:</div>
-                                <div data-bind="text:taskorderno" class="col-md-6 datablok"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 height-40">
-                            <div class="col-md-6 baslik">Oluşturulma Tarihi</div>
-                            <div class="col-md-6 ciftnokta">:</div>
-                            <div class='col-sm-6'>
-                                <div class="col-md-12 a">
-                                    <input type="text" id="daterangepicker3" class="form-control datatext" data-bind="value: creationdate ? creationdate :null">
+                <div class="panel-body" style="padding-left:35px; overflow:scroll;width:100%">
+                    <table style="min-width:1350px">
+                        <tr>
+                            <td class="baslik satir">Task NO</td>
+                            <td class="ciftnokta satir">:</td>
+                            <td class="verisutun satir" data-bind="text:taskorderno"></td>
+                            <td class="bosluk"></td>
+                            <td class="baslik satir">Oluşturulma Tarihi</td>
+                            <td class="ciftnokta satir">:</td>
+                            <td class="verisutun satir"><input type="text" id="daterangepicker3" class="form-control" data-bind="value: creationdate ? creationdate :null">
+                            </td>
+                            <td class="bosluk"></td>
+                            <td class="baslik satir">Personel</td>
+                            <td class="ciftnokta satir">:</td>
+                            <td class="verisutun satir" data-bind="text:personelname"></td>
+                            <td class="bosluk"></td>
+                            <td class="baslik satir">Abone Ad-Soyad</td>
+                            <td class="ciftnokta satir">:</td>
+                            <td class="verisutun satir"><a href="#customerinfo" data-bind="text:customername,click:getCustomerCard" role="button" data-toggle="modal"></a></td>
+                        </tr>
+                        <tr>
+                            <td class="baslik satir">Task</td>
+                            <td class="ciftnokta satir">:</td>
+                            <td class="verisutun satir" data-bind="text:taskname"></td>
+                            <td class="bosluk"></td>
+                            <td class="baslik satir">Atanma Tarihi</td>
+                            <td class="ciftnokta satir">:</td>
+                            <td class="verisutun satir">
+                                <input type="text" id="daterangepicker3" class="form-control" data-bind="value: attachmentdate ? attachmentdate :null">
+                            </td>
+                            <td class="bosluk"></td>
+                            <td class="baslik satir">Yardımcı Personel</td>
+                            <td class="ciftnokta satir">:</td>
+                            <td class="verisutun satir"><select class="combobox" id="assistantPersonel" data-bind="options: personellist, optionsText: 'personelname', optionsValue: 'personelid', value: assistantpersonel," multiple="multiple"></select>
+                            </td>
+                            <td class="bosluk"></td>
+                            <td class="baslik satir">Location ID</td>
+                            <td class="ciftnokta satir">:</td>
+                            <td class="verisutun satir"><a href="#customerinfo" data-bind="text:locationid,click:getCustomerCard" role="button" data-toggle="modal"></a></td>
+                        </tr>
+                        <tr>
+                            <td><div data-bind="visible:relatedtask">
+                                    <a href="#TaskQueueEditForm" data-bind="attr: {href:'#TaskQueueEditForm?'+ previoustask()}">
+                                        <button id="duzenle" type="button" class="btn btn-primary btn-lg buton">
+                                            Önceki Task
+                                        </button>
+                                    </a>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 height-40">
-                            <div class="col-md-6 baslik">Personel</div>
-                            <div class="col-md-6 ciftnokta">:</div>
-                            <div data-bind="text: personelname" class="col-md-6 datablok"></div>
-                        </div>
-                        <div class="col-md-3 height-40">
-                            <div class="col-md-6 baslik">Abone Ad-Soyad</div>
-                            <div class="col-md-6 ciftnokta">:</div>
-                            <div class="col-md-6" style="padding: 10px 0 0 0;">
-                                <a href="#customerinfo" data-bind="text:customername,click:getCustomerCard" role="button" data-toggle="modal"></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12" style="padding: 1px 0 1px 0 !important; margin: 0 !important;">
-                        <div class="col-md-3 height-40">
-                            <div class="col-md-6 baslik">Task</div>
-                            <div class="col-md-6 ciftnokta">:</div>
-                            <div data-bind="text: taskname" class="col-md-6 datablok"></div>
-                        </div>
-                        <div class="col-md-3 height-40">
-                            <div class="col-md-6 baslik">Atanma Tarihi</div>
-                            <div class="col-md-6 ciftnokta">:</div>
-                            <div class='col-sm-6'>
-                                <div class="form-group">
-                                    <div class="col-md-12 a">
-                                        <input type="text" id="daterangepicker1" class="form-control datatext" data-bind="value: attachmentdate ? attachmentdate :null">
-                                    </div>
+                            </td>
+                            <td><div  data-bind="visible:relatedtask">
+                                    <a href="#TaskQueueEditForm" data-bind="attr: {href:'#TaskQueueEditForm?'+ relatedtask()}"><button id="duzenle" type="button" class="btn btn-success btn-lg buton">
+                                            İlişkili Task
+                                        </button>
+                                    </a>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 height-40">
-                            <div class="col-md-6 baslik" style="padding:0;">Yardımcı Personel</div>
-                            <div class="col-md-6 ciftnokta">:</div>
-                            <div class="col-md-6 combobox">
-                                <select class="combobox" id="assistantPersonel" data-bind="options: personellist, optionsText: 'personelname', optionsValue: 'personelid', value: assistantpersonel," multiple="multiple"></select>
-                            </div>
-                        </div>
-                        <div class="col-md-3 height-40">
-                            <div class="col-md-6 baslik">Location ID</div>
-                            <div class="col-md-6 ciftnokta">:</div>
-                            <!--  location neden müşteri bilgilerini gösteriyor ?  -->
-                            <div class="col-md-6" style="padding: 10px 0 0 0;">
-                                    <a href="#customerinfo" data-bind="text:locationid,click:getCustomerCard" role="button" data-toggle="modal"></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12" style="padding: 1px 0 1px 0 !important; margin: 0 !important;">
-                        <div class="col-md-3 height-40">
-                            <div class="col-md-6" style="float:left; padding: 10px 5px 0 0; max-width: 140px;" data-bind="visible:previoustask">
-                                <a href="#TaskQueueEditForm" data-bind="attr: {href:'#TaskQueueEditForm?'+ previoustask()}">
-                                    <button id="duzenle" type="button" class="btn btn-primary btn-lg buton">
-                                        Önceki Task
-                                    </button>
-                                </a>
-                            </div>
-
-                            <div class="col-md-6" style="padding: 10px 5px 0 0; max-width: 140px;" data-bind="visible:relatedtask">
-                                <a href="#TaskQueueEditForm" data-bind="attr: {href:'#TaskQueueEditForm?'+ relatedtask()}">
-                                    <button id="duzenle" type="button" class="btn btn-success btn-lg buton">
-                                        İlişkili Task
-                                    </button>
-                                </a>
-                            </div>
-
-                        </div>
-                        <div class="col-md-3 height-40">
-                            <div class="col-md-6 baslik">Randevu Tarihi</div>
-                            <div class="col-md-6 ciftnokta">:</div>
-                            <div class='col-sm-6'>
-                                <div class="form-group">
-                                    <div class="col-md-12 a">
-                                        <input type="text" id="daterangepicker2" class="form-control datatext" data-bind="value:appointmentdate ? appointmentdate :null">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 height-40">
-                            <div class="col-md-6 baslik">Site</div>
-                            <div class="col-md-6 ciftnokta">:</div>
-                            <div data-bind="text: sitename" class="col-md-6 datablok"></div>
-                        </div>
-                        <div class="col-md-3 height-40">
-                            <div class="col-md-6 baslik">Gsm</div>
-                            <div class="col-md-6 ciftnokta">:</div>
-                            <div data-bind="text: customergsm" class="col-md-6 datablok"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-12" style="padding: 1px 0 1px 0 !important; margin: 0 !important;">
-                        <div class="col-md-3 height-40">
-                            <div class="col-md-6 baslik">
-                                
-                            </div>
-                        </div>
-                        <div class="col-md-3 height-40">
-                            <div class="col-md-6 baslik">Kapanma Tarihi</div>
-                            <div class="col-md-6 ciftnokta">:</div>
-                            <div class='col-sm-6'>
-                                <div class="form-group">
-                                    <div class="col-md-12 a">
-                                        <input type="text" id="daterangepicker4" class="form-control datatext" data-bind="value: consummationdate ? consummationdate :null">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 height-40">
-                            <div class="col-md-6 baslik">Blok</div>
-                            <div class="col-md-6 ciftnokta">:</div>
-                            <div data-bind="text:blockname() +' Daire: '+ flat()" class="col-md-6 datablok"></div>
-                        </div>
-                        <div class=" col-md-3 height-40">
-                            <div class="col-md-6 baslik">Müşteri Statü</div>
-                            <div class="col-md-6 ciftnokta">:</div>
-                            <div class="col-md-6 combobox">
-                                <select id="abonedurumu" data-bind="options: ctstatuslist, optionsText: 'Text', optionsValue: 'Text', value: customerstatus" multiple="multiple"></select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12" style="padding: 1px 0 1px 0 !important; margin: 0 !important;">
-                        <div class="col-md-3 height-40">
-                            <div class="col-md-6 baslik">Task Durumu</div>
-                            <div class="col-md-6 ciftnokta">:</div>
-                            <div class="col-md-6 combobox">
-                                <select id="taskdurumu" data-bind="options: taskstatuslist, optionsText: 'taskstate', optionsValue: 'taskstateid',value:taskstatus"></select>
-                            </div>
-                        </div>
-                        <div class="col-md-3 height-40">
-                            <div class="col-md-6 baslik">Açıklama</div>
-                            <div class="col-md-6 ciftnokta">:</div>
-                            <div class="col-md-6">
-                                <textarea data-bind="value:description" class="form-control" rows="1" style="min-width:140px; min-height:50px;"></textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-3 height-40">
-                            <div class="col-md-6 baslik">Öbek</div>
-                            <div class="col-md-6 ciftnokta">:</div>
-                            <div data-bind="text: region" class="col-md-6 datablok"></div>
-                        </div>
-                        <div class="col-md-3 height-30">
-                            <button type="button" class="btn btn-primary" data-bind="click: saveTaskQueues">Kaydet</button>
-                        </div>
-
-                    </div>
+                            </td>
+                            <td class="bosluk"></td>
+                            <td class="baslik satir">Randevu Tarihi</td>
+                            <td class="ciftnokta satir">:</td>
+                            <td class="verisutun satir">
+                                <input type="text" id="daterangepicker3" class="form-control" data-bind="value: appointmentdate ? appointmentdate :null">
+                            </td>
+                            <td class="bosluk"></td>
+                            <td class="baslik satir">Site</td>
+                            <td class="ciftnokta satir">:</td>
+                            <td class="verisutun satir" data-bind="text: sitename"></td>
+                            <td class="bosluk"></td>
+                            <td class="baslik satir">Gsm</td>
+                            <td class="ciftnokta satir">:</td>
+                            <td class="verisutun satir" data-bind="text: customergsm"></td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td class="bosluk"></td>
+                            <td class="baslik satir">Kapanma Tarihi</td>
+                            <td class="ciftnokta satir">:</td>
+                            <td class="verisutun satir">
+                                <input type="text" id="daterangepicker3" class="form-control" data-bind="value: consummationdate ? consummationdate :null">
+                            </td>
+                            <td class="bosluk"></td>
+                            <td class="baslik satir">Blok</td>
+                            <td class="ciftnokta satir">:</td>
+                            <td class="verisutun satir" data-bind="text:blockname() +' Daire: '+ flat()"></td>
+                            <td class="bosluk"></td>
+                            <td class="baslik satir">Müşteri Statü</td>
+                            <td class="ciftnokta satir">:</td>
+                            <td class="verisutun satir"><select id="abonedurumu" data-bind="options: ctstatuslist, optionsText: 'Text', optionsValue: 'Text', value: customerstatus" multiple="multiple"></select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="baslik satir">Task Durumu</td>
+                            <td class="ciftnokta satir">:</td>
+                            <td class="verisutun satir"><select id="taskdurumu" data-bind="options: taskstatuslist, optionsText: 'taskstate', optionsValue: 'taskstateid',value:taskstatus"></select>
+                            </td>
+                            <td class="bosluk"></td>
+                            <td class="baslik satir">Açıklama</td>
+                            <td class="ciftnokta satir">:</td>
+                            <td class="verisutun satir">
+                                <textarea data-bind="value:description" class="form-control" rows="1"></textarea>
+                            </td>
+                            <td class="bosluk"></td>
+                            <td class="baslik satir">Öbek</td>
+                            <td class="ciftnokta satir">:</td>
+                            <td class="verisutun satir" data-bind="text:region"></td>
+                            <td class="bosluk"></td>
+                            <td>
+                                <button type="button" class="btn btn-primary" data-bind="click: saveTaskQueues">Kaydet</button>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
