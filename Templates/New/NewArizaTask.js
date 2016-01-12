@@ -56,6 +56,7 @@ var dataModel = {
     },
     getSite: function () {
         var self = this;
+        self.sitelist(null);
         var data = { site: { fieldName: "region", value: self.region(), op: 6 } }
         crmAPI.getSiteFilter(data, function (a, b, c) {
             self.sitelist(a);
@@ -71,10 +72,12 @@ var dataModel = {
                 enableFiltering: true,
                 filterPlaceholder: 'Ara'
             });
+            $("#salessite").multiselect("setOptions", dataModel.sitelist()).multiselect("rebuild");
         }, null, null);
     },
     getBlock: function () {
         var self = this;
+        self.blocklist(null);
         var data = { block: { fieldName: "siteid", value: self.siteid(), op: 2 } }
         crmAPI.getSiteFilter(data, function (a, b, c) {
             self.blocklist(a);
@@ -90,10 +93,12 @@ var dataModel = {
                 enableFiltering: true,
                 filterPlaceholder: 'Ara'
             });
+            $("#salesblock").multiselect("setOptions", dataModel.blocklist()).multiselect("rebuild");
         }, null, null);
     },
     getcustomer: function () {
         var self = this;
+        self.customerlist(null);
         var data = { customer: { fieldName: "blockid", value: self.blockid(), op: 2 } }
         crmAPI.getSiteFilter(data, function (a, b, c) {
             self.customerlist(a);
@@ -109,6 +114,7 @@ var dataModel = {
                 enableFiltering: true,
                 filterPlaceholder: 'Ara'
             });
+            $("#salescustomer").multiselect("setOptions", dataModel.customerlist()).multiselect("rebuild");
         }, null, null);
     },
     getTasks: function () {

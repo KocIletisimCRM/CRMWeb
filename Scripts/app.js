@@ -54,6 +54,8 @@ $(window).bind("hashchange", function () {
     $("#newarizatask,#newarizatask1").click(function () {
         $("#ModalContainer").loadTemplate("Templates/New/NewArizaTask.html");
     });
-
+    $("#uruniade").click(function () {
+        $("#ModalContainer").loadTemplate("Templates/New/UrunIadeTask.html");
+    });
 });
 
