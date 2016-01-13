@@ -113,8 +113,7 @@
                         <div class="col-md-3 height-40">
                             <div class="col-md-6 baslik">Location ID</div>
                             <div class="col-md-6 ciftnokta">:</div>
-                            <!--  location neden müşteri bilgilerini gösteriyor ?  -->
-                            <div data-bind="text: locationid" class="col-md-6 datablok"></div>
+                            <a href="#customerinfo" data-bind="text:locationid,click:getCustomerCard" role="button" data-toggle="modal"></a>
                         </div>
                     </div>
                     <div class="col-md-12" style="padding: 1px 0 1px 0 !important; margin: 0 !important;">
