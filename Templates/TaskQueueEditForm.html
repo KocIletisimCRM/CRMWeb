@@ -79,9 +79,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xs-12 col-sm-4 col-md-3 height-40">
-                            <div class="col-xs-4 col-sm-4 col-md-4 ">Onceki Task</div>
-                            <div class="col-xs-2 col-sm-2 col-md-2 ">:</div>                          
+                        <div class="col-xs-12 col-sm-4 col-md-3 height-40">                         
                             <div class="col-xs-6 col-sm-6 col-md-6 " data-bind="visible:previoustask">
                                 <a href="#TaskQueueEditForm" data-bind="attr: {href:'#TaskQueueEditForm?'+ previoustask()}">
                                     <button id="duzenle" type="button" class="btn btn-primary btn-small ">
@@ -89,15 +87,13 @@
                                     </button>
                                 </a>
                             </div>
-
-                            <!--<div class="col-xs-4 col-sm-4 col-md-4" style="padding: 10px 5px 0 0; max-width: 140px;" data-bind="visible:relatedtask">
+                            <div class="col-xs-6 col-sm-6 col-md-6" data-bind="visible:relatedtask">
                                 <a href="#TaskQueueEditForm" data-bind="attr: {href:'#TaskQueueEditForm?'+ relatedtask()}">
                                     <button id="duzenle" type="button" class="btn btn-success btn-small ">
                                         İlişkili Task
                                     </button>
                                 </a>
-                            </div>-->
-
+                            </div>
                         </div>
                         <div class="col-xs-12 col-sm-4 col-md-3 height-40">
                             <div class="col-xs-4 col-sm-4 col-md-4 ">Randevu Tarihi</div>
@@ -123,17 +119,9 @@
                             <div data-bind="text: customergsm" class="col-xs-6 col-sm-6 col-md-6 "></div>
                         </div>
                    
-                       <div class="col-xs-12 col-sm-4 col-md-3 height-40">
-                        <div class="col-xs-4 col-sm-4 col-md-4 ">İlişkili Task</div>
-                        <div class="col-xs-2 col-sm-2 col-md-2 ">:</div>
-                        <div class="col-xs-6 col-sm-6 col-md-6" data-bind="visible:relatedtask">
-                            <a href="#TaskQueueEditForm" data-bind="attr: {href:'#TaskQueueEditForm?'+ relatedtask()}">
-                                <button id="duzenle" type="button" class="btn btn-success btn-small ">
-                                    İlişkili Task
-                                </button>
-                            </a>
+                        <div class="col-xs-12 col-sm-4 col-md-3 height-40">
+                            <div class="col-xs-4 col-sm-4 col-md-4 "></div>
                         </div>
-                    </div>
                         <div class="col-xs-12 col-sm-4 col-md-3 height-40">
                             <div class="col-xs-4 col-sm-4 col-md-4">Kapanma Tarihi</div>
                             <div class="col-xs-2 col-sm-2 col-md-2 ">:</div>
@@ -177,7 +165,6 @@
                             <div class="col-xs-2 col-sm-2 col-md-2">:</div>
                             <div data-bind="text: region" class="col-xs-6 col-sm-6 col-md-6 "></div>
                         </div>
-                 
                         <div class="col-xs-12 col-sm-2 col-md-3 height-40">
                             <button type="button" class="btn btn-primary" data-bind="click: saveTaskQueues">Kaydet</button>
                         </div>
