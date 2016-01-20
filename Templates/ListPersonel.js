@@ -10,10 +10,9 @@ var dataModel = {
 
     personelList: ko.observableArray([]),
     personelname: ko.observable(),
-    objectList:ko.observableArray([]),
+    objectList: ko.observableArray([]),
     selectedPersonel: ko.observable(),
-    rolesList:ko.observableArray([]),
-
+    rolesList: ko.observableArray([]),
 
     newpersonelname: ko.observable(),
     newcategory: ko.observable(),
@@ -21,6 +20,7 @@ var dataModel = {
     newmobile: ko.observable(),
     newemail: ko.observable(),
     newnotes: ko.observable(),
+
     getPersonels: function (pageno, rowsperpage) {
         var self = this;
         self.pageNo(pageno);
@@ -48,12 +48,12 @@ var dataModel = {
         };
         crmAPI.getPersonels(data, function (a, b, c) {
             self.getObjects();
-            self.selectedPersonel(a.data.rows[0]);        
+            self.selectedPersonel(a.data.rows[0]);
         }, null, null);
     },
     getObjects: function () {
         var self = this;
-        crmAPI.getObjectType(function (a,b,c) {
+        crmAPI.getObjectType(function (a, b, c) {
             self.objectList(a);
             $("#object").multiselect({
                 includeSelectAllOption: true,
@@ -83,6 +83,15 @@ var dataModel = {
     },
     savePersonel: function () {
         var self = this;
+        var rol = 0;
+        if ($("#object").val()) {
+            for (var i = 0; i < $("#object").val().length; i++) {
+                rol |= $("#object").val()[i];
+            }
+        }
+        self.selectedPersonel().category = rol;
+        self.selectedPersonel().roles = rol;
+
         var data = self.selectedPersonel();
         crmAPI.savePersonel(data, function (a, b, c) {
             self.savemessage(a.errorMessage);
@@ -95,9 +104,15 @@ var dataModel = {
     },
     insertPersonel: function () {
         var self = this;
+        var rol = 0;
+        for (var i = 0; i < $("#newcategory").val().length; i++) {
+            rol = rol | $("#newcategory").val()[i];
+        }
+        self.newcategory(rol);
         var data = {
             personelname: self.newpersonelname(),
             category: self.newcategory(),
+            relatedpersonelid: self.yoneticiId(),
             password: self.newpassword(),
             mobile: self.newmobile(),
             email: self.newemail(),
@@ -112,10 +127,20 @@ var dataModel = {
             }, 1000);
         }, null, null);
     },
+    getRoles: ko.pureComputed(function () {
+        var roles = [];
+        for (var i = 0; i < dataModel.objectList().length; i++) {
+            if ((dataModel.selectedPersonel().category & dataModel.objectList()[i].typeid) == dataModel.objectList()[i].typeid)
+                roles.push(dataModel.objectList()[i].typeid);
+        }
+        return roles;
+    }),
 
     clean: function () {
         var self = this;
         self.personelname(null);
+        self.selectil(null);
+        self.selectilce(null);
         self.getPersonels(dataModel.pageNo(), dataModel.rowsPerPage());
     },
     navigate: {
@@ -140,6 +165,13 @@ var dataModel = {
             dataModel.navigate.gotoPage(pc);
         },
     },
+    enterfilter: function (d, e) {
+        var self = this;
+        if (e && (e.which == 1 || e.which == 13)) {
+            self.getPersonels(1, dataModel.rowsPerPage());
+        }
+        return true;
+    },
     renderBindings: function () {
         var self = this;
         self.getPersonels(dataModel.pageNo(), dataModel.rowsPerPage());
@@ -147,6 +179,6 @@ var dataModel = {
         $('#new').click(function () {
             self.getObjects();
         });
-       
+
     }
 }

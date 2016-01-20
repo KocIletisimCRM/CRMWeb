@@ -7,24 +7,30 @@ var dataModel = {
     totalRowCount: ko.observable(),
     savemessage: ko.observable(),
     savemessagecode: ko.observable(),
-  
-    fromobject:ko.observable(12),
+
+    selectedmovementid: ko.observableArray([]),
+    user: ko.observable(),
+    newinputserial: ko.observable(),
+    serialArray: ko.observableArray([]),
+    fromobject: ko.observable(),
     movementList: ko.observableArray([]),
     selectedMovementCard: ko.observable(),
-    personellist:ko.observable(),
+    personellist: ko.observable(),
     fromObjectName: ko.observable(),
-    selectedFromObjectType:ko.observable(),
+    selectedFromObjectType: ko.observable(),
     toObjectName: ko.observable(),
     productName: ko.observable(),
     serialNo: ko.observable(),
+    isconfirmed: ko.observable(),
     movementdate: ko.observable(),
     objectList: ko.observableArray([]),
     objectsList: ko.observableArray([]),
     stockCardList: ko.observableArray([]),
     personelStockList: ko.observableArray([]),
+    stockOnPersonel: ko.observable(),
     serialList: ko.observableArray([]),
     stockSerialControl: ko.observable(),
-    amount:ko.observable(),
+    amount: ko.observable(),
     newamount: ko.observable(),
     newserialno: ko.observable(),
     newtoobjecttype: ko.observable(),
@@ -33,6 +39,8 @@ var dataModel = {
     isSatinalma: ko.observable(),
     getStockMovements: function (pageno, rowsperpage) {
         var self = this;
+        self.savemessage(null);
+        self.savemessagecode(null);
         self.pageNo(pageno);
         self.rowsPerPage(rowsperpage);
         var data = {
@@ -42,7 +50,8 @@ var dataModel = {
             toobject: { value: self.toObjectName() ? self.toObjectName() : null },
             product: self.productName() ? { fieldName: 'productname', op: 6, value: self.productName() } : null,
             serialno: self.serialNo() ? { value: self.serialNo() } : null,
-            movementdate: self.movementdate() ?( $("#movementdate").val() ? { value: self.movementdate() }:null  ): null,
+            isconfirmed: self.isconfirmed() ? { value: self.isconfirmed() } : null,
+            movementdate: self.movementdate() ? ($("#movementdate").val() ? { value: self.movementdate() } : null) : null,
         };
         crmAPI.getStockMovements(data, function (a, b, c) {
             self.movementList(a.data.rows);
@@ -54,17 +63,28 @@ var dataModel = {
                 self.getpersonel();
                 console.log($(this).val());
             });
+            $('.sel').change(function () {
+                var ids = [];
+                $('.sel').each(function () {
+                    if ($(this).is(':checked')) {
+                        var id = $(this).val();
+                        ids.push(id);
+                        console.log("Seçim: " + id + "");
+                    }
+                });
+                self.selectedmovementid(ids);
+            });
         }, null, null);
     },
 
     getObjectTypes: function () {
         var self = this;
-        crmAPI.getObjectType(function (a, b, c) { self.objectList(a); },null,null)
+        crmAPI.getObjectType(function (a, b, c) { self.objectList(a); }, null, null)
     },
     getObjects: function () {
         var self = this;
         var data = {
-            objecttype: {value:self.selectedFromObjectType()},
+            objecttype: { value: self.selectedFromObjectType() },
         };
         crmAPI.getObject(data, function (a, b, c) {
             self.objectsList(a);
@@ -73,7 +93,7 @@ var dataModel = {
     getStockCards: function () {
         var self = this;
         var data = {
-            stockcard:{ fieldName: 'productname', op: 6, value: '' },
+            stockcard: { fieldName: 'productname', op: 6, value: '' },
         };
         crmAPI.getStockCards(data, function (a, b, c) {
             self.stockCardList(a.data.rows);
@@ -111,6 +131,7 @@ var dataModel = {
         };
         crmAPI.getPersonelStock(data, function (a, b, c) {
             self.personelStockList(a);
+            self.stockOnPersonel(a),
             $("#newproduct,#newobject,#newserial").multiselect({
                 includeSelectAllOption: true,
                 selectAllValue: 'select-all-value',
@@ -129,8 +150,8 @@ var dataModel = {
     getSerialsOnPersonel: function () {
         var self = this;
         var data = {
-            personelid:self.fromobject(),
-            stockcardid:self.newselectedproduct(),
+            personelid: self.fromobject(),
+            stockcardid: self.newselectedproduct(),
         };
         crmAPI.getSerialsOnPersonel(data, function (a, b, c) {
             self.serialList(a);
@@ -151,8 +172,8 @@ var dataModel = {
     },
     getpersonel: function () {
         var self = this;
-        var data = { personel: self.newtoobjecttype() ? { fieldName: "category", op: 2, value: self.newtoobjecttype(), } : { fieldName: "personelname", op: 6, value: '', } };
-        crmAPI.getPersonels(data,function (a, b, c) {
+        var data = { personel: self.newtoobjecttype() ? { fieldName: "roles", op: 10, value: self.newtoobjecttype(), } : { fieldName: "personelname", op: 6, value: '', } };
+        crmAPI.getPersonels(data, function (a, b, c) {
             self.personellist(a.data.rows);
             $("#newpersonel").multiselect({
                 includeSelectAllOption: true,
@@ -166,7 +187,7 @@ var dataModel = {
                 enableFiltering: true,
                 filterPlaceholder: 'Ara'
             });
-              $("#newpersonel").multiselect("setOptions", dataModel.personellist()).multiselect("rebuild");
+            $("#newpersonel").multiselect("setOptions", dataModel.personellist()).multiselect("rebuild");
         }, null, null)
     },
     getStockMovementCard: function (movementid) {
@@ -192,44 +213,94 @@ var dataModel = {
     getSerialControl: function (stockid) {
         var self = this;
         var data = {
-            stockcard:stockid? { fieldName: 'stockid', op: 2, value: stockid }:null,
+            stockcard: stockid ? { fieldName: 'stockid', op: 2, value: stockid } : null,
         };
-        if (stockid!=null)
-        crmAPI.getStockCards(data, function (a, b, c) {
-            self.stockSerialControl(a.data.rows[0].hasserial);
-        }, null, null);
+        if (stockid != null)
+            crmAPI.getStockCards(data, function (a, b, c) {
+                self.stockSerialControl(a.data.rows[0].hasserial);
+            }, null, null);
         return false;
     },
     saveStockMovement: function () {
         var self = this;
-        var data = self.selectedStockCard();
-        crmAPI.saveStockMovement(data, function (a, b, c) {
+        var data = self.selectedMovementCard();
+        var postdata = [];
+        var pd = {
+            movementid: self.selectedMovementCard().movementid,
+            amount: self.selectedMovementCard().amount,
+            serialno: self.selectedMovementCard().serialno,
+            fromobjecttype: self.selectedMovementCard().frompersonel.roles,
+            fromobject: self.selectedMovementCard().frompersonel.personelid,
+            toobjecttype: self.selectedMovementCard().topersonel.roles,
+            toobject: self.selectedMovementCard().topersonel.personelid,
+            stockcardid: self.selectedMovementCard().stockcardid,
+            confirmationdate: self.selectedMovementCard().confirmationdate ? moment().format() : null,
+        };
+        postdata.push(pd);
+        crmAPI.SaveStockMovementMultiple(postdata, function (a, b, c) {
             self.savemessage(a.errorMessage);
             self.savemessagecode(a.errorCode);
             window.setTimeout(function () {
                 $('#myModal').modal('hide');
                 self.getStockMovements(1, dataModel.rowsPerPage());
+                self.selectedMovementCard(null);
+                self.savemessage(null);
+                self.savemessagecode(null);
             }, 1000);
         }, null, null);
     },
-
+    getUser: function () {
+        var self = this;
+        crmAPI.userInfo(function (a, b, c) {
+            self.user(a);
+            self.fromobject(a.userId);
+            self.getPersonelStock();
+        }, null, null);
+    },
+    addSerialList: function (d, e) {
+        var self = this;
+        if (e && (e.which == 1 || e.which == 13)) {
+            self.serialArray.push(self.newinputserial());
+            self.newinputserial(null);
+        }
+        return true;
+    },
     insertStockMovements: function () {
         var self = this;
         var postdata = [];
-            var pd = {
-                amount: self.newamount(),
-                serialno: self.newserialno(),
-                fromobjecttype:2,
-                fromobject:12,
-                toobjecttype: self.newtoobjecttype(),
-                toobject: self.newtoobject(),
-                stockcardid: self.newselectedproduct(),
-            };
-            postdata.push(pd);
-        crmAPI.InsertStockMovement(postdata, function (a, b, c) {
-            self.message(a);
+        var pd = {
+            amount: self.isSatinalma() ? 1 : (self.newserialno() ? 1 : self.newamount()),
+            serialno: self.isSatinalma() ? self.serialArray().toString() : self.newserialno(),
+            fromobjecttype: self.user().userRole,
+            fromobject: self.user().userId,
+            toobjecttype: self.newtoobjecttype(),
+            toobject: self.newtoobject(),
+            stockcardid: self.newselectedproduct(),
+        };
+        postdata.push(pd);
+        crmAPI.SaveStockMovementMultiple(postdata, function (a, b, c) {
+            self.savemessage(a.errorMessage);
+            self.savemessagecode(a.errorCode);
+            window.setTimeout(function () {
+                $('#myModal1').modal('hide');
+                self.selectedMovementCard(null);
+                self.getStockMovements(1, dataModel.rowsPerPage());
+                self.savemessage(null);
+                self.savemessagecode(null);
+            }, 1000);
         }, null, null);
         console.log(postdata);
+    },
+    confirmAll: function () {
+        var self = this;
+        crmAPI.confirmSM(self.selectedmovementid(), function (a, b, c) {
+            self.savemessage(a.errorMessage);
+            self.savemessagecode(a.errorCode);
+            window.setTimeout(function () {
+                $('#myModal2').modal('hide');
+                self.getStockMovements(1, dataModel.rowsPerPage());
+            }, 1000);
+        });
     },
     clean: function () {
         var self = this;
@@ -264,7 +335,7 @@ var dataModel = {
     },
     renderBindings: function () {
         var self = this;
-       
+
         $('#movementdate').daterangepicker({
             "timePicker": true,
             ranges: {
@@ -281,9 +352,10 @@ var dataModel = {
         $('#new').click(function () {
             self.getPersonelStock();
             self.getpersonel();
-            self.getStockCards();
+
         });
-       
+
+        self.getUser();
         ko.applyBindings(dataModel, $("#bindingContainer")[0]);
     }
 }
@@ -295,10 +367,10 @@ dataModel.newselectedproduct.subscribe(function (v) {
     dataModel.getSerialControl(v);
     dataModel.getSerialsOnPersonel();
 
-    dataModel.amount(dataModel.personelStockList()[$("#newproduct")[0].selectedIndex] ?
-        dataModel.personelStockList()[$("#newproduct")[0].selectedIndex-1].amount:"Sıfır");
+    dataModel.amount(dataModel.personelStockList()[$("#newproduct")[0].selectedIndex - 1] ?
+        dataModel.personelStockList()[$("#newproduct")[0].selectedIndex - 1].amount : "Sıfır");
 });
 dataModel.newtoobject.subscribe(function () {
-    dataModel.isSatinalma(dataModel.fromobject() == dataModel.newtoobject()
-? true : false);
+    dataModel.isSatinalma(((dataModel.user().userRole & 2) == 2));
+    dataModel.getStockCards();
 });

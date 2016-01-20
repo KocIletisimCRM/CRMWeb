@@ -57,5 +57,29 @@ $(window).bind("hashchange", function () {
     $("#uruniade").click(function () {
         $("#ModalContainer").loadTemplate("Templates/New/UrunIadeTask.html");
     });
+
+
+
+
+
+
+
+
+    $("#exit").click(function () {
+        document.cookie = "token=;";
+        crmAPI.setCookie("tqlFilter", "");
+        window.location.href = "Login.html";
+    });
+
+    $(document).ready(function () {
+        crmAPI.userInfo(function (a, b, c) {
+            $("#username").text(a.userFullName);
+            if (a.userRole != 2147483647) {
+                $("#tanimlamalar").hide(true);
+                $("#musteriler").hide(true);
+            }
+        }, null, null);
+
+    });
 });
 

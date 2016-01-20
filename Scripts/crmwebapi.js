@@ -13,31 +13,90 @@
     return typeof object.valueOf() === "array" ? ko.observable([object.valueOf()]) : ko.observable(object.valueOf());
 }
 
-var crmAPI = (function () {
-    var getData = function (callType, path, sendData, onsuccess, onerror, before) {
-    var baseURL = "http://crmapitest.kociletisim.com.tr:8083/api/Fiber/";
-    //var baseURL = "http://localhost:50752/api/Fiber/"; 
+ var crmAPI = (function () {
 
-        $.ajax({
-            method: callType,
-            url: baseURL + path,
-            data: JSON.stringify(sendData),
-            contentType: "application/json",
-            async: true,
-            
-            beforeSend: function () {
-                if (before) before();
-            }
-        }).success(function (data, status, xhr) {
-            if (onsuccess) onsuccess(data);
-        }).fail(function (xhr, status, error) {
-            if (onerror) onerror(error);
-        });
-    }
-    return {
+     var getCookie = function (cname) {
+         var name = cname + "=";
+         var ca = document.cookie.split(';');
+         for (var i = 0; i < ca.length; i++) {
+             var c = ca[i];
+             while (c.charAt(0) == ' ') c = c.substring(1);
+             if (c.indexOf(name) == 0) {
+                 try {
+                     return JSON.parse(c.substring(name.length, c.length));
+                 }
+                 catch (e) {
+                     return c.substring(name.length, c.length);
+                 }
+             }
+         }
+         return {};
+     };
+
+     var setCookie = function (key, keyvalue, value) {
+         var cookieObj;
+         try {
+             cookieObj = JSON.parse(getCookie(key));
+         } catch (e) {
+             cookieObj = getCookie(key) || {}
+         }
+         if (value) cookieObj[keyvalue] = value;
+         else cookieObj = keyvalue;
+         document.cookie = key + "=" + JSON.stringify(cookieObj);
+     };
+
+     var getData = function (callType, path, sendData, onsuccess, onerror, before) {
+         //var baseURL = "http://crmapitest.kociletisim.com.tr:8083/api/Adsl/";
+          var baseURL = "http://localhost:50752/api/Fiber/";
+         $.ajax({
+             method: callType,
+             url: baseURL + path,
+             data: JSON.stringify(sendData),
+             contentType: "application/json",
+             async: true,
+             beforeSend: function (xhr) {
+                 //Download progress
+                 //$.mobile.loading('show');
+
+                 if (sendData && sendData.username) {
+                     xhr.setRequestHeader("X-KOC-UserName", sendData.username);
+                     xhr.setRequestHeader("X-KOC-Pass", sendData.password);
+                     xhr.setRequestHeader("X-KOC-UserType", sendData.userType);
+                 } else {
+                     var x = document.cookie;
+
+                     var token = getCookie("token");
+                     xhr.setRequestHeader("X-KOC-Token", token);
+                 }
+
+                 if (before) before();
+             }
+         }).success(function (data, status, xhr) {
+             if (sendData && sendData.username) {
+                 var token = xhr.getResponseHeader("X-KOC-Token"); // Cooki'ye yaz
+                 document.cookie = "token=" + token;
+                 if (!token)
+                     alert("Kullanıcı Bilgileri Hatalı");
+             } else {
+                 if (data.loginError)
+                     window.location.href = "Login.html"; // hata var token geçersiz ,login sayfasına yönlendir. Ama önce süreli bir ekranda hata görünsün.
+                 //document.location.href = document.location.host;
+             }
+             if (onsuccess) onsuccess(data);
+         }).fail(function (xhr, status, error) {
+             if (onerror)
+                 onerror(error);
+         });
+     }
+     return {
+         getCookie: function (key) { return getCookie(key); },
+         setCookie: function (key, keyvalue, value) { setCookie(key, keyvalue, value); },
 
         login: function (data, onsuccess, onerror, before) {
-            getData("POST", "Login/login", data, onsuccess, onerror, before);
+             getData("POST", "Authorize/getToken", data, onsuccess, onerror, before);
+        },
+        userInfo: function (onsuccess, onerror, before) {
+            getData("POST", "Authorize/getUserInfo", {}, onsuccess, onerror, before);
         },
         getTaskFilter: function (data,onsuccess, onerror, before) {
             getData("POST", "Filter/getTasks",data, onsuccess, onerror, before);
@@ -49,34 +108,40 @@ var crmAPI = (function () {
             getData("POST", "Task/insertTask", data, onsuccess, onerror, before);
         },
         getTSPFilter: function (data,onsuccess, onerror, before) {
-            getData("POST", "Task/getTaskState",data, onsuccess, onerror, before);
+            getData("POST", "Taskstatepool/getTaskState", data, onsuccess, onerror, before);
         },
         saveTaskState: function (data, onsuccess, onerror, before) {
-            getData("POST", "Task/saveTaskState", data, onsuccess, onerror, before);
+            getData("POST", "Taskstatepool/saveTaskState", data, onsuccess, onerror, before);
         },
         insertTaskState: function (data, onsuccess, onerror, before) {
-            getData("POST", "Task/insertTaskState", data, onsuccess, onerror, before);
+            getData("POST", "Taskstatepool/insertTaskState", data, onsuccess, onerror, before);
+        },
+        saveTaskStateMatches: function (data, onsuccess, onerror, before) {
+            getData("POST", "Taskstatematches/saveTaskStateMatches", data, onsuccess, onerror, before);
+        },
+        insertTaskStateMatches: function (data, onsuccess, onerror, before) {
+            getData("POST", "Taskstatematches/insertTaskStateMatches", data, onsuccess, onerror, before);
         },
         getTaskStateMatches: function (data, onsuccess, onerror, before) {
-            getData("POST", "Task/getTaskStateMatches", data, onsuccess, onerror, before);
+            getData("POST", "Taskstatematches/getTaskStateMatches", data, onsuccess, onerror, before);
         },
         getDocuments: function (data, onsuccess, onerror, before) {
-            getData("POST", "Task/getDocuments", data, onsuccess, onerror, before);
+            getData("POST", "Document/getDocuments", data, onsuccess, onerror, before);
         },
         saveDocument: function (data, onsuccess, onerror, before) {
-            getData("POST", "Task/saveDocument", data, onsuccess, onerror, before);
+            getData("POST", "Document/saveDocument", data, onsuccess, onerror, before);
         },
         insertDocument: function (data, onsuccess, onerror, before) {
-            getData("POST", "Task/insertDocument", data, onsuccess, onerror, before);
+            getData("POST", "Document/insertDocument", data, onsuccess, onerror, before);
         },
         getCampaigns: function (data, onsuccess, onerror, before) {
-            getData("POST", "Task/getCampaigns", data, onsuccess, onerror, before);
+            getData("POST", "Campaign/getCampaigns", data, onsuccess, onerror, before);
         },
         saveCampaigns: function (data, onsuccess, onerror, before) {
-            getData("POST", "Task/saveCampaigns", data, onsuccess, onerror, before);
+            getData("POST", "Campaign/saveCampaigns", data, onsuccess, onerror, before);
         },
         insertCampaigns: function (data, onsuccess, onerror, before) {
-            getData("POST", "Task/insertCampaigns", data, onsuccess, onerror, before);
+            getData("POST", "Campaign/insertCampaigns", data, onsuccess, onerror, before);
         },
         getSiteFilter: function (data, onsuccess, onerror, before) {
             getData("POST", "Filter/getCSB",data,onsuccess,onerror,before)
@@ -115,28 +180,34 @@ var crmAPI = (function () {
             getData("POST", "Filter/getProductList", {}, onsuccess, onerror, before)
         },
         getTaskQueues: function (data,onsuccess, onerror, before) {
-            getData("POST", "Task/getTaskQueues", data, onsuccess, onerror, before)
+            getData("POST", "Taskqueue/getTaskQueues", data, onsuccess, onerror, before)
+        },
+        getTQStockMovements: function (data, onsuccess, onerror, before) {
+            getData("POST", "TaskQueue/getTQStockMovements", data, onsuccess, onerror, before)
+        },
+        getTQDocuments: function (data, onsuccess, onerror, before) {
+            getData("POST", "TaskQueue/getTQDocuments", data, onsuccess, onerror, before)
         },
         closeTaskQueues: function (data, onsuccess, onerror, before) {
             getData("POST", "Task/closeTaskQueues", data, onsuccess, onerror, before)
         },
         saveTaskQueues: function (data,onsuccess,onerror,before) {
-            getData("POST", "Task/saveTaskQueues", data, onsuccess, onerror, before)
+            getData("POST", "Taskqueue/saveTaskQueues", data, onsuccess, onerror, before)
         },
         savesalestask: function (data, onsuccess, onerror, before) {
-            getData("POST", "Task/saveSalesTask", data, onsuccess, onerror, before)
+            getData("POST", "Taskqueue/saveSalesTask", data, onsuccess, onerror, before)
         },
         saveFaultTask: function (data, onsuccess, onerror, before) {
-            getData("POST", "Task/saveFaultTask", data, onsuccess, onerror, before)
+            getData("POST", "Taskqueue/saveFaultTask", data, onsuccess, onerror, before)
         },
         personelattachment: function (data, onsuccess, onerror, before) {
-            getData("POST", "Task/personelattachment", data, onsuccess, onerror, before)
+            getData("POST", "Taskqueue/personelattachment", data, onsuccess, onerror, before)
         },
         getCampaignInfo: function (data, onsuccess, onerror, before) {
             getData("POST", "Filter/getCampaignInfo", data, onsuccess, onerror, before)
         },
         saveCustomerCard: function (data, onsuccess, onerror, before) {
-            getData("POST", "Task/saveCustomerCard", data, onsuccess, onerror, before)
+            getData("POST", "Taskqueue/saveCustomerCard", data, onsuccess, onerror, before)
         },
         getBlockList: function (data,onsucces,onerror,before) {
             getData("POST", "SiteBlock/getBlocks",data,onsucces,onerror,before)
@@ -167,36 +238,39 @@ var crmAPI = (function () {
         },
         InsertStockMovement: function (data, onsucces, onerror, before) {
             getData("POST", "Stock/InsertStockMovement", data, onsucces, onerror, before)
-        },      
+        },
+        confirmSM: function (data, onsucces, onerror, before) {
+            getData("POST", "Stock/confirmSM", data, onsucces, onerror, before)
+        },
         getAdress: function (data, onsucces, onerror, before) {
             getData("POST", "Task/getAdress", data, onsucces, onerror, before)
         },
         getProducts: function (data, onsucces, onerror, before) {
-            getData("POST", "Task/getProducts", data, onsucces, onerror, before)
+            getData("POST", "Product/getProducts", data, onsucces, onerror, before)
         },
         saveProduct: function (data, onsucces, onerror, before) {
-            getData("POST", "Task/saveProduct", data, onsucces, onerror, before)
+            getData("POST", "Product/saveProduct", data, onsucces, onerror, before)
         },
         insertProduct: function (data, onsucces, onerror, before) {
-            getData("POST", "Task/insertProduct", data, onsucces, onerror, before)
+            getData("POST", "Product/insertProduct", data, onsucces, onerror, before)
         },
         getPersonels: function (data, onsucces, onerror, before) {
-            getData("POST", "Task/getPersonels", data, onsucces, onerror, before)
+            getData("POST", "Personel/getPersonels", data, onsucces, onerror, before)
         },
         savePersonel: function (data, onsucces, onerror, before) {
-            getData("POST", "Task/savePersonel", data, onsucces, onerror, before)
+            getData("POST", "Personel/savePersonel", data, onsucces, onerror, before)
         },
         insertPersonel: function (data, onsucces, onerror, before) {
-            getData("POST", "Task/insertPersonel", data, onsucces, onerror, before)
+            getData("POST", "Personel/insertPersonel", data, onsucces, onerror, before)
         },
         getStockCards: function (data, onsucces, onerror, before) {
-            getData("POST", "Task/getStockCards", data, onsucces, onerror, before)
+            getData("POST", "Stockcard/getStockCards", data, onsucces, onerror, before)
         },
         saveStockCard: function (data, onsucces, onerror, before) {
-            getData("POST", "Task/saveStockCard", data, onsucces, onerror, before)
+            getData("POST", "Stockcard/saveStockCard", data, onsucces, onerror, before)
         },
         insertStockCard: function (data, onsucces, onerror, before) {
-            getData("POST", "Task/insertStockCard", data, onsucces, onerror, before)
+            getData("POST", "Stockcard/insertStockCard", data, onsucces, onerror, before)
         },
         getPersonelStock: function (data, onsucces, onerror, before) {
             getData("POST", "Filter/getPersonelStock", data, onsucces, onerror, before)

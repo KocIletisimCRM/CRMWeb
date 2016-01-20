@@ -4,7 +4,7 @@
             color: #000;
         }
             #taskquetable tr:hover {
-                background: #56caf6;
+                background: rgba(131, 211, 242, 0.71);
             }
         .selected {
             background: #6fc679;
@@ -15,7 +15,7 @@
         position: absolute; bottom: 10px; right: 24px; top: auto; cursor: pointer;
       }
     </style>	
-    <div id="bindingContainer" class="container-fluid" style="background-color: lightcyan">
+    <div id="bindingContainer" class="container-fluid" style="background-color: #fff">
 			<div class="col-md-12 container" style="padding: 0 !important; margin: 20px 0 0 0 !important; border-radius: 0 0 8px 8px !important;">
 				<div class="panel-group" id="accordion">
 					<div class="panel" id="panel2" style="border: 1px solid #fff !important;">
@@ -150,8 +150,8 @@
 							<div class="col-xs-12 col-sm-4 col-md-4" style="margin-top: 21px;">
 <!--								 <input  type="checkbox" data-bind="checked:atanmamistasklar" />Atanmamış Tasklar </input>-->
                                 <div class="btn-group pull-right" role="group">
-									<button data-bind="click: getFilter(1,dataModel.rowsPerPage())"  type="button" class="btn btn-success">Sorgula</button>
-									<button  data-bind="click: clean" type="button" class="btn btn-primary">Temizle</button>
+									<button data-bind="click:function(){ getFilter(1,dataModel.rowsPerPage())}"  type="button" class="btn btn-success">Sorgula</button>
+									<button  data-bind="click:function(){ clean}" type="button" class="btn btn-primary">Temizle</button>
 								</div>
 							</div>
 						</div>
@@ -189,7 +189,6 @@
 										<ul class="pagination" style="margin: 0 !important;padding: 0px !important; float:right;">
 											<li class="previous"><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoFirstPage(); } ,enable:pageNo>1">&lt;&lt;</a></li>
 											<li><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoBackPage();}">&lt;</a></li>
-                                            <li><select> <option >1</option> </select></li>
 											<li><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoNextPage(); }">&gt;</a></li>
 											<li class="next"><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoLastPage(); }">&gt;&gt;</a></li>
 										</ul>
@@ -317,7 +316,7 @@
             <div class="modal-dialog" role="document" style="margin-top: 50px;">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" data-bind="click:redirect" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <button type="button" data-bind="click:function(){redirect}" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">Personel Atama</h4>
                     </div>
                     <div class="modal-body" style="display: inline-block; position: absolute; min-height: 50px;">
@@ -330,7 +329,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bind="click:getFilter(1,dataModel.rowsPerPage())" data-dismiss="modal">Kapat</button>
+                        <button type="button" class="btn btn-danger" data-bind="click:function(){getFilter(1,dataModel.rowsPerPage())}" data-dismiss="modal">Kapat</button>
                         <button type="button" data-bind="click: attachmentpersonel" class="btn btn-primary">Kaydet</button>
                     </div>
                 </div>

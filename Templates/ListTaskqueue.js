@@ -51,6 +51,13 @@ var dataModel = {
     // end of kimlik kartı
     attacheablePersonelList:ko.observableArray([]),
     
+    enterfilter: function (d, e) {
+        var self = this;
+        if (e && (e.which == 1 || e.which == 13)) {
+            self.getFilter(1, dataModel.rowsPerPage());
+        }
+        return true;
+    },
     getTasks: function () {
         var self = this;
         var data={
@@ -463,7 +470,7 @@ var dataModel = {
             enableFiltering: true,
             filterPlaceholder: 'Ara'
         });
-        self.getisslist();
+       self.getisslist();
         self.gettaskstatus();
         self.getTasks();
         self.getpersonel();

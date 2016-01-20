@@ -1,69 +1,84 @@
 ﻿<div id="bindingContainer" class="container-fluid" style="background-color: #D1E9F6 !important;">
-	<div class="col-md-12 container" style="padding: 0 !important; margin: 20px 0 0 0 !important; border-radius: 0 0 8px 8px !important;">
-		<div class="panel-group" id="accordion">
-			<div class="panel" id="panel2" style="border: 1px solid #fff !important;">
-				<div class="panel-heading filter-gradient">
-					<h4 class="panel-title">
-						<a data-toggle="collapse" data-target="#collapse1"
-						   href="javascript:void(0)" class="collapsed">
-							Filtreleme
-						</a>
-					</h4>
-				</div>
-				<div id="collapse1" class="panel-collapse collapse">
-					<div class="panel-body">
-						<div class="col-xs-12 col-sm-4 col-md-4">
-							<div class="form-group-sm has-info cls-margin-bottom">
-								<label class="control-label" for="u-1">Hareket Tarihi</label>
-								<input data-bind="value:movementdate"  class="form-control" id="movementdate" value="" />
-							</div>
-						</div>
-						<div class="col-xs-12 col-sm-4 col-md-4">
-							<div class="form-group-sm has-info cls-margin-bottom">
-								<label class="control-label" for="u-2">Çıkış Yapan Birim</label>
-								<input data-bind="value:fromObjectName" type="text" class="form-control" id="exampleInputName2" value="" />
-							</div>
-						</div>
-						<div class="col-xs-12 col-sm-4 col-md-4">
-							<div class="form-group-sm has-info cls-margin-bottom">
-								<label class="control-label" for="u-2">Çıkış Yapılan Birim</label>
-								<input data-bind="value:toObjectName" type="text" class="form-control" id="exampleInputName2" value="" />
-							</div>
-						</div>
-						<div class="col-xs-12 col-sm-4 col-md-4">
-							<div class="form-group-sm has-info cls-margin-bottom">
-								<label class="control-label" for="u-2">Ürün Adı</label>
-								<input data-bind="value:productName" type="text" class="form-control" id="exampleInputName2" value="" />
-							</div>
-						</div>
-						
-						<div class="col-xs-12 col-sm-4 col-md-4">
-							<div class="form-group-sm has-info cls-margin-bottom">
-								<label class="control-label" for="u-2">Serial No</label>
-								<input data-bind="value:serialNo" type="text" class="form-control" id="exampleInputName2" value="" />
-							</div>
-						</div>
-						<div class="col-xs-12 col-sm-4 col-md-4" style="margin-top: 21px;">
-							<div class="btn-group pull-right" role="group">
-								<button data-bind="click:getStockMovements(1,dataModel.rowsPerPage()) "type="button" class="btn btn-success">Sorgula</button>
-								<button data-bind="click:clean" type="button" class="btn btn-info">Temizle</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="col-md-12 container" style="padding: 0 !important; margin: 20px 0 0 0 !important; border-radius: 0 0 8px 8px !important;">
-		<div class="panel-group">
-			<div class="panel" style="border: 1px solid #fff !important;">
-				<div class="panel-heading task-gradient">
-					<div class="row cls-padding-0px">
-						<div class="col-xs-6 col-sm-6 col-md-6">
-							Stok Kartları
-						</div>
-						<div class="col-xs-6 col-sm-6 col-md-6">
-							<!--pagination Starts-->
+    <div class="col-md-12 container" style="padding: 0 !important; margin: 20px 0 0 0 !important; border-radius: 0 0 8px 8px !important;">
+        <div class="panel-group" id="accordion">
+            <div class="panel" id="panel2" style="border: 1px solid #fff !important;">
+                <div class="panel-heading filter-gradient">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-target="#collapse1"
+                           href="javascript:void(0)" class="collapsed">
+                            Filtreleme
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                            <div class="form-group-sm has-info cls-margin-bottom">
+                                <label class="control-label" for="u-1">Hareket Tarihi</label>
+                                <input data-bind="value:movementdate" class="form-control" id="movementdate" value="" />
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                            <div class="form-group-sm has-info cls-margin-bottom">
+                                <label class="control-label" for="u-2">Çıkış Yapan Birim</label>
+                                <input data-bind="value:fromObjectName" type="text" class="form-control" id="exampleInputName2" value="" />
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                            <div class="form-group-sm has-info cls-margin-bottom">
+                                <label class="control-label" for="u-2">Çıkış Yapılan Birim</label>
+                                <input data-bind="value:toObjectName" type="text" class="form-control" id="exampleInputName2" value="" />
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                            <div class="form-group-sm has-info cls-margin-bottom">
+                                <label class="control-label" for="u-2">Ürün Adı</label>
+                                <input data-bind="value:productName" type="text" class="form-control" id="exampleInputName2" value="" />
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                            <div class="form-group-sm has-info cls-margin-bottom">
+                                <label class="control-label" for="u-2">Serial No</label>
+                                <input data-bind="value:serialNo" type="text" class="form-control" id="exampleInputName2" value="" />
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                            <div class="form-group-sm has-info cls-margin-bottom">
+                                <label class="control-label" for="u-2">Sadece Onaylanmayanlar</label>
+                                <input data-bind="checked:isconfirmed" type="checkbox" id="exampleInputName2" value="" />
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-4" style="margin-top: 21px;">
+                            <div class="btn-group pull-right" role="group">
+                                <button data-bind="click: function(){ getStockMovements(1,dataModel.rowsPerPage())} " type="button" class="btn btn-success">Sorgula</button>
+                                <button data-bind="click: clean" type="button" class="btn btn-info">Temizle</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 container" style="padding: 0 !important; margin: 20px 0 0 0 !important; border-radius: 0 0 8px 8px !important;">
+        <div class="panel-group">
+            <div class="panel" style="border: 1px solid #fff !important;">
+                <div class="panel-heading task-gradient">
+                    <div class="row cls-padding-0px">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            Stok Kartları
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            Üzerinizde
+                            <div data-bind="foreach:stockOnPersonel">
+                                <span id="querytime" data-bind="text:amount"></span> &nbsp;&nbsp;
+                                adet&nbsp;
+                                <span id="totalCount" style="color:#000 ;font-family:'Comic Sans MS', cursive" data-bind="text:productname"></span>  &nbsp;
+                            </div>
+                            vardır
+                            <span class="	glyphicon glyphicon-shopping-cart " aria-hidden="true"></span>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <!--pagination Starts-->
                             <nav class="text-center" style="margin: 0px !important;padding: 0px !important;">
                                 <ul class="pagination" style="margin: 0 !important;padding: 0px !important; float:right;">
                                     <li class="previous"><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoFirstPage(); } ,enable:pageNo>1">&lt;&lt;</a></li>
@@ -73,76 +88,70 @@
                                     <li class="next"><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoLastPage(); }">&gt;&gt;</a></li>
                                 </ul>
                             </nav>
-							<!--pagination finish-->
-						</div>
-					</div>
-				</div>
-				<div class="panel-body" style="margin: 0 15px 0 15px !important; padding: 0px !important;">
-					<div class="container-fluid cls-padding-0px cls-deneme-height ">
-						<div class="row cls-margin-task">
-							<div class="col-lg-12 cls-padding-0px">
-								<div class="col-lg-12 cls-task cls-padding-0px">
-									<table class="table" id="taskquetable" data-pagination="true" data-search="true">
-										<thead>
-											<tr>
-												<th class="col-md-1" style="border-right: 1px solid #ddd;">
-													<div class="dropdown">
-														<a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary" style="padding: 2px 15px;">
-															İşlemler <span class="caret"></span>
-														</a>
-														<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-															<li>
-																<a id="new" href="#myModal1" role="button" class="btn" data-toggle="modal" style="padding-right: 110px; float: left;">Yeni</a>
-															</li>
-															
-															<li class="divider"></li>
-															<li class="dropdown-submenu">
-																<a tabindex="-1" href="#">Seçim</a>
-																<ul class="dropdown-menu">
-																	<li><a tabindex="-1" href="#">Tümünü Seç</a></li>
-																	<li><a href="#">Seçimi Çevir</a></li>
-																	<li><a href="#">Seçimi Temizle</a></li>
-																</ul>
-															</li>
-															<li class="divider"></li>
-															<li><a href="#">Excel'e Kaydet</a></li>
-														</ul>
-													</div>
-												</th>
-												<th class="col-md-2" style="border-right: 1px solid #ddd;">Hareket Tarihi</th>
-												<th class="col-md-2" style="border-right: 1px solid #ddd;">Çıkış Yapan Birim</th>
-												<th class="col-md-2" style="border-right: 1px solid #ddd;">Çıkış Yapılan Birim</th>
-												<th class="col-md-2" style="border-right: 1px solid #ddd;">Ürün Adı</th>
-												<th class="col-md-2" style="border-right: 1px solid #ddd;">Adet</th>
-												<th class="col-md-2" style="border-right: 1px solid #ddd;">Serial No</th>
-												<th class="col-md-2" style="border-right: 1px solid #ddd;">Onay Durumu</th>
-											</tr>
-										</thead>
-										<tbody>
-											<!-- ko foreach: movementList -->
-											<tr class="cls_line" onclick="">
-												<td>
-													<button data-bind="value:movementid" type="button" class="btn btn-primary btn-lg edit" data-toggle="modal" data-target="#myModal" style="padding: 3px; border-radius: 0px; font-size:14px;">
-														Düzenle
-													</button>
-													<input type="checkbox" />
-												</td>
-												<td data-bind="text:movementdate"></td>
-												<td data-bind="text:frompersonel ?frompersonel.personelname:(fromobjecttype==4000?'Satınalma':fromcustomer.customername+' '+fromcustomer.customersurname)"></td>
-												<td data-bind="text:topersonel ? topersonel.personelname : ( toobjecttype==4000 ? 'Satınalma':tocustomer.customername +' '+ tocustomer.customersurname)"></td>
-												<td data-bind="text:stockcard.productname"></td>
-												<td data-bind="text:amount"></td>
-												<td data-bind="text:serialno"><td>
-												<td ><input data-bind="checked :confirmationdate ? confirmationdate : false" type="checkbox" /></td>
-											</tr>
+                            <!--pagination finish-->
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body" style="margin: 0 15px 0 15px !important; padding: 0px !important;">
+                    <div class="container-fluid cls-padding-0px cls-deneme-height ">
+                        <div class="row cls-margin-task">
+                            <div class="col-lg-12 cls-padding-0px">
+                                <div class="col-lg-12 cls-task cls-padding-0px">
+                                    <table class="table" id="taskquetable" data-pagination="true" data-search="true">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-md-1" style="border-right: 1px solid #ddd;">
+                                                    <div class="dropdown">
+                                                        <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary" style="padding: 2px 15px;">
+                                                            İşlemler <span class="caret"></span>
+                                                        </a>
+                                                        <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                                                            <li>
+                                                                <a id="new" href="#myModal1" role="button" class="btn" data-toggle="modal" style="padding-right: 110px; float: left;">Yeni</a>
+                                                            </li>
+                                                            <li>
+                                                                <a id="confirm" href="#myModal2" role="button" class="btn" data-toggle="modal" style="padding-right: 110px; float: left;">Toplu Onay</a>
+                                                            </li>
+                                                            <li class="divider"></li>
+                                                            <li><a href="#">Excel'e Kaydet</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </th>
+                                                <th class="col-md-2" style="border-right: 1px solid #ddd;">Hareket Tarihi</th>
+                                                <th class="col-md-2" style="border-right: 1px solid #ddd;">Çıkış Yapan Birim</th>
+                                                <th class="col-md-2" style="border-right: 1px solid #ddd;">Çıkış Yapılan Birim</th>
+                                                <th class="col-md-2" style="border-right: 1px solid #ddd;">Ürün Adı</th>
+                                                <th class="col-md-2" style="border-right: 1px solid #ddd;">Adet</th>
+                                                <th class="col-md-2" style="border-right: 1px solid #ddd;">Serial No</th>
+                                                <th class="col-md-2" style="border-right: 1px solid #ddd;">Onay Durumu</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- ko foreach: movementList -->
+                                            <tr class="cls_line" onclick="">
+                                                <td>
+                                                    <button data-bind="value:movementid" type="button" class="btn btn-primary btn-lg edit" data-toggle="modal" data-target="#myModal" style="padding: 3px; border-radius: 0px; font-size:14px;">
+                                                        Düzenle
+                                                    </button>
+                                                    <input data-bind="value:movementid" class="sel" type="checkbox" />
+                                                </td>
+                                                <td data-bind="text:movementdate"></td>
+                                                <td data-bind="text:frompersonel ?frompersonel.personelname:(fromobjecttype==33554433?'Satınalma':fromcustomer.customername)"></td>
+                                                <td data-bind="text:topersonel ? topersonel.personelname : ( toobjecttype==33554433 ? 'Satınalma':tocustomer.customername )"></td>
+                                                <td data-bind="text:stockcard.productname"></td>
+                                                <td data-bind="text:amount"></td>
+                                                <td data-bind="text:serialno">
+                                                <td>
+                                                <td><input data-bind="checked :confirmationdate ? confirmationdate : false" type="checkbox" /></td>
+                                            </tr>
                                             <!--/ko-->
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!--pagination Starts-->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--pagination Starts-->
                     <nav class="text-center" style="margin: 0px !important;padding: 0px !important;">
                         <ul class="pagination" style="margin: 0 !important;padding: 0px !important; float:right;">
                             <li class="previous"><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoFirstPage(); } ,enable:pageNo>1">&lt;&lt;</a></li>
@@ -152,12 +161,11 @@
                             <li class="next"><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoLastPage(); }">&gt;&gt;</a></li>
                         </ul>
                     </nav>
-					<!--pagination finish-->
-				</div>
-			</div>
-		</div>
-	</div>
-
+                    <!--pagination finish-->
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- İşlemler Yeni For Modal Start -->
     <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document" style="margin-top: 50px;">
@@ -171,42 +179,39 @@
                         <p>Çıkış Yapılan Birim Türü</p>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <select id="newobject" data-bind="options:objectList,optionsValue:'typeid',optionsText:'typname',value:newtoobjecttype ,optionsCaption:'Seçiniz'" class="form-control">
-
-                        </select>
+                        <select id="newobject" data-bind="options:objectList,optionsValue:'typeid',optionsText:'typname',value:newtoobjecttype ,optionsCaption:'Seçiniz'" class="form-control"></select>
                     </div>
                     <div data-bind="visible:newtoobjecttype" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                         <p>Çıkış Yapılan Birim</p>
                     </div>
-                    <div  data-bind="visible:newtoobjecttype" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                    <div data-bind="visible:newtoobjecttype" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
                         <select id="newpersonel" data-bind="options:$root.personellist,optionsText:'personelname',optionsValue:'personelid',value:newtoobject,optionsCaption:'Seçiniz'" class="form-control"></select>
                     </div>
                     <div data-bind="visible:newtoobject" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                         <p>Ürün Adi</p>
                     </div>
                     <div data-bind="visible:newtoobject" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <select id="newproduct" data-bind="options:$root.personelStockList,optionsText:'productname',optionsValue:'stockid',value:newselectedproduct,optionsCaption:'Ürün Seçiniz'" class="form-control"></select>
-                    
+                        <select id="newproduct" data-bind="options:isSatinalma()!=true? $root.personelStockList : $root.stockCardList,optionsText:'productname',optionsValue:'stockid',value:newselectedproduct,optionsCaption:'Ürün Seçiniz'" class="form-control"></select>
                     </div>
-                    <div data-bind="visible:newselectedproduct" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                    <div data-bind="visible:newselectedproduct() && stockSerialControl()!=true" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                         <p>Adet</p>
                     </div>
-                    <div data-bind="visible: newselectedproduct " class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <input type="text" data-bind="value:newamount" class="form-control" id="Text3" >
+                    <div data-bind="visible: newselectedproduct() && stockSerialControl()!=true" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <input type="text" data-bind="value:newamount" class="form-control" id="Text3">
                     </div>
                     <div data-bind="visible:stockSerialControl" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                         <p>Serial No</p>
                     </div>
                     <div data-bind="visible:stockSerialControl" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <input  type="text" data-bind="value:newserialno ,visible:isSatinalma()" class="form-control" id="Text3">
-                        <select data-bind="visible:isSatinalma()"  class="form-control"   multiple="multiple"></select>
+                        <input type="text" data-bind="value:newinputserial ,visible:isSatinalma() ,valueUpdate: 'keydown', event: { keypress: addSerialList }" class="form-control" id="Text7">
+                        <select data-bind="visible:isSatinalma(),options:serialArray" class="form-control" multiple="multiple"></select>
                     </div>
                     <div data-bind="visible:isSatinalma()!=true && stockSerialControl " class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
                         <select id="newserial" data-bind="options:$root.serialList,optionsCaption:'Seri Numarası Seçiniz',value:newserialno" class="form-control"></select>
                     </div>
                     <div data-bind="visible:amount" class="col-xs-12 col-sm-12 col-md-12 cls-padding-0px" style="margin-top: 3px;">
-                      Elinizde Toplam <span class="badge badge-success" data-bind="text:amount"></span>  Adet/Metre Vardır
-                       
+                        Elinizde Toplam <span class="badge badge-success" data-bind="text:amount"></span>  Adet/Metre Vardır
+
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 cls-padding-0px" style="margin-top: 3px;" data-bind="visible: $root.savemessagecode()">
                         <span class="label label-success" data-bind="text: $root.savemessage , visible:$root.savemessagecode()==1"></span>
@@ -215,7 +220,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
-                    <button data-bind="click:insertStockMovements,enable:newselectedproduct()?(stockSerialControl()?(newserialno()!=null?true:false):true):false" type="button" class="btn btn-success">Kaydet</button>
+                    <button data-bind="click:insertStockMovements,enable:newselectedproduct()?(stockSerialControl()?(newserialno()!=null ||serialArray().length>0?true:false):true):false" type="button" class="btn btn-success">Kaydet</button>
                 </div>
             </div>
         </div>
@@ -229,27 +234,24 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="H1">Edit Form</h4>
                 </div>
-                <div data-bind="with:selectedMovementCard"  class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
+                <div data-bind="with:selectedMovementCard" class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                         <p>Çıkış Yapılan Birim Türü</p>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <select id="editobject" data-bind="options:$root.objectList,optionsText:'typname',optionsValue:'typeid',value:toobjecttype,optionsCaption:'Seçiniz'" class="form-control">                         
-                        </select>
+                        <select id="editobject" data-bind="options:$root.objectList,optionsText:'typname',optionsValue:'typeid',value:toobjecttype,optionsCaption:'Seçiniz'" class="form-control"></select>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                         <p>Çıkış Yapılan Birim</p>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <select id="editpersonel" data-bind="options:$root.personellist,optionsText:'personelname',optionsValue:'personelid',value:toobject,optionsCaption:'Seçiniz'" class="form-control" >
-                        </select>
+                        <select id="editpersonel" data-bind="options:$root.personellist,optionsText:'personelname',optionsValue:'personelid',value:toobject,optionsCaption:'Seçiniz'" class="form-control"></select>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                         <p>Ürün Adi</p>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <select id="editproduct" data-bind="options:$root.stockCardList,optionsText:'productname',optionsValue:'stockid',value:stockcardid" class="form-control">                         
-                        </select>
+                        <select id="editproduct" data-bind="options:$root.stockCardList,optionsText:'productname',optionsValue:'stockid',value:stockcardid" class="form-control"></select>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                         <p>Hareket ID</p>
@@ -261,13 +263,50 @@
                         <p>Adet</p>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <input  data-bind="value:amount,attr:{'max':stockcard.hasserial?1:999999},valueUpdate:'input'" id="riv" type="text" class="form-control" />
+                        <input data-bind="value:amount,attr:{'max':stockcard.hasserial?1:999999},valueUpdate:'input'" id="riv" type="text" class="form-control" />
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                         <p>Serial No</p>
                     </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">                                           
-                          <input type="text" class="form-control" data-bind="value:serialno" />
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <input type="text" class="form-control" data-bind="value:serialno" />
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Onay Durumu</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <input type="checkbox" class="btn btn-success form-control" data-bind="checked:confirmationdate, enable:$root.user().userId==toobject && confirmationdate==null " />
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 cls-padding-0px" style="margin-top: 3px;" data-bind="visible: $root.savemessagecode()">
+                        <span class="label label-success" data-bind="text: $root.savemessage , visible:$root.savemessagecode()==1"></span>
+                        <span class="label label-danger" data-bind="text: $root.savemessage, visible: $root.savemessagecode() != 1"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+                    <button type="button" data-bind="click:saveStockMovement" class="btn btn-primary">Kaydet</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Duzenle For Modal Finish-->
+    <!-- İşlemler Yeni For Modal Start -->
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document" style="margin-top: 50px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title " id="myModalLabel">Toplu Hareket Onaylama</h4>
+                </div>
+                <div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Seçili Hareketleri Onaylamak İçin Tıklayın</p>
+                    </div>
+                    <div>
+                        <p>
+                            <button data-bind="click:confirmAll" class="btn btn-success">Onayla</button>
+                        </p>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 cls-padding-0px" style="margin-top: 3px;" data-bind="visible: $root.savemessagecode()">
                         <span class="label label-success" data-bind="text: $root.savemessage , visible:$root.savemessagecode()==1"></span>
@@ -276,15 +315,12 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
-                    <button type="button" class="btn btn-primary">Kaydet</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Duzenle For Modal Finish-->
-
+    <!-- İşlemler Yeni For Modal Finish-->
 </div>
-
 <script type="text/javascript" src="Templates/ListStockMovements.js"></script>
 <script>
     $(document).ready(function () {

@@ -5,13 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="Content/bootstrap.min.css">
     <link rel="stylesheet" href="Content/bootstrap-multiselect.min.css" />
     <link href="Content/bootstrap-datetimepicker.css" rel="stylesheet" />
     <link href="Content/daterangepicker.css" rel="stylesheet" />
     <link rel="stylesheet" href="Content/taskqueueeditform.css" />
-    <link rel="stylesheet" href="Content/app.min.css" />
+    <link rel="stylesheet" href="Content/app.css" />
     <link href="Content/fileinput.css" rel="stylesheet" />
     <!--  auto complete için referanslar-->
     <link href="Content/koc-typehead-v1.0.css" rel="stylesheet" />
@@ -192,17 +191,14 @@
                                         </ul>
                                     </li>
                                 </ul>
-                                <ul class="nav navbar-nav navbar-right">                                   
-                                    <li>
-                                        <label>
-                                            <span class="glyphicon glyphicon-user" style="color:#fff" aria-hidden="true"> </span>
-                                            <label id="username" style="color:aliceblue"> </label>
-                                        </label>
-                                    </li>
+                                <ul class="nav navbar-nav navbar-right">
                                     <li>
                                         <button id="exit" role="button" class="btn btn-danger">Çıkış</button>
-                                    </li> 
-                                        
+                                        <label>
+                                            <span class="glyphicon glyphicon-user" style="color:royalblue" aria-hidden="true"> </span>
+                                            <label id="username" style="color:#808080"> </label>
+                                        </label>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -1060,7 +1056,9 @@
 	<!-- Yeni Kanal Şikayeti For Modal Finish-->
 
 
-  
+    <script src="Scripts/fileinput.js"></script>
+    <script src="Scripts/fileinput_locale_tr.js"></script>
+    <script src="Scripts/canvas-to-blob.min.js"></script>
     <script src="Scripts/bootstrap-datetimepicker.js"></script>
     <script src="Scripts/daterangepicker.js"></script>
     
