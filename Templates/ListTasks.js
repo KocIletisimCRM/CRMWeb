@@ -6,24 +6,24 @@
 var dataModel = {
     tasklist: ko.observableArray([]),
     taskCombo: ko.observableArray([]),
-    selectedTask:ko.observable(),
-    taskname:ko.observable(),
+    selectedTask: ko.observable(),
+    taskname: ko.observable(),
     pageCount: ko.observable(),
     pageNo: ko.observable(1),
     rowsPerPage: ko.observable(20),
     selectedTaskid: ko.observable(),
     objectTypeList: ko.observableArray([]),
     selectedObjectType: ko.observable(),
-    personelTypeList:ko.observableArray([]),
+    personelTypeList: ko.observableArray([]),
     selectedPersonelType: ko.observable(),
-    taskTypeList:ko.observableArray([]),
+    taskTypeList: ko.observableArray([]),
     savemessage: ko.observable(),
-    saveerrorcode:ko.observable(),
+    saveerrorcode: ko.observable(),
     newtaskname: ko.observable(),
     newtaskscore: ko.observable(),
     newpersoneltype: ko.observable(),
     newobjecttype: ko.observable(),
-    newtasktype:ko.observable(),
+    newtasktype: ko.observable(),
 
     //combo için
     getTaskList: function () {
@@ -44,19 +44,19 @@ var dataModel = {
                 selectAllText: 'Tümünü Seç!',
                 enableFiltering: true,
                 filterPlaceholder: 'Ara'
-                
+
             });
         }, null, null);
 
     },
     //sayfadaki tablo için
-    getTask: function (pageno,rowsperpage) {
+    getTask: function (pageno, rowsperpage) {
         var self = this;
         self.pageNo(pageno);
         self.rowsPerPage(rowsperpage);
         var data = {
-            pageNo:pageno,
-            rowsPerPage:rowsperpage,
+            pageNo: pageno,
+            rowsPerPage: rowsperpage,
             task: self.selectedTaskid() ? { fieldName: 'taskid', op: 2, value: self.selectedTaskid() } : { fieldName: 'taskname', op: 6, value: '' },
         };
         crmAPI.getTaskDefination(data, function (a, b, c) {
@@ -78,9 +78,9 @@ var dataModel = {
         var data = {
             objecttype: { fieldName: 'typname', op: 6, value: '' },
         };
-        crmAPI.getTaskFilter(data,function (a, b, c) {
+        crmAPI.getTaskFilter(data, function (a, b, c) {
             self.objectTypeList(a);
-            $("#ilgi").multiselect({
+            $("#ilgi,#newilgi").multiselect({
                 includeSelectAllOption: true,
                 selectAllValue: 'select-all-value',
                 maxHeight: 250,
@@ -96,12 +96,9 @@ var dataModel = {
     },
     getPersonelType: function () {
         var self = this;
-        var data = {
-            personeltype: { fieldName: 'typname', op: 6, value: '' },
-        };
-        crmAPI.getTaskFilter(data, function (a, b, c) {
+        crmAPI.getObjectType(function (a, b, c) {
             self.personelTypeList(a);
-            $("#gorevli").multiselect({
+            $("#gorevli,#newgorevli").multiselect({
                 includeSelectAllOption: true,
                 selectAllValue: 'select-all-value',
                 maxHeight: 250,
@@ -115,6 +112,7 @@ var dataModel = {
             });
         }, null, null);
     },
+
     //getTaskType: function () {
     //    var self = this;
     //    var data = {
@@ -138,7 +136,7 @@ var dataModel = {
     getTaskCard: function (taskid) {
         var self = this;
         var data = {
-            task: {fieldname:'taskid',op:2,value:taskid}
+            task: { fieldname: 'taskid', op: 2, value: taskid }
         };
         crmAPI.getTaskDefination(data, function (a, b, c) {
             self.selectedTask(a[0]);
@@ -148,9 +146,17 @@ var dataModel = {
     },
     saveTask: function () {
         var self = this;
-        self.selectedTask().objecttypes = { typeid: $('#ilgi').val() };
-        self.selectedTask().personeltypes = { typeid: $('#gorevli').val() };
-        self.selectedTask().tasktypes = { TaskTypeId: $('#edittaskturu').val() };
+        if ($("#gorevli").val() && $("#gorevli").val().length > 1) {
+            self.selectedTask().personeltypes = { typeid: parseInt($("#gorevli").val()[0] | $("#gorevli").val()[1]) };
+        }
+        else
+            self.selectedTask().personeltypes = { typeid: parseInt($("#gorevli").val()[0]) };
+        if ($("#ilgi").val() && $("#ilgi").val().length > 1) {
+            self.selectedTask().objecttypes = { typeid: parseInt($("#ilgi").val()[0] | $("#ilgi").val()[1]) };
+        }
+        else
+            self.selectedTask().objecttypes = { typeid: parseInt($("#ilgi").val()[0]) };
+        self.selectedTask().tasktypes = { TaskTypeId: parseInt($('#edittaskturu').val()) };
         var data = self.selectedTask();
         crmAPI.saveTask(data, function (a, b, c) {
             self.savemessage(a.errorMessage);
@@ -159,16 +165,26 @@ var dataModel = {
                 $('#myModal').modal('hide');
                 self.getTask(1, dataModel.rowsPerPage());
             }, 1000);
-        },null,null);
+        }, null, null);
     },
     insertTask: function () {
         var self = this;
+        var ttypes;
+        var otypes;
+        if ($("#newgorevli").val() && $("#newgorevli").val().length > 1)
+            self.newpersoneltype(parseInt($("#newgorevli").val()[0] | $("#newgorevli").val()[1]));
+        else
+            self.newpersoneltype(parseInt($("#newgorevli").val()[0]));
+        if ($("#newilgi").val() && $("#newilgi").val().length > 1)
+            self.newobjecttype(parseInt(("#newilgi").val()[0] | $("#newilgi").val()[1]));
+        else
+            self.newobjecttype(parseInt($("#newilgi").val()[0]));
         var data = {
             taskname: self.newtaskname(),
-            tasktypes: { TaskTypeId: $("#newtaskturu").val()},
+            tasktypes: { TaskTypeId: $("#newtaskturu").val() },
             objecttypes: { typeid: self.newobjecttype() },
             personeltypes: { typeid: self.newpersoneltype() },
-            performancescore:self.newtaskscore(),
+            performancescore: self.newtaskscore(),
         };
         crmAPI.insertTask(data, function (a, b, c) {
             self.saveerrorcode(a.errorCode);

@@ -1,138 +1,58 @@
 ﻿
 <div id="bindingContainer" class="container-fluid" style="background-color: lightcyan">
-			<div class="col-md-12 container" style="padding: 0 !important; margin: 20px 0 0 0 !important; border-radius: 0 0 8px 8px !important;">
-				<div class="panel-group" id="accordion">
-					<div class="panel" id="panel2" style="border: 1px solid #fff !important;">
-						<div class="panel-heading filter-gradient">
-							<h4 class="panel-title">
-								<a data-toggle="collapse" data-target="#collapse1"
-								   href="javascript:void(0)" class="collapsed">
-									Filtreleme
-								</a>
-							</h4>
-						</div>
-						<div id="collapse1" class="panel-collapse collapse">
-							<div class="panel-body">
-								<div class="col-xs-12 col-sm-4 col-md-4">
-									<div class="form-group-sm has-info cls-margin-bottom">
-										<label class="control-label" for="taskadi">Task Adı</label>
-										<select id="taskadi" data-bind="options:taskCombo,optionsText:'taskname',optionsValue:'taskid',value:selectedTaskid" multiple="multiple">
-											
-										</select>
-									</div>
-								</div>
-
-								<div class="col-xs-12 col-sm-4 col-md-4">
-									<div class="form-group-sm has-info cls-margin-bottom">
-										<label class="control-label" for="taskturu">Task Türü</label>
-										<select id="taskturu" class="form-control" >
-                                            <option value="0">Diğer</option> 
-                                            <option value="1">Satış Taskı</option> 
-                                            <option value="2"> Randevu Taskı</option> 
-                                            <option value="3"> Kurulum Taskı</option>
-                                            <option value="4"> Randuvusuz Kurulum Taskı</option> 
-                                            <option value="5">SOL Kapama Taskı</option> 
-										</select>
-									</div>
-								</div>
-								<div class="col-xs-12 col-sm-4 col-md-4" style="margin-top: 21px;">
-									<div class="btn-group pull-right" role="group">
-										<button data-bind="click:getTask(1,dataModel.rowsPerPage())" type="button" class="btn btn-success">Sorgula</button>
-										<button data-bind="click:clean" type="button" class="btn btn-info">Temizle</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-12 container" style="padding: 0 !important; margin: 20px 0 0 0 !important; border-radius: 0 0 8px 8px !important;">
-				<div class="panel-group">
-					<div class="panel" style="border: 1px solid #fff !important;">
-						<div class="panel-heading task-gradient">
-							<div class="row cls-padding-0px">
-								<div class="col-xs-6 col-sm-6 col-md-6">
-									Task Tanımları
-								</div>
-								<div class="col-xs-6 col-sm-6 col-md-6">
-									<!--pagination Starts-->
-                                    <nav class="text-center" style="margin: 0px !important;padding: 0px !important;">
-                                        <ul class="pagination" style="margin: 0 !important;padding: 0px !important; float:right;">
-                                            <li class="previous"><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoFirstPage(); } ,enable:pageNo>1">&lt;&lt;</a></li>
-                                            <li><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoBackPage();}">&lt;</a></li>
-                                            <li><select> <option>1</option> </select></li>
-                                            <li><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoNextPage(); }">&gt;</a></li>
-                                            <li class="next"><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoLastPage(); }">&gt;&gt;</a></li>
-                                        </ul>
-                                    </nav>
-									<!--pagination finish-->
-								</div>
-							</div>
-						</div>
-						<div class="panel-body" style="margin: 0 15px 0 15px !important; padding: 0px !important;">
-							<div class="container-fluid cls-padding-0px cls-deneme-height ">
-								<div class="row cls-margin-task">
-									<div class="col-lg-12 cls-padding-0px">
-										<div class="col-lg-12 cls-task cls-padding-0px">
-											<table class="table" id="taskquetable" data-pagination="true" data-search="true">
-												<thead>
-													<tr>
-														<th class="col-md-1" style="border-right: 1px solid #ddd;">
-															<div class="dropdown">
-																<a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary" style="padding: 2px 15px;">
-																	İşlemler <span class="caret"></span>
-																</a>
-																<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-																	<li>
-																		<a id="new" href="#myModal1" role="button" class="btn" data-toggle="modal" style="padding-right: 110px; float: left;">Yeni</a>
-																	</li>
-																
-																	<li class="divider"></li>
-																	<li class="dropdown-submenu">
-																		<a tabindex="-1" href="#">Seçim</a>
-																		<ul class="dropdown-menu">
-																			<li><a tabindex="-1" href="#">Tümünü Seç</a></li>
-																			<li><a href="#">Seçimi Çevir</a></li>
-																			<li><a href="#">Seçimi Temizle</a></li>
-																		</ul>
-																	</li>
-																	<li class="divider"></li>
-																	<li><a href="#">Excel'e Kaydet</a></li>
-											       
-																</ul>
-															</div>
-														</th>
-														<th class="col-md-2" style="border-right: 1px solid #ddd;">Task Adı</th>
-														<th class="col-md-2" style="border-right: 1px solid #ddd;">Görevli</th>
-														<th class="col-md-2" style="border-right: 1px solid #ddd;">Task Türü</th>
-														<th class="col-md-2" style="border-right: 1px solid #ddd;">İlgi</th>
-														<th class="col-md-2">Puan</th>
-													</tr>
-												</thead>
-												<tbody>
-													<!-- ko foreach: tasklist -->
-													<tr>
-														<td>
-															<button data-bind="value:taskid" type="button" class="btn btn-primary btn-lg edit" data-toggle="modal" data-target="#myModal" style="padding: 3px; border-radius: 0px; font-size:14px;">
-																Düzenle
-															</button>
-															<input type="checkbox" />															
-														</td>
-														<td data-bind="text:taskname"></td>
-                                                        <td data-bind="text:personeltypes ?personeltypes.typname:null"></td>
-                                                        <td data-bind="text:tasktypes ? tasktypes.TaskTypeName:null"></td>
-                                                        <td data-bind="text:objecttypes ?objecttypes.typname:null"></td>
-                                                        <td data-bind="text:performancescore"></td>
-													</tr>
-                                                    <!-- /ko-->
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<!--pagination Starts-->
+    <div class="col-md-12 container" style="padding: 0 !important; margin: 20px 0 0 0 !important; border-radius: 0 0 8px 8px !important;">
+        <div class="panel-group" id="accordion">
+            <div class="panel" id="panel2" style="border: 1px solid #fff !important;">
+                <div class="panel-heading filter-gradient">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-target="#collapse1"
+                           href="javascript:void(0)" class="collapsed">
+                            Filtreleme
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                            <div class="form-group-sm has-info cls-margin-bottom">
+                                <label class="control-label" for="taskadi">Task Adı</label>
+                                <select id="taskadi" data-bind="options:taskCombo,optionsText:'taskname',optionsValue:'taskid',value:selectedTaskid" multiple="multiple"></select>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                            <div class="form-group-sm has-info cls-margin-bottom">
+                                <label class="control-label" for="taskturu">Task Türü</label>
+                                <select id="taskturu" class="form-control">
+                                    <option value="0">Diğer</option>
+                                    <option value="1">Satış Taskı</option>
+                                    <option value="2"> Randevu Taskı</option>
+                                    <option value="3"> Kurulum Taskı</option>
+                                    <option value="4"> Randuvusuz Kurulum Taskı</option>
+                                    <option value="5">SOL Kapama Taskı</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-4" style="margin-top: 21px;">
+                            <div class="btn-group pull-right" role="group">
+                                <button data-bind="click:getTask(1,dataModel.rowsPerPage())" type="button" class="btn btn-success">Sorgula</button>
+                                <button data-bind="click:clean" type="button" class="btn btn-info">Temizle</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 container" style="padding: 0 !important; margin: 20px 0 0 0 !important; border-radius: 0 0 8px 8px !important;">
+        <div class="panel-group">
+            <div class="panel" style="border: 1px solid #fff !important;">
+                <div class="panel-heading task-gradient">
+                    <div class="row cls-padding-0px">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            Task Tanımları
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <!--pagination Starts-->
                             <nav class="text-center" style="margin: 0px !important;padding: 0px !important;">
                                 <ul class="pagination" style="margin: 0 !important;padding: 0px !important; float:right;">
                                     <li class="previous"><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoFirstPage(); } ,enable:pageNo>1">&lt;&lt;</a></li>
@@ -142,156 +62,222 @@
                                     <li class="next"><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoLastPage(); }">&gt;&gt;</a></li>
                                 </ul>
                             </nav>
-							<!--pagination finish-->
+                            <!--pagination finish-->
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body" style="margin: 0 15px 0 15px !important; padding: 0px !important;">
+                    <div class="container-fluid cls-padding-0px cls-deneme-height ">
+                        <div class="row cls-margin-task">
+                            <div class="col-lg-12 cls-padding-0px">
+                                <div class="col-lg-12 cls-task cls-padding-0px">
+                                    <table class="table" id="taskquetable" data-pagination="true" data-search="true">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-md-1" style="border-right: 1px solid #ddd;">
+                                                    <div class="dropdown">
+                                                        <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary" style="padding: 2px 15px;">
+                                                            İşlemler <span class="caret"></span>
+                                                        </a>
+                                                        <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                                                            <li>
+                                                                <a id="new" href="#myModal1" role="button" class="btn" data-toggle="modal" style="padding-right: 110px; float: left;">Yeni</a>
+                                                            </li>
 
-						</div>
-					</div>
-				</div>
-			</div>
-        <!-- İşlemler Yeni For Modal Start -->
-        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document" style="margin-top: 50px;">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Edit Form</h4>
-                    </div>
-                    <div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                            <p>Task ID</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;"></p></div>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                            <p>Task Adı</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <input data-bind="value:newtaskname" type="text" class="form-control" id="exampleInputName2" value="">
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                            <p>Görevli</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <select id="newgorevli" data-bind="options:personelTypeList,optionsText:'typname',optionsValue:'typeid',value:newpersoneltype,optionsCaption:'Seçiniz'" class="form-control">
+                                                            <li class="divider"></li>
+                                                            <li class="dropdown-submenu">
+                                                                <a tabindex="-1" href="#">Seçim</a>
+                                                                <ul class="dropdown-menu">
+                                                                    <li><a tabindex="-1" href="#">Tümünü Seç</a></li>
+                                                                    <li><a href="#">Seçimi Çevir</a></li>
+                                                                    <li><a href="#">Seçimi Temizle</a></li>
+                                                                </ul>
+                                                            </li>
+                                                            <li class="divider"></li>
+                                                            <li><a href="#">Excel'e Kaydet</a></li>
 
-                            </select>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                            <p>Task Türü</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <select id="newtaskturu" class="form-control">
-                                <option value="0">Diğer</option>
-                                <option value="1">Satış Taskı</option>
-                                <option value="2"> Randevu Taskı</option>
-                                <option value="3"> Kurulum Taskı</option>
-                                <option value="4"> Randuvusuz Kurulum Taskı</option>
-                                <option value="5">SOL Kapama Taskı</option> 
-                            </select>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                            <p>İlgi</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <select id="newilgi"  data-bind="options:objectTypeList,optionsText:'typname',optionsValue:'typeid',value:newobjecttype,optionsCaption:'Seçiniz'" class="form-control">
-                               
-                            </select>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                            <p>Puan</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <input data-bind="value:newtaskscore" type="text" class="form-control" id="Text1" value="">
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 cls-padding-0px" style="margin-top: 3px;" data-bind="visible: $root.saveerrorcode()">
-                            <span class="label label-success" data-bind="text: $root.savemessage , visible:$root.saveerrorcode()==1"></span>
-                            <span class="label label-danger" data-bind="text: $root.savemessage, visible: $root.saveerrorcode() != 1"></span>
+                                                        </ul>
+                                                    </div>
+                                                </th>
+                                                <th class="col-md-2" style="border-right: 1px solid #ddd;">Task Adı</th>
+                                                <th class="col-md-2" style="border-right: 1px solid #ddd;">Görevli</th>
+                                                <th class="col-md-2" style="border-right: 1px solid #ddd;">Task Türü</th>
+                                                <th class="col-md-2" style="border-right: 1px solid #ddd;">İlgi</th>
+                                                <th class="col-md-2">Puan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- ko foreach: tasklist -->
+                                            <tr>
+                                                <td>
+                                                    <button data-bind="value:taskid" type="button" class="btn btn-primary btn-lg edit" data-toggle="modal" data-target="#myModal" style="padding: 3px; border-radius: 0px; font-size:14px;">
+                                                        Düzenle
+                                                    </button>
+                                                    <input type="checkbox" />
+                                                </td>
+                                                <td data-bind="text:taskname"></td>
+                                                <td data-bind="text:personeltypes ?personeltypes.typname:null"></td>
+                                                <td data-bind="text:tasktypes ? tasktypes.TaskTypeName:null"></td>
+                                                <td data-bind="text:objecttypes ?objecttypes.typname:null"></td>
+                                                <td data-bind="text:performancescore"></td>
+                                            </tr>
+                                            <!-- /ko-->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
-                        <button data-bind="click:insertTask" type="button" class="btn btn-primary">Kaydet</button>
-                    </div>
+                    <!--pagination Starts-->
+                    <nav class="text-center" style="margin: 0px !important;padding: 0px !important;">
+                        <ul class="pagination" style="margin: 0 !important;padding: 0px !important; float:right;">
+                            <li class="previous"><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoFirstPage(); } ,enable:pageNo>1">&lt;&lt;</a></li>
+                            <li><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoBackPage();}">&lt;</a></li>
+                            <li><select> <option>1</option> </select></li>
+                            <li><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoNextPage(); }">&gt;</a></li>
+                            <li class="next"><a href="javascript:void(0)" data-bind="click: function (e) { navigate.gotoLastPage(); }">&gt;&gt;</a></li>
+                        </ul>
+                    </nav>
+                    <!--pagination finish-->
                 </div>
             </div>
         </div>
-        <!-- İşlemler Yeni For Modal Finish-->
-        <!-- Duzenle For Modal Start-->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document" style="margin-top: 50px;">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="H1">Edit Form</h4>
+    </div>
+    <!-- İşlemler Yeni For Modal Start -->
+    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document" style="margin-top: 50px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Edit Form</h4>
+                </div>
+                <div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Task ID</p>
                     </div>
-                    <div data-bind="with:selectedTask" class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                            <p>Task ID</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <div data-bind="text:taskid" class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;"></p></div>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                            <p>Task Adı</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <input data-bind="value:taskname" type="text" class="form-control" id="Text2" >
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                            <p>Görevli</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <select id="gorevli"  data-bind="options:$root.personelTypeList,optionsText:'typname',optionsValue:'typeid',value:personeltypes ?personeltypes.typeid :null,optionsCaption:'Seçiniz'" class="form-control">
-                               
-                            </select>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                            <p>Task Türü</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <select id="edittaskturu" data-bind="value:tasktypes?tasktypes.TaskTypeId:null" class="form-control">
-                                <option value="0">Diğer</option>
-                                <option value="1">Satış Taskı</option>
-                                <option value="2"> Randevu Taskı</option>
-                                <option value="3"> Kurulum Taskı</option>
-                                <option value="4"> Randuvusuz Kurulum Taskı</option>
-                                <option value="5">SOL Kapama Taskı</option> 
-                            </select>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                            <p>İlgi</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <select id="ilgi" data-bind=" options: $root.objectTypeList, optionsText:'typname',optionsValue:'typeid',value:objecttypes?objecttypes.typeid :null,optionsCaption:'Seçiniz'" class="form-control">
-                             
-                            </select>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                            <p>Puan</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <input data-bind="value:performancescore" type="text" class="form-control" id="Text3" >
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 cls-padding-0px" style="margin-top: 3px;" data-bind="visible: $root.saveerrorcode()">
-                            <span class="label label-success" data-bind="text: $root.savemessage , visible:$root.saveerrorcode()==1"></span>
-                            <span class="label label-danger" data-bind="text: $root.savemessage, visible: $root.saveerrorcode() != 1"></span>
-                        </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;"></p></div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
-                        <button data-bind="click:saveTask" type="button" class="btn btn-success">Kaydet</button>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Task Adı</p>
                     </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <input data-bind="value:newtaskname" type="text" class="form-control" id="exampleInputName2" value="">
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Görevli</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <select id="newgorevli" data-bind="options:personelTypeList,optionsText:'typname',optionsValue:'typeid',optionsCaption:'Seçiniz'" class="form-control" multiple="multiple"></select>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Task Türü</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <select id="newtaskturu" class="form-control">
+                            <option value="0">Diğer</option>
+                            <option value="1">Satış Taskı</option>
+                            <option value="2"> Randevu Taskı</option>
+                            <option value="3"> Kurulum Taskı</option>
+                            <option value="4"> Randuvusuz Kurulum Taskı</option>
+                            <option value="5">SOL Kapama Taskı</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>İlgi</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <select id="newilgi" data-bind="options:personelTypeList,optionsText:'typname',optionsValue:'typeid',optionsCaption:'Seçiniz'" class="form-control" multiple="multiple"></select>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Puan</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <input data-bind="value:newtaskscore" type="text" class="form-control" id="Text1" value="">
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 cls-padding-0px" style="margin-top: 3px;" data-bind="visible: $root.saveerrorcode()">
+                        <span class="label label-success" data-bind="text: $root.savemessage , visible:$root.saveerrorcode()==1"></span>
+                        <span class="label label-danger" data-bind="text: $root.savemessage, visible: $root.saveerrorcode() != 1"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+                    <button data-bind="click:insertTask" type="button" class="btn btn-primary">Kaydet</button>
                 </div>
             </div>
         </div>
-        <!-- Duzenle For Modal Finish-->
+    </div>
+    <!-- İşlemler Yeni For Modal Finish-->
+    <!-- Duzenle For Modal Start-->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document" style="margin-top: 50px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="H1">Edit Form</h4>
+                </div>
+                <div data-bind="with:selectedTask" class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Task ID</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <div data-bind="text:taskid" class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;"></p></div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Task Adı</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <input data-bind="value:taskname" type="text" class="form-control" id="Text2">
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Görevli</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <select id="gorevli" data-bind="options:$root.personelTypeList,optionsText:'typname',optionsValue:'typeid',value:personeltypes ?personeltypes.typeid :null,optionsCaption:'Seçiniz'" class="form-control" multiple="multiple"></select>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Task Türü</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <select id="edittaskturu" data-bind="value:tasktypes?tasktypes.TaskTypeId:null" class="form-control">
+                            <option value="0">Diğer</option>
+                            <option value="1">Satış Taskı</option>
+                            <option value="2"> Randevu Taskı</option>
+                            <option value="3"> Kurulum Taskı</option>
+                            <option value="4"> Randuvusuz Kurulum Taskı</option>
+                            <option value="5">SOL Kapama Taskı</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>İlgi</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <select id="ilgi" data-bind=" options: $root.personelTypeList, optionsText:'typname',optionsValue:'typeid',value:objecttypes?objecttypes.typeid :null,optionsCaption:'Seçiniz'" class="form-control" multiple="multiple"></select>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Puan</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <input data-bind="value:performancescore" type="text" class="form-control" id="Text3">
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 cls-padding-0px" style="margin-top: 3px;" data-bind="visible: $root.saveerrorcode()">
+                        <span class="label label-success" data-bind="text: $root.savemessage , visible:$root.saveerrorcode()==1"></span>
+                        <span class="label label-danger" data-bind="text: $root.savemessage, visible: $root.saveerrorcode() != 1"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+                    <button data-bind="click:saveTask" type="button" class="btn btn-success">Kaydet</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Duzenle For Modal Finish-->
+
+
 
 </div>
 
-	
 <script type="text/javascript" src="Templates/ListTasks.js"></script>
 
-
-	
 

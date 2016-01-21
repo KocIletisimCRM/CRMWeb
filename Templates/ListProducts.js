@@ -109,7 +109,7 @@ var dataModel = {
     },
     saveProduct: function () {
         var self = this;
-        self.selectedProduct().automandatorytasks = $("#autotask").val().toString();
+        self.selectedProduct().automandatorytasks = $("#autotask").val()?$("#autotask").val().toString():null;
         var data = self.selectedProduct();
         crmAPI.saveProduct(data, function (a, b, c) {
             self.savemessage(a.errorMessage);
@@ -126,14 +126,14 @@ var dataModel = {
             productname: self.newproductname(),
             category: self.newcategory(),
             maxduration: self.maxduration(),
-            automandatorytasks: $("#newautotask").val().toString(),
+            automandatorytasks:  $("#newautotask").val()?$("#newautotask").val().toString():null,
         };
         crmAPI.insertProduct(data, function (a, b, c) {
             self.savemessage(a.errorMessage);
             self.savemessagecode(a.errorCode);
             window.setTimeout(function () {
                 $('#myModal1').modal('hide');
-                self.getDocuments(1, dataModel.rowsPerPage());
+                self.getProducts(1, dataModel.rowsPerPage());
             }, 1000);
         }, null, null);
     },

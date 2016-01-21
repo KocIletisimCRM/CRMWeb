@@ -1,192 +1,276 @@
-﻿
+﻿/// <reference path="../Scripts/koc-typehead-v1.0.js" />
+/// <reference path="../Scripts/knockout-3.3.0.js" />
+/// <reference path="../Scripts/crmwebapi.js" />
+///
+
 var dataModel = {
+    pageCount: ko.observable(),
+    pageNo: ko.observable(1),
+    rowsPerPage: ko.observable(20),
+    totalpagecount: ko.observable(0),
+    totalRowCount: ko.observable(),
 
-    customerid: ko.observable(),
-    control: ko.observable(),
-    attachedpersonelid: ko.observable(),
-    appointmentdate: ko.observable(),
-    personellist: ko.observableArray([]),
-    regionlist: ko.observableArray([]),
-    sitelist: ko.observableArray([]),
-    blocklist: ko.observableArray([]),
-    customerlist: ko.observableArray([]),
-    globaltasklist:ko.observableArray([]),
-    region: ko.observable(),
-    siteid: ko.observable(),
-    blockid: ko.observable(),
-    returntaskorderno: ko.observable(),
-    selectedtaskid:ko.observable(),
-    description: ko.observable(),
-    isAttacheableCustomer: ko.observable(),
-    getpersonel: function () {
-        self = this;
-        self.personellist(null);
-        crmAPI.getPersonel(function (a, b, c) {
-            self.personellist(a);
-            $("#salespersonel").multiselect({
-                includeSelectAllOption: true,
-                selectAllValue: 'select-all-value',
-                maxHeight: 250,
-                buttonWidth: '100%',
-                nonSelectedText: 'Personel Seçiniz',
-                nSelectedText: 'Personel Seçildi!',
-                numberDisplayed: 2,
-                selectAllText: 'Tümünü Seç!',
-                enableFiltering: true,
-                filterPlaceholder: 'Ara'
-            });
-            $("#salespersonel").multiselect("setOptions", dataModel.personellist()).multiselect("rebuild");
-        }, null, null)
-    },
-    getregion: function () {
-        var self = this;
-        var data = { region: { fieldName: "region", value: '', op: 6 } }
-        crmAPI.getSiteFilter(data, function (a, b, c) {
-            self.regionlist(a);
-            $("#region").multiselect({
-                includeSelectAllOption: true,
-                selectAllValue: 'select-all-value',
-                maxHeight: 250,
-                buttonWidth: '100%',
-                nonSelectedText: 'Öbek Seçiniz',
-                nSelectedText: 'Öbek Seçildi!',
-                numberDisplayed: 2,
-                selectAllText: 'Tümünü Seç!',
-                enableFiltering: true,
-                filterPlaceholder: 'Ara'
-            });
-        }, null, null);
-    },
-    getSite: function () {
-        var self = this;
-        self.sitelist(null);
-        var data = { site: { fieldName: "region", value: self.region(), op: 6 } }
-        crmAPI.getSiteFilter(data, function (a, b, c) {
-            self.sitelist(a);
-            $("#salessite").multiselect({
-                includeSelectAllOption: true,
-                selectAllValue: 'select-all-value',
-                maxHeight: 250,
-                buttonWidth: '100%',
-                nonSelectedText: 'Site Seçiniz',
-                nSelectedText: 'Site Seçildi!',
-                numberDisplayed: 2,
-                selectAllText: 'Tümünü Seç!',
-                enableFiltering: true,
-                filterPlaceholder: 'Ara'
-            });
-            $("#salessite").multiselect("setOptions", dataModel.sitelist()).multiselect("rebuild");
-        }, null, null);
-    },
-    getBlock: function () {
-        var self = this;
-        self.blocklist(null);
-        var data = { block: { fieldName: "siteid", value: self.siteid(), op: 2 } }
-        crmAPI.getSiteFilter(data, function (a, b, c) {
-            self.blocklist(a);
-            $("#salesblock").multiselect({
-                includeSelectAllOption: true,
-                selectAllValue: 'select-all-value',
-                maxHeight: 250,
-                buttonWidth: '100%',
-                nonSelectedText: 'Blok Seçiniz',
-                nSelectedText: 'Blok Seçildi!',
-                numberDisplayed: 2,
-                selectAllText: 'Tümünü Seç!',
-                enableFiltering: true,
-                filterPlaceholder: 'Ara'
-            });
-            $("#salesblock").multiselect("setOptions", dataModel.blocklist()).multiselect("rebuild");
 
-        }, null, null);
-    },
-    getcustomer: function () {
+    taskList: ko.observableArray([]),
+    stockList: ko.observableArray([]),
+    stateList: ko.observableArray([]),
+    docList: ko.observableArray([]),
+    selectedState: ko.observable(),
+    selectedTask: ko.observable(),
+    selectedTSM: ko.observable(),
+    tsmList: ko.observableArray([]),
+    savemessage: ko.observable(),
+    savemessagecode: ko.observable(),
+    taskstatecontrol: ko.observable(true),
+    autoTaskIds: ko.observableArray([]),
+    opTaskIds: ko.observableArray([]),
+    stockIds: ko.observableArray([]),
+    docIds: ko.observableArray([]),
+
+    getTsmTable: function (pageno, rowsperpage) {
         var self = this;
-        self.customerlist(null);
-        var data = { customer: { fieldName: "blockid", value: self.blockid(), op: 2 } }
-        crmAPI.getSiteFilter(data, function (a, b, c) {
-            self.customerlist(a);
-            $("#salescustomer").multiselect({
-                includeSelectAllOption: true,
-                selectAllValue: 'select-all-value',
-                maxHeight: 250,
-                buttonWidth: '100%',
-                nonSelectedText: 'Müşteri Seçiniz',
-                nSelectedText: 'Müşteri Seçildi!',
-                numberDisplayed: 2,
-                selectAllText: 'Tümünü Seç!',
-                enableFiltering: true,
-                filterPlaceholder: 'Ara'
-            });
-            $("#salescustomer").multiselect("setOptions", dataModel.customerlist()).multiselect("rebuild");
-        }, null, null);
-    },
-    getTasks: function () {
-        var self = this;
-        var  taskids = [6117,1,6115,65,68,36,85,87,3];
+        self.pageNo(pageno);
+        self.rowsPerPage(rowsperpage);
         var data = {
-            task: { fieldName: "taskid", op:7 , value:taskids},
+            pageNo: pageno,
+            rowsPerPage: rowsperpage,
+            taskstate: self.selectedState() ? { fieldName: "taskstateid", op: 2, value: self.selectedState() } : { fieldName: "taskstate", op: 6, value: '' },
+            task: self.selectedTask() ? { fieldName: "taskid", op: 2, value: self.selectedTask() } : { fieldName: "taskname", op: 6, value: '' }
+        };
+        crmAPI.getTaskStateMatches(data, function (a, b, c) {
+            self.tsmList(a.data.rows);
+            self.pageCount(a.data.pagingInfo.pageCount);
+            self.totalRowCount(a.data.pagingInfo.totalRowCount);
+            self.savemessage(null);
+            self.savemessagecode(null);
+            $(".edit").click(function () {
+                self.getTSMCard($(this).val());
+                console.log($(this).val());
+            });
+        }, null, null);
+    },
+    getTSMCard: function (id) {
+        var self = this;
+        var data = {
+            taskstatematches: { fieldName: "id", op: 2, value: id },
+        };
+        crmAPI.getTaskStateMatches(data, function (a, b, c) {
+            if (a.data.rows[0].taskstatepool.taskstateid == 9116)
+                self.taskstatecontrol(false);
+            self.selectedTSM(a.data.rows[0]);
+            $("#edittask,#editstatus").multiselect({
+                includeSelectAllOption: true,
+                selectAllValue: 'select-all-value',
+                maxHeight: 250,
+                buttonWidth: '100%',
+                nonSelectedText: ' Seçiniz',
+                numberDisplayed: 2,
+                selectAllText: 'Tümünü Seç!',
+                enableFiltering: true,
+                filterPlaceholder: 'Ara'
+
+            });
+        }, null, null);
+    },
+    getStates: function () {
+        var self = this;
+        var data = {
+            taskstate: { fieldName: 'taskstate', op: 6, value: '' },
+        };
+        crmAPI.getTSPFilter(data, function (a, b, c) {
+            self.stateList(a.data.rows);
+            $("#newstatus").multiselect({
+                includeSelectAllOption: true,
+                selectAllValue: 'select-all-value',
+                maxHeight: 250,
+                buttonWidth: '100%',
+                nonSelectedText: 'Durum Seçiniz',
+                numberDisplayed: 2,
+                selectAllText: 'Tümünü Seç!',
+                enableFiltering: true,
+                filterPlaceholder: 'Ara'
+
+            });
+
+        });
+    },
+    getTaskList: function () {
+        var self = this;
+        var data = {
+            task: { fieldName: "taskname", op: 6, value: "" },
         };
         crmAPI.getTaskFilter(data, function (a, b, c) {
-            self.globaltasklist(a);
-            $("#newglobaltaskcombo").multiselect({
+            self.taskList(a);
+            $('#durumtanimi,#editmandatorytask,#editoptask,#newoptask,#newmandatorytask,#newtaskcombo').multiselect({
                 includeSelectAllOption: true,
                 selectAllValue: 'select-all-value',
                 maxHeight: 250,
                 buttonWidth: '100%',
-                nonSelectedText: 'Task Seçiniz',
-                nSelectedText: 'Task Seçildi!',
+                nonSelectedText: 'Task Adını Seçiniz',
+                nSelectedText: 'Task Adı Seçildi!',
                 numberDisplayed: 2,
                 selectAllText: 'Tümünü Seç!',
                 enableFiltering: true,
                 filterPlaceholder: 'Ara'
+
             });
-        }, null, null)
+            $('#editmandatorytask').multiselect('select', self.autoTaskIds());
+            $('#editoptask').multiselect('select', self.opTaskIds());
+        }, null, null);
+
     },
-    savesalestask: function () {
+    getStockCard: function () {
         var self = this;
         var data = {
-            customerid: self.isAttacheableCustomer()? self.customerid():null,
-            attachedpersonelid: self.attachedpersonelid(),
-            taskid: self.selectedtaskid(),
-            description: self.description(),
-            blockid:self.blockid(),
+            stockcard: { fieldName: 'productname', op: 6, value: '' },
         };
-            crmAPI.saveGlobalTask(data, function (a, b, c) { self.returntaskorderno(a) }, null, null);
+        crmAPI.getStockCards(data, function (a, b, c) {
+            self.stockList(a.data.rows);
+            $('#editstock,#newstock').multiselect({
+                includeSelectAllOption: true,
+                selectAllValue: 'select-all-value',
+                maxHeight: 250,
+                buttonWidth: '100%',
+                nonSelectedText: 'ÜrünSeçiniz',
+                nSelectedText: 'Ürün Seçildi!',
+                numberDisplayed: 2,
+                selectAllText: 'Tümünü Seç!',
+                enableFiltering: true,
+                filterPlaceholder: 'Ara'
+
+            });
+            $('#editstock').multiselect('select', self.stockIds());
+        }, null, null);
+
+    },
+    getDocs: function () {
+        var self = this;
+        var data = {
+            documentname: { fieldName: 'documentname', op: 6, value: '' },
+        };
+        crmAPI.getDocuments(data, function (a, b, c) {
+            self.docList(a.data.rows);
+            $('#editdoc,#newdoc').multiselect({
+                includeSelectAllOption: true,
+                selectAllValue: 'select-all-value',
+                maxHeight: 250,
+                buttonWidth: '100%',
+                nonSelectedText: 'Belge Seçiniz',
+                nSelectedText: 'BelgeSeçildi!',
+                numberDisplayed: 2,
+                selectAllText: 'Tümünü Seç!',
+                enableFiltering: true,
+                filterPlaceholder: 'Ara'
+
+            });
+            $('#editdoc').multiselect('select', self.docIds());
+        }, null, null);
+    },
+
+    saveTsm: function () {
+        var self = this;
+        self.selectedTSM().automandatorytasks = $("#editmandatorytask").val() ? $("#editmandatorytask").val().toString() : null;
+        self.selectedTSM().autooptionaltasks = $("#editoptask").val() ? $("#editoptask").val().toString() : null;
+        self.selectedTSM().stockcards = $("#editstock").val() ? $("#editstock").val().toString() : null;
+        self.selectedTSM().documents = $("#editdoc").val() ? $("#editdoc").val().toString() : null;
+        var data = self.selectedTSM();
+        crmAPI.saveTaskStateMatches(data, function (a, b, c) {
+            self.savemessage(a.errorMessage);
+            self.savemessagecode(a.errorCode);
+            window.setTimeout(function () {
+                $('#myModal').modal('hide');
+                self.getTsmTable(1, dataModel.rowsPerPage());
+            }, 1000);
+        }, null, null);
+    },
+    insertTSM: function () {
+        var self = this;
+
+        var data = {
+            task: { taskid: $("#newtaskcombo").val() ? $("#newtaskcombo").val().toString() : null, },
+            taskstatepool: { taskstateid: $("#newstatus").val() ? $("#newstatus").val().toString() : null, },
+            automandatorytasks: $("#newmandatorytask").val() ? $("#newmandatorytask").val().toString() : null,
+            autooptionaltasks: $("#newoptask").val() ? $("#newoptask").val().toString() : null,
+            stockcards: $("#newstock").val() ? $("#newstock").val().toString() : null,
+            documents: $("#newdoc").val() ? $("#newdoc").val().toString() : null,
+        };
+        if (data.task.taskid != null && data.taskstatepool.taskstateid != null)
+            crmAPI.insertTaskStateMatches(data, function (a, b, c) {
+                self.savemessage(a.errorMessage);
+                self.savemessagecode(a.errorCode);
+                window.setTimeout(function () {
+                    $('#myModal1').modal('hide');
+                    self.getTsmTable(1, dataModel.rowsPerPage());
+                }, 1000);
+            }, null, null);
+        else
+            alert("Eksik yada hatalı bilgi girdiniz.!");
+    },
+    clean: function () {
+        var self = this;
+        self.selectedState(null);
+        self.selectedTask(null);
+        self.tsmList(null);
+        self.getTsmTable(self.pageNo(), self.rowsPerPage());
+
+    },
+    navigate: {
+        gotoPage: function (pageNo) {
+            if (pageNo == dataModel.pageNo() || pageNo <= 0 || pageNo > dataModel.pageCount()) return;
+            dataModel.getTsmTable(pageNo, dataModel.rowsPerPage());
+        },
+        gotoFirstPage: function () {
+            dataModel.navigate.gotoPage(1);
+        },
+        gotoLastPage: function () {
+            dataModel.navigate.gotoPage(dataModel.pageCount());
+        },
+        gotoNextPage: function () {
+            var pc = dataModel.pageNo() + 1;
+            if (pc >= dataModel.pageCount()) return;
+            dataModel.navigate.gotoPage(pc);
+        },
+        gotoBackPage: function () {
+            var pc = dataModel.pageNo() - 1;
+            if (pc <= 0) return;
+            dataModel.navigate.gotoPage(pc);
+        },
     },
     renderBindings: function () {
         var self = this;
-        self.getpersonel();
-        self.getregion();
-        self.getTasks();
-        $('#daterangepicker11').daterangepicker({
-            "singleDatePicker": true,
-            "autoApply": true,
-            "linkedCalendars": false,
-            "timePicker": true,
-            "timePicker24Hour": true,
-            "timePickerSeconds": true,
-            "locale": {
-                "format": 'MM/DD/YYYY h:mm A',
-            },
+        self.getStates();
+        self.getTaskList();
+        self.getTsmTable(dataModel.pageNo(), dataModel.rowsPerPage());
+        $('#new').click(function () {
+            self.getTaskList();
+            self.getStockCard();
+            self.getStates();
+            self.getDocs();
         });
-        ko.applyBindings(dataModel, $("#bindingmodal")[0]);
+
+        ko.applyBindings(dataModel, $("#bindingContainer")[0]);
     }
 }
-dataModel.region.subscribe(function (v) {
-    dataModel.getSite();
-});
-dataModel.siteid.subscribe(function (v) {
-    dataModel.getBlock();
-});
-dataModel.blockid.subscribe(function () {
-    dataModel.customerid(null);
-    dataModel.getcustomer();
-});
-dataModel.returntaskorderno.subscribe(function (v) {
-    window.location.href = "app.html#TaskQueueEditForm?" + v;
-});
-dataModel.selectedtaskid.subscribe(function () {
- var index =parseInt($("#newglobaltaskcombo").prop('selectedIndex'));
- dataModel.isAttacheableCustomer(dataModel.globaltasklist()[index - 1].attachableobjecttype == 16777220 ? true : false);
+dataModel.selectedTSM.subscribe(function (v) {
+    if (v.automandatorytasks != null)
+        dataModel.autoTaskIds(v.automandatorytasks.split(","));
+    else
+        dataModel.autoTaskIds(null);
+
+    if (v.autooptionaltasks != null)
+        dataModel.opTaskIds(v.autooptionaltasks.split(","));
+    else
+        dataModel.opTaskIds(null);
+    dataModel.getTaskList();
+
+    if (v.stockcards != null)
+        dataModel.stockIds(v.stockcards.split(","));
+    else
+        dataModel.stockIds(null);
+    dataModel.getStockCard();
+    if (v.documents != null)
+        dataModel.docIds(v.documents.split(","));
+    else
+        dataModel.docIds(null);
+    dataModel.getDocs();
 });
