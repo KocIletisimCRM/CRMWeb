@@ -30,13 +30,17 @@
                 <p>Site</p>
             </div>
             <div data-bind="visible:region" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                <select id="salessite" data-bind="options:sitelist,optionsText:'sitename',optionsValue:'siteid',value:siteid,optionsCaption:'Seçiniz'" class="form-control"></select>
+                <select id="salessite" data-bind="options:sitelist,optionsText:function(item) {
+                                                return item.siteaddress ?( item.sitename+ '(:'+item.siteaddress+')'):item.sitename
+                                                          },optionsValue:'siteid',value:siteid,optionsCaption:'Seçiniz'" class="form-control"></select>
             </div>
             <div data-bind="visible:siteid" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                 <p>Block</p>
             </div>
             <div data-bind="visible:siteid" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                <select id="salesblock" data-bind="options:blocklist,optionsText:'blockname',optionsValue:'blockid',value:blockid,optionsCaption:'Seçiniz'" class="form-control"></select>
+                <select id="salesblock" data-bind="options:blocklist,optionsText:function(item) {
+                                                return item.hp ?( item.blockname+ '('+item.hp+' HP)'):item.blockname
+                                                          },optionsValue:'blockid',value:blockid,optionsCaption:'Seçiniz'" class="form-control"></select>
             </div>
             <div data-bind="visible:blockid() && isAttacheableCustomer()" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                 <p>Müşteri</p>
