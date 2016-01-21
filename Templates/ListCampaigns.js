@@ -183,8 +183,8 @@ var dataModel = {
 
     saveCampaigns: function () {
         var self = this;
-        self.selectedCampaignRow().products = $("#editproduct").val().toString();
-        self.selectedCampaignRow().documents = $("#editdocument").val().toString();
+        self.selectedCampaignRow().products = $("#editproduct").val()? $("#editproduct").val().toString():null;
+        self.selectedCampaignRow().documents = $("#editdocument").val()?$("#editdocument").val().toString():null;
         var data = self.selectedCampaignRow();
         crmAPI.saveCampaigns(data, function (a, b, c) {
             self.savemessage(a.errorMessage);
@@ -201,8 +201,8 @@ var dataModel = {
             name: self.newcampname(),
             category: self.newcatname(),
             subcategory: self.newsubcatname(),
-            products: $('#newproducts').val().toString(),
-            documents: $('#newdocuments').val().toString(),
+            products: $('#newproducts').val()?$('#newproducts').val().toString():null,
+            documents:$('#newdocuments').val()? $('#newdocuments').val().toString():null,
             
         };
         crmAPI.insertCampaigns(data, function (a, b, c) {

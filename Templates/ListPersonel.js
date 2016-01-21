@@ -112,7 +112,6 @@ var dataModel = {
         var data = {
             personelname: self.newpersonelname(),
             category: self.newcategory(),
-            relatedpersonelid: self.yoneticiId(),
             password: self.newpassword(),
             mobile: self.newmobile(),
             email: self.newemail(),

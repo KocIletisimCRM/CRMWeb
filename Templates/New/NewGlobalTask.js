@@ -188,5 +188,5 @@ dataModel.returntaskorderno.subscribe(function (v) {
 });
 dataModel.selectedtaskid.subscribe(function () {
  var index =parseInt($("#newglobaltaskcombo").prop('selectedIndex'));
-  dataModel.isAttacheableCustomer(dataModel.globaltasklist()[index - 1].attachableobjecttype == 3000 ? true : false);
+ dataModel.isAttacheableCustomer(dataModel.globaltasklist()[index - 1].attachableobjecttype == 16777220 ? true : false);
 });

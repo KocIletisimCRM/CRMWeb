@@ -74,7 +74,7 @@ $(window).bind("hashchange", function () {
     $(document).ready(function () {
         crmAPI.userInfo(function (a, b, c) {
             $("#username").text(a.userFullName);
-            if (a.userRole != 2147483647) {
+            if (a.userRole != 2147483647) {               
                 $("#tanimlamalar").hide(true);
                 $("#musteriler").hide(true);
             }
