@@ -352,7 +352,12 @@ var dataModel = {
         $('#new').click(function () {
             self.getPersonelStock();
             self.getpersonel();
-
+            self.newamount(null);
+            self.newinputserial(null);
+            self.newselectedproduct(null);
+            self.newtoobject(null);
+            self.newserialno(null);
+            self.newtoobjecttype(null);
         });
 
         self.getUser();

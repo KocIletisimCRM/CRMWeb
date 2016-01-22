@@ -99,7 +99,7 @@
 																</a>
 																<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
 																	<li>
-																		<a href="#myModal1" role="button" class="btn" data-toggle="modal" style="padding-right: 110px; float: left;">Yeni</a>
+																		<a id="new" href="#myModal1" role="button" class="btn" data-toggle="modal" style="padding-right: 110px; float: left;">Yeni</a>
 																	</li>
 																	
 																	<li class="divider"></li>
@@ -187,139 +187,125 @@
                     </div>
                     <div class="modal-body"  style="display: inline-block;position:relative; min-height:50px;">
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                            <p>Blok ID</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <div  class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;"></p></div>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                            <p>Öbek</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <input type="text" class="form-control" id="Text1" value="">
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                             <p>Site</p>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <select class="form-control">
-                                <option></option>
-                                <option>Site1</option>
-                                <option>Site2</option>
-                                <option>Site3</option>
+                            <select id="site" class="form-control" data-bind="options:siteList,optionsText:'sitename',optionsValue:'siteid',optionsCaption:'seçiniz',value:newsiteid">
                             </select>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                             <p>Blok</p>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <input type="text" class="form-control" id="Text2" value="">
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                            <p>Bölge Kodu</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;"></p></div>
+                            <input type="text" class="form-control" id="Text2" data-bind="value:newblockname">
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                             <p>Telocordia ID</p>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <input type="text" class="form-control" id="Text3" value="">
+                            <input type="text" class="form-control" id="Text3" data-bind="value:newtelocadia">
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                             <p>Location ID</p>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <input type="text" class="form-control" id="Text4" value="">
+                            <input type="text" class="form-control" id="Text4" data-bind="value:newlocationid">
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                             <p>Proje No</p>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <input type="text" class="form-control" id="Text5" value="">
+                            <input type="text" class="form-control" id="Text5" data-bind="value:newprojectno">
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                             <p>HP</p>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <input type="text" class="form-control" id="Text6" value="">
+                            <input type="text" class="form-control" id="Text6" data-bind="value:newhp">
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                             <p>SO Satışa Hazır</p>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <input type="date" class="form-control" id="Date1" value="" placeholder="">
+                            <div class="col-md-12 a">
+                                <input type="text" id="daterangepicker1" class="form-control" data-bind="value: newreadytosaledate">
+                                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                            </div>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                             <p>SO Fiber Başlangıç</p>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <input type="date" class="form-control" id="Date2" value="" placeholder="">
+                            <div class="col-md-12 a">
+                                <input type="text" id="daterangepicker2" class="form-control" data-bind="value: newsosaledate">
+                                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                            </div>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                             <p>Koç Satışa Açık</p>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <input type="date" class="form-control" id="Date3" value="" placeholder="">
+                            <div class="col-md-12 a">
+                                <input type="text" id="daterangepicker3" class="form-control" data-bind="value: newkocsaledate">
+                                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                            </div>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                             <p>Satış Sorumlusu</p>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <select class="form-control">
-                                <option></option>
-                                <option>Satış Sorumlusu1</option>
-                                <option>Satış Sorumlusu2</option>
-                                <option>Satış Sorumlusu3</option>
-                            </select>
+                            <select id="satissorumlusu" class="form-control" data-bind="options:personellist,optionsValue:'personelid',optionsText:'personelname',optionsCaption:'Seçiniz',value:newsatissorumlusu"> </select>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                             <p>Yönetici Adı</p>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <input type="text" class="form-control" id="Text7" value="">
+                            <input type="text" class="form-control" id="Text7" data-bind="value:newsuperintendent">
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                             <p>Yönetici GSM</p>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <input type="text" class="form-control" id="Text8" value="">
+                            <input type="text" class="form-control" id="Text8" data-bind="value:newsuperintendentcontact">
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                             <p>Kapıcı Adı</p>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <input type="text" class="form-control" id="Text9" value="">
+                            <input type="text" class="form-control" id="Text9" data-bind="value:newcocierge">
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                             <p>Kapıcı GSM</p>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <input type="text" class="form-control" id="Text10" value="">
+                            <input type="text" class="form-control" id="Text10" data-bind="value:newcociergecontact">
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                             <p>Dikey İmalat Hattı</p>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <input type="text" class="form-control" id="Text11" value="">
+                            <input type="text" class="form-control" id="Text11" data-bind="value:newverticalproductionline">
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                             <p>Bina Kodu</p>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <input type="text" class="form-control" id="Text12" value="">
+                            <input type="text" class="form-control" id="Text12" data-bind="value:newbinakodu">
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                             <p>Object ID</p>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <input type="text" class="form-control" id="Text13" value="">
+                            <input type="text" class="form-control" id="Text13" data-bind="value:newobjid">
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 cls-padding-0px" style="margin-top: 3px;" data-bind="visible: $root.errorcode()">
+                            <span class="label label-success" data-bind="text: $root.errormessage , visible:$root.errorcode()==1"></span>
+                            <span class="label label-danger" data-bind="text: $root.errormessage, visible: $root.errorcode() != 1"></span>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
-                        <button type="button" class="btn btn-primary">Kaydet</button>
+                        <button type="button" class="btn btn-primary" data-bind="click:insertBlock">Kaydet</button>
                     </div>
                 </div>
             </div>

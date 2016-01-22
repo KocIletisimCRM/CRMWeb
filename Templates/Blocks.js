@@ -17,7 +17,45 @@ var dataModel = {
     siteList: ko.observableArray([]),
     selectedsiteid: ko.observable(),
     errorcode: ko.observable(),
-    errormessage:ko.observable(),
+    errormessage: ko.observable(),
+    personellist: ko.observableArray([]),
+
+    newblockname: ko.observable(),
+    newsiteid: ko.observable(),
+    newhp: ko.observable(),
+    newtelocadia: ko.observable(),
+    newprojectno: ko.observable(),
+    newreadytosaledate: ko.observable(),
+    newsosaledate: ko.observable(),
+    newkocsaledate: ko.observable(),
+    newsatissorumlusu: ko.observable(),
+    newsuperintendent: ko.observable(),
+    newsuperintendentcontact: ko.observable(),
+    newcocierge: ko.observable(),
+    newcociergecontact: ko.observable(),
+    newverticalproductionline: ko.observable(),
+    newbinakodu: ko.observable(),
+    newlocationid: ko.observable(),
+    newobjid: ko.observable(),
+
+    getpersonel: function () {
+        var self = this;
+        crmAPI.getPersonel(function (a, b, c) {
+            self.personellist(a);
+            $("#satissorumlusu").multiselect({
+                includeSelectAllOption: true,
+                selectAllValue: 'select-all-value',
+                maxHeight: 250,
+                buttonWidth: '100%',
+                nonSelectedText: 'Personel Seçiniz',
+                nSelectedText: 'Personel Seçildi!',
+                numberDisplayed: 2,
+                selectAllText: 'Tümünü Seç!',
+                enableFiltering: true,
+                filterPlaceholder: 'Ara'
+            });
+        }, null, null)
+    },
     getBlockList: function (pageno, rowsperpage) {
         var self = this;
         self.pageNo(pageno);
@@ -69,7 +107,7 @@ var dataModel = {
         var data = { site: { fieldName: "sitename", value:'', op: 6 } }
         crmAPI.getSiteFilter(data, function (a, b, c) {
             self.siteList(a);
-            $("#sitename").multiselect({
+            $("#sitename,#site").multiselect({
                 includeSelectAllOption: true,
                 selectAllValue: 'select-all-value',
                 maxHeight: 250,
@@ -83,6 +121,7 @@ var dataModel = {
             });
         }, null, null);
     },
+
     editBlock: function () {
         var self = this;
         var data = self.selectedBlock();
@@ -95,6 +134,40 @@ var dataModel = {
             }, 1000);
         }, null, null);
     },
+    insertBlock: function () {
+        var self = this;
+        var data={
+            blockname :self.newblockname(),
+            site:{
+                siteid: self.newsiteid(),
+            } ,
+            hp : self.newhp(),
+            telocadia :self.newtelocadia(),
+            projectno :self.newprojectno(),
+            readytosaledate :self.newreadytosaledate(),
+            sosaledate  :self.newsosaledate(),
+            kocsaledate  :self.newkocsaledate(),
+            salespersonel:{
+                personelid:self.newsatissorumlusu(), 
+            },
+            superintendent :self.newsuperintendent(),
+            superintendentcontact :self.newsuperintendentcontact(),
+            cocierge :self.newcocierge(),
+            cociergecontact :self.newcociergecontact(),
+            verticalproductionline  :self.newverticalproductionline(),
+            binakodu :self.newbinakodu(),
+            locationid  :self.newlocationid(),
+            objid    :self.newobjid(),
+        };
+        crmAPI.insertBlock(data, function (a, b, c) {
+            self.errorcode(a.errorCode);
+            self.errormessage(a.errorMessage);
+            window.setTimeout(function () {
+                $('#myModal1').modal('hide');
+                self.getBlockList(1, dataModel.rowsPerPage());
+            }, 1000);
+        }, null, null);
+        },
 
     clean: function () {
         var self = this;
@@ -135,8 +208,22 @@ var dataModel = {
     },
     renderBindings: function () {
         var self = this;
-    
+        $('#daterangepicker1,#daterangepicker2,#daterangepicker3,#daterangepicker4').daterangepicker({
+            "singleDatePicker": true,
+            "autoApply": false,
+            "linkedCalendars": false,
+            "timePicker": true,
+            "timePicker24Hour": true,
+            "timePickerSeconds": true,
+            "locale": {
+                "format": 'MM/DD/YYYY h:mm A',
+            },
+        });
         self.getBlockList(dataModel.pageNo(), dataModel.rowsPerPage());
         ko.applyBindings(dataModel, $("#bindingContainer")[0]);
+        $('#new').click(function () {
+            self.getSite();
+            self.getpersonel();
+        });
     }
 }

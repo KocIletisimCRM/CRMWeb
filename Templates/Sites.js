@@ -66,6 +66,7 @@ var dataModel = {
         }, null, null);
     },
 
+
     clean: function () {
         var self = this;
         self.region(null);
