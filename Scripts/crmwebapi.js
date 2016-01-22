@@ -46,8 +46,8 @@
      };
 
      var getData = function (callType, path, sendData, onsuccess, onerror, before) {
-          var baseURL = "http://crmapitest.kociletisim.com.tr:8083/api/Fiber/";
-          //var baseURL = "http://localhost:50752/api/Fiber/";
+          //var baseURL = "http://crmapitest.kociletisim.com.tr:8083/api/Fiber/";
+          var baseURL = "http://localhost:50752/api/Fiber/";
          $.ajax({
              method: callType,
              url: baseURL + path,
@@ -223,6 +223,9 @@
         },
         editSite: function (data, onsuccess, onerror, before) {
             getData("POST", "SiteBlock/editSite", data, onsuccess, onerror, before)
+        },
+        insertSite: function (data, onsuccess, onerror, before) {
+            getData("POST", "SiteBlock/insertSite", data, onsuccess, onerror, before)
         },
         getTaskDefination: function (data, onsucces, onerror, before) {
             getData("POST", "Task/getTaskList", data, onsucces, onerror, before)

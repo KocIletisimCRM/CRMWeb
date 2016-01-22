@@ -3,6 +3,17 @@ var dataModel = {
     region: ko.observable(),
     site: ko.observable(),
     siteList: ko.observableArray([]),
+    sitelistmodal: ko.observableArray([]),
+    regionlist: ko.observableArray([]),
+    newmahalle: ko.observable(),
+    editmahalle:ko.observable(),
+    siteid: ko.observable(),
+    newsitename: ko.observable(),
+    newadres: ko.observable(),
+    newbolgekod: ko.observable(),
+    newdescription:ko.observable(),
+    newregion: ko.observable(),
+    editregion: ko.observable(),
     pageCount: ko.observable(),
     pageNo: ko.observable(1),
     rowsPerPage: ko.observable(20),
@@ -11,6 +22,27 @@ var dataModel = {
     errorcode: ko.observable(),
     errormessage:ko.observable(),
 
+    getregion: function () {
+        var self = this;
+        self.regionlist(null);
+        var data = { region: { fieldName: "region", value: '', op: 6 } }
+        crmAPI.getSiteFilter(data, function (a, b, c) {
+            self.regionlist(a);
+            $("#newregion,#editregion").multiselect({
+                includeSelectAllOption: true,
+                selectAllValue: 'select-all-value',
+                maxHeight: 250,
+                buttonWidth: '100%',
+                nonSelectedText: 'Öbek Seçiniz',
+                nSelectedText: 'Öbek Seçildi!',
+                numberDisplayed: 2,
+                selectAllText: 'Tümünü Seç!',
+                enableFiltering: true,
+                filterPlaceholder: 'Ara'
+            });
+            $("#newregion,#editregion").multiselect("setOptions", dataModel.sitelistmodal()).multiselect("rebuild");
+        }, null, null);
+    },
     getSiteList: function (pageno, rowsperpage) {
         var self = this;
         self.pageNo(pageno);
@@ -37,8 +69,8 @@ var dataModel = {
                         "format": 'MM/DD/YYYY h:mm A',
                     },
                 });
+                self.getregion();
                 self.getSiteCard($(this).val());
-                console.log($(this).val());
             });
 
         }, null, null);
@@ -61,6 +93,25 @@ var dataModel = {
             self.errormessage(a.errorMessage);
             window.setTimeout(function () {
                 $('#myModal').modal('hide');
+                self.getSiteList(1, dataModel.rowsPerPage());
+            }, 1000);
+        }, null, null);
+    },
+    insertSite: function (){
+        var self = this;
+        var data = {
+            sitename: self.newsitename(),
+            siteaddress: self.newadres(),
+            region: self.newregion(),
+            sitedistrict: self.newmahalle(),
+            description: self.newdescription(),
+            siteregioncode: self.newbolgekod(),
+        };
+        crmAPI.insertSite(data, function (a, b, c) {
+            self.errorcode(a.errorCode);
+            self.errormessage(a.errorMessage);
+            window.setTimeout(function () {
+                $('#myModal1').modal('hide');
                 self.getSiteList(1, dataModel.rowsPerPage());
             }, 1000);
         }, null, null);
@@ -108,5 +159,8 @@ var dataModel = {
         var self = this;
         self.getSiteList(dataModel.pageNo(), dataModel.rowsPerPage());
         ko.applyBindings(dataModel, $("#bindingContainer")[0]);
+        $('#new').click(function () {
+            self.getregion();
+        });
     }
 }
