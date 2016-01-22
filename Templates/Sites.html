@@ -84,7 +84,7 @@
 														</a>
 														<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
 															<li>
-																<a href="#myModal1" role="button" class="btn" data-toggle="modal" style="padding-right: 110px; float: left;">Yeni</a>
+																<a id="new" href="#myModal1" role="button" class="btn" data-toggle="modal" style="padding-right: 110px; float: left;">Yeni</a>
 															</li>
 															<br />
 															<li class="divider"></li>
@@ -155,7 +155,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Edit Form</h4>
+                    <h4 class="modal-title" id="myModalLabel">Site Ekle</h4>
                 </div>
                 <div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
@@ -168,52 +168,42 @@
                         <p>Site Adı</p>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <input type="text" class="form-control" id="Text1" value="">
+                        <input type="text" class="form-control" id="Text1" value="" data-bind="value:newsitename">
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                         <p>Adres</p>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <textarea class="form-control" rows="2"></textarea>
+                        <textarea class="form-control" rows="2" data-bind="value:newadres"></textarea>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                         <p>Öbek</p>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <select class="form-control">
-                            <option></option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                        </select>
+                        <select id="newregion" data-bind="options:regionlist,optionsText:'region',optionsValue:'region',value:newregion,optionsCaption:'Seçiniz'" class="form-control"></select>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                         <p>Mahalle/Semt</p>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <select class="form-control">
-                            <option></option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                        </select>
+                        <input type="text" class="form-control" id="mahallein" value="" data-bind="value:newmahalle">
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                         <p>Bölge Kodu</p>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <input type="text" class="form-control" id="Text2" value="">
+                        <input type="text" class="form-control" id="Text2" value="" data-bind="value:newbolgekod">
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                         <p>Adres Tarifi</p>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <textarea class="form-control" rows="2"></textarea>
+                        <textarea class="form-control" rows="2" data-bind="value:newdescription"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
-                    <button type="button" class="btn btn-primary">Kaydet</button>
+                    <button type="button" class="btn btn-primary" data-bind="click:insertSite">Kaydet</button>
                 </div>
             </div>
         </div>
@@ -250,23 +240,13 @@
                         <p>Öbek</p>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <select class="form-control">
-                            <option>Beşirli</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                        </select>
+                        <select id="editregion" data-bind="options:$root.regionlist,optionsText:'region', optionsValue:'region', value:region, optionsCaption:'Seçiniz'" class="form-control"></select>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                         <p>Mahalle/Semt</p>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <select class="form-control">
-                            <option>BEŞİRLİ</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                        </select>
+                        <input type="text" class="form-control" id="mahallein" value="" data-bind="value:sitedistrict">
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                         <p>Bölge Kodu</p>
