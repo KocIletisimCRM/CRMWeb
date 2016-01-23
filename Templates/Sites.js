@@ -41,7 +41,6 @@ var dataModel = {
                 filterPlaceholder: 'Ara'
             });
             $("#newregion,#editregion").multiselect("setOptions", dataModel.sitelistmodal()).multiselect("rebuild");
-            $("#editregion").multiselect('select', dataModel.selectedSite().region)
         }, null, null);
     },
     getSiteList: function (pageno, rowsperpage) {
@@ -89,6 +88,7 @@ var dataModel = {
     },
     editSite: function () {
         var self = this;
+        self.selectedSite().region = $("#editregion").val();
         var data = self.selectedSite();
         crmAPI.editSite(data, function (a, b, c) {
             self.errorcode(a.errorCode);
@@ -118,7 +118,6 @@ var dataModel = {
             }, 1000);
         }, null, null);
     },
-
 
     clean: function () {
         var self = this;
