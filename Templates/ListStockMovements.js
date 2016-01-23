@@ -37,6 +37,10 @@ var dataModel = {
     newtoobject: ko.observable(),
     newselectedproduct: ko.observable(),
     isSatinalma: ko.observable(),
+    amountmessage:ko.observable('Elinizde yeterli Miktarda Yok'),
+    amountcontrol: ko.pureComputed(function () {
+      return  dataModel.newamount() > dataModel.amount() ? true : false;
+    }),
     getStockMovements: function (pageno, rowsperpage) {
         var self = this;
         self.savemessage(null);

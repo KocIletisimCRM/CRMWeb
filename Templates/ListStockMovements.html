@@ -197,7 +197,7 @@
                         <p>Adet</p>
                     </div>
                     <div data-bind="visible: newselectedproduct() && stockSerialControl()!=true" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <input type="text" data-bind="value:newamount" class="form-control" id="Text3">
+                        <input type="number" data-bind="value:newamount" class="form-control" id="Text3">
                     </div>
                     <div data-bind="visible:stockSerialControl" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                         <p>Serial No</p>
@@ -211,6 +211,7 @@
                     </div>
                     <div data-bind="visible:amount" class="col-xs-12 col-sm-12 col-md-12 cls-padding-0px" style="margin-top: 3px;">
                         Elinizde Toplam <span class="badge badge-success" data-bind="text:amount"></span>  Adet/Metre Vardır
+                        <span class="label label-danger" data-bind="text:amountmessage, visible: amountcontrol"></span>
 
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 cls-padding-0px" style="margin-top: 3px;" data-bind="visible: $root.savemessagecode()">
