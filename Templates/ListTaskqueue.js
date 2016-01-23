@@ -218,6 +218,7 @@ var dataModel = {
         self.selectedIss(null);
         self.selectedTaskname(null);
         self.selectedTaskstatus(null);
+        self.getFilter(dataModel.pageNo(), dataModel.rowsPerPage());
     },
     enterfilter: function (d,e) {
         var self = this;

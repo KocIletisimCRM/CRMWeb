@@ -42,7 +42,7 @@ var dataModel = {
         var self = this;
         crmAPI.getPersonel(function (a, b, c) {
             self.personellist(a);
-            $("#satissorumlusu").multiselect({
+            $("#satissorumlusu,#editsatissorumlusu").multiselect({
                 includeSelectAllOption: true,
                 selectAllValue: 'select-all-value',
                 maxHeight: 250,
@@ -100,6 +100,9 @@ var dataModel = {
         };
         crmAPI.getBlockList(data, function (a, b, c) {
             self.selectedBlock(a.data.rows[0]);
+            $(".edit").click(function () {
+                self.getpersonel();
+            });
         }, null, null);
     },
     getSite: function () {

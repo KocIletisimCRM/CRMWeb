@@ -163,6 +163,13 @@ var dataModel = {
         ko.applyBindings(dataModel, $("#bindingContainer")[0]);
         $('#new').click(function () {
             self.getregion();
+            self.newmahalle(null);
+            self.siteid(null);
+            self.newsitename(null);
+            self.newadres(null);
+            self.newbolgekod(null);
+            self.newdescription(null);
+            self.newregion(null);
         });
     }
 }

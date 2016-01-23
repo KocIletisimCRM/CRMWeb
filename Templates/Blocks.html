@@ -327,12 +327,6 @@
                             <div data-bind="text:blockid" class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;"></p></div>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                            <p>Öbek</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <input data-bind="value:site.region" type="text" class="form-control" id="Text14" value="Fatih">
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                             <p>Site</p>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
@@ -397,12 +391,7 @@
                             <p>Satış Sorumlusu</p>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <select class="form-control">
-                                <option></option>
-                                <option>Satış Sorumlusu1</option>
-                                <option>Satış Sorumlusu2</option>
-                                <option>Satış Sorumlusu3</option>
-                            </select>
+                            <select id="editsatissorumlusu" class="form-control" data-bind="options:$root.personellist,optionsValue:'personelid',optionsText:'personelname',optionsCaption:'Seçiniz',value:salespersonel?salespersonel.personelid:null"> </select>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                             <p>Yönetici Adı</p>

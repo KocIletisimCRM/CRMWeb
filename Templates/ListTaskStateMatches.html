@@ -159,7 +159,7 @@
                     <div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
                         <select id="editstatus" data-bind="options:$root.stateList,optionsText:'taskstate',optionsValue:'taskstateid',value:taskstatepool.taskstateid,optionsCaption:'Durum Seçiniz'" class="form-control"></select>
                     </div>
-                    <div data-bind="visible:$root.taskstatecontrol">
+
                         <div class="col-xs-4 col-sm-4 col-md-4 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                             <p>Otomatik Zorunlu Tasklar</p>
                         </div>
@@ -184,7 +184,6 @@
                         <div class="col-xs-8 col-sm-8 col-md-8 cls-padding-0px" style="margin-top: 3px;">
                             <select id="editdoc" data-bind="options:$root.docList,optionsText:'documentname',optionsValue:'documentid'" class="form-control" multiple="multiple"></select>
                         </div>
-                    </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 cls-padding-0px" style="margin-top: 3px;" data-bind="visible: $root.savemessagecode()">
                         <span class="label label-success" data-bind="text: $root.savemessage , visible:$root.savemessagecode()==1"></span>
                         <span class="label label-danger" data-bind="text: $root.savemessage, visible: $root.savemessagecode() != 1"></span>
