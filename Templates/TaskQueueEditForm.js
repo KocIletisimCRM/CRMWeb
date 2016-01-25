@@ -493,7 +493,7 @@ var dataModel = {
             });
             $("#fileUpload").fileinput({
                 //uploadUrl: "http://localhost:50752/api/Fiber/TaskQueue/upload", // server upload action
-                uploadUrl: "http://crmapitest.kociletisim.com.tr:8083/api/Fiber/TaskQueue/upload", // server upload action
+                uploadUrl: "http://crmapitest.kociletisim.com.tr/api/Fiber/TaskQueue/upload", // server upload action
                 uploadAsync: false,
                 minFileCount: 1,
                 maxFileCount: 10,
