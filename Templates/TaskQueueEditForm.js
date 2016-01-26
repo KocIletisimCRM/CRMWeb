@@ -363,11 +363,17 @@ var dataModel = {
         var self = this;
         data = {
             taskorderno: self.taskorderno(),
-            task:{taskid:self.taskid()},
+            task: {
+                taskid: self.taskid(),
+                tasktypes: {
+                    TaskTypeId:self.tasktype(),
+                }
+            },
             taskstatepool: 
                 {
-                    taskstateid: self.taskstatus() ? self.taskstatus() : null,
-                taskstate: $("#taskdurumu option:selected").text() ? $("#taskdurumu option:selected").text():null
+                taskstateid: self.taskstatus() ? self.taskstatus() : null,
+                taskstate: $("#taskdurumu option:selected").text() ? $("#taskdurumu option:selected").text() : null,
+                statetype: self.taskstatuslist()[$("#taskdurumu").prop('selectedIndex')].statetype
                 },
             customerdocument: self.customerdocument(),
             stockmovement: self.stockmovement(),
