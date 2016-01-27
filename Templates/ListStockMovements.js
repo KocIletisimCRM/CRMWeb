@@ -273,7 +273,7 @@ var dataModel = {
         var self = this;
         var postdata = [];
         var pd = {
-            amount: self.isSatinalma() ? 1 : (self.newserialno() ? 1 : self.newamount()),
+            amount: self.isSatinalma()?(self.newserialno()==null?self.newamount():1):(self.newserialno() ? 1 : parseInt(self.newamount())),
             serialno: self.isSatinalma() ? self.serialArray().toString() : self.newserialno(),
             fromobjecttype: self.user().userRole,
             fromobject: self.user().userId,

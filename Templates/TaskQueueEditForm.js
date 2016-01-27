@@ -24,6 +24,7 @@ var dataModel = {
     customerid: ko.observable(),
     flat:ko.observable(),
     locationid: ko.observable(),
+    telocadia:ko.observable(),
     customer: ko.observableArray([]),
     selectedCustomer: ko.observable(),
     custdescription:ko.observable(),
@@ -566,11 +567,9 @@ var dataModel = {
                 self.taskorderno(a.data.rows[0].taskorderno);               
                 self.taskname(a.data.rows[0].task.taskname);
                 self.taskid(a.data.rows[0].task.taskid);
-               
                 self.taskstatetype(a.data.rows[0].taskstatepool && a.data.rows[0].taskstatepool.statetype || null)
                 var status = a.data.rows[0].taskstatepool && a.data.rows[0].taskstatepool.taskstateid || null;
                 self.gettaskstatus(status);
-
                 self.previoustask(a.data.rows[0].previoustaskorderid);
                 self.relatedtask(a.data.rows[0].relatedtaskorderid);
                 self.creationdate(a.data.rows[0].creationdate);
@@ -605,6 +604,7 @@ var dataModel = {
                 self.description(a.data.rows[0].description);
                 self.descriptionControl(false);
                 self.locationid(a.data.rows[0].attachedobject.locationid || (a.data.rows[0].attachedobject.block && a.data.rows[0].attachedobject.block.locationid) || '');
+                self.telocadia(a.data.rows[0].attachedobject.telocadia || (a.data.rows[0].attachedobject.block && a.data.rows[0].attachedobject.block.telocadia) || '');
                 self.customerProductList(a.data.rows[0].customerproduct);
                 self.info(a.data.rows[0].customerproduct[0] ?a.data.rows[0].customerproduct[0].campaigns.category:null);
                 self.getcategory();

@@ -4,7 +4,7 @@ var dataModel = {
     customerid: ko.observable(),
     control: ko.observable(),
     attachedpersonelid: ko.observable(),
-    appointmentdate: ko.observable(),
+    creationdate: ko.observable(),
     personellist: ko.observableArray([]),
     regionlist: ko.observableArray([]),
     sitelist: ko.observableArray([]),
@@ -123,7 +123,7 @@ var dataModel = {
     },
     getTasks: function () {
         var self = this;
-        var taskids = [6117, 1, 6115, 8164, 65, 68, 36, 85, 87, 3];
+        var taskids = [6117, 1, 6115, 8164, 65, 8165, 36, 85, 87, 3];
         var data = {
             task: { fieldName: "taskid", op: 7, value: taskids },
         };
@@ -146,6 +146,7 @@ var dataModel = {
     savesalestask: function () {
         var self = this;
         var data = {
+            creationdate:self.creationdate(),
             customerid: self.isAttacheableCustomer() ? self.customerid() : null,
             attachedpersonelid: self.attachedpersonelid(),
             taskid: self.selectedtaskid(),

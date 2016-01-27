@@ -23,6 +23,7 @@
                             <div class="form-group-sm has-info cls-margin-bottom">
                                 <label class="control-label" for="taskturu">Task Türü</label>
                                 <select id="taskturu" class="form-control">
+                                    <option value="">Seçiniz</option>
                                     <option value="0">Diğer</option>
                                     <option value="1">Satış Taskı</option>
                                     <option value="2"> Randevu Taskı</option>
@@ -116,9 +117,9 @@
                                                     <input type="checkbox" />
                                                 </td>
                                                 <td data-bind="text:taskname"></td>
-                                                <td data-bind="text:personeltypes ?personeltypes.typname:null"></td>
+                                                <td data-bind="text:attachablepersoneltype ?attachablepersoneltype:null"></td>
                                                 <td data-bind="text:tasktypes ? tasktypes.TaskTypeName:null"></td>
-                                                <td data-bind="text:objecttypes ?objecttypes.typname:null"></td>
+                                                <td data-bind="text:attachableobjecttype"></td>
                                                 <td data-bind="text:performancescore"></td>
                                             </tr>
                                             <!-- /ko-->
@@ -233,7 +234,7 @@
                         <p>Görevli</p>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <select id="gorevli" data-bind="options:$root.personelTypeList,optionsText:'typname',optionsValue:'typeid',value:personeltypes ?personeltypes.typeid :null,optionsCaption:'Seçiniz'" class="form-control" multiple="multiple"></select>
+                        <select id="gorevli" data-bind="selectedOptions: $root.getRoles(),options:$root.personelTypeList,optionsText:'typname',optionsValue:'typeid',optionsCaption:'Seçiniz'" class="form-control" multiple="multiple"></select>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                         <p>Task Türü</p>
@@ -252,7 +253,7 @@
                         <p>İlgi</p>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <select id="ilgi" data-bind=" options: $root.personelTypeList, optionsText:'typname',optionsValue:'typeid',value:objecttypes?objecttypes.typeid :null,optionsCaption:'Seçiniz'" class="form-control" multiple="multiple"></select>
+                        <select id="ilgi" data-bind="selectedOptions: $root.getRelation(), options: $root.personelTypeList, optionsText:'typname',optionsValue:'typeid',optionsCaption:'Seçiniz'" class="form-control" multiple="multiple"></select>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                         <p>Puan</p>

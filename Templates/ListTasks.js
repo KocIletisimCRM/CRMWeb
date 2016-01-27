@@ -58,6 +58,7 @@ var dataModel = {
             pageNo: pageno,
             rowsPerPage: rowsperpage,
             task: self.selectedTaskid() ? { fieldName: 'taskid', op: 2, value: self.selectedTaskid() } : { fieldName: 'taskname', op: 6, value: '' },
+            taskType: $("#taskturu").val() ? { fieldName: 'TaskTypeId', op: 2, value: $("#taskturu").val() } : null
         };
         crmAPI.getTaskDefination(data, function (a, b, c) {
             self.tasklist(a);
@@ -146,13 +147,21 @@ var dataModel = {
     },
     saveTask: function () {
         var self = this;
+        var gorevli = 0;
+        var ilgi = 0;
         if ($("#gorevli").val() && $("#gorevli").val().length > 1) {
-            self.selectedTask().personeltypes = { typeid: parseInt($("#gorevli").val()[0] | $("#gorevli").val()[1]) };
+            for (var i = 0; i < $("#gorevli").val().length; i++) {
+                gorevli |= $("#gorevli").val()[i];
+            }
+            self.selectedTask().personeltypes = { typeid: gorevli };
         }
         else
             self.selectedTask().personeltypes = { typeid: parseInt($("#gorevli").val()[0]) };
         if ($("#ilgi").val() && $("#ilgi").val().length > 1) {
-            self.selectedTask().objecttypes = { typeid: parseInt($("#ilgi").val()[0] | $("#ilgi").val()[1]) };
+            for (var i = 0; i < $("#ilgi").val().length; i++) {
+                ilgi |= $("#ilgi").val()[i];
+            }
+            self.selectedTask().objecttypes = { typeid: ilgi };
         }
         else
             self.selectedTask().objecttypes = { typeid: parseInt($("#ilgi").val()[0]) };
@@ -171,12 +180,19 @@ var dataModel = {
         var self = this;
         var ttypes;
         var otypes;
+        var rol = 0; var ilgi = 0;
+        for (var i = 0; i < $("#newgorevli").val().length; i++) {
+            rol = rol | $("#newgorevli").val()[i];
+        }
+        for (var i = 0; i < $("#newilgi").val().length; i++) {
+            ilgi = ilgi | $("#newilgi").val()[i];
+        }
         if ($("#newgorevli").val() && $("#newgorevli").val().length > 1)
-            self.newpersoneltype(parseInt($("#newgorevli").val()[0] | $("#newgorevli").val()[1]));
+            self.newpersoneltype(parseInt(rol));
         else
             self.newpersoneltype(parseInt($("#newgorevli").val()[0]));
         if ($("#newilgi").val() && $("#newilgi").val().length > 1)
-            self.newobjecttype(parseInt(("#newilgi").val()[0] | $("#newilgi").val()[1]));
+            self.newobjecttype(parseInt(ilgi));
         else
             self.newobjecttype(parseInt($("#newilgi").val()[0]));
         var data = {
@@ -196,6 +212,22 @@ var dataModel = {
         }, null, null);
     },
 
+    getRoles: ko.pureComputed(function () {
+        var roles = [];
+        for (var i = 0; i < dataModel.personelTypeList().length; i++) {
+            if ((dataModel.selectedTask().attachablepersoneltype & dataModel.personelTypeList()[i].typeid) == dataModel.personelTypeList()[i].typeid)
+                roles.push(dataModel.personelTypeList()[i].typeid);
+        }
+        return roles;
+    }),
+    getRelation: ko.pureComputed(function () {
+        var roles = [];
+        for (var i = 0; i < dataModel.personelTypeList().length; i++) {
+            if ((dataModel.selectedTask().attachableobjecttype & dataModel.personelTypeList()[i].typeid) == dataModel.personelTypeList()[i].typeid)
+                roles.push(dataModel.personelTypeList()[i].typeid);
+        }
+        return roles;
+    }),
     navigate: {
         gotoPage: function (pageNo) {
             if (pageNo == dataModel.pageNo() || pageNo <= 0 || pageNo > dataModel.pageCount()) return;
