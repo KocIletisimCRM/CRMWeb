@@ -146,7 +146,7 @@ var dataModel = {
     savesalestask: function () {
         var self = this;
         var data = {
-            creationdate:self.creationdate(),
+            creationdate: $("#daterangepicker11").val()?$("#daterangepicker11").val():null,
             customerid: self.isAttacheableCustomer() ? self.customerid() : null,
             attachedpersonelid: self.attachedpersonelid(),
             taskid: self.selectedtaskid(),
