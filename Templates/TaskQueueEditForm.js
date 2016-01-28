@@ -594,7 +594,7 @@ var dataModel = {
                                (a.data.rows[0].attachedobject.block && a.data.rows[0].attachedobject.block.site && a.data.rows[0].attachedobject.block.site.region)) ||
                               '&lt;boş&gt;'
                              ));
-                self.customername(a.data.rows[0].attachedobject.customername && (a.data.rows[0].attachedobject.customername + ' ' + a.data.rows[0].attachedobject.customersurname) || '');
+                self.customername(a.data.rows[0].attachedobject.customername || '');
                 self.customerid(a.data.rows[0].attachedobject.customerid && (a.data.rows[0].attachedobject.customerid) || '');
                 self.customer(a.data.rows[0].attachedobject);
                 self.flat(a.data.rows[0].attachedobject && (a.data.rows[0].attachedobject.flat) || '');

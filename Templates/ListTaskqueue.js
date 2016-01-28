@@ -263,7 +263,7 @@ var dataModel = {
                 self.errormessage(null);
                 self.errorcode(null);
                 self.firstLoad(false);
-                self.defaultstatus(0);
+               // self.defaultstatus(0);
                 $('.sel').change(function () {
                     var ids = [];
                     $('.sel').each(function () {
@@ -290,13 +290,18 @@ var dataModel = {
                         $(".sel").change();
                     }
                 });
-                $(".customer").click(function (d) {
-                    var id = $(this).index();
-                    console.log(d);
-                   // self.getCustomerCard(id);
-
+                $('.musteri').click(function () {
+                    var row = $(this).parent().parent().index();
+                    self.getNetStatus();
+                    self.getTelStatus();
+                    self.getTvKullanımıStatus();
+                    self.getTurkcellTvStatus();
+                    self.getGsmStatus();
+                    //var row = $(this).parent().parent().children().index($(this).parent());
+                    self.selectedCustomer(self.taskqueuelist()[row-1].attachedobject);
                 });
-
+               
+             
             }, null, null)
 
     },
@@ -345,7 +350,7 @@ var dataModel = {
         var obj = dataModel.taskqueuelist()[2].attachedobject;
         obj.closedKatZiyareti = false;
         self.selectedCustomer(obj);
-        // getCustomerCard.CustomerCard(self.customerid(),function (a, b, c) {self.customerCardList(a) });
+        getCustomerCard.CustomerCard(self.customerid(),function (a, b, c) {self.customerCardList(a) });
     },
     getCustomerStatus: function () {
         var self = this;
@@ -412,8 +417,12 @@ var dataModel = {
         self.selectedCustomer().TvKullanımıStatus = { id: $("#telstatus").val() };
         var data = self.selectedCustomer();
         crmAPI.saveCustomerCard(data, function (a, b, c) {
-            if (a == "ok")
-                self.refresh();
+            if (a == "ok") {
+               window.setTimeout(function () {
+                   $('#customerinfo').modal('hide');
+                   self.getFilter(1, dataModel.rowsPerPage());
+               }, 1000); 
+            }
         }, null, null);
     },
 

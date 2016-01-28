@@ -272,8 +272,8 @@
                                                                               '&lt;boş&gt;'
                                                                              )"></td>
 														<td data-bind="text: attachedobject && (attachedobject.blockname || (attachedobject.block && attachedobject.block.blockname +' Daire:'+(attachedobject.flat )) || '&lt;boş&gt;')"></td>
-														<td style="color:#284af5;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">
-                                                            <a href="#customerinfo" class="customer" role="button" data-toggle="modal"  data-bind="value:taskorderno ,text: attachedobject && (attachedobject.customername && (attachedobject.customername + ' ' + attachedobject.customersurname) || '&lt;boş&gt;')">
+														<td  data-bind="value:attachedobject && attachedobject.customerid" style="color:#284af5;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">
+                                                            <a href="#customerinfo"class="musteri"  role="button" data-toggle="modal"  data-bind="text: (attachedobject && attachedobject.customername) || '&lt;boş&gt;'">
                                                             </a>
                                                         </td>
 														<td data-bind="text: attachedobject && (attachedobject.customer_status && attachedobject.customer_status.Text || '&lt;boş&gt;') "></td>
@@ -470,16 +470,10 @@
                             <p><input class="form-control" data-bind="value:tckimlikno"></p>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                            <p>Ad</p>
+                            <p>Ad-Soyad</p>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
                             <p><input data-bind="value:customername" class="form-control"></p>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                            <p>Soyad</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <p> <input data-bind="value:customersurname" class="form-control"></p>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                             <p>Gsm</p>
@@ -503,7 +497,7 @@
                             <p>İnternet SS</p>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <select class="form-control" id="abonedurumuinfo" data-bind="options: $parent.issStatusList, optionsText: 'issText', optionsValue: 'id', value: (issStatus && issStatus.id || 0)"></select>
+                            <select class="form-control" id="abonedurumuinfo" data-bind="options: $parent.isslist, optionsText: 'issText', optionsValue: 'id', value: (issStatus && issStatus.id || 0)"></select>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                             <p>İnternet Ücreti</p>
