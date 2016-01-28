@@ -49,8 +49,8 @@ var dataModel = {
     TurkcellTvStatusList: ko.observableArray([]),
     gsmStatusList: ko.observableArray([]),
     // end of kimlik kartı
-    attacheablePersonelList:ko.observableArray([]),
-    
+    attacheablePersonelList: ko.observableArray([]),
+
     enterfilter: function (d, e) {
         var self = this;
         if (e && (e.which == 1 || e.which == 13)) {
