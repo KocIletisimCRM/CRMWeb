@@ -102,7 +102,7 @@ var dataModel = {
         $.each(dataModel.productlist(), function (index, cp) {
             b &= cp.selectedProduct() > 0;
         });
-        return !dataModel.campaignEditable() || (b && dataModel.productlist().length > 0);
+        return !dataModel.campaignEditable() || (b && dataModel.productlist().length > 0) || dataModel.taskstatetype()==2;
     }),
     smEditable: ko.pureComputed(function () {
         var b = true;
@@ -681,6 +681,8 @@ dataModel.taskstatus.subscribe(function () {
         customerproducts: dataModel.selectedProductIds(),
         isSalesTask: dataModel.tasktype() == 1
     };
+   
+    dataModel.taskstatetype(dataModel.taskstatuslist()[$("#taskdurumu").prop('selectedIndex')].statetype);
     crmAPI.getTQStockMovements(data, function (a, b, c) {
         if (a.errorMessage) dataModel.errormessage(a.errorMessage);
         $.each(a, function (index, stockmovement) {
