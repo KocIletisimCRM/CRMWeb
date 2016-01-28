@@ -75,20 +75,9 @@ var dataModel = {
             self.errorcode(null);
             self.errormessage(null);
             $(".edit").click(function () {
-                $('#daterangepicker1,#daterangepicker2,#daterangepicker3').daterangepicker({
-                    "singleDatePicker": true,
-                    "autoApply": false,
-                    "linkedCalendars": false,
-                    "timePicker": true,
-                    "timePicker24Hour": true,
-                    "timePickerSeconds": true,
-                    "locale": {
-                        "format": 'MM/DD/YYYY h:mm A',
-                    },
-                });
+                self.getpersonel();
                 self.getSite();
                 self.getBlockCard($(this).val());           
-                console.log($(this).val());
             });
 
         },null,null);
@@ -100,9 +89,9 @@ var dataModel = {
         };
         crmAPI.getBlockList(data, function (a, b, c) {
             self.selectedBlock(a.data.rows[0]);
-            $(".edit").click(function () {
-                self.getpersonel();
-            });
+            $("#d1").val(a.data.rows[0].readytosaledate);
+            $("#d2").val(a.data.rows[0].sosaledate);
+            $("#d3").val(a.data.rows[0].kocsaledate);
         }, null, null);
     },
     getSite: function () {
@@ -127,6 +116,9 @@ var dataModel = {
 
     editBlock: function () {
         var self = this;
+        self.selectedBlock().readytosaledate = $("#d1").val() ? $("#d1").val() : null;
+        self.selectedBlock().sosaledate = $("#d2").val() ? $("#d2").val() : null;
+        self.selectedBlock().kocsaledate = $("#d3").val() ? $("#d3").val() : null;
         var data = self.selectedBlock();
         crmAPI.editBlock(data, function (a, b, c) {
             self.errorcode(a.errorCode);
@@ -217,6 +209,19 @@ var dataModel = {
             "linkedCalendars": false,
             "timePicker": true,
             "timePicker24Hour": true,
+            "timePickerSeconds": true,
+            "locale": {
+                "format": 'MM/DD/YYYY h:mm A',
+            },
+        });
+        $('#d1,#d2,#d3').daterangepicker({
+            "singleDatePicker": true,
+            "autoApply": false,
+           " autoUpdateInput": false,
+            "linkedCalendars": false,
+            "timePicker": true,
+            "timePicker24Hour": true,
+            "drops": "up",
             "timePickerSeconds": true,
             "locale": {
                 "format": 'MM/DD/YYYY h:mm A',

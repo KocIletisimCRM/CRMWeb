@@ -319,127 +319,136 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="H1">Edit Form</h4>
                     </div>
-                    <div data-bind="with: selectedBlock" class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                            <p>Blok ID</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <div data-bind="text:blockid" class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;"></p></div>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                            <p>Site</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <select id="sitename" class="form-control" data-bind="options:$root.siteList,optionsText:'sitename',optionsValue:'siteid',value:site.siteid">                              
-                            </select>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                            <p>Blok</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <input data-bind="value:blockname" type="text" class="form-control" id="Text15" >
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                            <p>Bölge Kodu</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;"></p></div>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                            <p>Telocordia ID</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <input data-bind="value:telocadia" type="text" class="form-control" id="Text16" >
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                            <p>Location ID</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <input data-bind="value:locationid" type="text" class="form-control" id="Text17" >
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                            <p>Proje No</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <input data-bind="value:projectno" type="text" class="form-control" id="Text18" >
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                            <p>HP</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <input data-bind="value:hp" type="text" class="form-control" id="Text19">
+                    <div  class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
+                        <div data-bind="with: selectedBlock">
+                            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                                <p>Blok ID</p>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                                <div data-bind="text:blockid" class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;"></p></div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                                <p>Site</p>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                                <select id="sitename" class="form-control" data-bind="options:$root.siteList,optionsText:'sitename',optionsValue:'siteid',value:site.siteid"></select>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                                <p>Blok</p>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                                <input data-bind="value:blockname" type="text" class="form-control" id="Text15">
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                                <p>Bölge Kodu</p>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                                <div class="col-md-12" style="background-color: #eee; height: 30px; border-radius: 4px;"><p style="padding-top: 5px;"></p></div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                                <p>Telocordia ID</p>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                                <input data-bind="value:telocadia" type="text" class="form-control" id="Text16">
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                                <p>Location ID</p>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                                <input data-bind="value:locationid" type="text" class="form-control" id="Text17">
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                                <p>Proje No</p>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                                <input data-bind="value:projectno" type="text" class="form-control" id="Text18">
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                                <p>HP</p>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                                <input data-bind="value:hp" type="text" class="form-control" id="Text19">
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                                <p>Satış Sorumlusu</p>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                                <select id="editsatissorumlusu" class="form-control" data-bind="options:$root.personellist,optionsValue:'personelid',optionsText:'personelname',optionsCaption:'Seçiniz',value:salespersonel?salespersonel.personelid:null"> </select>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                                <p>Yönetici Adı</p>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                                <input data-bind="value:superintendent" type="text" class="form-control" id="Text20">
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                                <p>Yönetici GSM</p>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                                <input data-bind="value:superintendentcontact" type="text" class="form-control" id="Text21">
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                                <p>Kapıcı Adı</p>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                                <input data-bind="value:cocierge" type="text" class="form-control" id="Text22">
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                                <p>Kapıcı GSM</p>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                                <input data-bind="value:cociergecontact" type="text" class="form-control" id="Text23">
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                                <p>Dikey İmalat Hattı</p>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                                <input data-bind="value:verticalproductionline" type="text" class="form-control" id="Text24">
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                                <p>Bina Kodu</p>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                                <input data-bind="value:binakodu" type="text" class="form-control" id="Text25">
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                                <p>Object ID</p>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                                <input data-bind="value:objid" type="text" class="form-control" id="Text26">
+                            </div>
+                           
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                             <p>SO Satışa Hazır</p>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <input type="text" id="daterangepicker1" class="form-control" data-bind="value:readytosaledate ?readytosaledate:null">
+                            <div class="col-md-12 a">
+                                <input type="text" id="d1" class="form-control">
+                            </div>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                             <p>SO Fiber Başlangıç</p>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <input type="text" id="daterangepicker2" class="form-control" data-bind="value:sosaledate ? sosaledate:null">
+                            <div class="col-md-12 a">
+                                <input type="text" id="d2" class="form-control">
+                            </div>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                             <p>Koç Satışa Açık</p>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <input type="text" id="daterangepicker3" class="form-control" data-bind="value:kocsaledate ? kocsaledate:null">
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                            <p>Satış Sorumlusu</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <select id="editsatissorumlusu" class="form-control" data-bind="options:$root.personellist,optionsValue:'personelid',optionsText:'personelname',optionsCaption:'Seçiniz',value:salespersonel?salespersonel.personelid:null"> </select>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                            <p>Yönetici Adı</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <input data-bind="value:superintendent" type="text" class="form-control" id="Text20" >
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                            <p>Yönetici GSM</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <input data-bind="value:superintendentcontact" type="text" class="form-control" id="Text21" >
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                            <p>Kapıcı Adı</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <input data-bind="value:cocierge" type="text" class="form-control" id="Text22" >
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                            <p>Kapıcı GSM</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <input data-bind="value:cociergecontact" type="text" class="form-control" id="Text23" >
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                            <p>Dikey İmalat Hattı</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <input data-bind="value:verticalproductionline" type="text" class="form-control" id="Text24" >
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                            <p>Bina Kodu</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <input data-bind="value:binakodu" type="text" class="form-control" id="Text25" >
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
-                            <p>Object ID</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                            <input data-bind="value:objid" type="text" class="form-control" id="Text26" >
+                            <div class="col-md-12 a">
+                                <input type="text" id="d3" class="form-control">
+                            </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 cls-padding-0px" style="margin-top: 3px;" data-bind="visible: $root.errorcode()">
                             <span class="label label-success" data-bind="text: $root.errormessage , visible:$root.errorcode()==1"></span>
                             <span class="label label-danger" data-bind="text: $root.errormessage, visible: $root.errorcode() != 1"></span>
                         </div>
                     </div>
+                   
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
                         <button data-bind="click:$root.editBlock" type="button" class="btn btn-primary">Kaydet</button>
@@ -452,6 +461,8 @@
     </div>
 
 
+<script src="Scripts/bootstrap-datetimepicker.js"></script>
+<script src="Scripts/daterangepicker.js"></script>
 <script src="Templates/Blocks.js"></script>
 
 <script>
