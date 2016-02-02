@@ -42,9 +42,13 @@ var dataModel = {
     TurkcellTvStatusList: ko.observableArray([]),
     gsmStatusList: ko.observableArray([]),
     message: ko.observable(),
+    errorcode: ko.observable(),
+    errormessage: ko.observable(),
+    isCustomer:ko.observable(),
     flag: ko.observable(false),
     editable: ko.observable(),
     tasktype: ko.observable(),
+    taskattacheableobject:ko.observable(),
     customerdocument: ko.observableArray([]),
     errormessage: ko.observable(),
     uploadControl: ko.observable(),
@@ -59,10 +63,13 @@ var dataModel = {
     customerProductList: ko.observableArray([]),
     info: ko.observable(),//eğer müşterinin dökümanları geliyorsa kaydet butonunu disable yapalım
     closedTaskqueueResponseMessage: ko.observable(),
-
+    selectedBlock:ko.observable(),
+    isAttacheableCustomerTask: ko.pureComputed(function () {
+        return dataModel.taskattacheableobject() == 16777220 ? true : false;
+    }),
 
     getCustomerCard : function () {
-       var self = this;
+        var self = this;
        self.getIssStatus();
        self.getGsmStatus();
        self.getNetStatus();
@@ -88,6 +95,20 @@ var dataModel = {
            if (a == "ok")
                self.refresh();
        }, null, null);
+    },
+    editBlock: function () {
+        var self = this;
+        self.selectedBlock().readytosaledate = $("#d1").val() ? $("#d1").val() : null;
+        self.selectedBlock().sosaledate = $("#d2").val() ? $("#d2").val() : null;
+        self.selectedBlock().kocsaledate = $("#d3").val() ? $("#d3").val() : null;
+        var data = self.selectedBlock();
+        crmAPI.editBlock(data, function (a, b, c) {
+            self.errorcode(a.errorCode);
+            self.errormessage(a.errorMessage);
+            window.setTimeout(function () {
+                $('#BlockModal').modal('hide');
+            }, 1000);
+        }, null, null);
     },
 
     campaignEditable: ko.pureComputed(function () {
@@ -459,7 +480,19 @@ var dataModel = {
     },
     renderBindings: function () {
         var self = this; var i = 0;
-
+        $('#d1,#d2,#d3').daterangepicker({
+            "singleDatePicker": true,
+            "autoApply": false,
+            " autoUpdateInput": false,
+            "linkedCalendars": false,
+            "timePicker": true,
+            "timePicker24Hour": true,
+            "drops": "up",
+            "timePickerSeconds": true,
+            "locale": {
+                "format": 'MM/DD/YYYY h:mm A',
+            },
+        });
         var hashSearches = document.location.hash.split("?");
         if(hashSearches.length > 1) { 
             $("#kategori").multiselect({
@@ -567,6 +600,7 @@ var dataModel = {
                 self.taskorderno(a.data.rows[0].taskorderno);               
                 self.taskname(a.data.rows[0].task.taskname);
                 self.taskid(a.data.rows[0].task.taskid);
+                self.taskattacheableobject(a.data.rows[0].task.attachableobjecttype);
                 self.taskstatetype(a.data.rows[0].taskstatepool && a.data.rows[0].taskstatepool.statetype || null)
                 var status = a.data.rows[0].taskstatepool && a.data.rows[0].taskstatepool.taskstateid || null;
                 self.gettaskstatus(status);
@@ -597,6 +631,11 @@ var dataModel = {
                 self.customername(a.data.rows[0].attachedobject.customername || '');
                 self.customerid(a.data.rows[0].attachedobject.customerid && (a.data.rows[0].attachedobject.customerid) || '');
                 self.customer(a.data.rows[0].attachedobject);
+                self.isCustomer(a.data.rows[0].attachedobject.customername?true:false);
+                self.selectedBlock(a.data.rows[0].attachedobject!=null ? (a.data.rows[0].attachedobject.customerid!=null ? a.data.rows[0].attachedobject.block : a.data.rows[0].attachedobject) : null);
+                $("#d1").val(a.data.rows[0].attachedobject.readytosaledate);
+                $("#d2").val(a.data.rows[0].attachedobject.sosaledate);
+                $("#d3").val(a.data.rows[0].attachedobject.kocsaledate);
                 self.flat(a.data.rows[0].attachedobject && (a.data.rows[0].attachedobject.flat) || '');
                 self.customergsm(a.data.rows[0].attachedobject && a.data.rows[0].attachedobject.gsm || '');
                 self.customerstatus(a.data.rows[0].attachedobject.customer_status && a.data.rows[0].attachedobject.customer_status.Text || '');

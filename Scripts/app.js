@@ -57,6 +57,10 @@ $(window).bind("hashchange", function () {
     $("#uruniade").click(function () {
         $("#ModalContainer").loadTemplate("Templates/New/UrunIadeTask.html");
     });
+    $("#username,#notice").click(function () {
+        $("#ModalContainer").loadTemplate("Templates/New/Profil.html");
+    });
+
 
 
 
@@ -72,14 +76,25 @@ $(window).bind("hashchange", function () {
     });
 
     $(document).ready(function () {
+        var pid=0;
         crmAPI.userInfo(function (a, b, c) {
             $("#username").text(a.userFullName);
+            pid = a.userId;
             if (a.userRole != 2147483647) {               
                 $("#tanimlamalar").hide(true);
                 $("#musteriler").hide(true);
             }
+            var data = {
+                personel: { fieldName: 'personelid', op: 2, value: pid },
+            };
+            crmAPI.getPersonels(data, function (a, b, c) {
+                var pass = a.data.rows[0].password;
+                if (pass == "123456") {
+                    $("#notice").text("Güvenliğiniz için Şifrenizi değiştiriniz!");
+                }
+            }, null, null);
         }, null, null);
-
+       
     });
 });
 
