@@ -1,0 +1,47 @@
+﻿   <!-- İşlemler Yeni For Modal Start -->
+<div id="bindingmodal" class="modal-dialog modal-md" role="document" style="margin-top: 50px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title " id="myModalLabel">Kullanıcı Profili</h4>
+                </div>
+                <div data-bind="with:personel" class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Görünün İsim</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <input data-bind="value:personelname" type="text" id="sifre" class="form-control">
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Şifreniz</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <input data-bind="value:password" type="text" id="sifre" class="form-control">
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Mobile<p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <input data-bind="value:mobile" type="text" id="sifre" class="form-control">
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 cls-padding-0px" style="margin-top: 3px;" data-bind="visible: $root.savemessagecode()">
+                        <span class="label label-success" data-bind="text: $root.savemessage , visible:$root.savemessagecode()==1"></span>
+                        <span class="label label-danger" data-bind="text: $root.savemessage, visible: $root.savemessagecode() != 1"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+                    <button type="button" class="btn btn-success" data-bind="click:savePersonel" data-dismiss="modal">Kaydet</button>
+                </div>
+        </div>
+    </div>
+    <!-- İşlemler Yeni For Modal Finish-->
+
+<script src="Scripts/bootstrap-datetimepicker.js"></script>
+<script src="Scripts/daterangepicker.js"></script>
+<script type="text/javascript" src="Templates/New/Profil.js"></script>
+<script>
+    $(document).ready(function () {
+        moment.locale('tr');
+    });
+</script>
