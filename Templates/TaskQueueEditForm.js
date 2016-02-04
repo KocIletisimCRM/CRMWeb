@@ -383,6 +383,7 @@ var dataModel = {
     },
     saveTaskQueues: function () {
         var self = this;
+        $('.btn').prop('disabled', true);
         data = {
             taskorderno: self.taskorderno(),
             task: {
