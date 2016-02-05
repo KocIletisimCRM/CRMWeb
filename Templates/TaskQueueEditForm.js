@@ -639,7 +639,7 @@ var dataModel = {
                 $("#d3").val(a.data.rows[0].attachedobject.kocsaledate);
                 self.flat(a.data.rows[0].attachedobject && (a.data.rows[0].attachedobject.flat) || '');
                 self.customergsm(a.data.rows[0].attachedobject && a.data.rows[0].attachedobject.gsm || '');
-                self.customerstatus(a.data.rows[0].attachedobject.customer_status && a.data.rows[0].attachedobject.customer_status.Text || '');
+                self.customerstatus(a.data.rows[0].attachedobject.customer_status && a.data.rows[0].attachedobject.customer_status.ID || '');
                 $("#abonedurumu").multiselect("refresh");
                 self.description(a.data.rows[0].description);
                 self.descriptionControl(false);

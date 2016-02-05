@@ -229,7 +229,7 @@
 												                            <ul class="dropdown-menu">
 													                            <li><a href="#katziyareti1" id="katziyareti11" role="button" class="btn" data-toggle="modal" style="float: left;">Kat Ziyaret Sonuçlarını Toplu Gir</a></li>
 													                            <li><a href="#katziyareti2" role="button" class="btn" data-toggle="modal" style="float: left;">Müşteri Statülerini Toplu Değiştir</a></li>
-													                            <li><a href="#katziyareti3" role="button" class="btn" data-toggle="modal" style="float: left;">Müşteri Kat Ziyareti Toplu Task Kapama</a></li>
+													                            <!--<li><a href="#katziyareti3" role="button" class="btn" data-toggle="modal" style="float: left;">Müşteri Kat Ziyareti Toplu Task Kapama</a></li>-->
 												                            </ul>
                                                                      </li>
                                                                     	<li class="divider"></li>
@@ -355,7 +355,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
-					<button type="button" class="btn btn-primary" data-bind="click:function(){SaveZiyaretStatus()},enable:selectedZiyaretStatus?(selectedtaskorderno()>0?true:false):false">Kaydet</button>
+					<button type="button" class="btn btn-primary" data-bind="click:function(){SaveZiyaretStatus()}">Kaydet</button>
 				</div>
 			</div>
 		</div>
@@ -374,17 +374,13 @@
 						<p>Müşteri Statüsünü Seçiniz</p>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-						<select class="form-control">
-							<option></option>
-							<option>MSS1</option>
-							<option>MSS2</option>
-							<option>MSS3</option>
+						<select id="ziyaretcustomerstatus" data-bind="options: ctstatuslist, optionsText: 'Text', optionsValue: 'ID', value: selectedZiyaretCTstatus"  class="form-control">
 						</select>
 					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
-					<button type="button" class="btn btn-primary">Kaydet</button>
+					<button type="button" class="btn btn-primary" data-bind="click:function(){SaveCTStatusOnZiyaret()}">Kaydet</button>
 				</div>
 			</div>
 		</div>

@@ -36,6 +36,7 @@ var dataModel = {
     taskstatuslist: ko.observableArray([]),
     ziyaretStatusList: ko.observableArray([]),
     selectedZiyaretStatus:ko.observable(),
+    selectedZiyaretCTstatus:ko.observable(),
     personellist: ko.observableArray([]),
     taskqueuelist: ko.observableArray([]),
     totalpagecount: ko.observable(0),
@@ -178,6 +179,24 @@ var dataModel = {
                 self.getFilter(1, dataModel.rowsPerPage());
             }, 1000);
         }, null, null);
+    },
+    SaveCTStatusOnZiyaret: function () {
+        var self = this;
+        var dataa = {
+            tasks: self.selectedtaskorderno(),
+            cstatus: self.selectedZiyaretCTstatus()
+        };
+        if (self.selectedtaskorderno() < 1 && self.SaveCTStatusOnZiyaret() == null) {
+            alert("En az bir task ve bir durum seçmelisiniz!");
+        }
+        else
+            crmAPI.saveCTStatusWithKatZiyaret(dataa, function (a, b, c) {
+                window.setTimeout(function () {
+                    $('#katziyareti2').modal('hide');
+                    self.getFilter(1, dataModel.rowsPerPage());
+                    self.selectedZiyaretCTstatus(null);
+                }, 1000);
+            }, null, null);
     },
     getpersonel: function () {
         var self = this;    

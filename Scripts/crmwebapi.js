@@ -46,8 +46,8 @@
      };
 
      var getData = function (callType, path, sendData, onsuccess, onerror, before) {
-          var baseURL = "http://crmapitest.kociletisim.com.tr/api/Fiber/";
-          //var baseURL = "http://localhost:50752/api/Fiber/";
+          //var baseURL = "http://crmapitest.kociletisim.com.tr/api/Fiber/";
+          var baseURL = "http://localhost:50752/api/Fiber/";
          $.ajax({
              method: callType,
              url: baseURL + path,
@@ -197,6 +197,9 @@
         saveZiyaretTask: function (data, onsuccess, onerror, before) {
             getData("POST", "Taskqueue/saveZiyaretTask", data, onsuccess, onerror, before)
         },
+        saveCTStatusWithKatZiyaret: function (data, onsuccess, onerror, before) {
+            getData("POST", "Taskqueue/saveCTStatusWithKatZiyaret", data, onsuccess, onerror, before)
+        }, 
         savesalestask: function (data, onsuccess, onerror, before) {
             getData("POST", "Taskqueue/saveSalesTask", data, onsuccess, onerror, before)
         },
