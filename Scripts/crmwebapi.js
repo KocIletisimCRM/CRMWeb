@@ -194,6 +194,9 @@
         saveTaskQueues: function (data,onsuccess,onerror,before) {
             getData("POST", "Taskqueue/saveTaskQueues", data, onsuccess, onerror, before)
         },
+        saveZiyaretTask: function (data, onsuccess, onerror, before) {
+            getData("POST", "Taskqueue/saveZiyaretTask", data, onsuccess, onerror, before)
+        },
         savesalestask: function (data, onsuccess, onerror, before) {
             getData("POST", "Taskqueue/saveSalesTask", data, onsuccess, onerror, before)
         },
@@ -280,6 +283,9 @@
         },
         getPersonelStock: function (data, onsucces, onerror, before) {
             getData("POST", "Filter/getPersonelStock", data, onsucces, onerror, before)
+        },
+        getTaskMatchesStatus: function (data, onsucces, onerror, before) {
+            getData("POST", "Filter/getTaskMatchesStatus", data, onsucces, onerror, before)
         },
         getSerialsOnPersonel: function (data, onsucces, onerror, before) {
             getData("POST", "Filter/getSerialsOnPersonel", data, onsucces, onerror, before)

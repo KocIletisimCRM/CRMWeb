@@ -34,6 +34,8 @@ var dataModel = {
     ctstatuslist: ko.observableArray([]),
     isslist: ko.observableArray([]),
     taskstatuslist: ko.observableArray([]),
+    ziyaretStatusList: ko.observableArray([]),
+    selectedZiyaretStatus:ko.observable(),
     personellist: ko.observableArray([]),
     taskqueuelist: ko.observableArray([]),
     totalpagecount: ko.observable(0),
@@ -138,6 +140,45 @@ var dataModel = {
             });
         }, null, null)
     },
+    getZiyaretTaskstatus: function () {
+        var self = this;
+        var data = {
+          taskid:86,
+        };
+        crmAPI.getTaskMatchesStatus(data, function (a, b, c) {
+            $("#ziyaretcombo").multiselect({
+                includeSelectAllOption: true,
+                selectAllValue: 'select-all-value',
+                maxHeight: 250,
+                buttonWidth: '100%',
+                nonSelectedText: 'Task Durumunu Seçiniz',
+                nSelectedText: 'Task Durumu Seçildi!',
+                numberDisplayed: 2,
+                selectAllText: 'Tümünü Seç!',
+                enableFiltering: true,
+                filterPlaceholder: 'Ara'
+            });
+            self.ziyaretStatusList(a);
+           $('#ziyaretcombo').multiselect('select', self.ziyaretStatusList()).multiselect('rebuild');
+        }, null, null)
+    },
+    SaveZiyaretStatus:function(){
+        var self = this;
+        var data = {
+            tasks: self.selectedtaskorderno(),
+            status:self.selectedZiyaretStatus()
+        };
+        if (self.selectedtaskorderno()<1 && self.selectedZiyaretStatus()==null) {
+            alert("En az bir task ve bir durum seçmelisiniz!");
+        }
+        else
+        crmAPI.saveZiyaretTask(data, function (a, b, c) {
+            window.setTimeout(function () {
+                $('#katziyareti1').modal('hide');
+                self.getFilter(1, dataModel.rowsPerPage());
+            }, 1000);
+        }, null, null);
+    },
     getpersonel: function () {
         var self = this;    
         crmAPI.getPersonel(function (a, b, c) {
@@ -162,6 +203,7 @@ var dataModel = {
             taskorderno: parseInt(self.selectedtaskorderno()[0]),
         };
         crmAPI.getAttacheablePersonel(data, function (a, b, c) {
+
             self.attacheablePersonelList(a);
             $('#personelatamacombo').multiselect('select', self.attacheablePersonelList()).multiselect('rebuild');
         }, null, null);
@@ -443,6 +485,7 @@ var dataModel = {
             filterPlaceholder: 'Ara'
             
         });
+      
         $(function () {
             $('#datetimepicker1,#datetimepicker2,#datetimepicker3').datetimepicker();
         });
@@ -480,14 +523,17 @@ var dataModel = {
             enableFiltering: true,
             filterPlaceholder: 'Ara'
         });
-       self.getisslist();
+        self.getisslist();
         self.gettaskstatus();
         self.getTasks();
         self.getpersonel();
         self.getCustomerStatus();
         self.getFilter(dataModel.pageNo(), dataModel.rowsPerPage());           
         ko.applyBindings(dataModel, $("#bindingContainer")[0]);
-
+        $("#katziyareti11").click(function () {
+            self.getZiyaretTaskstatus();
+            self.selectedZiyaretStatus(null);
+        });
         $(this.typeHeadTagIds).kocTypeHead();
         
     }
