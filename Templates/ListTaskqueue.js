@@ -51,6 +51,7 @@ var dataModel = {
     tvStatusList: ko.observableArray([]),
     TurkcellTvStatusList: ko.observableArray([]),
     gsmStatusList: ko.observableArray([]),
+    katziyareti:ko.observable(),
     // end of kimlik kartı
     attacheablePersonelList: ko.observableArray([]),
 
@@ -353,11 +354,6 @@ var dataModel = {
                 });
                 $('.musteri').click(function () {
                     var row = $(this).parent().parent().index();
-                    self.getNetStatus();
-                    self.getTelStatus();
-                    self.getTvKullanımıStatus();
-                    self.getTurkcellTvStatus();
-                    self.getGsmStatus();
                     //var row = $(this).parent().parent().children().index($(this).parent());
                     self.selectedCustomer(self.taskqueuelist()[row-1].attachedobject);
                 });
@@ -475,7 +471,8 @@ var dataModel = {
         self.selectedCustomer().gsmKullanımıStatus = { id: $("#gsmstatus").val() };
         self.selectedCustomer().telStatus = { id: $("#telstatus").val() };
         self.selectedCustomer().TvKullanımıStatus = { id: $("#tvstatus").val() };
-        self.selectedCustomer().TvKullanımıStatus = { id: $("#telstatus").val() };
+        self.selectedCustomer().TurkcellTVStatus = { id: $("#ttvstatus").val() };
+        self.selectedCustomer().closedKatZiyareti = self.katziyareti();
         var data = self.selectedCustomer();
         crmAPI.saveCustomerCard(data, function (a, b, c) {
             if (a == "ok") {
@@ -486,7 +483,11 @@ var dataModel = {
             }
         }, null, null);
     },
-
+    saveCustomerWithKatZiyaret: function () {
+        var self = this;
+        self.katziyareti(true);
+        self.saveCustomer();
+    },
 
     renderBindings: function () {
         var self = this;
@@ -543,6 +544,11 @@ var dataModel = {
             filterPlaceholder: 'Ara'
         });
         self.getisslist();
+        self.getNetStatus();
+        self.getTelStatus();
+        self.getTvKullanımıStatus();
+        self.getTurkcellTvStatus();
+        self.getGsmStatus();
         self.gettaskstatus();
         self.getTasks();
         self.getpersonel();

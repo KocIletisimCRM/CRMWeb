@@ -322,7 +322,7 @@
 
     <!-- müşteri bilgilerini düzenleme For Modal Start -->
     <div class="modal fade" id="customerinfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog modal-sm" role="document" style="margin-top: 50px;">
+        <div class="modal-dialog modal-md" role="document" style="margin-top: 50px;">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -376,19 +376,19 @@
                         <p>Müşteri Statüsü</p>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <select class="form-control" id="abonedurumuinfo" data-bind="options: $parent.ctstatuslist, optionsText: 'Text', optionsValue: 'ID', value: (customer_status && customer_status.ID || 0)"></select>
+                        <select class="form-control" id="abonedurumuinfo" data-bind="options: $parent.ctstatuslist, optionsText: 'Text', optionsValue: 'ID', value: (customer_status && customer_status.ID || 0),optionsCaption:'Seçiniz'"></select>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                         <p>İnternet SS</p>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <select class="form-control" id="abonedurumuinfo" data-bind="options: $parent.issStatusList, optionsText: 'issText', optionsValue: 'id', value: (issStatus && issStatus.id || 0)"></select>
+                        <select class="form-control" id="issstatus" data-bind="options: $parent.issStatusList, optionsText: 'issText', optionsValue: 'id', value: (issStatus && issStatus.id || 0),optionsCaption:'Seçiniz'"></select>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                         <p>İnternet Ücreti</p>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <select id="netstatus" class="form-control" data-bind="options: $parent.netStatusList, optionsText: 'netText', optionsValue: 'id', value: (netStatus && netStatus.id || 0)"></select>
+                        <select id="netstatus" class="form-control" data-bind="options: $parent.netStatusList, optionsText: 'netText', optionsValue: 'id', value: (netStatus && netStatus.id || 0),optionsCaption:'Seçiniz'"></select>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                         <p>Telefon Ücreti</p>
@@ -419,8 +419,7 @@
                         <select id="ttvstatus" class="form-control" data-bind="options: $parent.TurkcellTvStatusList,
     optionsText: 'TurkcellTvText',
     optionsValue: 'id',
-    value: (turkcellTv && TurkcellTVStatus.id || 0),
-    optionsCaption: 'TTV + Kullanımı Seçiniz...'"></select>
+    value: (TurkcellTVStatus&&TurkcellTVStatus.id || 0),optionsCaption:'Seçiniz'"></select>
 
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
@@ -443,13 +442,14 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
                     <button type="button" data-bind="click:saveCustomer" class="btn btn-primary">Kaydet</button>
+                    <button type="button" data-bind="click:saveCustomerWithKatZiyaret" class="btn btn-info btn-small">Kaydet ve Kat Ziyareti Kapat</button>
+
                 </div>
             </div>
 
         </div>
         <!-- müşteri bilgilerini düzenleme For Modal Finish-->
     </div>
-
     <!-- Duzenle For Modal Start-->
     <div class="modal fade" id="BlockModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document" style="margin-top: 10px;">

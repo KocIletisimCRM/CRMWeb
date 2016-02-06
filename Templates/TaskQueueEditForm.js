@@ -41,6 +41,7 @@ var dataModel = {
     tvStatusList: ko.observableArray([]),
     TurkcellTvStatusList: ko.observableArray([]),
     gsmStatusList: ko.observableArray([]),
+    katziyareti:ko.observable(),
     message: ko.observable(),
     errorcode: ko.observable(),
     errormessage: ko.observable(),
@@ -89,12 +90,18 @@ var dataModel = {
        self.selectedCustomer().gsmKullanımıStatus = { id: $("#gsmstatus").val() };
        self.selectedCustomer().telStatus = { id: $("#telstatus").val() };
        self.selectedCustomer().TvKullanımıStatus = { id: $("#tvstatus").val() };
-       self.selectedCustomer().TvKullanımıStatus = { id: $("#telstatus").val() };
+       self.selectedCustomer().TurkcellTVStatus = { id: $("#ttvstatus").val() };
+       self.selectedCustomer().closedKatZiyareti = self.katziyareti();
        var data = self.selectedCustomer();
        crmAPI.saveCustomerCard(data, function (a, b, c) {
            if (a == "ok")
                self.refresh();
        }, null, null);
+    },
+    saveCustomerWithKatZiyaret: function () {
+        var self = this;
+        self.katziyareti(true);
+        self.saveCustomer();
     },
     editBlock: function () {
         var self = this;
