@@ -278,11 +278,11 @@
                                                         </td>
 														<td data-bind="text: attachedobject && (attachedobject.customer_status && attachedobject.customer_status.Text || '&lt;boş&gt;') "></td>
 														<td data-bind="text: attachedobject && (attachedobject.issStatus && attachedobject.issStatus.issText || '&lt;boş&gt;')"></td>
-														<td data-bind="text: attachmentdate ? moment(attachmentdate).calendar() : '&lt;boş&gt;'" ></td>
-														<td data-bind="text: (appointmentdate ? moment(appointmentdate).calendar() : '&lt;boş&gt;' )"></td>
+														<td data-bind="text: attachmentdate ? moment(attachmentdate).format('LLL') : '&lt;boş&gt;'" ></td>
+														<td data-bind="text: (appointmentdate ? moment(appointmentdate).format('LLL') : '&lt;boş&gt;' )"></td>
 														<td data-bind="text: (attachedpersonel && attachedpersonel.personelname || '&lt;atanmamış&gt;') "></td>
 														<td style="font-size:large;font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" data-bind="text:(taskstatepool &&taskstatepool.taskstate || 'AÇIK')"></td>
-														<td data-bind="text: consummationdate ? moment(consummationdate).calendar() : '&lt;boş&gt;'"></td>
+														<td data-bind="text: consummationdate ? moment(consummationdate).format('LLL') : '&lt;boş&gt;'"></td>
 														<td data-bind="text: description"></td> 
                                                          </tr>
                                                     <!-- /ko -->                                                    

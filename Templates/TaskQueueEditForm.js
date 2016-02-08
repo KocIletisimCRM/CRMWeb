@@ -736,6 +736,9 @@ dataModel.taskstatus.subscribe(function () {
             var ssAmount = (stockmovement.stockStatus ? stockmovement.stockStatus.amount : 0);
             var ssSerials = (stockmovement.stockStatus ? stockmovement.stockStatus.serials : []);
             stockmovement.used = ko.observable(stockmovement.amount);
+            stockmovement.used.subscribe(function (v) {
+                stockmovement.amount = parseInt(v);
+            });
             stockmovement.max = ko.observable(stockmovement.amount + ssAmount);
             stockmovement.available = ko.observable(ssAmount);
             stockmovement.serial = ko.observable(stockmovement.serialno);
