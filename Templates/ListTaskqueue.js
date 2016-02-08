@@ -583,3 +583,7 @@ dataModel.flag.subscribe(function (v) {
     }
 
 });
+
+$('#customerinfo').on('shown.bs.modal', function (e) {
+    dataModel.closeableZiyaret();
+})
