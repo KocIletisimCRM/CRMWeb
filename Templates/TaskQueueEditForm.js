@@ -88,6 +88,7 @@ var dataModel = {
        self.getTelStatus();
         var obj = self.customer();
         obj.closedKatZiyareti = false;
+        self.closeableZiyaret();
         self.selectedCustomer(obj);
        // getCustomerCard.CustomerCard(self.customerid(),function (a, b, c) {self.customerCardList(a) });
    },
@@ -114,8 +115,7 @@ var dataModel = {
             alert("Abone durumu girmeden kat ziyareti kapatılamaz.!");
         }
         else
-            alert("Kapatılabilir...");
-        //self.saveCustomer();
+        self.saveCustomer();
     },
     editBlock: function () {
         var self = this;

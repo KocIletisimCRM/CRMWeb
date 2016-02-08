@@ -408,7 +408,7 @@ var dataModel = {
         var obj = dataModel.taskqueuelist()[2].attachedobject;
         obj.closedKatZiyareti = false;
         self.selectedCustomer(obj);
-        getCustomerCard.CustomerCard(self.customerid(),function (a, b, c) {self.customerCardList(a) });
+        getCustomerCard.CustomerCard(self.customerid(), function (a, b, c) { self.customerCardList(a) });
     },
     getCustomerStatus: function () {
         var self = this;
