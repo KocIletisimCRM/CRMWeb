@@ -41,7 +41,8 @@ var dataModel = {
     tvStatusList: ko.observableArray([]),
     TurkcellTvStatusList: ko.observableArray([]),
     gsmStatusList: ko.observableArray([]),
-    katziyareti:ko.observable(),
+    katziyareti: ko.observable(),
+    isCloseableZiyaret:ko.observable(),
     message: ko.observable(),
     errorcode: ko.observable(),
     errormessage: ko.observable(),
@@ -69,6 +70,14 @@ var dataModel = {
         return dataModel.taskattacheableobject() == 16777220 ? true : false;
     }),
 
+    closeableZiyaret: function () {
+        if ($("#abonedurumuinfo").val() == "" || $("#issstatus").val()=="") {
+             dataModel.isCloseableZiyaret(false);
+        }
+        else {
+            dataModel.isCloseableZiyaret(true);
+        }
+    },
     getCustomerCard : function () {
         var self = this;
        self.getIssStatus();
@@ -101,7 +110,12 @@ var dataModel = {
     saveCustomerWithKatZiyaret: function () {
         var self = this;
         self.katziyareti(true);
-        self.saveCustomer();
+        if ($("#abonedurumuinfo").val()=="") {
+            alert("Abone durumu girmeden kat ziyareti kapatılamaz.!");
+        }
+        else
+            alert("Kapatılabilir...");
+        //self.saveCustomer();
     },
     editBlock: function () {
         var self = this;
@@ -701,6 +715,7 @@ var dataModel = {
 
             ko.applyBindings(dataModel, $("#bindingContainer")[0]);
         }
+
     }
 
 }

@@ -376,13 +376,13 @@
                         <p>Müşteri Statüsü</p>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <select class="form-control" id="abonedurumuinfo" data-bind="options: $parent.ctstatuslist, optionsText: 'Text', optionsValue: 'ID', value: (customer_status && customer_status.ID || 0),optionsCaption:'Seçiniz'"></select>
+                        <select class="form-control" id="abonedurumuinfo" data-bind="options: $parent.ctstatuslist, optionsText: 'Text', optionsValue: 'ID', valueUpdate: 'change', event: { change: $root.closeableZiyaret } ,value: (customer_status && customer_status.ID || 0),optionsCaption:'Seçiniz'"></select>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                         <p>İnternet SS</p>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <select class="form-control" id="issstatus" data-bind="options: $parent.issStatusList, optionsText: 'issText', optionsValue: 'id', value: (issStatus && issStatus.id || 0),optionsCaption:'Seçiniz'"></select>
+                        <select class="form-control" id="issstatus" data-bind="options: $parent.issStatusList, optionsText: 'issText',valueUpdate: 'change', event: { change: $root.closeableZiyaret } , optionsValue: 'id', value: (issStatus && issStatus.id || 0),optionsCaption:'Seçiniz'"></select>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                         <p>İnternet Ücreti</p>
@@ -442,7 +442,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
                     <button type="button" data-bind="click:saveCustomer" class="btn btn-primary">Kaydet</button>
-                    <button type="button" data-bind="click:saveCustomerWithKatZiyaret" class="btn btn-info btn-small">Kaydet ve Kat Ziyareti Kapat</button>
+                    <button type="button" data-bind="click:saveCustomerWithKatZiyaret ,enable:isCloseableZiyaret()" class="btn btn-info btn-small">Kaydet ve Kat Ziyareti Kapat</button>
 
                 </div>
             </div>

@@ -51,7 +51,8 @@ var dataModel = {
     tvStatusList: ko.observableArray([]),
     TurkcellTvStatusList: ko.observableArray([]),
     gsmStatusList: ko.observableArray([]),
-    katziyareti:ko.observable(),
+    katziyareti: ko.observable(),
+    isCloseableZiyaret: ko.observable(),
     // end of kimlik kartı
     attacheablePersonelList: ko.observableArray([]),
 
@@ -462,6 +463,14 @@ var dataModel = {
         crmAPI.getGsmStatus(function (a, b, c) {
             self.gsmStatusList(a);
         }, null, null)
+    },
+    closeableZiyaret: function () {
+        if ($("#abonedurumuinfo").val() == "" || $("#issstatus").val() == "") {
+            dataModel.isCloseableZiyaret(false);
+        }
+        else {
+            dataModel.isCloseableZiyaret(true);
+        }
     },
     saveCustomer: function () {
         var self = this;
