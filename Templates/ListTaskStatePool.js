@@ -55,6 +55,7 @@ var dataModel = {
     },
     saveTSP: function () {
         var self = this;
+        self.selectedTaskstate().statetype = parseInt($("#durum").val()) ? parseInt($("#durum").val()) : null;
         var data = self.selectedTaskstate();
         crmAPI.saveTaskState(data, function (a, b, c) {
             self.savemessage(a.errorMessage);
