@@ -136,8 +136,8 @@
                                                     <input data-bind="value:movementid" class="sel" type="checkbox" />
                                                 </td>
                                                 <td data-bind="text:movementdate"></td>
-                                                <td data-bind="text:frompersonel ?frompersonel.personelname:(fromobjecttype==33554433?'Satınalma':fromcustomer.customername)"></td>
-                                                <td data-bind="text:topersonel ? topersonel.personelname : ( toobjecttype==33554433 ? 'Satınalma':tocustomer.customername )"></td>
+                                                <td data-bind="text:frompersonel ?frompersonel.personelname:(fromobjecttype==33554433?'Satınalma':(fromcustomer?fromcustomer.customername:'Yönetim Odası'))"></td>
+                                                <td data-bind="text:topersonel ? topersonel.personelname : ( toobjecttype==33554433 ? 'Satınalma':(tocustomer?tocustomer.customername:'Yönetim Odası') )"></td>
                                                 <td data-bind="text:stockcard.productname"></td>
                                                 <td data-bind="text:amount"></td>
                                                 <td data-bind="text:serialno">
@@ -211,7 +211,7 @@
                     </div>
                     <div data-bind="visible:amount() && amount()!='Sıfır'" class="col-xs-12 col-sm-12 col-md-12 cls-padding-0px" style="margin-top: 3px;">
                         Elinizde Toplam <span class="badge badge-success" data-bind="text:amount"></span>  Adet/Metre Vardır
-                        <span class="label label-danger" data-bind="text:amountmessage, visible: amountcontrol"></span>
+                        <span class="label label-danger" data-bind="text:amountmessage, visible: !amountcontrol()"></span>
 
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 cls-padding-0px" style="margin-top: 3px;" data-bind="visible: $root.savemessagecode()">
@@ -221,7 +221,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
-                    <button data-bind="click:insertStockMovements,enable:newselectedproduct()?  (stockSerialControl()?   (newserialno()!=null ||serialArray().length>0?   true:false): amountcontrol()==true?false:true)   :false" type="button" class="btn btn-success">Kaydet</button>
+                    <button data-bind="click:insertStockMovements,enable:newselectedproduct()?  (stockSerialControl()?   (newserialno()!=null ||serialArray().length>0?   true:false): amountcontrol()==true?true:false) :false" type="button" class="btn btn-success">Kaydet</button>
                 </div>
             </div>
         </div>

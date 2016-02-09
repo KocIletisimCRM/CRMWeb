@@ -10,6 +10,7 @@ var dataModel = {
 
     selectedmovementid: ko.observableArray([]),
     user: ko.observable(),
+    userRole:ko.observable(),
     newinputserial: ko.observable(),
     serialArray: ko.observableArray([]),
     fromobject: ko.observable(),
@@ -39,7 +40,7 @@ var dataModel = {
     isSatinalma: ko.observable(),
     amountmessage:ko.observable('Elinizde yeterli Miktarda Yok'),
     amountcontrol: ko.pureComputed(function () {
-      return  dataModel.newamount() > dataModel.amount() ? true : false;
+      return  dataModel.newamount() > dataModel.amount() ?  (dataModel.isSatinalma()?true:false) :true;
     }),
     getStockMovements: function (pageno, rowsperpage) {
         var self = this;
@@ -258,6 +259,7 @@ var dataModel = {
         crmAPI.userInfo(function (a, b, c) {
             self.user(a);
             self.fromobject(a.userId);
+            self.userRole(a.userRole);
             self.getPersonelStock();
         }, null, null);
     },
@@ -380,6 +382,6 @@ dataModel.newselectedproduct.subscribe(function (v) {
         dataModel.personelStockList()[$("#newproduct")[0].selectedIndex - 1].amount : "Sıfır");
 });
 dataModel.newtoobject.subscribe(function () {
-    dataModel.isSatinalma(((dataModel.user().userRole & 2) == 2));
+    dataModel.isSatinalma(((dataModel.userRole() & 2) == 2) && dataModel.newtoobject()==12);
     dataModel.getStockCards();
 });
