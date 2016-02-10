@@ -15,32 +15,32 @@
                         <div class="col-xs-12 col-sm-4 col-md-4">
                             <div class="form-group-sm has-info cls-margin-bottom">
                                 <label class="control-label" for="u-1">Hareket Tarihi</label>
-                                <input data-bind="value:movementdate" class="form-control" id="movementdate" value="" />
+                                <input data-bind="value:movementdate , valueUpdate: 'keydown', event: { keypress: enterfilter }" class="form-control" id="movementdate" value="" />
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-4 col-md-4">
                             <div class="form-group-sm has-info cls-margin-bottom">
                                 <label class="control-label" for="u-2">Çıkış Yapan Birim</label>
-                                <input data-bind="value:fromObjectName" type="text" class="form-control" id="exampleInputName2" value="" />
+                                <input data-bind="value:fromObjectName, valueUpdate: 'keydown', event: { keypress: enterfilter }" type="text" class="form-control" id="exampleInputName2" value="" />
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-4 col-md-4">
                             <div class="form-group-sm has-info cls-margin-bottom">
                                 <label class="control-label" for="u-2">Çıkış Yapılan Birim</label>
-                                <input data-bind="value:toObjectName" type="text" class="form-control" id="exampleInputName2" value="" />
+                                <input data-bind="value:toObjectName, valueUpdate: 'keydown', event: { keypress: enterfilter }" type="text" class="form-control" id="exampleInputName2" value="" />
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-4 col-md-4">
                             <div class="form-group-sm has-info cls-margin-bottom">
                                 <label class="control-label" for="u-2">Ürün Adı</label>
-                                <input data-bind="value:productName" type="text" class="form-control" id="exampleInputName2" value="" />
+                                <input data-bind="value:productName, valueUpdate: 'keydown', event: { keypress: enterfilter }" type="text" class="form-control" id="exampleInputName2" value="" />
                             </div>
                         </div>
 
                         <div class="col-xs-12 col-sm-4 col-md-4">
                             <div class="form-group-sm has-info cls-margin-bottom">
                                 <label class="control-label" for="u-2">Serial No</label>
-                                <input data-bind="value:serialNo" type="text" class="form-control" id="exampleInputName2" value="" />
+                                <input data-bind="value:serialNo, valueUpdate: 'keydown', event: { keypress: enterfilter }" type="text" class="form-control" id="exampleInputName2" value="" />
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-4 col-md-4">
@@ -197,16 +197,16 @@
                         <p>Adet</p>
                     </div>
                     <div data-bind="visible: newselectedproduct() && stockSerialControl()!=true" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <input type="number" data-bind="value:newamount, valueUpdate: 'keydown'" class="form-control" id="Text3">
+                        <input type="number" data-bind="value:newamount, valueUpdate: 'keypress'" class="form-control" id="Text3">
                     </div>
                     <div data-bind="visible:stockSerialControl" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                         <p>Serial No</p>
                     </div>
                     <div data-bind="visible:stockSerialControl" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <input type="text" data-bind="value:newinputserial ,visible:isSatinalma() ,valueUpdate: 'keydown', event: { keypress: addSerialList }" class="form-control" id="Text7">
-                        <select data-bind="visible:isSatinalma(),options:serialArray" class="form-control" multiple="multiple"></select>
+                        <input type="text" data-bind="value:newinputserial ,visible:isSatinalma() || userRole()==2 ,valueUpdate: 'keydown', event: { keypress: addSerialList }" class="form-control" id="Text7">
+                        <select data-bind="visible:isSatinalma() ||userRole()==2,options:serialArray" class="form-control" multiple="multiple"></select>
                     </div>
-                    <div data-bind="visible:isSatinalma()!=true && stockSerialControl " class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                    <div data-bind="visible:(isSatinalma()!=true&&userRole()!=2 && stockSerialControl) " class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
                         <select id="newserial" data-bind="options:$root.serialList,optionsCaption:'Seri Numarası Seçiniz',value:newserialno" class="form-control"></select>
                     </div>
                     <div data-bind="visible:amount() && amount()!='Sıfır'" class="col-xs-12 col-sm-12 col-md-12 cls-padding-0px" style="margin-top: 3px;">

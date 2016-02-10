@@ -276,7 +276,7 @@ var dataModel = {
         var postdata = [];
         var pd = {
             amount: self.isSatinalma()?(self.newserialno()==null?self.newamount():1):(self.newserialno() ? 1 : parseInt(self.newamount())),
-            serialno: self.isSatinalma() ? self.serialArray().toString() : self.newserialno(),
+            serialno: self.isSatinalma() ? self.serialArray().toString() : (self.userRole() == 2 ? self.serialArray().toString() : self.newserialno()),
             fromobjecttype: self.user().userRole,
             fromobject: self.user().userId,
             toobjecttype: self.newtoobjecttype(),
@@ -307,6 +307,13 @@ var dataModel = {
                 self.getStockMovements(1, dataModel.rowsPerPage());
             }, 1000);
         });
+    },
+    enterfilter: function (d, e) {
+        var self = this;
+        if (e && (e.which == 1 || e.which == 13)) {
+            self.getStockMovements(1, dataModel.rowsPerPage());
+        }
+        return true;
     },
     clean: function () {
         var self = this;
