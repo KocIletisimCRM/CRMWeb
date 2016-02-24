@@ -9,6 +9,8 @@ var dataModel = {
     telocadia: ko.observable(),
     locationid: ko.observable(),
     fiberStartDate: ko.observable(),
+    fiberEndDate: ko.observable(),
+    fiberSODate: ko.observable(),
     blockList: ko.observableArray([]),
     pageCount: ko.observable(),
     pageNo: ko.observable(1),
@@ -60,10 +62,12 @@ var dataModel = {
         var self = this;
         self.pageNo(pageno);
         self.rowsPerPage(rowsperpage);
+        self.fiberSODate(self.fiberStartDate() + '-' + self.fiberEndDate());
         var data = {
             pageNo: pageno,
             rowsPerPage: rowsperpage,
             block: self.blockname() ? { fieldName: "blockname", op: 6, value: self.blockname() } : null,
+            SO: self.fiberStartDate() ? { fieldName: "readytosaledate", op: 5, value: self.fiberSODate() } : null,
             sitename: self.site() ? { fieldName: "sitename", op: 6, value: self.site() } : null,
             region: self.region() ? { fieldName: "region", op: 6, value: self.region() } : null,
             telocadia: self.telocadia() ? { fieldName: "telocadia", op: 2, value: self.telocadia() } : null,
@@ -171,6 +175,7 @@ var dataModel = {
         self.telocadia(null);
         self.locationid(null);
         self.fiberStartDate(null);
+        self.fiberEndDate(null);
     },
     enterfilter: function (d, e) {
         var self = this;
@@ -222,6 +227,19 @@ var dataModel = {
             "timePicker": true,
             "timePicker24Hour": true,
             "drops": "up",
+            "timePickerSeconds": true,
+            "locale": {
+                "format": 'MM/DD/YYYY h:mm A',
+            },
+        });
+        $('#date1,#date2').daterangepicker({
+            "singleDatePicker": true,
+            "autoApply": false,
+            " autoUpdateInput": false,
+            "linkedCalendars": false,
+            "timePicker": true,
+            "timePicker24Hour": true,
+            "drops": "down",
             "timePickerSeconds": true,
             "locale": {
                 "format": 'MM/DD/YYYY h:mm A',

@@ -8,6 +8,7 @@ var dataModel = {
     personellist: ko.observableArray([]),
     regionlist: ko.observableArray([]),
     sitelist: ko.observableArray([]),
+    sitelists: ko.observableArray([]),
     blocklist: ko.observableArray([]),
     customerlist: ko.observableArray([]),
     globaltasklist: ko.observableArray([]),
@@ -59,10 +60,14 @@ var dataModel = {
     },
     getSite: function () {
         var self = this;
-        self.sitelist(null);
+        self.sitelists(null);
         var data = { site: { fieldName: "region", value: self.region(), op: 6 } }
         crmAPI.getSiteFilter(data, function (a, b, c) {
-            self.sitelist(a);
+            self.sitelists(a);
+            for (var i = 0; i < self.sitelists().length; i++) {
+                self.sitelists()[i].sitename = self.sitelists()[i].sitename.toUpperCase();
+            }
+            self.sitelist(self.sitelists());
             $("#salessite").multiselect({
                 includeSelectAllOption: true,
                 selectAllValue: 'select-all-value',
