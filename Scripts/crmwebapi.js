@@ -269,6 +269,9 @@
         getPersonels: function (data, onsucces, onerror, before) {
             getData("POST", "Personel/getPersonels", data, onsucces, onerror, before)
         },
+        getCustomers: function (data, onsucces, onerror, before) {
+            getData("POST", "Customer/getCustomers", data, onsucces, onerror, before)
+        },
         savePersonel: function (data, onsucces, onerror, before) {
             getData("POST", "Personel/savePersonel", data, onsucces, onerror, before)
         },

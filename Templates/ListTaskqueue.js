@@ -43,7 +43,9 @@ var dataModel = {
     totalRowCount: ko.observable(),
     defaultstatus: ko.observable(),
     //kimlik kartı
-    selectedCustomer: ko.observable(),
+    selectedCustomer: ko.pureComputed(function () {
+        return dataModel.customersformodal()[0];
+    }),
     ctstatuslist: ko.observableArray([]),
     issStatusList: ko.observableArray([]),
     netStatusList: ko.observableArray([]),
@@ -55,6 +57,26 @@ var dataModel = {
     isCloseableZiyaret: ko.observable(),
     // end of kimlik kartı
     attacheablePersonelList: ko.observableArray([]),
+    newtab: ko.observable(false), //new tab open and close event
+    //modal aktif pasif customers
+    blockidforcust: ko.observable(),
+    flatforcust: ko.observable(),
+    customersformodal: ko.observableArray([]),
+    customersformodalSelectedIndex: ko.observable(0),
+    customerForModalAdd: function(){
+        var newCustomer = {};
+        for (var field in dataModel.selectedCustomer())
+            if (dataModel.selectedCustomer().hasOwnProperty(field))
+                newCustomer[field] = null;
+        newCustomer.customerid = 0;
+        newCustomer.customername =ko.observable("Yeni Müşteri");
+        newCustomer.block = dataModel.selectedCustomer().block;
+        newCustomer.flat = dataModel.selectedCustomer().flat;
+        dataModel.customersformodalSelectedIndex(0);
+        dataModel.customersformodal.unshift(newCustomer);
+        dataModel.newtab(true);
+    },
+    //modal aktif pasif customer
 
     enterfilter: function (d, e) {
         var self = this;
@@ -355,11 +377,11 @@ var dataModel = {
                 });
                 $('.musteri').click(function () {
                     var row = $(this).parent().parent().index();
-                    //var row = $(this).parent().parent().children().index($(this).parent());
-                    self.selectedCustomer(self.taskqueuelist()[row-1].attachedobject);
+                    self.blockidforcust(self.taskqueuelist()[row - 1].attachedobject.block.blockid);
+                    self.flatforcust(self.taskqueuelist()[row - 1].attachedobject.flat);
+                    //self.selectedCustomer(self.taskqueuelist()[row - 1].attachedobject);
+                    self.getCustomers();
                 });
-               
-             
             }, null, null)
 
     },
@@ -396,19 +418,6 @@ var dataModel = {
             if (pc <= 0) return;
             dataModel.navigate.gotoPage(pc);
         },
-    },
-    getCustomerCard: function (i) {
-        var self = this;
-        self.getIssStatus();
-        self.getGsmStatus();
-        self.getNetStatus();
-        self.getTvKullanımıStatus();
-        self.getTurkcellTvStatus();
-        self.getTelStatus();
-        var obj = dataModel.taskqueuelist()[2].attachedobject;
-        obj.closedKatZiyareti = false;
-        self.selectedCustomer(obj);
-        getCustomerCard.CustomerCard(self.customerid(), function (a, b, c) { self.customerCardList(a) });
     },
     getCustomerStatus: function () {
         var self = this;
@@ -474,6 +483,7 @@ var dataModel = {
     },
     saveCustomer: function () {
         var self = this;
+        self.selectedCustomer().customername = $("#custName").val();
         self.selectedCustomer().customer_status = { id: $("#abonedurumuinfo").val() };
         self.selectedCustomer().issStatus = { id: $("#issstatus").val() };
         self.selectedCustomer().netStatus = { id: $("#netstatus").val() };
@@ -497,7 +507,16 @@ var dataModel = {
         self.katziyareti(true);
         self.saveCustomer();
     },
-
+    getCustomers: function (){
+        var self = this;
+        var data = {
+            block: { fieldName: 'blockid', op: 2, value: self.blockidforcust() },
+            flatNo: { fieldName: 'flat', op: 2, value: self.flatforcust() },
+        };
+        crmAPI.getCustomers(data, function (a, b, c) {
+            self.customersformodal(a.data.rows);
+        }, null, null);
+    },
     renderBindings: function () {
         var self = this;
         self.firstLoad(true);
@@ -571,7 +590,6 @@ var dataModel = {
         $(this.typeHeadTagIds).kocTypeHead();
         
     }
-   
 }
 
 dataModel.flag.subscribe(function (v) {
@@ -587,3 +605,9 @@ dataModel.flag.subscribe(function (v) {
 $('#customerinfo').on('shown.bs.modal', function (e) {
     dataModel.closeableZiyaret();
 })
+
+$('#customerinfo').on('hidden.bs.modal', function (e) {
+    dataModel.newtab(false);
+})
+
+console.log("Click for Debug");
