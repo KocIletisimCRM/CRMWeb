@@ -26,7 +26,9 @@ var dataModel = {
     locationid: ko.observable(),
     telocadia:ko.observable(),
     customer: ko.observableArray([]),
-    selectedCustomer: ko.observable(),
+    selectedCustomer: ko.pureComputed(function () {
+        return dataModel.customersformodal()[0];
+    }),
     custdescription:ko.observable(),
     customergsm: ko.observable(),
     customerstatus: ko.observable(),
@@ -69,7 +71,36 @@ var dataModel = {
     isAttacheableCustomerTask: ko.pureComputed(function () {
         return dataModel.taskattacheableobject() == 16777220 ? true : false;
     }),
-
+    //modal aktif pasif customers
+    newtab: ko.observable(false),
+    blockidforcust: ko.observable(),
+    flatforcust: ko.observable(),
+    customersformodal: ko.observableArray([]),
+    customersformodalSelectedIndex: ko.observable(0),
+    customerForModalAdd: function(){
+        var newCustomer = {};
+        for (var field in dataModel.selectedCustomer())
+            if (dataModel.selectedCustomer().hasOwnProperty(field))
+                newCustomer[field] = null;
+        newCustomer.customerid = 0;
+        newCustomer.customername =ko.observable("Yeni Müşteri");
+        newCustomer.block = dataModel.selectedCustomer().block;
+        newCustomer.flat = dataModel.selectedCustomer().flat;
+        dataModel.customersformodalSelectedIndex(0);
+        dataModel.customersformodal.unshift(newCustomer);
+        dataModel.newtab(true);
+    },
+    //modal aktif pasif customer
+    getCustomers: function () {
+        var self = this;
+        var data = {
+            block: { fieldName: 'blockid', op: 2, value: self.blockidforcust() },
+            flatNo: { fieldName: 'flat', op: 2, value: self.flatforcust() },
+        };
+        crmAPI.getCustomers(data, function (a, b, c) {
+            self.customersformodal(a.data.rows);
+        }, null, null);
+    },
     closeableZiyaret: function () {
         if ($("#abonedurumuinfo").val() == "" || $("#issstatus").val()=="") {
              dataModel.isCloseableZiyaret(false);
@@ -89,7 +120,10 @@ var dataModel = {
         var obj = self.customer();
         obj.closedKatZiyareti = false;
         self.closeableZiyaret();
-        self.selectedCustomer(obj);
+        self.blockidforcust(self.customer().block.blockid);
+        self.flatforcust(self.customer().flat);
+        self.getCustomers();
+        //self.selectedCustomer(obj);
        // getCustomerCard.CustomerCard(self.customerid(),function (a, b, c) {self.customerCardList(a) });
    },
     saveCustomer: function () {
@@ -787,3 +821,6 @@ dataModel.description.subscribe(function () {
 
 
 });
+$('#customerinfo').on('hidden.bs.modal', function (e) {
+    dataModel.newtab(false);
+})
