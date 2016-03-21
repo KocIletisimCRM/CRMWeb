@@ -609,3 +609,6 @@ $('#customerinfo').on('shown.bs.modal', function (e) {
 $('#customerinfo').on('hidden.bs.modal', function (e) {
     dataModel.newtab(false);
 })
+
+
+console.log("sad");

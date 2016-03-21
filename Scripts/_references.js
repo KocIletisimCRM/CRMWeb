@@ -45,4 +45,5 @@
 /// <reference path="../Templates/New/UrunIadeTask.js" />
 /// <reference path="../Templates/New/YonetimOdasi.js" />
 /// <reference path="../Templates/Sites.js" />
+/// <reference path="../Templates/TaskPersonelAtama.js" />
 /// <reference path="../Templates/TaskQueueEditForm.js" />

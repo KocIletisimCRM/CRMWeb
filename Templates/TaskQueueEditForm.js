@@ -120,7 +120,7 @@ var dataModel = {
         var obj = self.customer();
         obj.closedKatZiyareti = false;
         self.closeableZiyaret();
-        self.blockidforcust(self.customer().block.blockid);
+        self.blockidforcust(self.customer().block ? self.customer().block.blockid : null);
         self.flatforcust(self.customer().flat);
         self.getCustomers();
         //self.selectedCustomer(obj);

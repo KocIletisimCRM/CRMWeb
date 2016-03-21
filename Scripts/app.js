@@ -61,14 +61,6 @@ $(window).bind("hashchange", function () {
         $("#ModalContainer").loadTemplate("Templates/New/Profil.html");
     });
 
-
-
-
-
-
-
-
-
     $("#exit").click(function () {
         document.cookie = "token=;";
         crmAPI.setCookie("tqlFilter", "");

@@ -46,8 +46,8 @@
      };
 
      var getData = function (callType, path, sendData, onsuccess, onerror, before) {
-          var baseURL = "http://crmapitest.kociletisim.com.tr/api/Fiber/";
-          //var baseURL = "http://localhost:50752/api/Fiber/";
+          //var baseURL = "http://crmapitest.kociletisim.com.tr/api/Fiber/";
+          var baseURL = "http://localhost:50752/api/Fiber/";
          $.ajax({
              method: callType,
              url: baseURL + path,
@@ -303,8 +303,22 @@
         saveGlobalTask: function (data, onsuccess, onerror, before) {
             getData("POST", "SaveTasks/saveGlobalTask", data, onsuccess, onerror, before)
         },
-        //
-        
+        // Task personel Atamaları
+        getTaskPersonelAtama: function (data, onsuccess, onerror, before) {
+            getData("POST", "Atama/getTaskPersonelAtama", data, onsuccess, onerror, before)
+        },
+        insertPersonelAtama: function (data, onsuccess, onerror, before) {
+            getData("POST", "Atama/insertPersonelAtama", data, onsuccess, onerror, before)
+        },
+        updatePersonelAtama: function (data, onsuccess, onerror, before) {
+            getData("POST", "Atama/updatePersonelAtama", data, onsuccess, onerror, before)
+        },
+        deletePersonelAtama: function (data, onsuccess, onerror, before) {
+            getData("POST", "Atama/deletePersonelAtama", data, onsuccess, onerror, before)
+        },
+        getTaskType: function (onsuccess, onerror, before) {
+            getData("POST", "Filter/getTaskType", {}, onsuccess, onerror, before)
+        },
         
         uploadFile:function () {
         for (var i = 0; i < fileNode.files.length; i++) {
