@@ -24,6 +24,7 @@ var dataModel = {
     newpersoneltype: ko.observable(),
     newobjecttype: ko.observable(),
     newtasktype: ko.observable(),
+    newtaskdesc: ko.observable(),
 
     //combo için
     getTaskList: function () {
@@ -113,27 +114,6 @@ var dataModel = {
             });
         }, null, null);
     },
-
-    //getTaskType: function () {
-    //    var self = this;
-    //    var data = {
-    //        taskType: {fieldName:'TaskTypeName',op:6,value:''},
-    //    }; 
-    //    crmAPI.getTaskFilter(data, function (a, b, c) {
-    //        self.taskTypeList(a);
-    //        $("#tasktype").multiselect({
-    //            includeSelectAllOption: true,
-    //            selectAllValue: 'select-all-value',
-    //            maxHeight: 250,
-    //            buttonWidth: '100%',
-    //            nonSelectedText: 'Seçiniz',
-    //            numberDisplayed: 2,
-    //            selectAllText: 'Tümünü Seç!',
-    //            enableFiltering: true,
-    //            filterPlaceholder: 'Ara'
-    //        });
-    //    }, null, null);
-    //},
     getTaskCard: function (taskid) {
         var self = this;
         var data = {
@@ -201,6 +181,7 @@ var dataModel = {
             objecttypes: { typeid: self.newobjecttype() },
             personeltypes: { typeid: self.newpersoneltype() },
             performancescore: self.newtaskscore(),
+            description: self.newtaskdesc(),
         };
         crmAPI.insertTask(data, function (a, b, c) {
             self.saveerrorcode(a.errorCode);

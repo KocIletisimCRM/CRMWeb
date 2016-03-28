@@ -196,6 +196,12 @@
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
                         <input data-bind="value:newtaskscore" type="text" class="form-control" id="Text1" value="">
                     </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Açıklama</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <textarea data-bind="value:newtaskdesc" class="form-control" rows="3"></textarea>
+                    </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 cls-padding-0px" style="margin-top: 3px;" data-bind="visible: $root.saveerrorcode()">
                         <span class="label label-success" data-bind="text: $root.savemessage , visible:$root.saveerrorcode()==1"></span>
                         <span class="label label-danger" data-bind="text: $root.savemessage, visible: $root.saveerrorcode() != 1"></span>
@@ -260,6 +266,12 @@
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
                         <input data-bind="value:performancescore" type="text" class="form-control" id="Text3">
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                        <p>Açıklama</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
+                        <textarea data-bind="value:description" class="form-control" rows="2"></textarea>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 cls-padding-0px" style="margin-top: 3px;" data-bind="visible: $root.saveerrorcode()">
                         <span class="label label-success" data-bind="text: $root.savemessage , visible:$root.saveerrorcode()==1"></span>

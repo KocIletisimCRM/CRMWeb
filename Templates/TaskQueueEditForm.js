@@ -1,6 +1,17 @@
 ﻿
 var dataModel = {
-
+    user: ko.observable(),
+    perOfBayiOrKoc: ko.observable(false), // Sayfada işlem yapan personel bayi mi yoksa şirket personeli mi ? false : bayi --  true : koc personeli
+    BayiOrKoc: function () {
+        var self = this;
+        if (self.user() != null || self.user() != "") {
+            var arr = self.user().userName.split('@');
+            if (arr[1] == 'kociletisim.com.tr')
+                self.perOfBayiOrKoc(true);
+            else
+                self.perOfBayiOrKoc(false);
+        }
+    },
     taskorderno: ko.observable(),
     taskname: ko.observable(),
     taskid: ko.observable(),
@@ -317,7 +328,13 @@ var dataModel = {
     stockcardlist: ko.observableArray([]),
     stockmovement: ko.observableArray([]),
 
-
+    getUserInfo: function () {
+        var self = this;
+        crmAPI.userInfo(function (a, b, c) {
+            self.user(a);
+            self.BayiOrKoc();
+        }, null, null)
+    },
     gettaskstatus: function (statusVal) {
         var self = this;
         var data = {
@@ -536,6 +553,7 @@ var dataModel = {
     },
     renderBindings: function () {
         var self = this; var i = 0;
+        self.getUserInfo();
         $('#d1,#d2,#d3').daterangepicker({
             "singleDatePicker": true,
             "autoApply": false,

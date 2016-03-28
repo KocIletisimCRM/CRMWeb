@@ -4,6 +4,18 @@
 ///
 
 var dataModel = {
+    user: ko.observable(),
+    perOfBayiOrKoc: ko.observable(false), // Sayfada işlem yapan personel bayi mi yoksa şirket personeli mi ? false : bayi --  true : koc personeli
+    BayiOrKoc: function () {
+        var self = this;
+        if (self.user() != null || self.user() != "") {
+            var arr = self.user().userName.split('@');
+            if (arr[1] == 'kociletisim.com.tr')
+                self.perOfBayiOrKoc(true);
+            else
+                self.perOfBayiOrKoc(false);
+        }
+    },
     multiSelectTagIds: "#blokadi,#taskNameFilter,#servissaglayici,#abonedurumu,#personel,#taskdurumu",
     typeHeadTagIds: "#site",
     flag: ko.observable(),
@@ -78,6 +90,13 @@ var dataModel = {
     },
     //modal aktif pasif customer
 
+    getUserInfo: function () {
+        var self = this;
+        crmAPI.userInfo(function (a, b, c) {
+            self.user(a);
+            self.BayiOrKoc();
+        }, null, null)
+    },
     enterfilter: function (d, e) {
         var self = this;
         if (e && (e.which == 1 || e.which == 13)) {
@@ -519,6 +538,7 @@ var dataModel = {
     },
     renderBindings: function () {
         var self = this;
+        self.getUserInfo();
         self.firstLoad(true);
         $("#blokadi").multiselect({
             includeSelectAllOption: true,
@@ -601,14 +621,9 @@ dataModel.flag.subscribe(function (v) {
     }
 
 });
-
 $('#customerinfo').on('shown.bs.modal', function (e) {
     dataModel.closeableZiyaret();
 })
-
 $('#customerinfo').on('hidden.bs.modal', function (e) {
     dataModel.newtab(false);
 })
-
-
-console.log("sad");
