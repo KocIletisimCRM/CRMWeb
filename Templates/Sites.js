@@ -5,7 +5,6 @@ var dataModel = {
     siteList: ko.observableArray([]),
     sitelistmodal: ko.observableArray([]),
     regionlist: ko.observableArray([]),
-    newmahalle: ko.observable(),
     editmahalle:ko.observable(),
     siteid: ko.observable(),
     newsitename: ko.observable(),
@@ -20,7 +19,7 @@ var dataModel = {
     totalRowCount: ko.observable(),
     selectedSite: ko.observable(),
     errorcode: ko.observable(),
-    errormessage:ko.observable(),
+    errormessage: ko.observable(),
 
     getregion: function () {
         var self = this;
@@ -41,7 +40,8 @@ var dataModel = {
                 filterPlaceholder: 'Ara'
             });
             $("#newregion,#editregion").multiselect("setOptions", dataModel.sitelistmodal()).multiselect("rebuild");
-            $("#editregion").multiselect('select', dataModel.selectedSite().region);
+            if (dataModel.selectedSite())
+                $("#editregion").multiselect('select', dataModel.selectedSite().region);
         }, null, null);
     },
     getSiteList: function (pageno, rowsperpage) {
@@ -106,7 +106,7 @@ var dataModel = {
             sitename: self.newsitename(),
             siteaddress: self.newadres(),
             region: self.newregion(),
-            sitedistrict: self.newmahalle(),
+            sitedistrict: $('#search').val(),
             description: self.newdescription(),
             siteregioncode: self.newbolgekod(),
         };
@@ -119,7 +119,6 @@ var dataModel = {
             }, 1000);
         }, null, null);
     },
-
     clean: function () {
         var self = this;
         self.region(null);
@@ -159,11 +158,32 @@ var dataModel = {
     },
     renderBindings: function () {
         var self = this;
+        $(function () {
+            $("#search").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "http://crmapitest.kociletisim.com.tr/api/Fiber/Filter/getCSB",
+                        dataType: "json",
+                        type: 'POST',
+                        data: { sitedistrict: { fieldName: "sitedistrict", value: $('#search').val(), op: 6 } },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return {
+                                    value: item.siteaddress,
+                                    label: item.siteaddress,
+                                };
+                            }));
+                        }
+                    });
+                }
+            });
+        });
+        $('#search').autocomplete("option", "appendTo", "#myModal1");
         self.getSiteList(dataModel.pageNo(), dataModel.rowsPerPage());
         ko.applyBindings(dataModel, $("#bindingContainer")[0]);
         $('#new').click(function () {
             self.getregion();
-            self.newmahalle(null);
+            $('#search').val("");
             self.siteid(null);
             self.newsitename(null);
             self.newadres(null);
