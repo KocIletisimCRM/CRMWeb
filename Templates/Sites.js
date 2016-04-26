@@ -163,14 +163,15 @@ var dataModel = {
                 source: function (request, response) {
                     $.ajax({
                         url: "http://crmapitest.kociletisim.com.tr/api/Fiber/Filter/getCSB",
+                        //url: "http://localhost:50752/api/Fiber/Filter/getCSB",
                         dataType: "json",
                         type: 'POST',
                         data: { sitedistrict: { fieldName: "sitedistrict", value: $('#search').val(), op: 6 } },
                         success: function (data) {
                             response($.map(data, function (item) {
                                 return {
-                                    value: item.siteaddress,
-                                    label: item.siteaddress,
+                                    value: item.sitedistrict,
+                                    label: item.sitedistrict,
                                 };
                             }));
                         }
