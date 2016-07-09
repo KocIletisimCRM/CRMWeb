@@ -132,7 +132,7 @@
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group">
                                     <div class="col-md-12 a">
-                                        <input type="text" id="daterangepicker4" class="form-control" data-bind="value: consummationdate ? consummationdate :null">
+                                        <input type="text" id="daterangepicker4" class="form-control" data-bind="value: consummationdate ? consummationdate :null, enable:false">
                                     </div>
                                 </div>
                             </div>
@@ -201,7 +201,7 @@
                                     <div data-bind="visible:category" class="col-md-4  form-group-sm has-info">
                                         <select id="urun" data-bind="options:subcategorylist,optionsText:'subcategory',optionsValue:'subcategory',value:subcategory,optionsCaption: 'Alt Kategori Seçiniz...'"></select>
                                     </div>
-                                    <div data-bind="visible:subcategory" class=" col-md-4 form-group-sm has-info">
+                                    <div data-bind="visible:subcategory" class="col-md-4 form-group-sm has-info">
                                         <select id="kampanya" data-bind="options:campaignlist,optionsText:'name',optionsValue:'id',value:campaignid,optionsCaption: 'Kampanya Seçiniz...'"></select>
                                     </div>
                                 </div>
