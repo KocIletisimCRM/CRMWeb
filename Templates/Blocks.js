@@ -135,6 +135,7 @@ var dataModel = {
     },
     insertBlock: function () {
         var self = this;
+        $('#kayit').prop('disabled', true);
         var data={
             blockname :self.newblockname(),
             site:{
@@ -144,8 +145,8 @@ var dataModel = {
             telocadia :self.newtelocadia(),
             projectno :self.newprojectno(),
             readytosaledate :self.newreadytosaledate(),
-            sosaledate  :self.newsosaledate(),
-            kocsaledate  :self.newkocsaledate(),
+            sosaledate :self.newsosaledate(),
+            kocsaledate :self.newkocsaledate(),
             salespersonel:{
                 personelid:self.newsatissorumlusu(), 
             },
@@ -155,8 +156,8 @@ var dataModel = {
             cociergecontact :self.newcociergecontact(),
             verticalproductionline  :self.newverticalproductionline(),
             binakodu :self.newbinakodu(),
-            locationid  :self.newlocationid(),
-            objid    :self.newobjid(),
+            locationid :self.newlocationid(),
+            objid :self.newobjid(),
         };
         crmAPI.insertBlock(data, function (a, b, c) {
             self.errorcode(a.errorCode);
