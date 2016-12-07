@@ -221,6 +221,9 @@
         editBlock: function (data, onsucces, onerror, before) {
             getData("POST", "SiteBlock/editBlock", data, onsucces, onerror, before)
         },
+        editSiteMultiple: function (data, onsucces, onerror, before) {
+            getData("POST", "SiteBlock/editSiteMultiple", data, onsucces, onerror, before)
+        },
         insertBlock: function (data, onsucces, onerror, before) {
             getData("POST", "SiteBlock/insertBlock", data, onsucces, onerror, before)
         },

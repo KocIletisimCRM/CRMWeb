@@ -21,7 +21,8 @@ var dataModel = {
     errorcode: ko.observable(),
     errormessage: ko.observable(),
     personellist: ko.observableArray([]),
-
+    selectedBlocks: ko.observableArray([]),
+    selectedpersonelid: ko.observable(),
     newblockname: ko.observable(),
     newsiteid: ko.observable(),
     newhp: ko.observable(),
@@ -44,7 +45,7 @@ var dataModel = {
         var self = this;
         crmAPI.getPersonel(function (a, b, c) {
             self.personellist(a);
-            $("#satissorumlusu,#editsatissorumlusu").multiselect({
+            $("#satissorumlusu,#editsatissorumlusu,#tsatissorumlusu").multiselect({
                 includeSelectAllOption: true,
                 selectAllValue: 'select-all-value',
                 maxHeight: 250,
@@ -55,7 +56,7 @@ var dataModel = {
                 selectAllText: 'Tümünü Seç!',
                 enableFiltering: true,
                 filterPlaceholder: 'Ara'
-            });
+            }).multiselect('refresh');
         }, null, null)
     },
     getBlockList: function (pageno, rowsperpage) {
@@ -83,8 +84,17 @@ var dataModel = {
                 self.getSite();
                 self.getBlockCard($(this).val());           
             });
-
-        },null,null);
+            $('.sel').change(function () {
+                var ids = [];
+                $('.sel').each(function () {
+                    if ($(this).is(':checked')) {
+                        var id = $(this).val();
+                        ids.push(id);
+                    }
+                });
+                self.selectedBlocks(ids);
+            });
+        }, null, null);
     },
     getBlockCard: function (blockid) {
         var self = this;
@@ -131,6 +141,28 @@ var dataModel = {
                 $('#myModal').modal('hide');
                 self.getBlockList(1, dataModel.rowsPerPage());
             }, 1000);
+        }, null, null);
+    },
+    editMultiBlock: function () {
+        var self = this;
+        document.getElementById("uyari_state").style.display = 'none';
+        document.getElementById("tamam").style.display = 'none';
+        var data = {
+            personelid: self.selectedpersonelid(),
+            blockIds: self.selectedBlocks(),
+        }
+        crmAPI.editSiteMultiple(data, function (a, b, c) {
+            if (a == "Tamamlandı") {
+                document.getElementById("uyari_state").style.display = 'none';
+                document.getElementById("tamam").style.display = 'block';
+                window.setTimeout(function () {
+                    $('#editMultiple').modal('hide');
+                    self.getBlockList(self.pageNo(), self.rowsPerPage());
+                }, 1000);
+            } else {
+                document.getElementById("tamam").style.display = 'none';
+                document.getElementById("uyari_state").style.display = 'block';
+            }
         }, null, null);
     },
     insertBlock: function () {
@@ -249,7 +281,13 @@ var dataModel = {
         self.getBlockList(dataModel.pageNo(), dataModel.rowsPerPage());
         ko.applyBindings(dataModel, $("#bindingContainer")[0]);
         $('#new').click(function () {
+            self.getpersonel();
             self.getSite();
+        });
+        $('#cmulti').click(function () {
+            document.getElementById("uyari_state").style.display = 'none';
+            document.getElementById("tamam").style.display = 'none';
+            self.selectedpersonelid(undefined);
             self.getpersonel();
         });
     }

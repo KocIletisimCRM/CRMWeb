@@ -12,164 +12,165 @@
             top: auto;*/
             cursor: pointer;
         }
-
 </style>
 <div id="bindingContainer" class="container-fluid" style="background-color: #D1E9F6 !important;">
     <span style="display:none"><input type="file" id="fileUpload" value="Seç..." name="fileUpload[]" multiple data-bind="enable: editable() && (customerdocument().length>0)" /></span>
     <div class="col-md-12 container" style="padding: 0 !important; margin: 20px 0 0 0 !important; border-radius: 0 0 8px 8px !important;">
         <div class="panel-group">
-            <div class="panel" style="border: 1px solid #fff !important;">
+            <div class="panel" style="border: 1px solid #fff !important; padding-bottom: 30px;">
                 <div class="panel-heading  panel-danger task-gradient filter-gradient">Task Bilgileri</div>
                 <div class="panel-body">
-                    
-                        <div class="col-xs-12 col-sm-4 col-md-3 height-40">
-                                <div class="col-xs-4 col-sm-4 col-md-4">Task No</div>
-                                <div class="col-xs-2 col-sm-2 col-md-2">:</div>
-                                <div data-bind="text:taskorderno" class="col-xs-6 col-sm-6 col-md-6"></div>
-                        </div>
-                        <div class="col-xs-12 col-sm-4 col-md-3 height-40">
-                            <div class="col-xs-4 col-sm-4 col-md-4">Oluşturulma Tarihi</div>
-                            <div class="col-xs-2 col-sm-2 col-md-2">:</div>
-                            <div class='col-xs-6 col-sm-6 col-md-6'>
-                                <div >
-                                    <input type="text" id="daterangepicker3" class="form-control a" data-bind="enable:false,value: creationdate ? creationdate :null">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-4 col-md-3 height-40">
-                            <div class="col-xs-4 col-sm-4 col-md-4 ">Personel</div>
-                            <div class="col-xs-2 col-sm-2 col-md-2 ">:</div>
-                            <div data-bind="text: personelname" class="col-xs-6 col-sm-6 col-md-6"></div>
-                        </div>
-                        <div class="col-xs-12 col-sm-4 col-md-3 height-40">
-                            <div class="col-xs-4 col-sm-4 col-md-4 ">Abone Ad-Soyad</div>
-                            <div class="col-xs-2 col-sm-2 col-md-2 ">:</div>
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <a href="#customerinfo" data-bind="text:customername,click: getCustomerCard" role="button" data-toggle="modal"></a>
 
+                    <div class="col-xs-12 col-sm-4 col-md-3 height-40">
+                        <div class="col-xs-4 col-sm-4 col-md-4">Task No</div>
+                        <div class="col-xs-2 col-sm-2 col-md-2">:</div>
+                        <div data-bind="text:taskorderno" class="col-xs-6 col-sm-6 col-md-6"></div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-3 height-40">
+                        <div class="col-xs-4 col-sm-4 col-md-4">Oluşturulma Tarihi</div>
+                        <div class="col-xs-2 col-sm-2 col-md-2">:</div>
+                        <div class='col-xs-6 col-sm-6 col-md-6'>
+                            <div>
+                                <input type="text" id="daterangepicker3" class="form-control a" data-bind="enable:false,value: creationdate ? creationdate :null">
                             </div>
                         </div>
-                  
-                        <div class="col-xs-12 col-sm-4 col-md-3 height-40">
-                            <div class="col-xs-4 col-sm-4 col-md-4 ">Task</div>
-                            <div class="col-xs-2 col-sm-2 col-md-2 ">:</div>
-                            <div data-bind="text: taskname" class="col-xs-6 col-sm-6 col-md-6 "></div>
-                        </div>
-                        <div class="col-xs-12 col-sm-4 col-md-3 height-40">
-                            <div class="col-xs-4 col-sm-4 col-md-4">Atanma Tarihi</div>
-                            <div class="col-xs-2 col-sm-2 col-md-2 ">:</div>
-                            <div class='col-xs-6 col-sm-6 col-md-6'>
-                                <div class="form-group">
-                                    <div class="col-md-12 a">
-                                        <input type="text" id="daterangepicker1" class="form-control" data-bind="enable: false, value: attachmentdate ? attachmentdate :null">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-4 col-md-3 height-40">
-                            <div class="col-xs-4 col-sm-4 col-md-4" style="padding:0;">Yardımcı Personel</div>
-                            <div class="col-xs-2 col-sm-2 col-md-2 ">:</div>
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <select id="assistantPersonel" data-bind="options: personellist, optionsText: 'personelname', optionsValue: 'personelid', value: assistantpersonel," multiple="multiple"></select>
-                            </div>
-                        </div>
-                        <div  class="col-xs-12 col-sm-4 col-md-3 height-40">
-                            <div class="col-xs-4 col-sm-4 col-md-4" data-bind="text:locationid?' Location ID-TelocadiaID':'Müşteri ID'">Location/Telocardia ID</div>
-                            <div class="col-xs-2 col-sm-2 col-md-2 ">:</div>
-                            <div class="col-xs-6 col-sm-6 col-md-6 ">
-                                <a href="#customerinfo" data-bind="text:locationid?locationid:customerid,click:getCustomerCard" role="button" data-toggle="modal"></a>
-                                <span data-bind="visible:telocadia">-</span>
-                                <a href="#customerinfo" data-bind="text:telocadia,click:getCustomerCard" role="button" data-toggle="modal"></a>
-                            </div>
-                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-3 height-40">
+                        <div class="col-xs-4 col-sm-4 col-md-4 ">Personel</div>
+                        <div class="col-xs-2 col-sm-2 col-md-2 ">:</div>
+                        <div data-bind="text: personelname" class="col-xs-6 col-sm-6 col-md-6"></div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-3 height-40">
+                        <div class="col-xs-4 col-sm-4 col-md-4 ">Abone Ad-Soyad</div>
+                        <div class="col-xs-2 col-sm-2 col-md-2 ">:</div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <a href="#customerinfo" data-bind="text:customername,click: getCustomerCard" role="button" data-toggle="modal"></a>
 
-                        <div class="col-xs-12 col-sm-4 col-md-3 height-40">                        
-                            <div class="col-xs-6 col-sm-6 col-md-6 " data-bind="visible:previoustask">
-                                <a href="#TaskQueueEditForm" data-bind="attr: {href:'#TaskQueueEditForm?'+ previoustask()}">
-                                    <button id="duzenle" type="button" class="btn btn-primary btn-small ">
-                                        Önceki Task
-                                    </button>
-                                </a>
-                            </div>
-                            <div class="col-xs-6 col-sm-6 col-md-6" data-bind="visible:relatedtask">
-                                <a href="#TaskQueueEditForm" data-bind="attr: {href:'#TaskQueueEditForm?'+ relatedtask()}">
-                                    <button id="duzenle" type="button" class="btn btn-success btn-small ">
-                                        İlişkili Task
-                                    </button>
-                                </a>
-                            </div>
                         </div>
-                        <div class="col-xs-12 col-sm-4 col-md-3 height-40">
-                            <div class="col-xs-4 col-sm-4 col-md-4 ">Randevu Tarihi</div>
-                            <div class="col-xs-2 col-sm-2 col-md-2 ">:</div>
-                            <div class='col-xs-6 col-sm-6 col-md-6'>
-                                <div class="form-group">
-                                    <div class="col-xs-12 col-sm-12 col-md-12  a">
-                                        <input type="text" id="daterangepicker2" class="form-control " data-bind="value:appointmentdate ? appointmentdate :null">
-                                    </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-4 col-md-3 height-40">
+                        <div class="col-xs-4 col-sm-4 col-md-4 ">Task</div>
+                        <div class="col-xs-2 col-sm-2 col-md-2 ">:</div>
+                        <div data-bind="text: taskname" class="col-xs-6 col-sm-6 col-md-6 "></div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-3 height-40">
+                        <div class="col-xs-4 col-sm-4 col-md-4">Atanma Tarihi</div>
+                        <div class="col-xs-2 col-sm-2 col-md-2 ">:</div>
+                        <div class='col-xs-6 col-sm-6 col-md-6'>
+                            <div class="form-group">
+                                <div class="col-md-12 a">
+                                    <input type="text" id="daterangepicker1" class="form-control" data-bind="enable: false, value: attachmentdate ? attachmentdate :null">
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-4 col-md-3 height-40">
-                            <div class="form-group height-30">
-                                <div class="col-xs-4 col-sm-4 col-md-4 ">Site</div>
-                                <div class="col-xs-2 col-sm-2 col-md-2 ">:</div>
-                                <div data-bind="text: sitename" class="col-xs-6 col-sm-6 col-md-6"></div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-3 height-40">
+                        <div class="col-xs-4 col-sm-4 col-md-4" style="padding:0;">Yardımcı Personel</div>
+                        <div class="col-xs-2 col-sm-2 col-md-2 ">:</div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <select id="assistantPersonel" data-bind="options: personellist, optionsText: 'personelname', optionsValue: 'personelid', value: assistantpersonel," multiple="multiple"></select>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-3 height-40">
+                        <div class="col-xs-4 col-sm-4 col-md-4" data-bind="text:locationid?' Location ID-TelocadiaID':'Müşteri ID'">Location/Telocardia ID</div>
+                        <div class="col-xs-2 col-sm-2 col-md-2 ">:</div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 ">
+                            <a href="#customerinfo" data-bind="text:locationid?locationid:customerid,click:getCustomerCard" role="button" data-toggle="modal"></a>
+                            <span data-bind="visible:telocadia">-</span>
+                            <a href="#customerinfo" data-bind="text:telocadia,click:getCustomerCard" role="button" data-toggle="modal"></a>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-4 col-md-3 height-40">
+                        <div class="col-xs-6 col-sm-6 col-md-6 " data-bind="visible:previoustask">
+                            <a href="#TaskQueueEditForm" data-bind="attr: {href:'#TaskQueueEditForm?'+ previoustask()}">
+                                <button id="duzenle" type="button" class="btn btn-primary btn-small ">
+                                    Önceki Task
+                                </button>
+                            </a>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6" data-bind="visible:relatedtask">
+                            <a href="#TaskQueueEditForm" data-bind="attr: {href:'#TaskQueueEditForm?'+ relatedtask()}">
+                                <button id="duzenle" type="button" class="btn btn-success btn-small ">
+                                    İlişkili Task
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-3 height-40">
+                        <div class="col-xs-4 col-sm-4 col-md-4 ">Randevu Tarihi</div>
+                        <div class="col-xs-2 col-sm-2 col-md-2 ">:</div>
+                        <div class='col-xs-6 col-sm-6 col-md-6'>
+                            <div class="form-group">
+                                <div class="col-xs-12 col-sm-12 col-md-12  a">
+                                    <input type="text" id="daterangepicker2" class="form-control " data-bind="value:appointmentdate ? appointmentdate :null">
+                                </div>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-4 col-md-3 height-40">
-                            <div class="col-xs-4 col-sm-4 col-md-4">Gsm</div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-3 height-40">
+                        <div class="form-group height-30">
+                            <div class="col-xs-4 col-sm-4 col-md-4 ">Site</div>
                             <div class="col-xs-2 col-sm-2 col-md-2 ">:</div>
-                            <div data-bind="text: customergsm" class="col-xs-6 col-sm-6 col-md-6 "></div>
+                            <div data-bind="text: sitename" class="col-xs-6 col-sm-6 col-md-6"></div>
                         </div>
-                   
-                       <div class="col-xs-12 col-sm-4 col-md-3 height-40">
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-3 height-40">
+                        <div class="col-xs-4 col-sm-4 col-md-4">Gsm</div>
+                        <div class="col-xs-2 col-sm-2 col-md-2 ">:</div>
+                        <div data-bind="text: customergsm" class="col-xs-6 col-sm-6 col-md-6 "></div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-4 col-md-3 height-40">
                         <div class="col-xs-4 col-sm-4 col-md-4 "></div>
                     </div>
-                        <div class="col-xs-12 col-sm-4 col-md-3 height-40">
-                            <div class="col-xs-4 col-sm-4 col-md-4">Kapanma Tarihi</div>
-                            <div class="col-xs-2 col-sm-2 col-md-2 ">:</div>
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group">
-                                    <div class="col-md-12 a">
-                                        <input type="text" id="daterangepicker4" class="form-control" data-bind="value:consummationdate ? consummationdate :null">
-                                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-3 height-40">
+                        <div class="col-xs-4 col-sm-4 col-md-4">Kapanma Tarihi</div>
+                        <div class="col-xs-2 col-sm-2 col-md-2 ">:</div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <div class="col-md-12 a">
+                                    <input type="text" id="daterangepicker4" class="form-control" data-bind="value:consummationdate ? consummationdate :null">
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-4 col-md-3 height-40">
-                            <div class="col-xs-6 col-sm-2 col-md-4 ">Blok</div>
-                            <div class="col-xs-2 col-sm-2 col-md-2 ">:</div>
-                            <!--<div data-bind="text:blockname() +' Daire: '+ flat(),visible:isAttacheableCustomerTask()" class="col-xs-6 col-sm-6 col-md-6 "></div>-->
-                            <a href="#BlockModal" data-bind="text:blockname() +' Daire: '+ flat()" role="button" data-toggle="modal"></a>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-3 height-40">
+                        <div class="col-xs-6 col-sm-2 col-md-4 ">Blok</div>
+                        <div class="col-xs-2 col-sm-2 col-md-2 ">:</div>
+                        <!--<div data-bind="text:blockname() +' Daire: '+ flat(),visible:isAttacheableCustomerTask()" class="col-xs-6 col-sm-6 col-md-6 "></div>-->
+                        <a href="#BlockModal" data-bind="text:blockname() +' Daire: '+ flat()" role="button" data-toggle="modal"></a>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-3 height-40">
+                        <div class="col-xs-4 col-sm-4 col-md-4 ">Müşteri Statü</div>
+                        <div class="col-xs-2 col-sm-2 col-md-2 ">:</div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <select id="abonedurumu" data-bind="options: ctstatuslist, optionsText: 'Text', optionsValue: 'ID', value: customerstatus,optionsCaption:'Seçiniz'"></select>
                         </div>
-                        <div class="col-xs-12 col-sm-4 col-md-3 height-40">
-                            <div class="col-xs-4 col-sm-4 col-md-4 ">Müşteri Statü</div>
-                            <div class="col-xs-2 col-sm-2 col-md-2 ">:</div>
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <select id="abonedurumu" data-bind="options: ctstatuslist, optionsText: 'Text', optionsValue: 'ID', value: customerstatus,optionsCaption:'Seçiniz'"></select>
-                            </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-3 height-40">
+                        <div class="col-xs-4 col-sm-4 col-md-4 ">Task Durumu</div>
+                        <div class="col-xs-2 col-sm-2 col-md-2 ">:</div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 ">
+                            <select id="taskdurumu" data-bind="enable:editable, options: taskstatuslist, optionsText: 'taskstate', optionsValue: 'taskstateid',value:taskstatus"></select>
                         </div>
-                     
-                        <div class="col-xs-12 col-sm-4 col-md-3 height-40">
-                            <div class="col-xs-4 col-sm-4 col-md-4 ">Task Durumu</div>
-                            <div class="col-xs-2 col-sm-2 col-md-2 ">:</div>
-                            <div class="col-xs-6 col-sm-6 col-md-6 ">
-                                <select id="taskdurumu" data-bind="enable:editable, options: taskstatuslist, optionsText: 'taskstate', optionsValue: 'taskstateid',value:taskstatus"></select>
-                            </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-3 height-40">
+                        <div class="col-xs-4 col-sm-4 col-md-4">Öbek</div>
+                        <div class="col-xs-2 col-sm-2 col-md-2">:</div>
+                        <div data-bind="text: region" class="col-xs-6 col-sm-6 col-md-6 "></div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-6 height-40">
+                        <div class="col-xs-1 col-sm-1 col-md-1">Açıklama</div>
+                        <div class="col-xs-1 col-sm-1 col-md-1 ">:</div>
+                        <div class="col-xs-5 col-sm-5 col-md-5">
+                            <textarea data-bind="value:description" readonly="readonly" class="form-control" rows="3"></textarea>
                         </div>
-                        <div class="col-xs-12 col-sm-4 col-md-3 height-40">
-                            <div class="col-xs-4 col-sm-4 col-md-4 ">Açıklama</div>
-                            <div class="col-xs-2 col-sm-2 col-md-2 ">:</div>
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <textarea data-bind="value:description" class="form-control" rows="1" style="min-width:140px; min-height:50px;"></textarea>
-                            </div>
+                        <div class="col-xs-5 col-sm-5 col-md-5">
+                            <textarea data-bind="value:descwrite" placeholder="Taska açıklama eklemek için kullanınız..." class="form-control" rows="3"></textarea>
                         </div>
-                        <div class="col-xs-12 col-sm-4 col-md-3 height-40">
-                            <div class="col-xs-4 col-sm-4 col-md-4">Öbek</div>
-                            <div class="col-xs-2 col-sm-2 col-md-2">:</div>
-                            <div data-bind="text: region" class="col-xs-6 col-sm-6 col-md-6 "></div>
-                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -225,7 +226,7 @@
                         </fieldset>
                     </div>
                 </div>
-                <div  data-bind="visible: stockmovement().length>0" class="panel panel-primary">
+                <div data-bind="visible: stockmovement().length>0" class="panel panel-primary">
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Seri Numaralı Ürünler</a>

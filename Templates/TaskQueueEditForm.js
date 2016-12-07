@@ -44,6 +44,7 @@ var dataModel = {
     customergsm: ko.observable(),
     customerstatus: ko.observable(),
     description: ko.observable(),
+    descwrite: ko.observable(),
     descriptionControl: ko.observable(),
     taskstatuslist: ko.observableArray([]),
     personellist:ko.observableArray([]),
@@ -456,6 +457,7 @@ var dataModel = {
     saveTaskQueues: function () {
         var self = this;
         $('.btn').prop('disabled', true);
+        self.description() != null ? self.description(self.description() + " " + $.trim(self.descwrite())) : self.description($.trim(self.descwrite()));
         data = {
             taskorderno: self.taskorderno(),
             task: {
@@ -473,8 +475,8 @@ var dataModel = {
             customerdocument: self.customerdocument(),
             stockmovement: self.stockmovement(),
             customerproduct: self.selectedProducts(),
-            description: self.description() ? self.description() : null,
-            asistanPersonel: { personelid: self.assistantpersonel()>0? self.assistantpersonel() : null },
+            description: self.description() ? self.description() == "" ? null : (self.description() + " " + moment().format('DD MMMM, h:mm') + "(" + self.user().userFullName + ")") : null,
+            asistanPersonel: { personelid: self.assistantpersonel() > 0 ? self.assistantpersonel() : null },
             appointmentdate: self.appointmentdate() ? moment(self.appointmentdate()).format() : null,
             consummationdate: self.consummationdate() ? moment(self.consummationdate()).format() : null,
             creationdate: self.creationdate() ? moment(self.creationdate()).format() : null,

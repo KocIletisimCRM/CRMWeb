@@ -20,7 +20,28 @@ var dataModel = {
     selectedSite: ko.observable(),
     errorcode: ko.observable(),
     errormessage: ko.observable(),
+    personellist: ko.observableArray([]),
+    selectedpersonelid: ko.observable(),
+    selectedSites: ko.observableArray([]),
 
+    getpersonel: function () {
+        var self = this;
+        crmAPI.getPersonel(function (a, b, c) {
+            self.personellist(a);
+            $("#tsatissorumlusu").multiselect({
+                includeSelectAllOption: true,
+                selectAllValue: 'select-all-value',
+                maxHeight: 250,
+                buttonWidth: '100%',
+                nonSelectedText: 'Personel Seçiniz',
+                nSelectedText: 'Personel Seçildi!',
+                numberDisplayed: 2,
+                selectAllText: 'Tümünü Seç!',
+                enableFiltering: true,
+                filterPlaceholder: 'Ara'
+            }).multiselect('refresh');
+        }, null, null)
+    },
     getregion: function () {
         var self = this;
         self.regionlist(null);
@@ -73,7 +94,16 @@ var dataModel = {
                 self.getregion();
                 self.getSiteCard($(this).val());
             });
-
+            $('.sel').change(function () {
+                var ids = [];
+                $('.sel').each(function () {
+                    if ($(this).is(':checked')) {
+                        var id = $(this).val();
+                        ids.push(id);
+                    }
+                });
+                self.selectedSites(ids);
+            });
         }, null, null);
     },
     getSiteCard: function (siteid) {
@@ -156,6 +186,28 @@ var dataModel = {
             dataModel.navigate.gotoPage(pc);
         },
     },
+    editMultiBlock: function () {
+        var self = this;
+        document.getElementById("uyari_state").style.display = 'none';
+        document.getElementById("tamam").style.display = 'none';
+        var data = {
+            personelid: self.selectedpersonelid(),
+            siteIds: self.selectedSites(),
+        }
+        crmAPI.editSiteMultiple(data, function (a, b, c) {
+            if (a == "Tamamlandı") {
+                document.getElementById("uyari_state").style.display = 'none';
+                document.getElementById("tamam").style.display = 'block';
+                window.setTimeout(function () {
+                    $('#editMultiple').modal('hide');
+                    //self.getBlockList(1, dataModel.rowsPerPage());
+                }, 1000);
+            } else {
+                document.getElementById("tamam").style.display = 'none';
+                document.getElementById("uyari_state").style.display = 'block';
+            }
+        }, null, null);
+    },
     renderBindings: function () {
         var self = this;
         $(function () {
@@ -191,6 +243,12 @@ var dataModel = {
             self.newbolgekod(null);
             self.newdescription(null);
             self.newregion(null);
+        });
+        $('#cmulti').click(function () {
+            document.getElementById("uyari_state").style.display = 'none';
+            document.getElementById("tamam").style.display = 'none';
+            self.selectedpersonelid(undefined);
+            self.getpersonel();
         });
     }
 }

@@ -107,18 +107,10 @@
 																	<li>
 																		<a id="new" href="#myModal1" role="button" class="btn" data-toggle="modal" style="padding-right: 110px; float: left;">Yeni</a>
 																	</li>
-																	
-																	<li class="divider"></li>
-																	<li class="dropdown-submenu">
-																		<a tabindex="-1" href="#">Seçim</a>
-																		<ul class="dropdown-menu">
-																			<li><a tabindex="-1" href="#">Tümünü Seç</a></li>
-																			<li><a href="#">Seçimi Çevir</a></li>
-																			<li><a href="#">Seçimi Temizle</a></li>
-																		</ul>
-																	</li>
-																	<li class="divider"></li>
-																	<li><a href="#">Excel'e Kaydet</a></li>
+                                                                    <li class="divider"></li>
+                                                                    <li>
+                                                                        <a id="cmulti" href="#editMultiple" role="button" class="btn" data-toggle="modal" style="padding-right: 110px; float: left;">Sorumlu Değiştir</a>
+                                                                    </li>
 																</ul>
 															</div>
 														</th>
@@ -145,7 +137,7 @@
 															<button  data-bind="value:blockid" type="button" class="btn btn-primary btn-lg edit" data-toggle="modal" data-target="#myModal" style="padding: 3px; border-radius: 0px; font-size:14px;">
 																Düzenle
 															</button>
-															<input type="checkbox"  />
+															<input type="checkbox" data-bind="value: blockid" class="sel" />
 														</td>
 														<td data-bind="text:site.region"></td>
                                                         <td data-bind="text:site.sitename"></td>
@@ -463,6 +455,33 @@
             </div>
         </div>
         <!-- Duzenle For Modal Finish-->
+
+        <div class="modal fade" id="editMultiple" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document" style="margin-top: 10px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="H1">Blok Sorumlusu Atama</h4>
+                    </div>
+                    <div class="modal-body" style="display: inline-block;position:relative; min-height:50px;">
+                        <div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" data-bind="text: selectedBlocks().length > 0 ? (selectedBlocks().length + ' Adet Blok Seçildi') : 'Blok Seçiniz'"></div>
+                            <div data-bind="visible:selectedBlocks().length > 0" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <select id="tsatissorumlusu" data-bind="options:personellist, optionsValue:'personelid', optionsText:'personelname', optionsCaption: 'Seçiniz', value: selectedpersonelid"> </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <span id="uyari_state" class="label label-danger">Tamamlanmadı...</span>
+                        <span id="tamam" class="label label-success">İşlem Başarılı...</span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+                        <button data-bind="click:editMultiBlock, enable: selectedBlocks().length > 0" type="button" class="btn btn-primary">Kaydet</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     
     </div>
 

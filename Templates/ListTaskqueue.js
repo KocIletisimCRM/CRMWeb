@@ -382,14 +382,12 @@ var dataModel = {
                 $('.satir').click(function () {
                     var checkedids = [];
                     var id = $(this).index();
-                    if ($(".sel")[id - 1].checked != true)
-                    {
+                    if ($(".sel")[id - 1].checked != true) {
                         $(".sel")[id - 1].checked = true;
                         $(".sel").change();
                         checkedids.push(id);
                     }
-                    else
-                   {                       
+                    else {
                         $(".sel")[id - 1].checked = false;
                         $(".sel").change();
                     }
