@@ -196,7 +196,8 @@ var dataModel = {
             self.errormessage(a.errorMessage);
             window.setTimeout(function () {
                 $('#myModal1').modal('hide');
-                self.getBlockList(1, dataModel.rowsPerPage());
+                $('#kayit').prop('disabled', false);
+                self.getBlockList(1, 20);
             }, 1000);
         }, null, null);
         },
