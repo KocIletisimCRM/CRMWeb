@@ -145,7 +145,7 @@ var dataModel = {
             self.errormessage(a.errorMessage);
             window.setTimeout(function () {
                 $('#myModal1').modal('hide');
-                self.getSiteList(1, dataModel.rowsPerPage());
+                self.getSiteList(1, 20);
             }, 1000);
         }, null, null);
     },
