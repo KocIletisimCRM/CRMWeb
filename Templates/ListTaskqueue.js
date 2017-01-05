@@ -31,6 +31,7 @@ var dataModel = {
     selectedtaskorderno:ko.observableArray([]),
     sitename: ko.observable(),
     blockname: ko.observable(),
+    telocadia: ko.observable(),
     customername: ko.observable(),
     customerstatus: ko.observable(),
     selectedIss: ko.observable(),
@@ -315,6 +316,7 @@ var dataModel = {
         self.customername(null);
         self.consummationDate(null);
         self.sitename(null);
+        self.telocadia(null);
         self.selectedCustomerstatus(null);
         $("#taskNameFilter,#abonedurumu,#servissaglayici,#taskdurumu,#personel,#personelatamacombo").multiselect('deselectAll', false);
         $("#taskNameFilter,#abonedurumu,#servissaglayici,#taskdurumu,#personel,#personelatamacombo").multiselect('refresh');
@@ -347,6 +349,7 @@ var dataModel = {
             pageNo:pageno,
             rowsPerPage:rowsperpage,
             site: self.sitename() ? { fieldName: "sitename", op: 6, value: self.sitename() } : null,
+            telocordiaid: self.telocadia() ? { fieldName: "telocadia", op: 2, value: '61001010368' } : null,
             customer: self.customername() ? { fieldName: "customername", op: 6, value: self.customername() } : null,
             task: self.selectedTaskname() ? { fieldName: "taskid", op: 7, value: self.selectedTaskname() } : null,
             personel: self.selectedPersonelname().length > 0 ? (self.selectedPersonelname() == "0" ? { fieldName: "personelname", op: 8, value: null } : { fieldName: "personelid", op: 7, value: self.selectedPersonelname() }) : null,
