@@ -50,7 +50,25 @@ var dataModel = {
         }, null, null);
 
     },
-    //sayfadaki tablo için
+    getTaskType: function () {
+        var self = this;
+        crmAPI.getTaskType(function (a, b, c) {
+            self.taskTypeList(a);
+            $("#newtaskturu,#edittaskturu,#taskturu").multiselect({
+                includeSelectAllOption: true,
+                selectAllValue: 'select-all-value',
+                maxHeight: 250,
+                buttonWidth: '100%',
+                nonSelectedText: 'Task Türünü Seçiniz',
+                nSelectedText: 'Task Adı Seçildi!',
+                numberDisplayed: 2,
+                selectAllText: 'Tümünü Seç!',
+                enableFiltering: true,
+                filterPlaceholder: 'Ara'
+            });
+            $('#newtaskturu,#edittaskturu,#taskturu').multiselect('select', self.taskTypeList()).multiselect('rebuild');
+        }, null, null)
+    },
     getTask: function (pageno, rowsperpage) {
         var self = this;
         self.pageNo(pageno);
@@ -123,6 +141,7 @@ var dataModel = {
             self.selectedTask(a[0]);
             self.getObjectType();
             self.getPersonelType();
+            self.getTaskType();
         }, null, null);
     },
     saveTask: function () {
@@ -240,6 +259,7 @@ var dataModel = {
     renderBindings: function () {
         var self = this;
         self.getTask(dataModel.pageNo(), dataModel.rowsPerPage());
+        self.getTaskType();
         self.getTaskList();
         ko.applyBindings(dataModel, $("#bindingContainer")[0]);
     },

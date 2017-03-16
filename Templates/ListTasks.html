@@ -22,15 +22,7 @@
                         <div class="col-xs-12 col-sm-4 col-md-4">
                             <div class="form-group-sm has-info cls-margin-bottom">
                                 <label class="control-label" for="taskturu">Task Türü</label>
-                                <select id="taskturu" class="form-control">
-                                    <option value="">Seçiniz</option>
-                                    <option value="0">Diğer</option>
-                                    <option value="1">Satış Taskı</option>
-                                    <option value="2"> Randevu Taskı</option>
-                                    <option value="3"> Kurulum Taskı</option>
-                                    <option value="4"> Randuvusuz Kurulum Taskı</option>
-                                    <option value="5">SOL Kapama Taskı</option>
-                                </select>
+                                <select id="taskturu" data-bind="options:taskTypeList, optionsText:'TaskTypeName',optionsValue:'TaskTypeId',optionsCaption:'Seçiniz'" class="form-control"></select>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-4 col-md-4" style="margin-top: 21px;">
@@ -175,14 +167,7 @@
                         <p>Task Türü</p>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <select id="newtaskturu" class="form-control">
-                            <option value="0">Diğer</option>
-                            <option value="1">Satış Taskı</option>
-                            <option value="2"> Randevu Taskı</option>
-                            <option value="3"> Kurulum Taskı</option>
-                            <option value="4"> Randuvusuz Kurulum Taskı</option>
-                            <option value="5">SOL Kapama Taskı</option>
-                        </select>
+                        <select id="newtaskturu" data-bind="options:taskTypeList, optionsText:'TaskTypeName',optionsValue:'TaskTypeId',optionsCaption:'Seçiniz'" class="form-control"></select>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                         <p>İlgi</p>
@@ -246,14 +231,7 @@
                         <p>Task Türü</p>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
-                        <select id="edittaskturu" data-bind="value:tasktypes?tasktypes.TaskTypeId:null" class="form-control">
-                            <option value="0">Diğer</option>
-                            <option value="1">Satış Taskı</option>
-                            <option value="2"> Randevu Taskı</option>
-                            <option value="3"> Kurulum Taskı</option>
-                            <option value="4"> Randuvusuz Kurulum Taskı</option>
-                            <option value="5">SOL Kapama Taskı</option>
-                        </select>
+                        <select id="edittaskturu" data-bind="options:$root.taskTypeList, optionsText:'TaskTypeName', value:tasktypes?tasktypes.TaskTypeId:null, optionsValue:'TaskTypeId', optionsCaption:'Seçiniz'" class="form-control"></select>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
                         <p>İlgi</p>
