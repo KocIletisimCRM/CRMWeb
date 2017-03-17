@@ -19,6 +19,9 @@ var dataModel = {
     selectedtaskid: ko.observable(),
     description: ko.observable(),
     isAttacheableCustomer: ko.observable(),
+    newcustomer: ko.pureComputed(function () {
+        return dataModel.selectedtaskid() == 10236 ? true : false;
+    }),
     getpersonel: function () {
         self = this;
         self.personellist(null);
@@ -128,7 +131,7 @@ var dataModel = {
     },
     getTasks: function () {
         var self = this;
-        var taskids = [6117, 1, 6115, 8164, 65, 8165, 36, 85, 87, 3, 10207];
+        var taskids = [6117, 1, 6115, 8164, 65, 8165, 36, 85, 87, 3, 10207, 10231, 10236];
         var data = {
             task: { fieldName: "taskid", op: 7, value: taskids },
         };
