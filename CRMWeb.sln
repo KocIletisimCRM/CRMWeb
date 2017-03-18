@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CRMWeb", "http://localhost:52218", "{A2A93588-C27C-4759-8063-853CCD149FDE}"
 	ProjectSection(WebsiteProperties) = preProject
@@ -23,8 +23,6 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CRMWeb", "http://localhost:
 		Release.AspNetCompiler.Debug = "False"
 		SlnRelativePath = "..\CRMWeb\"
 	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7F346DD3-F702-4C7A-A9CB-E4A9A48451E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -65,6 +65,29 @@
             <div data-bind="visible:selectedtaskid()&&((isAttacheableCustomer() && customerid()) || (!isAttacheableCustomer() && blockid()))" class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px;">
                 <textarea data-bind="value:description" class="form-control" rows="3"></textarea>
             </div>
+            <div data-bind="visible: newcustomer">
+                <div class="col-xs-12 col-sm-12 col-md-12 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                    <p class="text-center alert-warning"> Sadece Hat Satışlarında Müşteri Bilgileri Girilmelidir.</p>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                    <p> Ad Soyad</p>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                    <input data-bind="value:customername" type="text" class="form-control">
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                    <p> Tc Kimlik </p>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                    <input data-bind="value:tc" type="number" class="form-control">
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                    <p> GSM </p>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 cls-padding-0px" style="margin-top: 3px; padding: 4px 0 0 0">
+                    <input data-bind="value:gsm" type="text" class="form-control">
+                </div>
+            </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>

@@ -1,7 +1,9 @@
 ﻿
 var dataModel = {
-
+    customername: ko.observable(),
     customerid: ko.observable(),
+    tc: ko.observable(),
+    gsm: ko.observable(),
     control: ko.observable(),
     attachedpersonelid: ko.observable(),
     creationdate: ko.observable(),
@@ -153,7 +155,13 @@ var dataModel = {
     },
     savesalestask: function () {
         var self = this;
+        if (self.newcustomer() && !self.customername())
+            return alert("Müşteri Bilgilerini Doldurunuz !");
         var data = {
+            newcustomer: self.newcustomer(),
+            customername: self.customername(),
+            tc: self.tc(),
+            gsm: self.gsm(),
             creationdate: $("#daterangepicker11").val()?$("#daterangepicker11").val():null,
             customerid: self.isAttacheableCustomer() ? self.customerid() : null,
             attachedpersonelid: self.attachedpersonelid(),
