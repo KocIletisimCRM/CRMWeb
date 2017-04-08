@@ -64,6 +64,8 @@ var dataModel = {
         self.pageNo(pageno);
         self.rowsPerPage(rowsperpage);
         self.fiberSODate(self.fiberStartDate() + '-' + self.fiberEndDate());
+        var locs = $.trim(self.locationid()).replace(new RegExp(" ", 'g'), "").replace(new RegExp("\n", 'g'), "").split('\'');
+        if (locs.length > 1) locs.splice(0,1);
         var data = {
             pageNo: pageno,
             rowsPerPage: rowsperpage,
@@ -72,6 +74,7 @@ var dataModel = {
             sitename: self.site() ? { fieldName: "sitename", op: 6, value: self.site() } : null,
             region: self.region() ? { fieldName: "region", op: 6, value: self.region() } : null,
             telocadia: self.telocadia() ? { fieldName: "telocadia", op: 2, value: self.telocadia() } : null,
+            locationid: self.locationid() ? { fieldName: "locationid", op: 11, value: locs } : null, // op: 11 -> string listesi
         };
         crmAPI.getBlockList(data, function (a,b,c) {
             self.blockList(a.data.rows);
