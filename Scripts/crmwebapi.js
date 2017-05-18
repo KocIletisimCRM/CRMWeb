@@ -46,8 +46,8 @@
      };
 
      var getData = function (callType, path, sendData, onsuccess, onerror, before) {
-          //var baseURL = "http://crmapitest.kociletisim.com.tr/api/Fiber/";
-          var baseURL = "http://localhost:50752/api/Fiber/";
+          var baseURL = "http://crmapitest.kociletisim.com.tr/api/Fiber/";
+          //var baseURL = "http://localhost:50752/api/Fiber/";
          $.ajax({
              method: callType,
              url: baseURL + path,
@@ -322,8 +322,10 @@
         getTaskType: function (onsuccess, onerror, before) {
             getData("POST", "Filter/getTaskType", {}, onsuccess, onerror, before)
         },
-        
-        uploadFile:function () {
+        saveTaskCollective: function (data, onsuccess, onerror, before) {
+            getData("POST", "Taskqueue/saveTaskCollective", data, onsuccess, onerror, before)
+        },
+        uploadFile: function () {
         for (var i = 0; i < fileNode.files.length; i++) {
             var request = new XMLHttpRequest();
             request.upload.addEventListener('loadstart', function () {

@@ -25,10 +25,10 @@ var dataModel = {
     rowsPerPage: ko.observable(20),
     querytime: ko.observable(0),
     errormessage: ko.observable(),
-    errorcode:ko.observable(),
+    errorcode: ko.observable(),
     isLoading: ko.observable(),
     selectedTaskname: ko.observableArray([]),
-    selectedtaskorderno:ko.observableArray([]),
+    selectedtaskorderno: ko.observableArray([]),
     sitename: ko.observable(),
     blockname: ko.observable(),
     telocadia: ko.observable(),
@@ -39,22 +39,24 @@ var dataModel = {
     selectedAttachmentPersonelid: ko.observable(),
     attachmentDate: ko.observable(),
     appointmentDate: ko.observable(),
-    consummationDate:ko.observable(),
+    consummationDate: ko.observable(),
     selectedTaskstatus: ko.observableArray([]),
-    selectedCustomerstatus:ko.observable(),
+    selectedCustomerstatus: ko.observable(),
     description: ko.observable(),
     tasks: ko.observableArray([]),
     ctstatuslist: ko.observableArray([]),
     isslist: ko.observableArray([]),
     taskstatuslist: ko.observableArray([]),
     ziyaretStatusList: ko.observableArray([]),
-    selectedZiyaretStatus:ko.observable(),
-    selectedZiyaretCTstatus:ko.observable(),
+    selectedZiyaretStatus: ko.observable(),
+    selectedZiyaretCTstatus: ko.observable(),
     personellist: ko.observableArray([]),
     taskqueuelist: ko.observableArray([]),
     totalpagecount: ko.observable(0),
     totalRowCount: ko.observable(),
     defaultstatus: ko.observable(),
+    taskstatuslistforcollective: ko.observableArray([{ taskstateid: -1, taskstate: "Bekleyiniz" }]),
+    readyCollectiveList: ko.observableArray([]), // toplu sonlandırılacaklar listesi
     //kimlik kartı
     selectedCustomer: ko.pureComputed(function () {
         return dataModel.customersformodal()[0];
@@ -76,13 +78,13 @@ var dataModel = {
     flatforcust: ko.observable(),
     customersformodal: ko.observableArray([]),
     customersformodalSelectedIndex: ko.observable(0),
-    customerForModalAdd: function(){
+    customerForModalAdd: function () {
         var newCustomer = {};
         for (var field in dataModel.selectedCustomer())
             if (dataModel.selectedCustomer().hasOwnProperty(field))
                 newCustomer[field] = null;
         newCustomer.customerid = 0;
-        newCustomer.customername =ko.observable("Yeni Müşteri");
+        newCustomer.customername = ko.observable("Yeni Müşteri");
         newCustomer.block = dataModel.selectedCustomer().block;
         newCustomer.flat = dataModel.selectedCustomer().flat;
         dataModel.customersformodalSelectedIndex(0);
@@ -91,6 +93,107 @@ var dataModel = {
     },
     //modal aktif pasif customer
 
+    gettaskstatusForCollective: function (taskid) {
+        var self = this;
+        self.taskstatuslistforcollective([]);
+        var data = {
+            task: { fieldName: "taskid", op: 2, value: taskid },
+            taskstate: { fieldName: "taskstate", op: 6, value: '' },
+        };
+        crmAPI.getTaskStatus(data, function (a, b, c) {
+            self.taskstatuslistforcollective(a);
+            $("#statecombo").multiselect({
+                includeSelectAllOption: true,
+                selectAllValue: 'select-all-value',
+                maxHeight: 250,
+                buttonWidth: '100%',
+                nonSelectedText: 'Seçiniz',
+                numberDisplayed: 2,
+                selectAllText: 'Tümünü Seç!',
+                enableFiltering: true,
+                filterPlaceholder: 'Ara'
+            }).multiselect('refresh');
+        }, null, null)
+    },
+    readyCollective: function () {
+        document.getElementById("uyari_state").style.display = 'none';
+        document.getElementById("uyari_ayni").style.display = 'none';
+        document.getElementById("uyari_bekle").style.display = 'none';
+        document.getElementById("uyari_surec").style.display = 'none';
+        document.getElementById("tamam").style.display = 'none';
+        var self = this;
+        self.readyCollectiveList([]);
+        var select = [];
+        var taskid = 0;
+        for (var i = 0; i < self.taskqueuelist().length; i++) {
+            for (var j = 0; j < self.selectedtaskorderno().length; j++) {
+                if (self.taskqueuelist()[i].taskorderno == self.selectedtaskorderno()[j] && self.taskqueuelist()[i].task.tasktypes.TaskTypeId == 0) {
+                    if (taskid != 0 && self.taskqueuelist()[i].task.taskid != taskid) {
+                        $('#kaydetcol').prop('disabled', true);
+                        document.getElementById("uyari_ayni").style.display = 'block';
+                        window.setTimeout(function () {
+                            $('#sonlandir').modal('hide');
+                            $('#kaydetcol').prop('disabled', false);
+                        }, 2000);
+                        return;
+                    }
+                    taskid = self.taskqueuelist()[i].task.taskid;
+                    select.push(self.taskqueuelist()[i]);
+                }
+            }
+        } // tipi diğer olan tasklardan aynı taskid'li tasklar toplu kapatılabilsin.
+        if (select.length == 0) {
+            $('#kaydetcol').prop('disabled', true);
+            document.getElementById("uyari_surec").style.display = 'block';
+            window.setTimeout(function () {
+                $('#sonlandir').modal('hide');
+                $('#kaydetcol').prop('disabled', false);
+            }, 2000);
+            return;
+        }
+        else if (taskid != 0) {
+            self.readyCollectiveList(select);
+            self.gettaskstatusForCollective(taskid);
+        }
+    },
+    saveTaskCollective: function () {
+        var self = this;
+        document.getElementById("uyari_state").style.display = 'none';
+        document.getElementById("uyari_bekle").style.display = 'none';
+        document.getElementById("tamam").style.display = 'none';
+        $('#kaydetcol').prop('disabled', true);
+        if ($('#statecombo').val() == "") {
+            document.getElementById("uyari_state").style.display = 'block';
+            $('#kaydetcol').prop('disabled', false);
+            return;
+        }
+        else {
+            document.getElementById("uyari_bekle").style.display = 'block';
+            var list = [];
+            for (var i = 0; i < self.readyCollectiveList().length; i++) {
+                var desc = self.readyCollectiveList()[i].description ? (self.readyCollectiveList()[i].description + " Çoklu task kapama ile kaydedildi. " + moment().format('DD MMMM, h:mm') + "(" + self.user().userFullName + ")") : ("Çoklu task kapama ile kaydedildi. " + moment().format('DD MMMM, h:mm') + "(" + self.user().userFullName + ")");
+                var data = {
+                    taskorderno: self.readyCollectiveList()[i].taskorderno,
+                    task: { taskid: self.readyCollectiveList()[i].task.taskid },
+                    taskstatepool: { taskstateid: $('#statecombo').val(), taskstate: $("#statecombo option:selected").text() ? $("#statecombo option:selected").text() : null },
+                    stockmovement: [],
+                    description: desc,
+                    // eğer müşterinin kampanyası varsa campanya id gönderiyorum kampanyasına döküman tanımlı mı öğrenmek için (Hüseyin KOZ) 03.11.2016
+                    customerproduct: self.readyCollectiveList()[i].customerproduct.length > 0 ? [self.readyCollectiveList()[i].customerproduct[0].campaignid] : [],
+                }
+                list.push(data);
+            }
+            crmAPI.saveTaskCollective(list, function (a, b, c) {
+                document.getElementById("uyari_bekle").style.display = 'none';
+                document.getElementById("tamam").style.display = 'block';
+                window.setTimeout(function () {
+                    $('#sonlandir').modal('hide');
+                    $('#kaydetcol').prop('disabled', false);
+                    self.getFilter(dataModel.pageNo(), dataModel.rowsPerPage());
+                }, 2000);
+            }, null, null);
+        }
+    },
     getUserInfo: function () {
         var self = this;
         crmAPI.userInfo(function (a, b, c) {
@@ -107,8 +210,8 @@ var dataModel = {
     },
     getTasks: function () {
         var self = this;
-        var data={
-            task:  { fieldName: "taskname", op: 6, value:"" },
+        var data = {
+            task: { fieldName: "taskname", op: 6, value: "" },
         };
         crmAPI.getTaskFilter(data, function (a, b, c) {
             self.tasks(a);
@@ -125,11 +228,11 @@ var dataModel = {
                 filterPlaceholder: 'Ara'
             });
         }, null, null);
-    
+
     },
     getCustomerStatus: function () {
         var self = this;
-        crmAPI.getCustomerStatus( function (a, b, c) {
+        crmAPI.getCustomerStatus(function (a, b, c) {
             self.ctstatuslist(a);
             $("#abonedurumu").multiselect({
                 includeSelectAllOption: true,
@@ -166,9 +269,9 @@ var dataModel = {
     gettaskstatus: function () {
         var self = this;
         var data = {
-            taskstate:{ fieldName: "taskstate", op: 6, value: "" },
+            taskstate: { fieldName: "taskstate", op: 6, value: "" },
         };
-        crmAPI.getTaskStatus(data,function (a, b, c) {
+        crmAPI.getTaskStatus(data, function (a, b, c) {
             self.taskstatuslist(a);
             self.defaultstatus('0');
             $("#taskdurumu").multiselect({
@@ -188,7 +291,7 @@ var dataModel = {
     getZiyaretTaskstatus: function () {
         var self = this;
         var data = {
-          taskid:86,
+            taskid: 86,
         };
         crmAPI.getTaskMatchesStatus(data, function (a, b, c) {
             $("#ziyaretcombo").multiselect({
@@ -204,25 +307,25 @@ var dataModel = {
                 filterPlaceholder: 'Ara'
             });
             self.ziyaretStatusList(a);
-           $('#ziyaretcombo').multiselect('select', self.ziyaretStatusList()).multiselect('rebuild');
+            $('#ziyaretcombo').multiselect('select', self.ziyaretStatusList()).multiselect('rebuild');
         }, null, null)
     },
-    SaveZiyaretStatus:function(){
+    SaveZiyaretStatus: function () {
         var self = this;
         var data = {
             tasks: self.selectedtaskorderno(),
-            status:self.selectedZiyaretStatus()
+            status: self.selectedZiyaretStatus()
         };
-        if (self.selectedtaskorderno()<1 && self.selectedZiyaretStatus()==null) {
+        if (self.selectedtaskorderno() < 1 && self.selectedZiyaretStatus() == null) {
             alert("En az bir task ve bir durum seçmelisiniz!");
         }
         else
-        crmAPI.saveZiyaretTask(data, function (a, b, c) {
-            window.setTimeout(function () {
-                $('#katziyareti1').modal('hide');
-                self.getFilter(1, dataModel.rowsPerPage());
-            }, 1000);
-        }, null, null);
+            crmAPI.saveZiyaretTask(data, function (a, b, c) {
+                window.setTimeout(function () {
+                    $('#katziyareti1').modal('hide');
+                    self.getFilter(1, dataModel.rowsPerPage());
+                }, 1000);
+            }, null, null);
     },
     SaveCTStatusOnZiyaret: function () {
         var self = this;
@@ -243,7 +346,7 @@ var dataModel = {
             }, null, null);
     },
     getpersonel: function () {
-        var self = this;    
+        var self = this;
         crmAPI.getPersonel(function (a, b, c) {
             self.personellist(a);
             $("#personel").multiselect({
@@ -326,14 +429,14 @@ var dataModel = {
         self.selectedTaskstatus(null);
         self.getFilter(dataModel.pageNo(), dataModel.rowsPerPage());
     },
-    enterfilter: function (d,e) {
+    enterfilter: function (d, e) {
         var self = this;
         if (e && (e.which == 1 || e.which == 13)) {
             self.getFilter(1, self.rowsPerPage());
         }
         return true;
     },
-    getFilter: function (pageno,rowsperpage) {
+    getFilter: function (pageno, rowsperpage) {
         var self = this;
         self.pageNo(pageno);
         self.rowsPerPage(rowsperpage);
@@ -346,8 +449,8 @@ var dataModel = {
         self.selectedTaskstatus($("#taskdurumu").val() ? $("#taskdurumu").val() : null);
         self.selectedPersonelname($("#personel").val() ? $("#personel").val() : '');
         var data = {
-            pageNo:pageno,
-            rowsPerPage:rowsperpage,
+            pageNo: pageno,
+            rowsPerPage: rowsperpage,
             site: self.sitename() ? { fieldName: "sitename", op: 6, value: self.sitename() } : null,
             telocordiaid: self.telocadia() ? { fieldName: "telocadia", op: 2, value: '61001010368' } : null,
             customer: self.customername() ? { fieldName: "customername", op: 6, value: self.customername() } : null,
@@ -360,58 +463,58 @@ var dataModel = {
             appointmentDate: self.appointmentDate() ? self.appointmentDate() : null,
             consummationDate: self.consummationDate() ? self.consummationDate() : null,
         };
-       
-            crmAPI.getTaskQueues(data, function (a, b, c) {
-                self.taskqueuelist(a.data.rows);
-                self.pageCount(a.data.pagingInfo.pageCount);
-                self.querytime(a.performance.TotalResponseDuration);
-                self.totalRowCount(a.data.pagingInfo.totalRowCount);
-                self.isLoading(false);
-                self.errormessage(null);
-                self.errorcode(null);
-                self.firstLoad(false);
-               // self.defaultstatus(0);
-                $('.sel').change(function () {
-                    var ids = [];
-                    $('.sel').each(function () {
-                        if ($(this).is(':checked')) {
-                            var id = $(this).val();
-                            ids.push(id);
-                            //console.log("Seçim: " + id + "");
-                        }
-                    });
-                    self.selectedtaskorderno(ids);
-                });
-                $('.satir').click(function () {
-                    var checkedids = [];
-                    var id = $(this).index();
-                    if ($(".sel")[id - 1].checked != true) {
-                        $(".sel")[id - 1].checked = true;
-                        $(".sel").change();
-                        checkedids.push(id);
-                    }
-                    else {
-                        $(".sel")[id - 1].checked = false;
-                        $(".sel").change();
+
+        crmAPI.getTaskQueues(data, function (a, b, c) {
+            self.taskqueuelist(a.data.rows);
+            self.pageCount(a.data.pagingInfo.pageCount);
+            self.querytime(a.performance.TotalResponseDuration);
+            self.totalRowCount(a.data.pagingInfo.totalRowCount);
+            self.isLoading(false);
+            self.errormessage(null);
+            self.errorcode(null);
+            self.firstLoad(false);
+            // self.defaultstatus(0);
+            $('.sel').change(function () {
+                var ids = [];
+                $('.sel').each(function () {
+                    if ($(this).is(':checked')) {
+                        var id = $(this).val();
+                        ids.push(id);
+                        //console.log("Seçim: " + id + "");
                     }
                 });
-                $('.musteri').click(function () {
-                    var row = $(this).parent().parent().index();
-                    self.blockidforcust(self.taskqueuelist()[row - 1].attachedobject.block.blockid);
-                    self.flatforcust(self.taskqueuelist()[row - 1].attachedobject.flat);
-                    //self.selectedCustomer(self.taskqueuelist()[row - 1].attachedobject);
-                    self.getCustomers();
-                });
-            }, null, null)
+                self.selectedtaskorderno(ids);
+            });
+            $('.satir').click(function () {
+                var checkedids = [];
+                var id = $(this).index();
+                if ($(".sel")[id - 1].checked != true) {
+                    $(".sel")[id - 1].checked = true;
+                    $(".sel").change();
+                    checkedids.push(id);
+                }
+                else {
+                    $(".sel")[id - 1].checked = false;
+                    $(".sel").change();
+                }
+            });
+            $('.musteri').click(function () {
+                var row = $(this).parent().parent().index();
+                self.blockidforcust(self.taskqueuelist()[row - 1].attachedobject.block.blockid);
+                self.flatforcust(self.taskqueuelist()[row - 1].attachedobject.flat);
+                //self.selectedCustomer(self.taskqueuelist()[row - 1].attachedobject);
+                self.getCustomers();
+            });
+        }, null, null)
 
     },
-    select :function (d, e) {
-        var self=this;
+    select: function (d, e) {
+        var self = this;
         $("#taskquetable tr").removeClass("selected");
         $(e.currentTarget).addClass("selected");
         console.log("seçilen " + d.taskorderno);
         self.selectedtaskorderno(d.taskorderno);
-        
+
     },
     redirect: function () {
         window.location.href = "app.html";
@@ -422,10 +525,10 @@ var dataModel = {
             dataModel.getFilter(pageNo, dataModel.rowsPerPage());
             dataModel.isLoading(false);
         },
-        gotoFirstPage: function(){
+        gotoFirstPage: function () {
             dataModel.navigate.gotoPage(1);
         },
-        gotoLastPage:function(){
+        gotoLastPage: function () {
             dataModel.navigate.gotoPage(dataModel.pageCount());
         },
         gotoNextPage: function () {
@@ -515,10 +618,10 @@ var dataModel = {
         var data = self.selectedCustomer();
         crmAPI.saveCustomerCard(data, function (a, b, c) {
             if (a == "ok") {
-               window.setTimeout(function () {
-                   $('#customerinfo').modal('hide');
-                   self.getFilter(1, dataModel.rowsPerPage());
-               }, 1000); 
+                window.setTimeout(function () {
+                    $('#customerinfo').modal('hide');
+                    self.getFilter(1, dataModel.rowsPerPage());
+                }, 1000);
             }
         }, null, null);
     },
@@ -527,7 +630,7 @@ var dataModel = {
         self.katziyareti(true);
         self.saveCustomer();
     },
-    getCustomers: function (){
+    getCustomers: function () {
         var self = this;
         var data = {
             block: { fieldName: 'blockid', op: 2, value: self.blockidforcust() },
@@ -552,16 +655,16 @@ var dataModel = {
             selectAllText: 'Tümünü Seç!',
             enableFiltering: true,
             filterPlaceholder: 'Ara'
-            
+
         });
-      
+
         $(function () {
             $('#datetimepicker1,#datetimepicker2,#datetimepicker3').datetimepicker();
         });
         $('#daterangepicker1,#daterangepicker2,#daterangepicker3').daterangepicker({
             "timePicker": true,
             ranges: {
-                'Bugün': [moment(), moment().add(1,'days')],
+                'Bugün': [moment(), moment().add(1, 'days')],
                 'Dün': [moment().subtract(1, 'days'), moment()],
                 'Son 7 Gün': [moment().subtract(6, 'days'), moment()],
                 'Son 30 Gün': [moment().subtract(29, 'days'), moment()],
@@ -602,14 +705,14 @@ var dataModel = {
         self.getTasks();
         self.getpersonel();
         self.getCustomerStatus();
-        self.getFilter(dataModel.pageNo(), dataModel.rowsPerPage());           
+        self.getFilter(dataModel.pageNo(), dataModel.rowsPerPage());
         ko.applyBindings(dataModel, $("#bindingContainer")[0]);
         $("#katziyareti11").click(function () {
             self.getZiyaretTaskstatus();
             self.selectedZiyaretStatus(null);
         });
         $(this.typeHeadTagIds).kocTypeHead();
-        
+
     }
 }
 
