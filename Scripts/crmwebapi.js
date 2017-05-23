@@ -2,7 +2,7 @@
 /// <reference path="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" />
 /// <reference path="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js" />
 
- var convertToObservable = function (object) {
+var convertToObservable = function (object) {
     var t = {}, i;
     if (typeof object.valueOf() === "object") {
         for (i in object) {
@@ -13,93 +13,92 @@
     return typeof object.valueOf() === "array" ? ko.observable([object.valueOf()]) : ko.observable(object.valueOf());
 }
 
- var crmAPI = (function () {
+var crmAPI = (function () {
 
-     var getCookie = function (cname) {
-         var name = cname + "=";
-         var ca = document.cookie.split(';');
-         for (var i = 0; i < ca.length; i++) {
-             var c = ca[i];
-             while (c.charAt(0) == ' ') c = c.substring(1);
-             if (c.indexOf(name) == 0) {
-                 try {
-                     return JSON.parse(c.substring(name.length, c.length));
-                 }
-                 catch (e) {
-                     return c.substring(name.length, c.length);
-                 }
-             }
-         }
-         return {};
-     };
+    var getCookie = function (cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1);
+            if (c.indexOf(name) == 0) {
+                try {
+                    return JSON.parse(c.substring(name.length, c.length));
+                }
+                catch (e) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+        }
+        return {};
+    };
 
-     var setCookie = function (key, keyvalue, value) {
-         var cookieObj;
-         try {
-             cookieObj = JSON.parse(getCookie(key));
-         } catch (e) {
-             cookieObj = getCookie(key) || {}
-         }
-         if (value) cookieObj[keyvalue] = value;
-         else cookieObj = keyvalue;
-         document.cookie = key + "=" + JSON.stringify(cookieObj);
-     };
+    var setCookie = function (key, keyvalue, value) {
+        var cookieObj;
+        try {
+            cookieObj = JSON.parse(getCookie(key));
+        } catch (e) {
+            cookieObj = getCookie(key) || {}
+        }
+        if (value) cookieObj[keyvalue] = value;
+        else cookieObj = keyvalue;
+        document.cookie = key + "=" + JSON.stringify(cookieObj);
+    };
 
-     var getData = function (callType, path, sendData, onsuccess, onerror, before) {
-          var baseURL = "http://crmapitest.kociletisim.com.tr/api/Fiber/";
-          //var baseURL = "http://localhost:50752/api/Fiber/";
-         $.ajax({
-             method: callType,
-             url: baseURL + path,
-             data: JSON.stringify(sendData),
-             contentType: "application/json",
-             async: true,
-             beforeSend: function (xhr) {
-                 //Download progress
-                 //$.mobile.loading('show');
+    var getData = function (callType, path, sendData, onsuccess, onerror, before) {
+        var baseURL = "http://crmapitest.kociletisim.com.tr/api/Fiber/";
+        //var baseURL = "http://localhost:50752/api/Fiber/";
+        $.ajax({
+            method: callType,
+            url: baseURL + path,
+            data: JSON.stringify(sendData),
+            contentType: "application/json",
+            async: true,
+            beforeSend: function (xhr) {
+                //Download progress
+                //$.mobile.loading('show');
 
-                 if (sendData && sendData.username) {
-                     xhr.setRequestHeader("X-KOC-UserName", sendData.username);
-                     xhr.setRequestHeader("X-KOC-Pass", sendData.password);
-                     xhr.setRequestHeader("X-KOC-UserType", sendData.userType);
-                 } else {
-                     var x = document.cookie;
+                if (sendData && sendData.username) {
+                    xhr.setRequestHeader("X-KOC-UserName", sendData.username);
+                    xhr.setRequestHeader("X-KOC-Pass", sendData.password);
+                    xhr.setRequestHeader("X-KOC-UserType", sendData.userType);
+                } else {
+                    var x = document.cookie;
 
-                     var token = getCookie("token");
-                     xhr.setRequestHeader("X-KOC-Token", token);
-                 }
+                    var token = getCookie("token");
+                    xhr.setRequestHeader("X-KOC-Token", token);
+                }
 
-                 if (before) before();
-             }
-         }).success(function (data, status, xhr) {
-             if (sendData && sendData.username) {
-                 var token = xhr.getResponseHeader("X-KOC-Token"); // Cooki'ye yaz
-                 document.cookie = "token=" + token;
-                 if (!token)
-                     alert("Kullanıcı Bilgileri Hatalı");
-             } else {
-                 if (data.loginError)
-                     window.location.href = "Login.html"; // hata var token geçersiz ,login sayfasına yönlendir. Ama önce süreli bir ekranda hata görünsün.
-                 //document.location.href = document.location.host;
-             }
-             if (onsuccess) onsuccess(data);
-         }).fail(function (xhr, status, error) {
-             if (onerror)
-                 onerror(error);
-         });
-     }
-     return {
-         getCookie:function (key) { return getCookie(key);},
-         setCookie:function (key, keyvalue, value) { setCookie(key, keyvalue, value); },
-
+                if (before) before();
+            }
+        }).success(function (data, status, xhr) {
+            if (sendData && sendData.username) {
+                var token = xhr.getResponseHeader("X-KOC-Token"); // Cooki'ye yaz
+                document.cookie = "token=" + token;
+                if (!token)
+                    alert("Kullanıcı Bilgileri Hatalı");
+            } else {
+                if (data.loginError)
+                    window.location.href = "Login.html"; // hata var token geçersiz ,login sayfasına yönlendir. Ama önce süreli bir ekranda hata görünsün.
+                //document.location.href = document.location.host;
+            }
+            if (onsuccess) onsuccess(data);
+        }).fail(function (xhr, status, error) {
+            if (onerror)
+                onerror(error);
+        });
+    }
+    return {
+        getCookie: function (key) { return getCookie(key); },
+        setCookie: function (key, keyvalue, value) { setCookie(key, keyvalue, value); },
         login: function (data, onsuccess, onerror, before) {
-             getData("POST", "Authorize/getToken", data, onsuccess, onerror, before);
+            getData("POST", "Authorize/getToken", data, onsuccess, onerror, before);
         },
         userInfo: function (onsuccess, onerror, before) {
             getData("POST", "Authorize/getUserInfo", {}, onsuccess, onerror, before);
         },
-        getTaskFilter: function (data,onsuccess, onerror, before) {
-            getData("POST", "Filter/getTasks",data, onsuccess, onerror, before);
+        getTaskFilter: function (data, onsuccess, onerror, before) {
+            getData("POST", "Filter/getTasks", data, onsuccess, onerror, before);
         },
         saveTask: function (data, onsuccess, onerror, before) {
             getData("POST", "Task/saveTask", data, onsuccess, onerror, before);
@@ -107,7 +106,7 @@
         insertTask: function (data, onsuccess, onerror, before) {
             getData("POST", "Task/insertTask", data, onsuccess, onerror, before);
         },
-        getTSPFilter: function (data,onsuccess, onerror, before) {
+        getTSPFilter: function (data, onsuccess, onerror, before) {
             getData("POST", "Taskstatepool/getTaskState", data, onsuccess, onerror, before);
         },
         saveTaskState: function (data, onsuccess, onerror, before) {
@@ -144,10 +143,10 @@
             getData("POST", "Campaign/insertCampaigns", data, onsuccess, onerror, before);
         },
         getSiteFilter: function (data, onsuccess, onerror, before) {
-            getData("POST", "Filter/getCSB",data,onsuccess,onerror,before)
+            getData("POST", "Filter/getCSB", data, onsuccess, onerror, before)
         },
-        getCustomerStatus: function ( onsuccess, onerror, before) {
-            getData("POST", "Filter/getCustomerStatus",null, onsuccess, onerror, before)
+        getCustomerStatus: function (onsuccess, onerror, before) {
+            getData("POST", "Filter/getCustomerStatus", null, onsuccess, onerror, before)
         },
         getIssStatus: function (onsuccess, onerror, before) {
             getData("POST", "Filter/getIssStatus", {}, onsuccess, onerror, before)
@@ -167,7 +166,7 @@
         getGsmStatus: function (onsuccess, onerror, before) {
             getData("POST", "Filter/getGsmStatus", {}, onsuccess, onerror, before)
         },
-        getTaskStatus: function (data,onsuccess, onerror, before) {
+        getTaskStatus: function (data, onsuccess, onerror, before) {
             getData("POST", "Filter/getTasks", data, onsuccess, onerror, before)
         },
         getPersonel: function (onsuccess, onerror, before) {
@@ -179,7 +178,7 @@
         getProductList: function (onsuccess, onerror, before) {
             getData("POST", "Filter/getProductList", {}, onsuccess, onerror, before)
         },
-        getTaskQueues: function (data,onsuccess, onerror, before) {
+        getTaskQueues: function (data, onsuccess, onerror, before) {
             getData("POST", "Taskqueue/getTaskQueues", data, onsuccess, onerror, before)
         },
         getTQStockMovements: function (data, onsuccess, onerror, before) {
@@ -191,7 +190,7 @@
         closeTaskQueues: function (data, onsuccess, onerror, before) {
             getData("POST", "Task/closeTaskQueues", data, onsuccess, onerror, before)
         },
-        saveTaskQueues: function (data,onsuccess,onerror,before) {
+        saveTaskQueues: function (data, onsuccess, onerror, before) {
             getData("POST", "Taskqueue/saveTaskQueues", data, onsuccess, onerror, before)
         },
         saveZiyaretTask: function (data, onsuccess, onerror, before) {
@@ -199,7 +198,7 @@
         },
         saveCTStatusWithKatZiyaret: function (data, onsuccess, onerror, before) {
             getData("POST", "Taskqueue/saveCTStatusWithKatZiyaret", data, onsuccess, onerror, before)
-        }, 
+        },
         savesalestask: function (data, onsuccess, onerror, before) {
             getData("POST", "Taskqueue/saveSalesTask", data, onsuccess, onerror, before)
         },
@@ -215,8 +214,8 @@
         saveCustomerCard: function (data, onsuccess, onerror, before) {
             getData("POST", "Taskqueue/saveCustomerCard", data, onsuccess, onerror, before)
         },
-        getBlockList: function (data,onsucces,onerror,before) {
-            getData("POST", "SiteBlock/getBlocks",data,onsucces,onerror,before)
+        getBlockList: function (data, onsucces, onerror, before) {
+            getData("POST", "SiteBlock/getBlocks", data, onsucces, onerror, before)
         },
         editBlock: function (data, onsucces, onerror, before) {
             getData("POST", "SiteBlock/editBlock", data, onsucces, onerror, before)
@@ -245,8 +244,8 @@
         getObject: function (data, onsuccess, onerror, before) {
             getData("POST", "Filter/getObject", data, onsuccess, onerror, before)
         },
-        getStockMovements: function (data,onsucces, onerror, before) {
-            getData("POST", "Stock/getStockMovements", data,onsucces, onerror, before)
+        getStockMovements: function (data, onsucces, onerror, before) {
+            getData("POST", "Stock/getStockMovements", data, onsucces, onerror, before)
         },
         SaveStockMovementMultiple: function (data, onsucces, onerror, before) {
             getData("POST", "Stock/SaveStockMovementMultiple", data, onsucces, onerror, before)
@@ -300,8 +299,8 @@
             getData("POST", "Filter/getSerialsOnPersonel", data, onsucces, onerror, before)
         },
         ///Save Tasks Metodları
-        savePenetrasyonStart:function(data,onsuccess,onerror,before){
-            getData("POST", "SaveTasks/savePenetrasyon",data,onsuccess,onerror,before)
+        savePenetrasyonStart: function (data, onsuccess, onerror, before) {
+            getData("POST", "SaveTasks/savePenetrasyon", data, onsuccess, onerror, before)
         },
         saveGlobalTask: function (data, onsuccess, onerror, before) {
             getData("POST", "SaveTasks/saveGlobalTask", data, onsuccess, onerror, before)
@@ -326,31 +325,30 @@
             getData("POST", "Taskqueue/saveTaskCollective", data, onsuccess, onerror, before)
         },
         uploadFile: function () {
-        for (var i = 0; i < fileNode.files.length; i++) {
-            var request = new XMLHttpRequest();
-            request.upload.addEventListener('loadstart', function () {
-                console.log(i+"'inci Yükleme başlatıldı");
-            });
-            request.upload.addEventListener('progress', function (e) {
-                if (e.lengthComputable) {
-                    console.log(i+"'inci Yüklenen : " + e.loaded + ",Toplam: " + e.total);
-                } else {
-                    console.log(i+"'inci Dosya boyutu hesaplanamıyor");
-                }
-            });
-            request.upload.addEventListener('load', function (e) {
-                console.log(i + "'inci Dosya Yükleme İşlemi Başarı ile Tamamlandı...");
-            });
+            for (var i = 0; i < fileNode.files.length; i++) {
+                var request = new XMLHttpRequest();
+                request.upload.addEventListener('loadstart', function () {
+                    console.log(i + "'inci Yükleme başlatıldı");
+                });
+                request.upload.addEventListener('progress', function (e) {
+                    if (e.lengthComputable) {
+                        console.log(i + "'inci Yüklenen : " + e.loaded + ",Toplam: " + e.total);
+                    } else {
+                        console.log(i + "'inci Dosya boyutu hesaplanamıyor");
+                    }
+                });
+                request.upload.addEventListener('load', function (e) {
+                    console.log(i + "'inci Dosya Yükleme İşlemi Başarı ile Tamamlandı...");
+                });
 
-            request.open("post", "http://localhost:50752/api/Adsl/Upload", true);
-            request.setRequestHeader("Content-Type", "multipart/form-data;boundary=SOME_BOUNDARY");
-            request.setRequestHeader("X-File-Name", fileNode.files[i].name);
-            request.setRequestHeader("X-File-Size", fileNode.files[i].size);
-            request.setRequestHeader("X-File-Type", fileNode.files[i].type);
-            request.send(fileNode.files[0]);
+                request.open("post", "http://localhost:50752/api/Adsl/Upload", true);
+                request.setRequestHeader("Content-Type", "multipart/form-data;boundary=SOME_BOUNDARY");
+                request.setRequestHeader("X-File-Name", fileNode.files[i].name);
+                request.setRequestHeader("X-File-Size", fileNode.files[i].size);
+                request.setRequestHeader("X-File-Type", fileNode.files[i].type);
+                request.send(fileNode.files[0]);
+            }
+
         }
-       
-}
-        
     }
 })();

@@ -1,9 +1,9 @@
 ﻿
 var dataModel = {
     blockname: ko.observable(),
-    blockid:ko.observable(),
+    blockid: ko.observable(),
     selectedBlockId: ko.observable(),
-    selectedBlock:ko.observable(),
+    selectedBlock: ko.observable(),
     region: ko.observable(),
     site: ko.observable(),
     telocadia: ko.observable(),
@@ -65,7 +65,7 @@ var dataModel = {
         self.rowsPerPage(rowsperpage);
         self.fiberSODate(self.fiberStartDate() + '-' + self.fiberEndDate());
         var locs = $.trim(self.locationid()).replace(new RegExp(" ", 'g'), "").replace(new RegExp("\n", 'g'), "").split('\'');
-        if (locs.length > 1) locs.splice(0,1);
+        if (locs.length > 1) locs.splice(0, 1);
         var data = {
             pageNo: pageno,
             rowsPerPage: rowsperpage,
@@ -76,7 +76,7 @@ var dataModel = {
             telocadia: self.telocadia() ? { fieldName: "telocadia", op: 2, value: self.telocadia() } : null,
             locationid: self.locationid() ? { fieldName: "locationid", op: 11, value: locs } : null, // op: 11 -> string listesi
         };
-        crmAPI.getBlockList(data, function (a,b,c) {
+        crmAPI.getBlockList(data, function (a, b, c) {
             self.blockList(a.data.rows);
             self.pageCount(a.data.pagingInfo.pageCount);
             self.totalRowCount(a.data.pagingInfo.totalRowCount);
@@ -85,7 +85,7 @@ var dataModel = {
             $(".edit").click(function () {
                 self.getpersonel();
                 self.getSite();
-                self.getBlockCard($(this).val());           
+                self.getBlockCard($(this).val());
             });
             $('.sel').change(function () {
                 var ids = [];
@@ -98,6 +98,23 @@ var dataModel = {
                 self.selectedBlocks(ids);
             });
         }, null, null);
+    },
+    setMarkAll: function () {
+        var self = this;
+        var ids = [];
+        $('.sel').each(function () {
+            $(this).prop('checked', true);
+            var id = $(this).val();
+            ids.push(id);
+        });
+        self.selectedBlocks(ids);
+    },
+    setRemoveAll: function () {
+        var self = this;
+        $('.sel').each(function () {
+            $(this).prop('checked', false);
+        });
+        self.selectedBlocks([]);
     },
     getBlockCard: function (blockid) {
         var self = this;
@@ -113,7 +130,7 @@ var dataModel = {
     },
     getSite: function () {
         var self = this;
-        var data = { site: { fieldName: "sitename", value:'', op: 6 } }
+        var data = { site: { fieldName: "sitename", value: '', op: 6 } }
         crmAPI.getSiteFilter(data, function (a, b, c) {
             self.siteList(a);
             $("#sitename,#site").multiselect({
@@ -171,28 +188,28 @@ var dataModel = {
     insertBlock: function () {
         var self = this;
         $('#kayit').prop('disabled', true);
-        var data={
-            blockname :self.newblockname(),
-            site:{
+        var data = {
+            blockname: self.newblockname(),
+            site: {
                 siteid: self.newsiteid(),
-            } ,
-            hp : self.newhp(),
-            telocadia :self.newtelocadia(),
-            projectno :self.newprojectno(),
-            readytosaledate :self.newreadytosaledate(),
-            sosaledate :self.newsosaledate(),
-            kocsaledate :self.newkocsaledate(),
-            salespersonel:{
-                personelid:self.newsatissorumlusu(), 
             },
-            superintendent :self.newsuperintendent(),
-            superintendentcontact :self.newsuperintendentcontact(),
-            cocierge :self.newcocierge(),
-            cociergecontact :self.newcociergecontact(),
-            verticalproductionline  :self.newverticalproductionline(),
-            binakodu :self.newbinakodu(),
-            locationid :self.newlocationid(),
-            objid :self.newobjid(),
+            hp: self.newhp(),
+            telocadia: self.newtelocadia(),
+            projectno: self.newprojectno(),
+            readytosaledate: self.newreadytosaledate(),
+            sosaledate: self.newsosaledate(),
+            kocsaledate: self.newkocsaledate(),
+            salespersonel: {
+                personelid: self.newsatissorumlusu(),
+            },
+            superintendent: self.newsuperintendent(),
+            superintendentcontact: self.newsuperintendentcontact(),
+            cocierge: self.newcocierge(),
+            cociergecontact: self.newcociergecontact(),
+            verticalproductionline: self.newverticalproductionline(),
+            binakodu: self.newbinakodu(),
+            locationid: self.newlocationid(),
+            objid: self.newobjid(),
         };
         crmAPI.insertBlock(data, function (a, b, c) {
             self.errorcode(a.errorCode);
@@ -203,7 +220,7 @@ var dataModel = {
                 self.getBlockList(1, 20);
             }, 1000);
         }, null, null);
-        },
+    },
 
     clean: function () {
         var self = this;
@@ -259,7 +276,7 @@ var dataModel = {
         $('#d1,#d2,#d3').daterangepicker({
             "singleDatePicker": true,
             "autoApply": false,
-           " autoUpdateInput": false,
+            " autoUpdateInput": false,
             "linkedCalendars": false,
             "timePicker": true,
             "timePicker24Hour": true,
