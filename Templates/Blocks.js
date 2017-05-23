@@ -40,6 +40,7 @@ var dataModel = {
     newbinakodu: ko.observable(),
     newlocationid: ko.observable(),
     newobjid: ko.observable(),
+    multidate: ko.observable({ BIDS: [], FSD: undefined, SOSR: undefined, KSR: undefined, SSC: ko.observable(false), KSC: ko.observable(false) }),
 
     getpersonel: function () {
         var self = this;
@@ -221,6 +222,30 @@ var dataModel = {
             }, 1000);
         }, null, null);
     },
+    multiEditBlockDate: function () {
+        var self = this;
+        document.getElementById("duyari_state").style.display = 'none';
+        document.getElementById("dtamam").style.display = 'none';
+        $('#meditb').prop('disabled', true);
+        if (self.multidate().BIDS.length < 1 || !self.multidate().FSD) {
+            document.getElementById("duyari_state").style.display = 'block';
+            $('#meditb').prop('disabled', false);
+            return;
+        }
+        crmAPI.multiEditBlock({ BIDS: self.multidate().BIDS, FSD: self.multidate().FSD, SOSR: self.multidate().SOSR, KSR: self.multidate().KSR, FSD: self.multidate().FSD, SSC: self.multidate().SSC(), KSC: self.multidate().KSC() }, function (a, b, c) {
+            if (a == "Tamamlandı") {
+                document.getElementById("duyari_state").style.display = 'none';
+                document.getElementById("dtamam").style.display = 'block';
+                window.setTimeout(function () {
+                    $('#editMultipleDate').modal('hide');
+                    self.getBlockList(self.pageNo(), self.rowsPerPage());
+                }, 1000);
+            } else {
+                document.getElementById("dtamam").style.display = 'none';
+                document.getElementById("duyari_state").style.display = 'block';
+            }
+        }, null, null);
+    },
 
     clean: function () {
         var self = this;
@@ -310,6 +335,11 @@ var dataModel = {
             document.getElementById("tamam").style.display = 'none';
             self.selectedpersonelid(undefined);
             self.getpersonel();
+        });
+        $('#cmultidate').click(function () {
+            document.getElementById("duyari_state").style.display = 'none';
+            document.getElementById("dtamam").style.display = 'none';
+            self.multidate().BIDS = self.selectedBlocks();
         });
     }
 }

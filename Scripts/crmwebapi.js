@@ -324,6 +324,9 @@ var crmAPI = (function () {
         saveTaskCollective: function (data, onsuccess, onerror, before) {
             getData("POST", "Taskqueue/saveTaskCollective", data, onsuccess, onerror, before)
         },
+        multiEditBlock: function (data, onsuccess, onerror, before) {
+            getData("POST", "SiteBlock/multiEditBlock", data, onsuccess, onerror, before)
+        },
         uploadFile: function () {
             for (var i = 0; i < fileNode.files.length; i++) {
                 var request = new XMLHttpRequest();
