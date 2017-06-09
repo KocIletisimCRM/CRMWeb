@@ -305,6 +305,9 @@ var crmAPI = (function () {
         saveGlobalTask: function (data, onsuccess, onerror, before) {
             getData("POST", "SaveTasks/saveGlobalTask", data, onsuccess, onerror, before)
         },
+        saveTtvTask: function (data, onsuccess, onerror, before) {
+            getData("POST", "SaveTasks/saveTtvTask", data, onsuccess, onerror, before)
+        },
         // Task personel Atamaları
         getTaskPersonelAtama: function (data, onsuccess, onerror, before) {
             getData("POST", "Atama/getTaskPersonelAtama", data, onsuccess, onerror, before)

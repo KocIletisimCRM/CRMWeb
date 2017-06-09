@@ -60,6 +60,9 @@ $(window).bind("hashchange", function () {
     $("#username,#notice").click(function () {
         $("#ModalContainer").loadTemplate("Templates/New/Profil.html");
     });
+    $("#newtv").click(function () {
+        $("#ModalContainer").loadTemplate("Templates/New/TaskWithNewCustomer.html");
+    });
 
     $("#exit").click(function () {
         document.cookie = "token=;";

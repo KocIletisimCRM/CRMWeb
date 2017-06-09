@@ -1,5 +1,4 @@
-﻿
-var dataModel = {
+﻿var dataModel = {
     customername: ko.observable(),
     customerid: ko.observable(),
     tc: ko.observable(),
