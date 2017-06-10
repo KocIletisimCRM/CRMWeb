@@ -196,6 +196,9 @@ var crmAPI = (function () {
         saveZiyaretTask: function (data, onsuccess, onerror, before) {
             getData("POST", "Taskqueue/saveZiyaretTask", data, onsuccess, onerror, before)
         },
+        getTaskqueueInfo: function (data, onsucces, onerror, before) {
+            getData("POST", "Taskqueue/getTaskqueueInfo", data, onsucces, onerror, before)
+        },
         saveCTStatusWithKatZiyaret: function (data, onsuccess, onerror, before) {
             getData("POST", "Taskqueue/saveCTStatusWithKatZiyaret", data, onsuccess, onerror, before)
         },

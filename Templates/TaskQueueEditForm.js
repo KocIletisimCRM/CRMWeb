@@ -178,6 +178,16 @@ var dataModel = {
         }, null, null);
     },
 
+    relatedTaskInfo: ko.observable(),
+    getrelatedTaskInfo: function (taskorderno) {
+        var self = this;
+        if (taskorderno != null) {
+            var data = { taskorderno: taskorderno };
+            crmAPI.getTaskqueueInfo(data, function (a, b, c) {
+                self.relatedTaskInfo(a);
+            }, null, null)
+        }
+    },
     campaignEditable: ko.pureComputed(function () {
         var b = true;
         $.each(dataModel.productlist(), function (index, cp) {
