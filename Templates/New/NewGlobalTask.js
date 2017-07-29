@@ -156,6 +156,7 @@
         var self = this;
         if (self.newcustomer() && !self.customername())
             return alert("Müşteri Bilgilerini Doldurunuz !");
+        $('.btn').prop('disabled', true);
         var data = {
             newcustomer: self.newcustomer(),
             customername: self.customername(),
@@ -168,7 +169,10 @@
             description: self.description(),
             blockid: self.blockid(),
         };
-        crmAPI.saveGlobalTask(data, function (a, b, c) { self.returntaskorderno(a) }, null, null);
+        crmAPI.saveGlobalTask(data, function (a, b, c) {
+            $('.btn').prop('disabled', true);
+            self.returntaskorderno(a)
+        }, null, null);
     },
     renderBindings: function () {
         var self = this;

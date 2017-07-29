@@ -132,6 +132,7 @@ var dataModel = {
     },
     insertSite: function (){
         var self = this;
+        $('.btn').prop('disabled', true);
         var data = {
             sitename: self.newsitename(),
             siteaddress: self.newadres(),
@@ -144,6 +145,7 @@ var dataModel = {
             self.errorcode(a.errorCode);
             self.errormessage(a.errorMessage);
             window.setTimeout(function () {
+                $('.btn').prop('disabled', false);
                 $('#myModal1').modal('hide');
                 self.getSiteList(1, 20);
             }, 1000);
